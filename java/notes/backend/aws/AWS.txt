@@ -1,0 +1,129 @@
+AWS CI/CD(continuous integration and continuous) :
+	CI/CD pipelines are a series of steps that improve the software development process by automating tasks like building, testing, and deploying software. The goal is to produce higher quality code faster and more securely. 
+	
+	Continuous integration (CI)
+		Developers regularly merge code changes into a central repository, and automated tests run after each merge to check for errors. This helps prevent integration issues that can occur when developers don't merge code for long periods. 	
+		
+	Continuous delivery (CD)
+		After code is tested and built, CD automates the process of releasing it to a testing or staging environment. CD ensures that software is always ready for deployment and can be released at any time.
+		
+	Continuous deployment
+		An extension of CD, continuous deployment automatically deploys code changes to production after they pass automated tests. This allows developers to receive user feedback more quickly and incorporate it into their work.
+
+
+Deploy Spring Boot API to ECS Using CodeBuild & CodePipeline :
+1. Dockerfile : 
+---------------
+	# Use the official OpenJDK 17 image from Docker Hub
+	FROM openjdk:17
+	
+	# Set working directory inside the container
+	WORKDIR /app
+	
+	# Copy the compiled java application JAR file into the container
+	COPY ./target/cource-service.jar /app
+	
+	# Expose the port the Spring Boot application will run on
+	EXPOSE 8080
+	
+	# Command to run the application
+	CMD ["java", "-jar", "cource-service.jar"]
+	
+	
+	
+2. ECR(Elastic Container Registry) :
+------------------------------------
+	Elastic Container Registry --> Create a repository --> Repository name(myapp-registry) --> Create repository
+	
+3. buildspec.yml : (push it to github after changes)
+------------------
+	version: 0.2
+
+	phases:
+	
+		// generating the jar file
+		pre_build:
+			commands:
+			  - mvn clean install
+			  - echo Logging in to Amazon ECR...
+			  - aws --version
+			  - REPOSITORY_URI=(Created the repository in step 2)
+			  - aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin $REPOSITORY_URI
+			  - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+			  - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+			  
+		// building the docker image
+		build:
+			commands:
+			  - echo Build started on `date`
+			  - echo Building the Docker image...
+			  - docker build -t $REPOSITORY_URI:latest .
+			  - docker tag $REPOSITORY_URI:latest $REPOSITORY_URI:$IMAGE_TAG
+		
+		// pushing docker image to ECR
+		post_build:
+			commands:
+			  - echo Build completed on `date`
+			  - echo Pushing the Docker images...
+			  - docker push $REPOSITORY_URI:latest
+			  - docker push $REPOSITORY_URI:$IMAGE_TAG
+			  - echo Writing image definitions file...
+			  - printf '[{"name":"course-service","imageUri":"%s"}]' $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+			  - echo Writing image definitions file...
+			  
+			  # add your container name
+			  - DOCKER_CONTAINER_NAME=myapp-registry # Create in step 2
+			  - printf '[{"name":"%s","imageUri":"%s"}]' $DOCKER_CONTAINER_NAME $REPOSITORY_URI:$IMAGE_TAG > imagedefinitions.json
+			  - echo $DOCKER_CONTAINER_NAME
+			  - echo printing imagedefinitions.json
+			  - cat imagedefinitions.json
+
+		artifacts:
+		  files:
+			- imagedefinitions.json
+			- target/myapp-service.jar
+			
+			
+4. AWS CodeBuild :
+------------------
+
+	//Automate ci
+	
+		// create project and role
+		Console Home --> CodeBuild --> Build project --> Create project --> Project name(myapp-project) --> Source provider(GitHub) --> Github repository(https://github.com/itsVikram01/aws-cicd.git) --> Webhook - Optional(Checked) --> Role name(myapp-project-service-role) --> Build specification(Use a buildspec file) --> Create a build project
+		
+		// additional configuration for role
+		myapp-project --> Roles --> myapp-project-service-role --> AmazonEC2ContainerRegistryFullAccess + AmazonEC2ContainerRegistryPowerUser -->Add permission
+		
+		// start the build
+		Console Home --> CodeBuild --> Build project --> Start the build
+		
+		
+		
+		mvn-clean-install
+		
+		// create registory 
+		Amazon ECR --> Private registory --> Repositories --> myapp-registry ==>> image
+		
+		
+		Console Home --> Elastic Container Service --> 
+		
+			// createtask
+			i). Task definition --> Create new task definition --> Task definition family(myapp-task) --> Launch type(AWS Farget(because serverless)) --> Task size(reduce - CPU(1 vCPU), Memory(1GB)) -- Container-1(Name(myapp-registry), Image URI(...)) --> Port mapping(Container port(8080), Add protocol(HTTP)) --> Create
+			
+			// create cluster
+			ii). Create cluster --> Cluster name(myapp-cluster) --> Infastructure(AWS Farget(because serverless)) --> Create
+			
+		// create service to access task
+		myapp-cluster --> (Map tha task or create the Service) --> Create Service --> Compute configuration(Launch type(AWS Farget)) --> Application type(Service) --> Family(myapp-task) --> Service name(myapp-service) --> Networking --> Security group(Create a new security group) --> Type(All traffic, All TCP) --> Source(Anywhere, Anywhere) --> Create
+	
+	
+	// Automate cd
+		
+		// create new pipeline
+		Console Home --> CodePipeline --> Create new pipeline --> 
+			1. Choose pipeline setting --> Pipeline name(myapp-pipeline) --> Service role(new service role) --> Next
+			2. Add source stage -->  Source provider(GitHub(Version 1)) --> Connect to GitHub --> Processing OAuth request(Confirm) --> Repository(itsVikram01/aws-cicd.git) --> Branch(main) --> Change detection options(GitHub webhooks(recommended)) --> Next
+			3. Add build stage --> Build provider(AWS CodeBuild) --> Project name(myapp-project) --> Build type(Single build) --> Next
+			4. Add deploy stage --> Deploy provider(Amazon ECS) --> Cluster name(myapp-cluster) --. Service name(myapp-service) --> Next --> Create pipeline
+			5. Review 

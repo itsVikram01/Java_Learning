@@ -1,0 +1,14 @@
+git checkout main
+git fetch origin
+git merge master
+
+git commit -m "Merged master into main"
+git push origin main
+
+
+If you have a local clone, you can update it by running the following commands.
+
+git branch -m abc master
+git fetch origin
+git branch -u origin/master master
+git remote set-head origin -a

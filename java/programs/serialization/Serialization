@@ -1,0 +1,83 @@
+Serialization:
+--------------
+	. Java serialization is the process of converting an object's state into a byte stream so that it can be saved to a file, sent over a network, or stored in a database.
+	. Deserialization is the reverse process where the byte stream is converted back into a copy of the object.
+
+	Key Concepts of Serialization
+	1. Serializable Interface:
+		. An object must implement the java.io.Serializable interface to be serialized. This is a marker interface, meaning it has no methods to implement. It serves to signal the Java Virtual Machine (JVM) that the object is serializable.
+
+
+	2. ObjectOutputStream and ObjectInputStream:
+		. ObjectOutputStream is used to write the object to an output stream.
+		. ObjectInputStream is used to read the object from an input stream.
+
+
+	3. SerialVersionUID:
+		. A unique identifier for Serializable classes. It is used during deserialization to ensure that a loaded class is compatible with the serialized object.
+		. If no serialVersionUID is explicitly declared, the JVM will generate one at runtime, based on various aspects of the class.
+
+
+	Example ---
+		Step 1: Create a Serializable Class
+		-----------------------------------
+			@Data
+			public class Person implements Serializable {
+				private static final long serialVersionUID = 1L;
+
+				private String name;
+				private int age;
+			}
+
+
+		Step 2: Serialize the Object
+		----------------------------
+			public class SerializePerson {
+				public static void main(String[] args) throws IOException {
+					Person person = new Person("Alice", 30);
+					try (FileOutputStream fileOut = new FileOutputStream("person.ser")) { // Create streams for serialization
+						ObjectOutputStream out = new ObjectOutputStream(fileOut);
+						out.writeObject(person); // Write the object to the stream
+						System.out.println("Serialized data is saved in person.ser");
+
+						out.close(); // Close the streams
+						fileOut.close();
+					} catch (IOException i) {
+						i.printStackTrace();
+					}
+					System.out.println("Person object serialized successfully!");
+				}
+			}
+
+
+			Step 3: Deserialize the Object
+			------------------------------
+				public class DeserializePerson {
+					public static void main(String[] args) throws IOException, ClassNotFoundException {
+						Person deserializedPerson = null;
+						try (FileInputStream fileIn = new FileInputStream("person.ser")) { // Create streams for deserialization
+							ObjectInputStream in = new ObjectInputStream(fileIn);
+							deserializedPerson = (Person) in.readObject(); // Read the object from the stream
+
+							in.close(); // Close the streams
+							fileIn.close();
+
+							System.out.println("Deserialized Person:");
+							System.out.println("Name: " + deserializedPerson.getName());
+							System.out.println("Age: " + deserializedPerson.getAge());
+						} catch (IOException i) {
+							i.printStackTrace();
+						} catch (ClassNotFoundException c) {
+							System.out.println("Person class not found");
+							c.printStackTrace();
+						}
+					}
+				}
+
+
+
+		Additional Considerations :
+		---------------------------
+			. Custom Serialization: By defining readObject and writeObject methods, you can customize the serialization process.
+
+			. Externalizable Interface: For complete control over serialization, a class can implement the Externalizable interface, which requires implementing writeExternal and readExternal methods.

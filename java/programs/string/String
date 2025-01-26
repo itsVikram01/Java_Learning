@@ -1,0 +1,178 @@
+String class :
+--------------
+	. In Java String  is a class (not a primitive data type) that represents a sequence of characters.
+	. It is immutable, which meaning content can not be modified after creation.
+	. java.lang.String class provides methods for manipulating and working with strings.
+
+		String name = "Alice";
+		System.out.println(name.length()); // Output: 5
+
+
+		Strings creation :
+		------------------
+			. When you create a String using double quotes (" "), the JVM checks the String pool for an existing identical String. If found, it returns a reference to the existing object. Otherwise, a new String object is created in the pool.
+
+			Modifying a String:
+				When you perform operations like concatenation or substring, a new String object is created
+
+				String message = "Hello";
+
+			. new String() constructor: Creates a new String object in heap memory, even if an identical String exists in the pool.
+
+				String greeting = new String("Welcome");
+
+		String pool :
+		-------------
+			. String pool is a memory area in the JVM that stores String literals created at compile time or using double quotes("").
+			. When you create a String literal(sequence of characters enclosed within double quotes), the JVM checks the pool. If a matching String exists, it returns the reference to that object, promoting memory efficiency.
+			. If no match is found, a new String object is created in the pool.
+
+				String str1 = "Hi";
+				String str2 = "Hi";
+
+				System.out.println(str1 == str2); // Output: true (both refer to the same object in the String pool)
+
+		compare Strings for equality :
+		------------------------------
+			. Use the equals() method of the String class for content-based comparison (case-sensitive).
+
+				String name1 = "Bob";
+				String name2 = "bob";
+
+				System.out.println(name1.equals(name2)); // Output: false
+
+			. Use equalsIgnoreCase() for case-insensitive :
+
+				System.out.println(name1.equalsIgnoreCase(name2)); // Output: true
+
+			. Never use the == operator for String equality. It checks object references (not content).
+
+		Extract substrings from a String :
+		----------------------------------
+			. Use the substring(startIndex, endIndex) method to extract a portion of the String.
+
+				String fullString = "Java Programming";
+				String subString = fullString.substring(5, 15); // "Programming"
+				System.out.println(subString);
+
+		 How do you modify the contents of a String :
+			. Since Strings are immutable, you cannot directly change their content. To create a modified version, use methods like concat(), replace(), etc.
+
+				String original = "Welcome";
+				String modified = original.concat(" Home"); // "Welcome Home" (doesn't change original)
+				System.out.println(original); // Still "Welcome"
+				System.out.println(modified);
+
+			. Consider using mutable String builder classes like StringBuilder or StringBuffer for frequent modifications.
+
+		Search for a character or substring within a String :
+			. Use the indexOf(char/String) or lastIndexOf(char/String) methods to find the first or last occurrence, respectively.
+
+				String sentence = "Find the word 'word'";
+				int firstIndex = sentence.indexOf("word");
+				int lastIndex = sentence.lastIndexOf("word");
+
+				System.out.println(firstIndex); // Output: 9
+				System.out.println(lastIndex); // Output: 15
+
+		Convert a String to uppercase, lowercase, or another case :
+			. Use the toUpperCase() or toLowerCase() methods for case conversion.
+
+				String text = "MiXeD CaSe";
+				String upperCase = text.toUpperCase();
+				String lowerCase = text.toLowerCase();
+
+				System.out.println(upperCase); // Output: MIXED CASE
+				System.out.println(lowerCase); // Output: mixed case
+
+		Reverse a String :
+			. StringBuilder: Create a StringBuilder object from the String, reverse it using reverse(), and convert it back to String.
+
+				String str = "Hello";
+				StringBuilder sb = new StringBuilder(str);
+				sb.reverse();
+				String reversed = sb.toString();
+
+Why Java Strings are Immutable :
+	Immutability in Java means that once a String object is created, its value cannot be changed.
+
+	Key Reasons for String Immutability:
+		1.Security:
+			. Strings often hold sensitive information like passwords, usernames, or connection URLs.  
+			. Immutability prevents malicious tampering with these values, ensuring data integrity.  
+
+		2.Thread Safety:
+			. Strings are inherently thread-safe because they cannot be modified by multiple threads concurrently.  
+			. This eliminates the need for explicit synchronization, improving performance and reducing the risk of race conditions.  
+
+		3.Caching and Performance:
+			. The String pool efficiently stores and reuses String objects.  
+			. Immutability allows for this optimization, as the same String value can be shared by multiple references.  
+			. This reduces memory usage and improves performance.  
+
+		4.Hash Code Consistency:
+			. The hashCode() method in String is calculated only once and cached.
+			. Since the String is immutable, the hash code remains constant, making it efficient for use in hash-based collections like HashMap and HashSet.
+
+		5.Class Loading:
+			. Class loaders rely on the immutability of Strings to correctly load classes.
+			. Any modification to the class name String could lead to loading the wrong class.
+
+Create an immutable class in Java:
+
+	1. Declare the class as final:
+		This prevents inheritance and ensures the class behavior remains consistent.
+
+	2. Make fields private and final:
+		Private access restricts direct modification, and final ensures the values are assigned only once.
+
+	3. Use a parameterized constructor:
+		Initialize all final fields in the constructor.
+
+	4. Don't provide setter methods:
+		Since the object shouldn't be changed after creation, there's no need for setters.
+
+	5. Perform deep copy in getters:
+		If a field is a mutable object (like an array or another class), return a copy of the data in the getter methods instead of the original object. This prevents modification through the getter.
+
+	example :
+
+		public final class Person { // 1. Declare the class as final:
+
+			private final String name; // 2. Make fields private and final:
+
+			private final Address address; // Address class assumed to be immutable
+
+			public Person(String name, Address address) { // 3. Use a parameterized constructor:
+				this.name = name;
+				this.address = address;
+			}
+
+			// 4. Don't provide setter methods:
+
+			public String getName() {
+				return name;
+			}
+
+			public Address getAddress() {
+				// 5. Deep copy the address object (assuming Address is immutable)
+				return new Address(address.getStreet(), address.getCity(), address.getState()); // Or use Address copy constructor if available
+			}
+		}
+
+		public final class Address {
+			// ... Address fields and methods (assumed immutable)
+			private final String street;
+			private final String city;
+			private final String state;
+
+			// parameterized constructor
+			// Don't provide setter methods
+
+		}
+
+
+		Key Points :
+		. Primitive types and immutable objects can be returned directly.
+		. Use clone() or copyOf() for mutable collections.
+		. Create new arrays for mutable arrays.

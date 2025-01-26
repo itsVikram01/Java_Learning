@@ -1,0 +1,762 @@
+JDK : used to develop Java applications. It includes the JRE and Development Tools(Compiler(javac), Archiver(jar), Documentation Generator (javadoc), Other tools (debuggers, profilers)).
+├── JRE : needed to run Java applications.
+│   ├── JVM : enables a computer to run Java bytecode. It converts Java bytecode into machine code that can be executed by the host operating system.
+│   │	├── Class Loader : Dynamically load Java classes and Reads the bytecode for a class from its file (.class file) and loads it into the JVM.  	
+│	│	│					Initializes static variables and executes static blocks.
+│   │	├── Bytecode Verifier: When a class is loaded into the JVM for the first time, the bytecode verifier runs to check the bytecode of the class.
+│	│	│						It ensuring that code adheres to strict rules to maintain safety, security, and stability even when compiled from untrusted sources.
+│   │	├── Interpreter : Java Virtual Machine (JVM) acts as an interpreter, translating Java bytecode into platform-specific machine code during runtime..
+│   │	└── JIT : The JIT compiler converts Java bytecode into native machine code at runtime, allowing the program to execute faster than interpreting bytecode line-by-line.
+│	│
+│   └── Libraries : collection of pre-written code, modules, or routines that provide functionality or services to applications, allowing developers to reuse code without writing it from 
+│					scratch.
+│
+└── Development Tools
+    ├── Compiler (javac) : The javac compiler is the tool that takes your Java source code(written in .java files) and compiles it into bytecode, which is stored in .class files.  			
+	│						This bytecode is platform-independent and can be executed by the Java Virtual Machine (JVM) on any platform that supports Java.
+    ├── Archiver (jar) : The jar(Java ARchive) tool is used in Java to package multiple files—especially compiled .class files and resources (such as images, property files, or libraries)—into
+	│						a single compressed file with a .jar extension.
+    ├── Documentation Generator (javadoc) : javadoc is a tool included with the Java Development Kit (JDK) that generates HTML-formatted documentation from Java source code. 
+	│										It extracts special comments (called Javadoc comments) from the code and converts them into a structured format that describes the classes, methods,
+	│											constructors, and fields.	
+    └── Other tools (debuggers, profilers) : 
+			Debuggers : They allow step-by-step execution, variable inspection, and manipulation of program flow to identify and resolve issues such as logical errors, crashes, and incorrect 				outputs by examine the state of an application during execution.
+			Profilers : Profilers are performance analysis tools that help developers understand how an application uses resources like CPU, memory, and threads by identifying bottlenecks, 				memory leaks, and inefficient code paths.
+			
+. static: 	
+---------
+	. Static members are allocated memory only once during program execution, shared among all instances of the class.
+	. Static members are accessed via the class name without creating an object of the class.
+	. Static members belong to the class, not individual objects. Changes to static members affect all instances.
+	. You address them using the class name, not an object reference.
+	. static methods and variables can’t access non-static members. They’re like introverts at a party—they don’t mingle with instance-specific stuff.
+	. You can overload static methods (multiple methods with the same name but different parameters). However, you can’t override them—they’re class-level, not instance-level.
+	
+	Static Blocks: Computation at Class Load
+	. If you need to compute something before initializing static variables, use a static block.
+	. It runs exactly once when the class is loaded.
+	
+	. Usage:
+		. When a variable or method is marked static, it can be accessed without creating an instance of the class.
+		.Static members are shared among all instances of the class.
+	
+	. Key Points:
+		. Static variables are common across all instances of the class.
+		. Static methods can only access static variables or other static methods.
+		. No need to instantiate a class to access a static member.
+		
+		
+
+String class : 
+--------------
+	. In Java String  is a class (not a primitive data type) that represents a sequence of characters.
+	. It is immutable, which meaning content can not be modified after creation.
+	. java.lang.String class provides methods for manipulating and working with strings.
+	
+String pool : 
+-------------
+	. String pool is a memory area in the JVM that stores String literals created at compile time or using double quotes("").
+
+String literal : 
+----------------
+	. It is sequence of characters enclosed within double quotes("").
+	. These literals are instance of the String class and represent constant, immutable value.
+	
+String Creation : 
+-----------------
+	. When you create a String literal, the JVM checks the pool. If a matching String exists, it returns the reference to that object, promoting memory efficiency.
+			. If no match is found, a new String object is created in the pool.
+			
+				String str1 = "Hi";
+				String str2 = "Hi";
+
+				System.out.println(str1 == str2); // Output: true (both refer to the same object in the String pool)
+				System.out.println(str1.equals(str2)); // Output: true
+
+
+				String str3 = new String("Hello");
+				String str4 = new String("Hello");
+
+				System.out.println(str3 == str4); // Output: false (both refer to the different object in the String pool and == method compare values and there reference)
+				System.out.println(str3.equals(str4)); // Output: true (equals() method compare only values)
+
+
+String Immutability:
+	. In Java, strings are immutable, which means once a string object is created, its content cannot be changed.
+	. When you perform operations on strings (like concatenation or substring), you actually create new string objects rather than modifying the existing ones.
+	
+Create an immutable class in Java:
+
+	1. Declare the class as final: 
+		This prevents inheritance and ensures the class behavior remains consistent.
+
+	2. Make fields private and final: 
+		Private access restricts direct modification, and final ensures the values are assigned only once.
+		
+	3. Use a parameterized constructor: 
+		Initialize all final fields in the constructor.
+
+	4. Don't provide setter methods: 
+		Since the object shouldn't be changed after creation, there's no need for setters.
+
+	5. Perform deep copy in getters: 
+		If a field is a mutable object (like an array or another class), return a copy of the data in the getter methods instead of the original object. This prevents modification through the getter.
+		
+	example : 
+		
+		public final class Person { // 1. Declare the class as final: 
+
+			private final String name; // 2. Make fields private and final: 
+			
+			private final Address address; // Address class assumed to be immutable
+
+			public Person(String name, Address address) { // 3. Use a parameterized constructor: 
+				this.name = name;
+				this.address = address;
+			}
+
+			// 4. Don't provide setter methods: 
+
+			public String getName() {
+				return name;
+			}
+
+			public Address getAddress() {
+				// 5. Deep copy the address object (assuming Address is immutable)
+				return new Address(address.getStreet(), address.getCity(), address.getState()); // Or use Address copy constructor if available
+			}
+		}
+
+		public final class Address {
+			// ... Address fields and methods (assumed immutable)
+			private final String street;
+			private final String city;
+			private final String state;
+			
+			// parameterized constructor
+			// Don't provide setter methods
+			
+		}
+		
+		
+
+			
+StringBuilder vs StringBuffer : 
+--------------------------------
+	. Thread Safety: 
+		StringBuilder is not, while StringBuffer is thread-safe.
+	. Use Cases: 
+		Choose StringBuilder for single-threaded scenarios and StringBuffer for multi-threaded scenarios where thread safety is a concern.
+	. Performance: 
+		StringBuilder is generally faster in single-threaded environments due to its lack of synchronization overhead.
+		
+		
+
+Caching : 
+	Caching is a powerful technique to enhance the performance of web applications by reducing the load on servers and minimizing data retrieval times.
+	
+	Browser Caching:
+		. When a user visits a website, their browser can store static assets (like images, stylesheets, and scripts) locally. The next time the user accesses the same page, the browser retrieves these assets from its cache instead of making a fresh request to the server.
+		. To implement browser caching, you typically set appropriate HTTP headers (such as Cache-Control and Expires) on your server to specify how long the browser should cache specific resources.
+		
+	Content Delivery Network (CDN):
+		. CDNs distribute your static assets (images, videos, stylesheets, etc.) across multiple servers located in different geographic regions. When a user requests a resource, the CDN serves it from the nearest server, reducing latency.
+		. Popular CDNs include Cloudflare, Akamai, and Amazon CloudFront.
+		
+	Server-Side Caching:
+		. Server-side caching involves storing dynamically generated content (HTML pages, API responses) in memory or on disk to avoid recalculating it for every request.
+		. Common server-side caching mechanisms:
+			. Page Caching: 
+				Entire HTML pages are cached and served to subsequent users. Useful for static content or pages with minimal personalization.
+			. Fragment Caching: 
+				Specific parts of a page (e.g., product recommendations, user profiles) are cached.
+			. Object Caching: 
+				Caching database queries or API responses. Tools like Redis or Memcached are commonly used for this purpose.
+		
+	Database Query Caching:
+		. If your application relies heavily on database queries, consider caching query results. When the same query is executed multiple times, retrieve the result from cache rather than hitting the database.
+		. Frameworks like Django (with its built-in query caching) or custom solutions using Redis can help.
+		
+	In-Memory Caching:
+		. In-memory caches store data directly in RAM, making retrieval lightning-fast. Popular choices include Redis and Memcached.
+		. Use in-memory caching for frequently accessed data, session management, or temporary storage.
+		
+	HTTP Caching Headers:
+		. Leverage HTTP headers like Last-Modified, ETag, and If-Modified-Since to control caching behavior. These headers allow clients (browsers or proxies) to determine whether a resource has changed since their last request.
+		. For example, if a resource hasn’t changed, the server responds with a 304 status code (“Not Modified”), and the client uses its cached version.
+		
+	Client-Side Caching with JavaScript:
+		. Modern web applications often use client-side frameworks (e.g., React, Angular, Vue). These frameworks can cache data in memory (e.g., Redux stores) or use browser storage (localStorage or sessionStorage) to persist data across sessions.
+		
+		
+
+
+
+
+SPRINGBOOT : 
+------------
+	Spring Boot is a framework for rapidly creating production-ready Java applications. 
+	
+	It simplifies development by:
+		* Auto-configuration: Saves time by automatically configuring beans based on project dependencies.
+		* Starters: Provides pre-configured dependency management for features like web apps and data access.
+		* Embedded servers: Enables running the application without a separate server container.
+
+	Benefits of using Spring Boot :
+		. Increased developer productivity
+		. Reduced boilerplate code
+		. Convention over configuration approach
+		. Easier deployment to production
+		. Built-in monitoring and management features
+		
+
+Spring Boot Starters : (add dependencies in pom.xml (if using Maven) or build.gradle (if using Gradle).)
+----------------------
+	. Spring Boot starters are pre-configured sets of dependencies that you can include in your Spring Boot project. They simplify your life by providing a convenient way to add common libraries and technologies without manually specifying each dependency.
+	. Imagine you’re building a web application. Instead of hunting down and adding individual dependencies for Spring MVC, Tomcat, Jackson, and more, you can just include the spring-boot-starter-web starter, and voilà! All the necessary dependencies are bundled together.
+	
+	. Web Starter:
+	--------------
+		When building a REST service, you’d typically need Spring MVC, an embedded servlet container (like Tomcat), and perhaps JSON serialization/deserialization (Jackson). Instead of adding these dependencies manually, just include the spring-boot-starter-web:
+			
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-web</artifactId>
+			</dependency>
+			
+		Now you’re all set to create REST controllers and handle HTTP requests!
+		
+	. Test Starter:
+	---------------
+		For testing, you’d usually use Spring Test, JUnit, Hamcrest, and Mockito. The spring-boot-starter-test includes all of these testing libraries:
+		
+			<dependency>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-starter-test</artifactId>
+				<scope>test</scope>
+			</dependency>
+			
+		No need to manually specify versions; Spring Boot figures it out for you based on the version of spring-boot-starter-parent.
+		
+
+Spring Boot Actuator : 
+----------------------
+	Spring Boot Actuator provides production-ready features for monitoring and managing your application. 
+	It exposes endpoints for health checks, metrics, environment information, and more. You can access these endpoints for application diagnostics and configuration.
+	
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+		
+
+1. @SpringBootApplication: 
+	--------------------------
+		This is the primary annotation that combines several other annotations:
+
+		1. @Configuration:
+		------------------	
+			. @Configuration class is essentially a blueprint for creating Spring beans.
+			. @Configuration annotation is a powerful Spring annotation that indicates a class is a source of bean definitions.
+			. When you annotate a class with @Configuration, it becomes a configuration class responsible for defining beans using @Bean annotated methods.
+			. Inside a @Configuration class, you define methods annotated with @Bean. Each method returns an instance of a bean.
+			. Spring processes these methods during application startup and registers the corresponding beans in the Spring container.
+				
+				import org.springframework.context.annotation.Bean;
+				import org.springframework.context.annotation.Configuration;
+
+				@Configuration
+				public class AppConfig {
+					@Bean
+					public MyService myService() {
+						return new MyServiceImpl();
+					}
+				}
+			
+			. It promotes a programmatic way of defining beans, which can be more flexible than component scanning.
+				
+		2. @ComponentScan: 
+		------------------
+			. @ComponentScan annotation is a powerful Spring annotation that tells Spring to scan the current package and its subpackages for components annotated with @Component, @Service, @Repository, or @Controller.
+			. Essentially, it enables Spring to discover and register these annotated classes as Spring beans.
+			. These scanned classes are made available on the Java classpath and are registered in the ApplicationContext, making them accessible for dependency injection (DI).
+			
+		3. @EnableAutoConfiguration:
+		----------------------------
+			Enables automatic configuration of Spring beans based on the classpath and other factors.
+			. @EnableAutoConfiguration annotation is a powerful feature in Spring Boot that simplifies application setup by automatically configuring beans based on the classpath and application properties.
+			. When you annotate your main application class (usually the one with the public static void main(String[] args) method) with @EnableAutoConfiguration, Spring Boot scans the classpath for libraries, JARs, and other dependencies and then automatically configures beans(e.g., data sources, web servers, security settings, etc.).
+			
+			. Customize auto-configuration in Spring Boot : 
+				. You can disable auto-configuration for specific beans using @EnableAutoConfiguration(exclude = {MyBean.class}).
+				. Use spring.autoconfigure.exclude property in your application.properties or application.yml to exclude specific auto-configurations.
+					
+					spring.autoconfigure.exclude=org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+			
+			
+			
+2.  @Controller vs @RestController :
+	------------------------------------
+		@Controller:
+		------------
+			. The @Controller annotation is used for building traditional web applications that render views (HTML pages).
+			. When you annotate a class with @Controller, it indicates that the class serves as a web controller.
+			. Typically, you combine @Controller with @RequestMapping annotations to define request handling methods.
+			. These request handling methods return views (HTML templates) that are resolved by a view resolver.
+			. If you want a method in a @Controller to return raw data or JSON, you can still use @ResponseBody on that method.
+			
+				@Controller
+				@RequestMapping("/books")
+				public class SimpleBookController {
+					@GetMapping("/{id}")
+					public String getBook(@PathVariable int id, Model model) {
+						// Fetch book details and populate the model
+						return "book-details"; // Returns a view named "book-details"
+					}
+				}
+
+	
+	
+		@RestController: 
+		----------------
+			. The @RestController annotation is specifically designed for building RESTful APIs.
+			. It combines two annotations: @Controller and @ResponseBody.
+			. When you annotate a class with @RestController, every request handling method in that class automatically serializes return objects into the HTTP response body (usually as JSON or XML).
+			
+				@RestController
+				@RequestMapping("/books-rest")
+				public class SimpleBookRestController {
+					@GetMapping("/{id}", produces = "application/json")
+					public Book getBook(@PathVariable int id) {
+						// Fetch book details and return as a Book object
+						return findBookById(id);
+					}
+				}
+				
+			In this example, the getBook method returns a Book object, and Spring automatically serializes it to JSON.
+			
+				@Controller
+				@ResponseBody
+				class Controller{
+					// In @Controller, we can return a view in Spring Web MVC.
+					// In @Controller, we need to use @ResponseBody on every handler method.
+					// @Controller was added to Spring 2.5 version. @RestController was added to Spring 4.0 version.
+				}
+				
+				
+@Transactional: 
+	---------------
+		. When you apply the @Transactional annotation to a method or an entire class, Spring ensures that database operations within that method or class are done safely and correctly.
+		. It starts a transaction before the method begins executing, and commits (or rolls back) the transaction when the method completes.
+		. @Transactional only works for public methods (due to proxy-based AOP).
+		
+		
+	Transaction Management in Java REST APIs :
+	1. @Transactional Annotation: 
+		This is the most common approach for managing transactions in Spring Boot applications. It can be applied at the class or method level.
+		
+		Example - 	
+		
+			@Service
+			public class OrderService {
+
+				@Autowired
+				private OrderRepository orderRepository;
+
+				@Autowired
+				private PaymentService paymentService;
+
+				@Transactional
+				public Order placeOrder(Order order) {
+					// Create order
+					Order savedOrder = orderRepository.save(order);
+
+					// Process payment
+					paymentService.processPayment(order.getAmount());
+
+					return savedOrder;
+				}
+			}
+
+
+	2. Database-Specific Transaction Management:
+		. JDBC Transactions: 
+		--------------------
+			. When interacting with a database using JDBC, you can manage transactions manually by controlling the Connection object. This approach is low-level but gives you fine-grained control over the transaction lifecycle.
+			. Transactions are started, committed, or rolled back using the Connection object.
+		. JPA Transactions:
+		-------------------	
+			. If using JPA, you can use the EntityManager to manage transactions. The EntityManager provides methods to begin, commit, and roll back transactions. 
+			. Used when you need fine-grained control over the transaction lifecycle.
+	
+	3. Distributed Transactions:
+		. For complex scenarios involving multiple databases or systems, consider distributed transactions using protocols like XA or two-phase commit.
+		. However, distributed transactions are complex and often avoided due to performance overhead and potential issues.
+		
+		
+Inversion of Control (IoC) container :
+--------------------------------------
+	The Inversion of Control (IoC) Container in Spring Boot is a fundamental concept that enables efficient dependency injection (DI). 
+	It invert the control of object creation and dependency management from the application code to the Spring framework promoting loose coupling and better maintainability. 
+	It allows developers to focus on application logic while Spring takes care of managing object creation and their dependencies.
+
+	An IoC Container in Spring is responsible for:
+		. Object Creation: Creating and managing the lifecycle of objects (beans).
+		. Dependency Injection: Injecting required dependencies into beans.
+		. Configuration Management: Reading metadata (e.g., annotations, XML, Java Config) to configure and initialize beans.
+		
+	The IoC container in Spring Boot consists of two key implementations:
+		. BeanFactory: A lightweight container providing basic IoC functionality.
+		. ApplicationContext: A more advanced container, offering additional features like:
+		. Event propagation
+		. AOP integration
+		. Bean lifecycle management
+		. Internationalization support
+		
+		In Spring Boot, the ApplicationContext is used by default.
+		
+		
+Dependency Injection (DI):
+--------------------------
+	. At its core, DI is a design pattern that promotes loose coupling between components by externalizing the creation and management of dependent objects. 	
+	. In Spring Boot, DI is achieved through the Inversion of Control (IoC) container. This container manages the lifecycle of objects and injects required dependencies into them when they are created.
+	
+	It’s like having a helpful friend who brings you exactly what you need when you need it—whether it’s a refreshing drink at a party or a service in your application1.
+
+
+Types of Dependency Injection in Spring Boot:
+	. Constructor Injection: 
+	------------------------
+		Dependencies are injected via the constructor of a class. This is a common and recommended approach. For example:
+	
+		@Component
+		public class Car {
+			private final Engine engine;
+
+			@Autowired  // Not required in Spring Boot 4.3+ if there’s only one constructor
+			public Car(Engine engine) {
+				this.engine = engine;
+			}
+
+			public void start() {
+				engine.run();
+			}
+		}
+	
+	. Setter Injection: 
+	-------------------
+		Dependencies are set using setter methods. This approach provides flexibility but can lead to optional dependencies.
+		
+		@Component
+		public class Car {
+			private Engine engine;
+
+			@Autowired
+			public void setEngine(Engine engine) {
+				this.engine = engine;
+			}
+
+			public void start() {
+				engine.run();
+			}
+		}
+	
+	. Field Injection: 
+	------------------
+		Dependencies are directly injected into fields. While convenient, it’s generally not recommended due to potential issues with testing and encapsulation.
+		
+		@Component
+		public class Car {
+			@Autowired
+			private Engine engine;
+
+			public void start() {
+				engine.run();
+			}
+		}
+
+		
+Bean:
+	-----
+		. A bean is an object managed by the Spring IoC (Inversion of Control) container. 
+		. Beans are essential building blocks of Spring applications, providing a way to organize and manage application components.
+	
+	How Beans are Created and Managed:
+		1. Component Scanning: 
+			Spring Boot automatically scans the classpath for classes annotated with @Component, @Service, @Repository, or @Controller. These annotations indicate that the class should be considered a bean.
+			
+			@Component
+			public class MyBean {
+				// Bean properties and methods
+			}
+
+		2. Configuration Classes: 
+			You can also explicitly define beans using configuration classes annotated with @Configuration. These classes contain methods annotated with @Bean that return instances of beans to be managed by the container.
+			
+			@Configuration
+			public class MyConfig {
+				@Bean
+				public MyBean myBean() {
+					return new MyBean();
+				}
+			}
+		
+	Bean Lifecycle:
+		1. Instantiation: 
+			The container creates an instance of the bean.
+		2. Property Injection: 
+			The container injects dependencies into the bean's properties.
+		3. Initialization: 
+			The container calls any initialization methods defined on the bean (e.g., @PostConstruct).
+		4. Destruction: 
+			The container calls any destruction methods defined on the bean (e.g., @PreDestroy) before the bean is destroyed.
+			
+			
+
+	Bean Scopes:
+		Spring Boot supports different bean scopes, which control the lifecycle and availability of beans within the application:
+
+		. Singleton: A single instance of the bean is created and shared throughout the application.
+		. Prototype: A new instance of the bean is created for each request or dependency injection.
+		. Request: A new instance of the bean is created for each HTTP request.
+		. Session: A new instance of the bean is created for each HTTP session.
+		. Application: A new instance of the bean is created for each application context.
+		
+		
+		@Scope("prototype")
+		public class MyBean {
+			// ...
+		}
+		
+		
+		
+Microservice : 
+	Microservices are a software development architecture style where an application is built as a collection of small, independent services. Each service focuses on a single business capability and communicates with others through well-defined APIs.
+	
+	. Example: 
+		An e-commerce application could have separate microservices for product management, user management, shopping cart, and order processing.
+
+Microservices communication :
+-----------------------------
+	1. Synchronous Communication : 
+		HTTP/REST : 
+			Each service exposes RESTful endpoints that other services can call. For Synchronous Communication using HTTP/REST microservice uses Bean Configuration like RestTemplate, WebClient, Apache HttpClient or OkHttp, Feign Client (Declarative REST Client), and Spring RestTemplateBuilder.
+			
+		gRPC :
+			Description: gRPC is a high-performance RPC framework that uses HTTP/2 for transport, Protocol Buffers for serialization, and supports multiple programming languages.
+			Advantages: Efficient, supports multiple languages, and provides features like authentication, load balancing, and more.
+			Disadvantages: More complex setup compared to REST, requires understanding of Protocol Buffers.
+			
+	2. Asynchronous Communication : 
+		Message Brokers (e.g., RabbitMQ, Apache Kafka) : 
+			Description: Services communicate by sending messages to a broker, which then forwards these messages to the appropriate service.
+			Advantages: Decouples services, improves resilience and scalability, and handles spikes in traffic more gracefully.
+			Disadvantages: More complex architecture, potential for message loss if not handled properly.
+			
+			Explanation:
+				Producer:
+					Creates a KafkaProducer instance with the necessary properties.
+					Creates a ProducerRecord with the topic name, key, and value.
+					Sends the record to the Kafka broker.
+				
+				Consumer:
+					Creates a KafkaConsumer instance with the necessary properties.
+					Subscribes to the "orders" topic.
+					Polls for new messages in a loop.
+					Processes each received message.
+					
+		Event Streaming (e.g., Apache Kafka, Amazon Kinesis) :
+			Description: Services produce and consume streams of events, which are stored in a log for processing.
+			Advantages: High throughput, scalability, and decoupling of services.
+			Disadvantages: Requires management of event streams, potential complexity in ensuring exactly-once processing.
+			
+	3. Other Communication Patterns :
+		Service Meshes (e.g., Istio, Linkerd) :
+			Description: A dedicated infrastructure layer that handles service-to-service communication, including load balancing, authentication, authorization, and observability.
+			Advantages: Enhances security, reliability, and observability without requiring changes to application code.
+			Disadvantages: Adds complexity to deployment and management.
+		
+		GraphQL :
+			Description: An alternative to REST where clients can request exactly the data they need from multiple services in a single query.
+			Advantages: Reduces over-fetching and under-fetching of data, improves flexibility.
+			Disadvantages: Can be more complex to implement and requires managing a schema.
+			
+			
+Difference between monolithic and microservices architecture :
+	A monolithic application is a single, large codebase. 
+	And Microservices break down the functionality into smaller, independent services.
+
+	. Example: 
+		A monolithic e-commerce application would have all functionalities like product management and order processing tightly coupled in one codebase. In a microservices architecture, these would be separate services.
+		
+Handle data consistency in microservices :
+	Data consistency across services can be achieved through techniques like eventual consistency or ACID transactions.
+
+		Atomicity:
+			Atomicity ensures that a transaction either happens completely or not at all. There’s no halfway point. Imagine it as the “all or nothing” rule.
+			If a transaction fails (say, due to an error or system crash) after completing part of its operations, any changes made to the database during that partial execution are rolled back. Conversely, if the transaction successfully completes, the changes become visible.
+			Example: Consider transferring 100 units from account X to account Y. If the transaction fails after deducting from X but before adding to Y, we’d end up with an inconsistent state. Atomicity prevents this.
+
+		Consistency:
+			Consistency ensures that the database remains in a valid state before and after a transaction.
+			Integrity constraints (such as total balances) must be maintained. For instance, if the total balance before and after a transaction doesn’t match, we have an inconsistency.
+			Example: If T1 completes but T2 fails, the database becomes inconsistent.
+
+		Isolation:
+			Isolation allows multiple transactions to occur concurrently without interfering with each other.
+			Changes made by one transaction should not be visible to others until they are committed or written to memory.
+			Ensuring isolation prevents scenarios where interleaved operations lead to incorrect results.
+			Example: Two transactions, T and T’', reading and modifying the same data concurrently.
+
+		Durability:
+			Durability guarantees that once a transaction is committed, its changes are permanent even in the face of system failures (e.g., power outage or crash).
+			The database should survive such events and maintain its state.
+			Example: If you’ve successfully transferred money, it should stay transferred, no matter what happens next.
+
+
+
+API Gateway :
+	An API Gateway acts as a single entry point for clients to interact with various microservices. It can provide functionalities like routing, authentication, and security.
+
+	. Example: 
+		The API Gateway in the e-commerce application would receive a user request, route it to the appropriate microservice (product, user, etc.), and aggregate the response before sending it back to the client.
+		
+	1. Spring Cloud Gateway
+		pom.xml :
+		---------
+			<dependency>
+				<groupId>org.springframework.cloud</groupId>
+				<artifactId>spring-cloud-starter-gateway</artifactId>
+			</dependency>
+			
+		application.yml :
+		------------------------
+			spring:
+				cloud:
+					gateway:
+						routes:
+							- id: user-service
+								uri: http://localhost:8081 # Your REST API endpoint
+								predicates:
+									- Path=/users/**
+							- id: order-service
+								uri: http://localhost:8082
+								predicates:
+									- Path=/orders/**
+									
+		OR
+
+		application.properties :
+		-------------------------
+			# User Service Route
+				spring.cloud.gateway.routes[0].id=user-service
+				spring.cloud.gateway.routes[0].uri=http://localhost:8081
+				spring.cloud.gateway.routes[0].predicates[0]=Path=/users/**
+
+			# Order Service Route
+				spring.cloud.gateway.routes[1].id=order-service
+				spring.cloud.gateway.routes[1].uri=http://localhost:8082
+				spring.cloud.gateway.routes[1].predicates[0]=Path=/orders/**
+
+									
+		Start the Gateway: 
+		------------------
+			Run the Spring Cloud Gateway application on a specific port (e.g., 8080). 
+			Requests to /users/** or /orders/** will be routed to respective services. **/  
+			
+		Add Filters (Optional): 
+			Apply filters for logging, authentication, or response transformation:
+			
+				spring:
+				  cloud:
+					gateway:
+					  routes:
+						- id: user-service
+						  uri: http://localhost:8081
+						  predicates:
+							- Path=/users/**
+						  filters:
+							- AddRequestHeader=X-Request-ID, 12345
+
+
+
+	2. NGINX :
+		Install NGINX: Install NGINX on your server:
+			sudo apt update
+			sudo apt install nginx
+			
+		Configure Routes in nginx.conf: Define a configuration for routing API requests:
+			http {
+				server {
+					listen 80;
+
+					location /users/ {
+						proxy_pass http://localhost:8081; # User Service
+					}
+
+					location /orders/ {
+						proxy_pass http://localhost:8082; # Order Service
+					}
+				}
+			}
+		
+		Restart NGINX:
+			sudo systemctl restart nginx
+
+		Access APIs: Requests to /users/ or /orders/ will be routed to the respective backend services.
+
+	3. Kong API Gateway
+	4. AWS API Gateway
+	5. Apigee 
+
+
+Circuit Breaker pattern in microservices :
+------------------------------------------
+	The Circuit Breaker pattern is a fault tolerance mechanism commonly used in microservices architectures. It acts like a safety switch, protecting your system from cascading failures and improving overall resilience.
+
+	. How it Works:
+		The Circuit Breaker operates in three main states:
+
+		. Closed: This is the initial state where the circuit breaker allows normal communication between services. Requests are passed through to the dependent service.
+		
+		. Open: When the Circuit Breaker encounters a predefined number of failures (e.g., consecutive timeouts or errors) within a specific timeframe, it trips to the Open state. This essentially throws a switch, blocking further requests to the failing service. This prevents your application from relentlessly hammering a service that's already under strain.
+		
+		. Half-Open: After a configured timeout period (e.g., 10 seconds), the Circuit Breaker enters the Half-Open state. It allows a single "health check" request to pass through. If the health check succeeds (i.e., the service responds successfully), the Circuit Breaker resets to the Closed state, resuming normal communication. However, if the health check fails, the Circuit Breaker flips back to the Open state, extending the timeout period before another attempt.
+		
+		
+What are some best practices for designing secure microservices :
+	Securing microservices requires a comprehensive approach. 
+	
+	Here are some best practices:
+	. Authentication and Authorization: Implement robust mechanisms (e.g., JWT, OAuth) to verify user and service identities and control access to resources.
+	. API Security: Secure APIs with techniques like HTTPS, rate limiting, and input validation to prevent unauthorized access and attacks.
+	. Data Encryption: Encrypt sensitive data at rest and in transit to protect it from breaches.
+	. Least Privilege: Grant services and users only the minimum permissions they need.
+	. Security Monitoring: Continuously monitor for suspicious activity and vulnerabilities in microservices and their communication.
+	
+	. Example: 
+		The e-commerce application's API Gateway can implement JWT tokens for user authentication and authorization. Each microservice might have its own access control policies to restrict unauthorized access to data.
+
+
+
+Explain how you can test microservices effectively :
+	Testing microservices requires a multi-layered approach:
+	. Unit Tests: Test individual microservice functionalities in isolation.
+	. Integration Tests: Verify how microservices interact with each other.
+	. Contract Testing: Ensure compatibility between services through tools like Pact.
+	. End-to-End Tests: Simulate user journeys and test the overall application flow.
+	
+	. Example: 
+		Unit tests can ensure the shopping cart service correctly calculates cart totals. Integration tests can verify how the shopping cart service interacts with the product service to retrieve product details. Pact can be used to define and test the contract between the shopping cart service and its dependencies. Finally, end-to-end tests can simulate a user adding products to the cart and completing a purchase, ensuring the entire workflow functions as expected.
+		
+		
+
+How to optimize production microservice performance if it is become slow :
+
+Caching : 
+Connection Pool : 
+Avoid n+1 Problem : 
+Pagination : 
+JSON Serializers
+Compression : 
+Async Logging : 

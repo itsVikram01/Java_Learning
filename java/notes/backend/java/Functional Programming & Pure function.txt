@@ -1,0 +1,238 @@
+Functional Programming & Pure function :
+
+
+List<String> input; // (Nikita, Sachin,John, Sheetal, Hari)
+List<String> output; // (NIKITA, SACHIN,JOHN, SHEETAL, HARI)
+
+
+Problem : Create  a new List having names of employees in upper-case from the existing list.
+	
+	Imperative Programming : 
+		1. What to do = which function to call
+			
+			List<String> output = toUpperCase(input);
+			
+		2. How to do it = define the function
+		
+			public List<String> toUpperCase(List<String> input){
+				List<String> result = new ArrayList<>();
+				fot(String name : input){
+					result.add(name.toUpperCase());
+				}
+				return result; 
+			}
+			
+	
+	
+	Functional Programming : 
+		We focus on what to do, rather tham focusing on how to do it.
+		
+			List<String> output = input.stream()
+										.map(name -> name.toUpperCase()
+										.collect(Collectors.toList));
+										
+										
+		. Code is concise and more redable, which makes it mainainable.
+		
+		. Allow parallel processing of elements in collection on multiple cores.
+		
+			List<String> output = input.parallelStream()
+										.map(name -> name.toUpperCase()
+										.collect(Collectors.toList));
+			
+			In case of parallelStream we must use pure function.
+			
+			Pure Function : 
+				. It should not modify any outside data or should not modify any state.
+				. It's behaviour should not depend on any outside data. It only depend on input arguments.
+	
+	
+	
+	
+	Functional Interface :
+		. Interface with exctly one abstract method.
+		. It can have zero or more default methods.
+		. It can have zero or more static methods.
+		
+		@FunctionalInterface 
+		interface Runnable{
+			void run(); // public abstract
+		}
+		
+		@FunctionalInterface 
+		interface Animal{
+			void sound(); // abstact method
+			
+			void sleep(){ // default method
+				print("In jungle...");
+			}
+			
+			static void print(String msg){ // static method
+				System.out.println(msg);
+			}
+		}
+	
+	
+	Where to use Functional Interface :
+		List<Integer> list = List.of(1,2,3,4);
+		
+		. Functional Interface hold the reference to lambda.
+			
+			Predicate<Integer> isEven = x -> x % 2 == 0;
+			
+		. Used as "type" of input parameter for streams API.
+			
+			ie - .filter(isEven)
+			
+		
+			List<Integer> evenNumber = list.stream
+											.filter(isEven)
+											.collect(Collectors.toList());
+											
+											
+	
+		Predicate : 
+			@FunctionalInterface
+			interface Predicate<T>{
+			
+				boolean test(T obj);
+				
+				default Predicate<T> and{}
+				default Predicate<T> or(){}
+				default Predicate<T> negate(){}
+				
+				static Predicate<T> isEqual(Object o){}
+				static Predicate<T> not(Predicate<T> t){}
+			}
+			
+			
+			Predicate<Integer> isEven = x -> x % 2 == 0;
+			
+			List<Integer> evenNumber = list.stream
+											.filter(isEven)
+											.collect(Collectors.toList());
+			
+		
+		Supplier :
+			It return object of any type <T>.
+		
+			Supplier<Employee> employeeSupplier = () -> new Employee();
+			
+			@FunctionalInterface
+			interface Supplier<T>{
+				T get();
+			}
+			
+			
+			Supplier<Double> randomNoGenerator = () -> Math.random();
+			
+			List<Double> generatedList = Stream
+											.generate(randomNoGenerator) // generate method take supplier as input.
+											.limit(5)
+											.collect(Collectors.toList);
+											
+			printList(generatedList);
+			
+			
+		
+		Consumer :
+			It consumes (input param) object of any type <T>.
+			
+			Consumer<Employee> printAge = employee -> print(employee.getAge());
+			
+			Lambda implementation of Consumer interface takes any type of input but it does not return anything.
+			
+			@FunctionalInterface
+			interface Consumer<T>{
+				void accept();
+				
+				default Consumer<T> andThen(Consumer after){}
+				
+			}
+			
+			
+			List<Student> students = getStudents();
+			
+			Consumer<Student> printStudentName = student -> System.out.print(student.getName() + " - ");			
+			Consumer<Student> printStudentCity = student -> System.out.print(student.getCity());
+			
+			Students.stream()
+					.forEach(printStudentName); // forEach stream api takes Consumer as input
+					
+					
+					
+		Function:
+			It consumes (input param) object of any type <T> and return object of any type <R>.
+			
+			@FunctionalInterface
+			interface Function<T(input argument type), R(return type)>{
+				R apply(T obj);			
+
+				default Function<V, R> compose(){}
+				default Function<T, T> andThen(){}
+				
+				static Function<T, T> identity(){}
+			}
+			
+			
+			
+			List<Student> students = getStudents();
+			
+			Function<Student, String> cityFromStudent = student -> student.getCity();
+			Function<String, Integer> countOfCharsInCity = city -> city.length();
+			Function<Student, Student> identity = student -> student;
+
+			List<String> listOfCities = students.stream()
+												.map(cityFromStudent) // map stream api takes Function as input
+												.collect(Collectors.toList());
+												
+			List<Integer> listOfCities = students
+										.stream()
+										.map(Function.identity()) // equals to identity object
+										// .map(cityFromStudent.andThen(countOfCharsInCity)) // map stream api takes Function as input
+										.map(countOfCharsInCity.compose(cityFromStudent))		
+										.collect(Collectors.toList());
+										
+										
+										
+		
+		UnaryOperator : 
+			
+			UnaryOperator<Integer> multiplyByTen = number -> number * 10;
+			
+			@FunctionalInterface
+			interface UnaryOperator<T> extends Function<T, T>{
+				
+				T apply(T obj);
+				
+				default Function<T, T> compose(){}
+				default Function<T, T> andThen(){}
+				
+				static UnaryOperator<T> identity(){}
+				
+			}
+			
+			
+			example - 
+			psvm(String[] args){
+				List<Integer> numbers = List.of(1,2,3,4,5);
+				
+				Function<Integer, Integer> multiplyBy10 = number -> number * 10;
+				Function<Integer, Integer> multiplyByTen = number -> number * 10;
+				
+				UnaryOperator<Integer> identity = number -> number;
+				
+				UnaryOperator<Integer> newList = numbers
+													.stream()
+													.map(multiplyByTen)
+													.collect(Collectors.toList());
+													
+				UnaryOperator<Integer> newList1 = numbers
+													.stream()
+													.map(UnaryOperator.identity()) // equivalent to identity object(UnaryOperator<Integer> identity)
+													//.map(multiplyByTen.andThen(multiplyBy10))
+													.map(multiplyByTen.compose(multiplyBy10))
+													.collect(Collectors.toList());
+														
+				printList(newList);
+			}

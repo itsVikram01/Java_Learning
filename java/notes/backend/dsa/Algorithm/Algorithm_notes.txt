@@ -1,0 +1,224 @@
+1. Sorting : 
+------------
+	1.1 Bubble Sort :  
+	-----------------
+		. Definition: A simple sorting algorithm that repeatedly compares adjacent elements and swaps them if they are in the wrong order.
+		. Time Complexity: O(n²)
+		. Space Complexity: O(1)
+		. Performance: Simple to implement, but inefficient for large datasets.
+		. Best Fit Scenarios: Small datasets.
+
+	1.2 Insertion Sort :  
+	--------------------
+		. Definition: A sorting algorithm that builds a sorted sub-list one element at a time by inserting each element into its correct position.
+		. Time Complexity: O(n) (best), O(n²) (worst)
+		. Space Complexity: O(1)
+		. Performance: Efficient for small datasets or nearly sorted data.
+		. Best Fit Scenarios: Small datasets, nearly sorted data.
+
+
+	1.3 Selection Sort :  
+	--------------------
+		. Definition: A sorting algorithm that repeatedly finds the minimum element from the unsorted part of the list and puts it at the beginning.
+		. Time Complexity: O(n²)
+		. Space Complexity: O(1)
+		. Performance: Simple to implement, but inefficient for large datasets.
+		. Best Fit Scenarios: Small datasets.
+
+	1.4 Merge Sort : 
+	---------------- 
+		. Definition: A divide-and-conquer sorting algorithm that recursively divides the list into smaller sub-lists, sorts them, and then merges them back together.
+		. Time Complexity: O(n log n)
+		. Space Complexity: O(n)
+		. Performance: Efficient for large datasets but requires additional space for merging.
+		. Best Fit Scenarios: Large datasets.
+
+	1.5 Quick Sort :  
+	----------------
+		. Definition: A divide-and-conquer sorting algorithm that partitions the list around a pivot element and recursively sorts the partitions.
+		. Time Complexity: O(n log n) (best/average), O(n²) (worst)
+		. Space Complexity: O(log n)
+		. Performance: Efficient for large datasets but can be inefficient for already sorted or nearly sorted data.
+		. Best Fit Scenarios: Large datasets.
+
+	1.6 Random Quick Sort :  
+	-----------------------
+		. Definition: A variant of Quick Sort where the pivot is chosen randomly, which helps to avoid worst-case scenarios (e.g., when the input is already sorted).
+		. Time Complexity: O(n log n) (average), O(n²) (worst)
+		. Space Complexity: O(log n)
+		. Performance: Efficient for large datasets but can be slightly less efficient than regular Quick Sort in some cases.
+		. Best Fit Scenarios: Large datasets, especially when the input is likely to be sorted.
+
+	1.7 Counting Sort (Simple) :  
+	----------------------------
+		. Definition: A non-comparison-based sorting algorithm that works by counting the number of occurrences of each element in the input array and then using this information to directly place the elements in their correct positions.
+		. Time Complexity: O(n + k) (where k is the range of elements in the input array)
+		. Space Complexity: O(n + k)
+		. Performance: Very efficient for inputs with a small range of values.
+		. Best Fit Scenarios: When the range of elements is small compared to the number of elements.
+
+	1.8 Counting Sort (Stable) :  
+	----------------------------
+		. Definition: A variation of Counting Sort that maintains the original order of elements with equal values. This is achieved by counting the number of occurrences of each element from right to left.
+		. Time Complexity: O(n + k)
+		. Space Complexity: O(n + k)
+		. Performance: Same as Counting Sort (Simple) in terms of time complexity, but it guarantees stability.
+		. Best Fit Scenarios: When the range of elements is small and the order of equal elements needs to be preserved.
+
+	1.9 Radix Sort :  
+	----------------
+		. Definition: A non-comparison-based sorting algorithm that sorts the input array digit by digit. It typically uses a stable sorting algorithm (like Counting Sort) to sort the array based on each digit.
+		. Time Complexity: O(d(n + k)), where d = number of digits, k = range of values for each digit.
+		. Space Complexity: O(n + k)
+		. Performance: Efficient for integers with a fixed number of digits.
+		. Best Fit Scenarios: When the input consists of integers with a limited number of digits.
+
+
+2. Searching :  
+--------------
+	2.1 Linear Search :  
+	-------------------
+		. Definition: An algorithm that sequentially checks each element in a list until the target element is found or the end of the list is reached.
+		. Time Complexity: O(n)
+		. Space Complexity: O(1)
+		. Performance: Simple to implement, but inefficient for large datasets.
+		. Best Fit Scenarios: Small datasets.
+
+	2.2 Binary Search :  
+	-------------------
+		. Definition: An algorithm that efficiently searches a sorted list by repeatedly dividing the search interval in half.
+		. Time Complexity: O(log n)
+		. Space Complexity: O(1)
+		. Performance: Efficient for sorted arrays.
+		. Best Fit Scenarios: Sorted arrays.
+
+3. Graph :  
+----------
+	3.1 Breadth-First Search (BFS) :  
+	--------------------------------
+		. Definition: An algorithm for traversing or searching a graph or tree data structure. It starts at the root node and explores all the neighbor nodes at the present depth prior to moving on to the nodes at the next depth level.
+		. Time Complexity: O(V + E)
+		. Space Complexity: O(V)
+		. Performance: Efficient for finding the shortest path in an unweighted graph.
+		. Best Fit Scenarios: Unweighted graphs.
+
+	3.2 Depth-First Search (DFS) :  
+	------------------------------
+		. Definition: An algorithm for traversing or searching a graph or tree data structure. It starts at the root node and explores as far as possible along each branch before backtracking.
+		. Time Complexity: O(V + E)
+		. Space Complexity: O(V)
+		. Performance: Efficient for finding connected components in a graph.
+		. Best Fit Scenarios: Connected components in a graph.
+
+4. Tree :  
+---------
+	4.1 Binary Search Tree (BST) :  
+	------------------------------
+		. Definition: A binary tree where the left subtree of a node contains only nodes with keys less than the node’s key, and the right subtree contains only nodes with keys greater than the node’s key.
+		. Time Complexity: O(log n)
+		. Space Complexity: O(n)
+		. Performance: Efficient for searching, insertion, and deletion in the average case.
+		. Best Fit Scenarios: Searching, insertion, and deletion.
+
+	4.2 AVL Tree :  
+	--------------
+		. Definition: A self-balancing binary search tree where the heights of the two child subtrees of any node differ by at most one.
+		. Time Complexity: O(log n)
+		. Space Complexity: O(n)
+		. Performance: Efficient for searching, insertion, and deletion in the worst case.
+		. Best Fit Scenarios: Searching, insertion, and deletion.
+
+	4.3 AVL Tree Balancing :  
+	------------------------
+		. Definition: The process of maintaining the AVL tree properly by performing rotations on the tree.
+		. Time Complexity: O(log n)
+		. Space Complexity: O(n)
+		. Performance: Ensures that the tree remains balanced and efficient for searching, insertion, and deletion.
+		. Best Fit Scenarios: Maintaining a balanced AVL tree.
+
+	4.4 Tree Traversal :  
+	--------------------
+		. In-order Traversal :  
+		----------------------
+			. Definition: Visits the left subtree, then the root, then the right subtree.
+			. Time Complexity: O(n)
+			. Space Complexity: O(h)
+			. Performance: Used to traverse a binary search tree in sorted order.
+			. Best Fit Scenarios:  Binary search trees.
+		. Pre-order Traversal :  
+		-----------------------
+			. Definition: Visits the root, then the left subtree, then the right subtree.
+			. Time Complexity: O(n)
+			. Space Complexity: O(h)
+			. Performance: Used to create a copy of a binary tree.
+			. Best Fit Scenarios:  Binary trees.
+		. Post-order Traversal :  
+		------------------------
+			. Definition: Visits the left subtree, then the right subtree, then the root.
+			. Time Complexity: O(n)
+			. Space Complexity: O(h)
+			. Performance: Used to delete a binary tree.
+			. Best Fit Scenarios:  Binary trees.
+
+
+5. Greedy :  
+-----------
+	5.1 Activity Selection Problem :  
+	--------------------------------
+		. Definition: Selects the maximum number of activities that can be performed by a single person, given that each activity has a start and finish time.
+		. Time Complexity: O(n log n)
+		. Space Complexity: O(1)
+		. Performance: Efficient for solving the activity selection problem.
+		. Best Fit Scenarios: Activity selection problem.
+
+	5.2 Huffman Coding : 
+	--------------------
+		. Definition: Creates a variable-length prefix code for a set of symbols, based on their frequencies.
+		. Time Complexity: O(n log n)
+		. Space Complexity: O(n)
+		. Performance: Efficient for compressing data.
+		. Best Fit Scenarios: Compressing data.
+
+	5.3 Prim's Algorithm :  
+	----------------------
+		. Definition: An algorithm for finding the minimum spanning tree of a weighted undirected graph.
+		. Time Complexity: O(E log V)
+		. Space Complexity: O(V²) (using adjacency matrix) or O(V + E) (using adjacency list with priority queue)
+		. Performance: Efficient for finding a minimum spanning tree.
+		. Best Fit Scenarios: Minimum spanning tree problem.
+
+	5.4 Dijkstra's Algorithm :  
+	--------------------------
+		. Definition: An algorithm for finding the shortest paths between nodes in a weighted graph.
+		. Time Complexity: O(E log V) (using priority queue)
+		. Space Complexity: O(V + E)
+		. Performance: Efficient for graphs with non-negative edge weights.
+		. Best Fit Scenarios: Shortest paths in a weighted graph with non-negative edge weights.
+
+	5.5 Bellman-Ford Algorithm :  
+	----------------------------	
+		. Definition: An algorithm that computes shortest paths from a single source vertex to all other vertices in a weighted graph.
+		. Time Complexity: O(VE)
+		. Space Complexity: O(V)
+		. Performance: Handles negative edge weights but is less efficient than Dijkstra's Algorithm for graphs with non-negative edge weights.
+		. Best Fit Scenarios: Shortest paths in a weighted graph with possible negative edge weights.
+
+
+6. Dynamic Programming :  
+------------
+	6.1 Fibonacci Sequence :  
+	------------------------
+		. Definition: Calculates the nth Fibonacci number.
+		. Time Complexity: O(n)
+		. Space Complexity: O(1) (with optimized iterative approach)
+		. Performance: Efficient for calculating the nth Fibonacci number.
+		. Best Fit Scenarios: Calculating the nth Fibonacci number.
+
+	6.2 Knapsack Problem :  
+	----------------------
+		. Definition: Finds the most valuable subset of items that can fit into a knapsack of a given capacity.
+		. Time Complexity: O(nW), where n = number of items and W = capacity of the knapsack.
+		. Space Complexity: O(nW)
+		. Performance: Efficient for solving the knapsack problem.
+		. Best Fit Scenarios: Knapsack problem.
+

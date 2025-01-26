@@ -1,0 +1,14 @@
+The Comparable interface in Java is used to define a natural ordering for objects of a particular class.
+It provides a single method, compareTo(), which is used to compare two objects of the same type.
+
+
+Key points:
+    . Natural ordering: Defines a standard way to compare objects.
+    . compareTo() method: Returns an integer indicating the relative order of two objects.
+    . Used in sorting: Classes implementing Comparable can be directly sorted using Arrays.sort() or collections like TreeSet and TreeMap.
+
+
+Important points
+    . The compareTo() method should return a negative integer if this object is less than the other object, zero if this object is equal to the other object, and a positive integer if this object is greater than the other object.
+    . The compareTo() method should be consistent with the equals() method.
+    . Consider using Comparator for more flexible sorting criteria when multiple sorting options are needed.

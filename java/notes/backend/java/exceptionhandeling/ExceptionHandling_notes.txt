@@ -1,0 +1,347 @@
+JAVA EXCEPTION HANDLING : 
+--------------------------
+
+	Throwable : 
+	. The Throwable class in Java is the root of exceptions and errors in the Java language. 
+	. All exception and error classes in Java (including Exception, RuntimeException, Error, etc.) directly or indirectly inherit from Throwable.
+
+	. When an exception occurs, a Throwable object is created and thrown. This object encapsulates information about the error, such as the type of exception, its message, and the call stack (trace of method calls leading to the exception).
+
+	. Methods : Throwable provides several useful methods for handling exceptions:
+		. getMessage() : 
+			Returns the detail message associated with the exception (if any).
+		. printStackTrace() : 
+			Prints the stack trace of the exception to the standard error output stream. This is helpful for debugging purposes.
+		. getCause() : 
+			Returns the cause of this throwable (if any). This allows for chaining exceptions, where one exception can be caused by another.
+		. getStackTrace() : 
+			Returns an array of StackTraceElement objects representing the call stack at the time the exception was thrown.
+		
+	public class DivisionByZero {
+		public static void main(String[] args) {
+			try {
+				int result = 10 / 0; // This line will throw an ArithmeticException
+				System.out.println(result);
+			} catch (Throwable t) {
+				System.out.println("An error occurred:");
+				// Get the type of exception
+				System.out.println("Exception type: " + t.getClass().getName());
+				// Get the error message (if any)
+				System.out.println("Error message: " + t.getMessage());
+				// Print the stack trace for debugging
+				t.printStackTrace();
+			}
+		}
+	}
+	
+	Output:
+	An error occurred:
+	Exception type: java.lang.ArithmeticException
+	Error message: / by zero
+	java.lang.ArithmeticException: / by zero
+    at DivisionByZero.main(DivisionByZero.java:7)
+	
+	. Using Throwable directly in catch blocks is generally not recommended unless you intend to handle all possible exceptions in the same way.
+
+
+
+	Error : 
+	. Error is a subclass of Throwable that represents serious problems that are typically not recoverable within an application. These errors often indicate environmental or system issues that are beyond the program's control.
+	
+	. Errors are intended for exceptional situations that should not occur under normal program execution. They signal severe resource issues, virtual machine malfunctions, or other critical problems.
+	
+	. Unlike checked exceptions, catching Error is not mandatory in a try-catch block. The Java compiler doesn't require you to declare throws Error in method signatures, as these errors are not anticipated.
+	
+	.Recovering from an Error is generally difficult or impossible within the application itself. Often, these errors require program termination or system intervention.
+	
+	. Subclasses of Error : 
+		. OutOfMemoryError, 
+		. StackOverflowError, and 
+		. VirtualMachineError. 
+		
+	public class OutOfMemoryErrorExample {
+
+		public static void main(String[] args) {
+			try {
+				// Code that intentionally allocates a massive amount of memory,
+				// potentially causing an OutOfMemoryError
+				byte[] largeArray = new byte[Integer.MAX_VALUE];
+			} catch (Error e) { // Not recommended to catch Error directly
+				System.out.println("A critical error occurred:");
+				System.out.println("Error type: " + e.getClass().getName());
+				System.out.println("Error message: " + e.getMessage());
+				// Consider logging the error or gracefully terminating the program
+			}
+		}
+	}
+	
+	. Catching Error is generally not advisable. It's better to design your application to avoid situations that might lead to these errors or implement robust error handling mechanisms for specific Error subclasses if necessary.
+
+
+
+	Exception :
+	-----------
+		. Exceptions are events that disrupt the normal flow of program execution.
+		. When an exception occurs, an exception object is created and thrown. This object contains information about the error, including the type of exception and its message.
+
+		Type of Exception :
+		1. Checked Exceptions: 
+			These exceptions are compiled-time errors. The Java compiler requires you to either declare that a method throws a checked exception or handle it within the method itself using a try-catch block. 
+			Examples include : 
+				. IOException (BufferedReader br = new BufferedReader(new FileReader("file.txt")); // Must handle IOException) 
+				. ClassNotFoundException (Class.forName("com.nonexistent.Class"); // Requires try-catch)
+				. FileNotFoundException (FileReader reader = new FileReader("file.txt"); // Unhandled exception)
+				. SQLException (Connection conn = DriverManager.getConnection("invalid-url"); // SQLException must be handled)
+				. InterruptedException (Thread.sleep(1000); // Must handle or declare.throws InterruptedException )
+				. NoSuchFieldException (Field field = String.class.getField("nonExistentField"); // Must handle exception)
+				. NoSuchMethodException (Method method = String.class.getMethod("nonExistentMethod"); // Must handle)
+				
+
+		2. Unchecked Exceptions: 
+			These exceptions are runtime errors. The Java compiler doesn't force you to handle them, but it's generally good practice to do so for robust applications. Unchecked exceptions typically represent programming errors or unexpected conditions that can be handled gracefully. 
+			Examples -
+			. NullPointerException (String str = null; System.out.println(str.length()); // Throws NullPointerException)
+			. ArrayIndexOutOfBoundsException (int[] arr = {1, 2, 3}; System.out.println(arr[3]); // Accessing invalid index)
+			. ArithmeticException (int result = 10 / 0; // Division by zero)
+			. NumberFormatException (int num = Integer.parseInt("abc"); // Invalid number string)
+			. ConcurrentModificationException (ArrayList<Integer> list = new ArrayList<>(List.of(1, 2, 3)); for (Integer num : list) { list.add(4); // Modifying list during iteration } )
+			. OutOfMemoryError (int[] largeArray = new int[Integer.MAX_VALUE]; // Exceeds memory)
+			. StackOverflowError (
+				public static void main(String[] args) { recursiveCall(); }
+				public static void recursiveCall() { recursiveCall(); // Infinite recursion } 
+			)
+			
+		
+
+	Exception Handling Mechanisms : 
+	1. try-catch Block: 
+		This is the most common way to handle exceptions. It consists of a try block that contains the code you want to monitor for exceptions, followed by one or more catch blocks that specify the type of exception to handle and the code to execute if that exception occurs.
+		
+		try {
+			int result = 10 / 0; // This line will throw an ArithmeticException
+			System.out.println(result);
+		} catch (ArithmeticException e) {
+			System.out.println("Division by zero error occurred!");
+		}
+
+
+	2. throws Keyword: 
+		This keyword is used within a method declaration to indicate that the method might throw a specific exception (or exceptions). It helps callers understand the potential exceptions that could arise when calling the method and allows them to handle them appropriately.
+		
+		public void readFile(String filename) throws IOException {
+			// Code that reads a file
+		}
+
+
+	3. finally{} Block: 
+		The finally{} block is an optional block that always executes, regardless of whether an exception occurs or not. It's typically used to release resources (e.g., closing files, database connections) that were acquired within the try block. The finally block ensures that these resources are properly cleaned up even if an exception disrupts the normal program flow.
+		
+		
+		You cannot use a finally block by itself without a try block. The finally block relies on the try block to define the code segment it needs to execute after.
+
+		try(){}...catch(){}...catch(){}...finally{}
+		try(){}...catch(){}...finally{}
+		try(){}...finally{}
+
+
+		Notes : 
+		. You cannot have multiple try blocks with a single catch. try creates ambiguity about which exception the catch block should handle
+
+		. some alternative approaches: 
+			. Nested Try-Catch Blocks
+			. Multiple Catch Blocks
+			. Separate Try-Catch Blocks
+		
+		
+		try (Scanner scanner = new Scanner(new File("data.txt"))) {
+			// Code that reads data from the file
+		} catch (FileNotFoundException e) {
+			System.out.println("File not found!");
+		} finally {
+			// Scanner object will be automatically closed here
+		}
+
+		
+		Benefits of Exception Handling : 
+
+		. Robustness: 
+			By handling exceptions gracefully, you can prevent your program from crashing unexpectedly and make it more resilient to unexpected errors.
+		. Maintainability: 
+			Exception handling improves the code's readability and maintainability by separating normal program flow from error handling logic.
+		. Informative Error Messages: 
+			You can provide informative error messages to users when exceptions occur, helping them understand the issue and possibly take corrective actions.
+
+
+
+	How do you handle exception in a Spring Boot application : 
+	----------------------------------------------------------
+		Exception handling in a Spring Boot application ensures that your application gracefully handles errors, provides meaningful feedback to users, and keeps the system stable.
+		
+		
+		1. Exception Handling Approaches in Spring Boot
+			1.1 Using @ControllerAdvice (Global Exception Handling)
+			-------------------------------------------------------
+				@ControllerAdvice is a centralized mechanism to handle exceptions across the entire application. It allows you to define exception handling methods that apply to all controllers.
+				
+				@ControllerAdvice
+				public class GlobalExceptionHandler {
+
+					// Handle specific exception
+					@ExceptionHandler(ResourceNotFoundException.class)
+					public ResponseEntity<String> handleResourceNotFoundException(ResourceNotFoundException ex) {
+						return ResponseEntity.status(HttpStatus.NOT_FOUND).body(ex.getMessage());
+					}
+
+					// Handle generic exceptions
+					@ExceptionHandler(Exception.class)
+					public ResponseEntity<String> handleGenericException(Exception ex) {
+						return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("An error occurred: " + ex.getMessage());
+					}
+				}
+				
+			
+			1.2 Using @ExceptionHandler in Controllers (Local Exception Handling)
+			---------------------------------------------------------------------
+				You can define exception-handling methods directly in your controller using the @ExceptionHandler annotation. These methods handle exceptions only for the associated controller.
+				
+				@RestController
+				@RequestMapping("/users")
+				public class UserController {
+
+					@GetMapping("/{id}")
+					public User getUser(@PathVariable Long id) {
+						if (id <= 0) {
+							throw new IllegalArgumentException("Invalid ID");
+						}
+						return new User(id, "John Doe");
+					}
+
+					@ExceptionHandler(IllegalArgumentException.class)
+					public ResponseEntity<String> handleIllegalArgumentException(IllegalArgumentException ex) {
+						return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+					}
+				}
+				
+				
+			1.3 Using @ResponseStatus Annotation
+			------------------------------------
+				You can annotate custom exceptions with @ResponseStatus to automatically send a specific HTTP status code when the exception is thrown.
+				
+				@ResponseStatus(HttpStatus.NOT_FOUND)
+				public class ResourceNotFoundException extends RuntimeException {
+					public ResourceNotFoundException(String message) {
+						super(message);
+					}
+				}
+
+				@RestController
+				@RequestMapping("/products")
+				public class ProductController {
+					@GetMapping("/{id}")
+					public Product getProduct(@PathVariable Long id) {
+						throw new ResourceNotFoundException("Product with ID " + id + " not found");
+					}
+				}
+				
+				
+			1.4 Using @RestControllerAdvice for REST APIs
+				Similar to @ControllerAdvice, but specifically tailored for REST APIs. It automatically applies @ResponseBody to responses, ensuring JSON/XML output.
+				
+				@RestControllerAdvice
+				public class RestApiExceptionHandler {
+
+					@ExceptionHandler(ResourceNotFoundException.class)
+					public ResponseEntity<ErrorResponse> handleResourceNotFoundException(ResourceNotFoundException ex) {
+						ErrorResponse error = new ErrorResponse(HttpStatus.NOT_FOUND.value(), ex.getMessage(), LocalDateTime.now());
+						return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+					}
+
+					@ExceptionHandler(Exception.class)
+					public ResponseEntity<ErrorResponse> handleGenericException(Exception ex) {
+						ErrorResponse error = new ErrorResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(), "Something went wrong", LocalDateTime.now());
+						return new ResponseEntity<>(error, HttpStatus.INTERNAL_SERVER_ERROR);
+					}
+				}
+
+				class ErrorResponse {
+					private int status;
+					private String message;
+					private LocalDateTime timestamp;
+
+					// Constructor, Getters, and Setters
+					public ErrorResponse(int status, String message, LocalDateTime timestamp) {
+						this.status = status;
+						this.message = message;
+						this.timestamp = timestamp;
+					}
+
+					// Getters and Setters
+				}
+				
+			
+			1.5 Custom Error Pages
+				You can define custom error pages for specific HTTP status codes by creating error templates.
+				Example:
+
+				Place an error.html or error-{statusCode}.html file in the src/main/resources/templates directory for Thymeleaf (or equivalent in other template engines).
+				
+				<!-- error-404.html -->
+				<!DOCTYPE html>
+				<html>
+				<head>
+					<title>404 Error</title>
+				</head>
+				<body>
+					<h1>Page Not Found</h1>
+					<p>The page you are looking for does not exist.</p>
+				</body>
+				</html>
+				
+				
+		2. Advanced Exception Handling
+			2.1 Custom Exception Classes
+				Create custom exceptions to represent specific error scenarios.
+				
+				public class InvalidInputException extends RuntimeException {
+					public InvalidInputException(String message) {
+						super(message);
+					}
+				}
+				
+			
+			2.2 Extending ResponseEntityExceptionHandler
+				Spring provides a ResponseEntityExceptionHandler class that you can extend to customize how exceptions are handled.
+				
+				@RestControllerAdvice
+				public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
+
+					@Override
+					protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+																				  HttpHeaders headers,
+																				  HttpStatus status,
+																				  WebRequest request) {
+						String errorMessage = ex.getBindingResult().getFieldError().getDefaultMessage();
+						ErrorResponse error = new ErrorResponse(status.value(), errorMessage, LocalDateTime.now());
+						return new ResponseEntity<>(error, HttpStatus.BAD_REQUEST);
+					}
+				}
+				
+		
+		3. Built-In Spring Boot Error Handling
+			3.1 Default Error Handling
+				By default, Spring Boot provides an ErrorController that returns an error response in JSON format for REST APIs or an error page for web applications.
+				
+				{
+					"timestamp": "2023-01-01T12:00:00.000",
+					"status": 404,
+					"error": "Not Found",
+					"path": "/invalid-path"
+				}
+				
+			3.2 Customize Default Error Responses
+				You can override the ErrorController or customize error properties in the application.properties file:
+				
+				server.error.include-message=always
+				server.error.include-binding-errors=always
+				server.error.include-stacktrace=never
+}

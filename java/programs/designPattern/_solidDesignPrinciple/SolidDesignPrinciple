@@ -1,0 +1,229 @@
+SOLID Design Principles :
+-------------------------
+SOLID is an acronym(a word formed from the initial letters of the several words) for five fundamental principles of object-oriented design (OOD). These principles help in creating software designs that are easy to understand, maintain, and extend.
+
+	1. SRP (Single Responsibility Principle) :
+		. A class should have only one reason to change.
+		. This principle suggests that a class should have a single, well-defined responsibility.
+		By adhering to SRP, you make your classes more focused, testable, and reusable.
+
+		class User {
+            private String name;
+            private String email;
+            private String password;
+
+            public User(String name, String email, String password) {
+                this.name = name;
+                this.email = email;
+                this.password = password;
+            }
+
+            public String getName() {
+                return name;
+            }
+            public String getEmail() {
+                return email;
+            }
+            public String getPassword() {
+                return password;
+            }
+
+            public void register() {
+                System.out.println("User registered successfully.");
+            }
+        }
+        class EmailSender {
+            public void sendWelcomeEmail(User user) {
+                System.out.println("Welcome email sent to " + user.getEmail());
+            }
+        }
+        public class SRPExample {
+            public static void main(String[] args) {
+                User user = new User("John Doe", "john.doe@example.com", "password123");
+                user.register();
+
+                EmailSender emailSender = new EmailSender();
+                emailSender.sendWelcomeEmail(user);
+            }
+        }
+
+	2. OCP (Open-Closed Principle) :
+		. Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification.
+		. This principle states that you should be able to extend a class's behavior without modifying its source code.
+		This is achieved through inheritance and polymorphism.
+
+        interface Shape {
+            double calculateArea();
+        }
+        class Circle implements Shape {
+            private double radius;
+            public Circle(double radius) {
+                this.radius = radius;
+            }
+            @Override
+            public double calculateArea() {
+                return Math.PI * radius * radius;
+            }
+        }
+        class Rectangle implements Shape {
+            private double width;
+            private double height;
+            public Rectangle(double width, double height) {
+                this.width = width;
+                this.height = height;
+            }
+            @Override
+            public double calculateArea() {
+                return width * height;
+            }
+        }
+        class ShapeCalculator {
+            public double calculateArea(Shape shape) {
+                return shape.calculateArea();
+            }
+        }
+        public class OCPExample {
+            public static void main(String[] args) {
+                Shape circle = new Circle(5.0);
+                Shape rectangle = new Rectangle(4.0, 6.0);
+
+                ShapeCalculator calculator = new ShapeCalculator();
+                System.out.println("Circle Area: " + calculator.calculateArea(circle));
+                System.out.println("Rectangle Area: " + calculator.calculateArea(rectangle));
+            }
+        }
+
+	3. LSP (Liskov Substitution Principle) :
+		. Objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.  
+		. This principle states that derived classes must be substitutable for their base classes.
+		In other words, a function that uses a base class must be able to use any of its subclasses without knowing it.
+
+        class Rectangle {
+            protected double width;
+            protected double height;
+
+            public Rectangle(double width, double height) {
+                this.width = width;
+                this.height = height;
+            }
+
+            public double getWidth() {
+                return width;
+            }
+            public void setWidth(double width) {
+                this.width = width;
+            }
+
+            public double getHeight() {
+                return height;
+            }
+            public void setHeight(double height) {
+                this.height = height;
+            }
+
+            public double getArea() {
+                return width * height;
+            }
+        }
+        class Square extends Rectangle {
+            public Square(double side) {
+                super(side, side);
+            }
+            @Override
+            public void setWidth(double side) {
+                super.width = side;
+                super.height = side;
+            }
+            @Override
+            public void setHeight(double side) {
+                super.width = side;
+                super.height = side;
+            }
+        }
+        public class LSPExample {
+            public static void main(String[] args) {
+                Rectangle rectangle = new Rectangle(5, 3);
+                System.out.println("Rectangle Area: " + rectangle.getArea());
+
+                // LSP violation demonstrated
+                Square square = new Square(5);
+                square.setWidth(7);
+                System.out.println("Square Area (after setting width): " + square.getArea());
+            }
+        }
+
+	4. ISP (Interface Segregation Principle) :
+		. Clients should not be forced to depend on interfaces they do not use.
+		. This principle suggests that large interfaces should be split into smaller, more specific interfaces. This improves code flexibility and reusability.
+
+		interface Printer {
+            void print();
+        }
+        interface Scanner {
+            void scan();
+        }
+        class PrinterImpl implements Printer {
+            @Override
+            public void print() {
+                System.out.println("Printing...");
+            }
+        }
+        class ScannerImpl implements Scanner {
+            @Override
+            public void scan() {
+                System.out.println("Scanning...");
+            }
+        }
+        public class ISPExample {
+            public static void main(String[] args) {
+                Printer printer = new PrinterImpl();
+                printer.print();
+
+                Scanner scanner = new ScannerImpl();
+                scanner.scan();
+            }
+        }
+
+	5. DIP (Dependency Inversion Principle) :
+		. High-level modules should not depend on low-level modules. Both should depend on abstractions.
+		. This principle suggests that you should depend on abstractions, not concretions.
+		This promotes loose coupling and makes your code more flexible.
+
+		interface Engine {
+            void start();
+        }
+        class Car {
+            private Engine engine;
+            public Car(Engine engine) {
+                this.engine = engine;
+            }
+            public void start() {
+                engine.start();
+            }
+        }
+         class GasolineEngine implements Engine {
+            @Override
+            public void start() {
+                System.out.println("Gasoline engine started.");
+            }
+        }
+        class ElectricEngine implements Engine {
+            @Override
+            public void start() {
+                System.out.println("Electric engine started.");
+            }
+        }
+        public class DIPExample {
+            public static void main(String[] args) {
+                // Use Gasoline Engine
+                Engine gasolineEngine = new GasolineEngine();
+                Car car1 = new Car(gasolineEngine);
+                car1.start()
+
+                // Use Electric Engine
+                Engine electricEngine = new ElectricEngine();
+                Car car2 = new Car(electricEngine);
+                car2.start();
+            }
+        }
+

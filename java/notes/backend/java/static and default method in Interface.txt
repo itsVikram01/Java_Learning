@@ -1,0 +1,116 @@
+static and default method in Interface : 
+
+Introduce in java 8 to inhance the functionality of an interface.
+
+Let say in a big application we have few interfaces and 1000 of there implementation classes.
+Now you want to add 1 method into your implementation classes.
+
+Before java8 you have to add that method in 1000 of implementation classes.
+But after java8 you have to just add a default method in interface and it will inherited by it's implementation classes.
+
+Introduction of default method in java can lead to the problem called "Inheritance Ambiguity".
+
+static methods provides way to add utility methods or helper method for default methods.
+
+
+interface Animal{
+	void sound();
+	
+	default void sleep(){
+		print("Sleeping in jungle...")
+	}
+	
+	static void print(String msg){
+		System.out.println(msg);
+	}
+	
+	static void walk(){
+		System.out.println("Animal");
+	}
+	
+	
+}
+
+class Dog implements Animal{
+	@Override
+	public void sound(){
+		Animal.print("Bark");
+	}
+	
+	// sleep() method can be inherited.
+	/* default void sleep(){
+		print("Sleeping in jungle...")
+	} */
+	
+	// sleep() method is overrided
+	@Override
+	public void sleep(){
+		print("Sleeping in home...")
+	}
+	
+	static void walk(){
+		System.out.println("Animal");
+	}
+	
+	
+	
+}
+
+class Main{
+	/* If sleep() method inherited.
+	Dog d = new Dog();
+	d.sleep(); // Sleeping in jungle...
+	
+	Animal a = new Dog();
+	a.sleep(); // Sleeping in jungle... 
+	*/
+	
+	// If sleep() method overrided.
+	Dog d1 = new Dog();
+	d1.sleep(); // Sleeping in home...
+	
+	Animal a1 = new Dog();
+	a1.sleep(); // Sleeping in home...
+	
+	d1.print();/Dog.print(); // Dog
+	a1.print();/Animal.print(); // Animal
+	
+}
+
+
+
+Inheritance ambiguity problem due to default method :
+	
+	interface Animal{		
+		default void sleep(){
+			System.out.println("Sleeping in jungle...")
+		}
+	}
+	
+	interface Bird{
+		default void sleep(){
+			System.out.println("Sleeping in nest...")
+		}
+	}
+	
+	class Pigen implements Animal, Bird{
+		// which method to inherit?
+		
+		//  So override the method
+		/* @Override
+		public void sleep(){
+			System.out.println("I don't sleep...")
+		} */
+		
+		// override the Animal method
+		/* @Override
+		public void sleep(){
+			Animal.super.sleep();
+		} */
+		
+		// override the Animal method
+		@Override
+		public void sleep(){
+			Bird.super.sleep();
+		}
+	}

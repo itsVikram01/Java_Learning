@@ -1,0 +1,138 @@
+Inheritance (IS-A relationship) in OOPs :
+	-----------------------------------------
+		"Reusability of programming code by inheriting the property of another class"
+
+		‘IS-A’ relationship is another name for inheritance.
+		When we inherit the base class from the derived class, then it forms a relationship between the classes. So that relationship is termed an ‘IS-A’ Relationship.
+
+		Example -
+		Scenario: We're building an e-commerce system and need classes to represent different types of products.
+			public class Product {
+				private String name;
+				private double price;
+				// Getters and Setters for name and price
+
+				public void displayDetails() {
+					System.out.println("Name: " + name + ", Price: $" + price);
+				}
+			}
+			public class Book extends Product {
+				private String author;
+				private int numPages;
+				// Getters and Setters for author and numPages
+
+				@Override // Explicitly mark this as overriding
+				public void displayDetails() {
+					super.displayDetails(); // Call parent class displayDetails
+					System.out.println("Author: " + author + ", Pages: " + numPages);
+				}
+			}
+			public class Main {
+                public static void main(String[] args) {
+                    Book b = new Book();
+                    b.displayDetails();
+
+                    Product p = new Product();
+                    p.displayDetails();
+                }
+            }
+
+		So here ‘IS-A’ Relationship formed. [ Book ‘IS-A’ Product ].
+
+
+		In inheritance classes are devide into 2 category -
+		(1). Parent class(Base class / Super class) :
+		(2). Child class(Derived class / Sub class / Extended class
+
+
+		Type of Inheritance :
+		---------------------
+			(1). Single inheritance :
+			-------------------------
+				class Animal {
+					public void eat() {
+					System.out.println("Animal is eating");
+					}
+				}
+				class Dog extends Animal {
+					public void bark() {
+						System.out.println("Dog is barking");
+					}
+				}
+				public class Main {
+					public static void main(String[] args) {
+						Dog d = new Dog();
+						d.eat();  // Inherited from Animal
+						d.bark(); // Specific to Dog
+					}
+				}
+
+			(2). Multilevel inheritance :
+			-----------------------------
+				class Vehicle {
+					public void move() {
+						System.out.println("Vehicle is moving");
+					}
+				}
+				class Car extends Vehicle {
+					public void honk() {
+						System.out.println("Car is honking");
+					}
+				}
+				class SportsCar extends Car {
+					public void accelerate() {
+						System.out.println("Sports car is accelerating");
+					}
+				}
+				public class Main {
+					public static void main(String[] args) {
+					SportsCar sc = new SportsCar();
+						sc.move();  // Inherited from Vehicle
+						sc.honk();  // Inherited from Car
+						sc.accelerate(); // Specific to SportsCar
+					}
+				}
+
+
+			(3). Hierarchical inheritance :
+			-------------------------------
+				class Shape {
+					public void draw() {
+						System.out.println("Drawing a shape");
+					}
+				}
+				class Circle extends Shape {
+					public void roll() {
+						System.out.println("Circle is rolling");
+					}
+				}
+				class Rectangle extends Shape {
+					public void calculateArea() {
+						System.out.println("Calculating area of rectangle");
+					}
+				}
+				public class Main {
+					public static void main(String[] args) {
+						Circle c = new Circle();
+						c.draw();  // Inherited from Shape
+						c.roll();  // Specific to Circle
+
+						Rectangle r = new Rectangle();
+						r.draw();  // Inherited from Shape
+						r.calculateArea(); // Specific to Rectangle
+					}
+				}
+
+
+
+
+		Notes :
+		-------
+		Multiple inheritance :
+			Java does not  support multiple inheritance for classes due to Complexity and ambiguity causes diamond problem.
+
+			Diamond problem :
+				With multiple inheritance for classe, a subclass can inherit from multiple parent classes. If multiple parent classes have same method name then this can lead to ambiguity. The compiler wouldn't know which method to call from the subclass.
+
+
+		We can achieve code reuse and functionality similar to multiple inheritance by using Composition(has-a relationship) and Interfaces.

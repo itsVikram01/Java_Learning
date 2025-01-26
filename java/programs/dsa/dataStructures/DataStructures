@@ -1,0 +1,291 @@
+. Array :
+---------
+	. Definition: A fixed-size, ordered collection of elements of the same data type. Elements are stored in contiguous memory locations and accessed directly using an index.
+	. Advantages:
+		- Fast random access due to direct indexing.
+		- Easy to implement.
+	. Disadvantages:
+		- Fixed size; resizing requires creating a new array.
+		- Inefficient insertions and deletions due to shifting elements.
+	. Example: [10, 20, 30, 40] (An array of integers).
+	. Time Complexity (Avg/Worst):
+		. Access: O(1)
+		. Search: O(n)
+		. Insert/Delete: O(n)/O(n)
+		. Space Complexity: O(n)
+	. Performance: Fast random access; inefficient insertions and deletions.
+	. Best Fit Scenarios: Use when size is fixed, and random access is critical.
+	. Common Algorithms: Linear Search, Binary Search, Merge Sort, Quick Sort
+
+. LinkedList :
+---------------
+	. Definition: A sequential collection of nodes where each node contains data and a pointer to the next node. It does not require contiguous memory allocation.
+	. Advantages:
+		- Dynamic size; no need for resizing.
+		- Efficient insertions and deletions.
+	. Disadvantages:
+		- Slow access; requires traversal.
+		- Additional memory for storing pointers.
+	. Example: 10 -> 20 -> 30 (A singly linked list of integers).
+	. Time Complexity (Avg/Worst):
+		. Access: O(n)
+		. Search: O(n)
+		. Insert/Delete: O(1)/O(1)
+	. Space Complexity: O(n)
+	. Performance: Efficient insertions and deletions; poor cache performance and slow lookups.
+	. Best Fit Scenarios: Use for dynamic data with frequent insertions and deletions.
+	. Common Algorithms: Insertion Sort, Merge Sort (modified), Reverse Linked List
+
+. Doubly LinkedList :
+----------------------
+	. Definition: A linked list where the last node points to the first node, forming a circular structure.
+	. Advantages:
+		- Suitable for cyclic processes like round-robin scheduling.
+		- No null references; always points back to the head.
+	. Disadvantages:
+		- Requires careful handling to avoid infinite loops.
+		- Same limitations as singly/doubly linked lists.
+	. Example: 10 -> 20 -> 30 -> 10 (A circular linked list of integers).
+	. Time Complexity (Avg/Worst):
+		. Access: O(n)
+		. Search: O(n)
+		. Insert/Delete: O(1)/O(1)
+	. Space Complexity: O(n)
+	. Performance: Suitable for cyclic data.
+	. Best Fit Scenarios: Use for round-robin scheduling or cyclic data (e.g., playlist looping).
+	. Common Algorithms: Josephus Problem, Circular Queue Operations
+
+
+. Circular LinkedList :
+------------------------
+	. Definition: A linked list where the last node points to the first node, forming a circular structure.
+	. Advantages:
+		- Suitable for cyclic processes like round-robin scheduling.
+		- No null references; always points back to the head.
+	. Disadvantages:
+		- Requires careful handling to avoid infinite loops.
+		- Same limitations as singly/doubly linked lists.
+	. Example: 10 -> 20 -> 30 -> 10 (A circular linked list of integers).
+	. Time Complexity (Avg/Worst):
+		. Access: O(n)
+		. Search: O(n)
+		. Insert/Delete: O(1)/O(1)
+	. Space Complexity: O(n)
+	. Performance: Suitable for cyclic data.
+	. Best Fit Scenarios: Use for round-robin scheduling or cyclic data (e.g., playlist looping).
+	. Common Algorithms: Josephus Problem, Circular Queue Operations
+
+. Binary Tree :
+---------------
+	. Definition: A hierarchical tree structure where each node has at most two children (left and right).
+	. Example: A family tree or organizational hierarchy.
+	. Advantages:
+		- Represents hierarchical data effectively.
+		- Efficient for searching and sorting when balanced.
+	. Disadvantages:
+		- Can become unbalanced, leading to degraded performance.
+		- Traversal is slower compared to arrays for random access.
+	. Time Complexity (Avg/Worst):
+		. Insert/Search/Delete: O(log n)/O(n)
+	. Space Complexity: O(n)
+	. Performance: Good for hierarchical data.
+	. Best Fit Scenarios: Use for organizing hierarchical data, such as file systems.
+	. Common Algorithms: In-order Traversal, Pre-order Traversal, Post-order Traversal
+
+. Binary Search Tree (BST) :
+----------------------------
+	. Definition: A binary tree where each node’s left child contains smaller values and the right child contains larger values.
+	. Example: A tree representing sorted integers [10, 20, 30].
+	. Advantages:
+		- Efficient for searching, insertion, and deletion in balanced trees.
+		- Sorted structure allows in-order traversal for sorted output.
+	. Disadvantages:
+		- Unbalanced trees degrade performance to O(n).
+		- Requires rebalancing for optimal performance.
+	. Time Complexity (Avg/Worst):
+		. Insert/Search/Delete: O(log n)/O(n)
+	. Space Complexity: O(n)
+	. Performance: Efficient for sorted data.
+	. Best Fit Scenarios: Use for dynamic datasets requiring sorted data and fast search operations.
+	. Common Algorithms: In-order Traversal, Search, Insertion/Deletion
+
+. Red-Black Tree :
+------------------
+	. Definition: A self-balancing BST where nodes are colored red or black, ensuring balance.
+	. Advantages:
+		- Guaranteed balanced tree.
+		- Efficient for frequent insertions/deletions.
+	. Disadvantages:
+		- Slightly slower operations compared to AVL due to less strict balancing.
+		- Complex implementation.
+	. Example: A balanced binary search tree for sorted data.
+	. Time Complexity (Avg/Worst):
+		. Insert/Delete/. Search: O(log n)
+	. Space Complexity: O(n)
+	. Performance: Balances faster than AVL.
+	. Best Fit Scenarios: Use for maintaining sorted data efficiently, like TreeMap in Java.
+	. Common Algorithms: Insertion, Deletion, Search, Rebalancing
+
+. AVL Tree :
+------------
+	. Definition: A self-balancing BST where the height difference between child subtrees is at most 1.
+	. Advantages:
+		- Always balanced, ensuring O(log n) performance.
+		- Best for dynamic sorted datasets.
+	. Disadvantages:
+		- Rebalancing requires additional computation during insert/delete.
+		- Slightly slower insertion/deletion compared to Red-Black trees.
+	. Example: A balanced binary search tree for ordered data.
+	. Time Complexity (Avg/Worst):
+		. Insert/Delete/. Search: O(log n)
+	. Space Complexity: O(n)
+	. Performance: Always balanced.
+	. Best Fit Scenarios: Use for highly dynamic sorted data with strict balancing requirements.
+	. Common Algorithms: Insertion, Deletion, Rebalancing (Rotation)
+
+. B-Tree :
+----------
+	. Definition: A self-balancing search tree optimized for disk storage, where nodes can have more than two children.
+	. Advantages:
+		- Optimized for disk reads/writes.
+		- Handles large datasets efficiently.
+	. Disadvantages:
+		- More complex implementation.
+	. Example: Database indexing.
+		- Slightly slower operations than in-memory structures.
+	. Time Complexity (Avg/Worst):
+		. Search/Insert/Delete: O(log n)
+	. Space Complexity: O(n)
+	. Performance: Excellent for large datasets.
+	. Best Fit Scenarios: Use for databases and file systems where efficient disk storage and retrieval are needed.
+	. Common Algorithms: Insertion, Deletion, Search, B-Tree Split
+
+. B+ Tree :
+-----------
+	. Definition: An extension of B-Tree where all keys are stored in the leaf nodes, which are linked sequentially.
+	. Advantages:
+		- Fast range queries.
+		- All keys are at the same level, making retrieval predictable.
+	. Disadvantages:
+		- Requires more memory for linked leaf nodes.
+		- More complex structure.
+	. Example: File systems and database indexing.
+	. Time Complexity (Avg/Worst):
+		. Search/Insert/Delete: O(log n)
+	. Space Complexity: O(n)
+	. Performance: Faster traversal.
+	. Best Fit Scenarios: Use for database indexing, where fast range queries are necessary.
+	. Common Algorithms: Insertion, Deletion, Search, Range Queries
+
+. Set :
+-------
+	. Definition: A collection of unique elements with no specific order.
+	. Advantages:
+		- Prevents duplicate elements automatically.
+		- Fast membership checks.
+	. Disadvantages:
+		- No order; lacks indexing.
+		- Cannot store duplicate elements.
+	. Example: {1, 2, 3} (A set of integers).
+	. Time Complexity (Avg/Worst):
+		. Insert/Delete/. Search: O(1) (avg)
+	. Space Complexity: O(n)
+	. Performance: Efficient for membership checking.
+	. Best Fit Scenarios: Use when unique elements and fast membership tests are required (
+
+. Queue :
+---------
+	. Definition: A linear data structure that follows the First-In-First-Out (FIFO) principle, where the first element added is the first one to be removed.
+	. Advantages: Simple to implement; guarantees order of processing.
+	. Disadvantages: Inefficient for searching and random access.
+	. Example: Printer queue, where the first print job added is processed first.
+	. Time Complexity (Avg/Worst):
+		. Enqueue/Dequeue: O(1)
+		. Search: O(n)
+	. Space Complexity: O(n)
+	. Performance: Excellent for sequential processing; lacks random access capabilities.
+	. Best Fit Scenarios: Use for task scheduling, breadth-first search, or buffering data.
+	. Common Algorithms: Breadth-First Search (BFS), Level-order Traversal
+
+. Priority Queue :
+------------------
+	. Definition: A specialized queue where elements are dequeued based on their priority, not their order of insertion.
+	. Advantages: Supports prioritized operations; dynamic priority changes possible.
+	. Disadvantages: More complex to implement; slightly slower than basic queues.
+	. Example: Hospital emergency room, where critical patients are treated before others.
+	. Time Complexity (Avg/Worst):
+		. Insert/Delete: O(log n)
+		. Access Min/Max: O(1)
+	. Space Complexity: O(n)
+	. Performance: Efficient for processing based on priority; slower than standard queue operations.
+	. Best Fit Scenarios: Use for job scheduling, Dijkstra’s algorithm, or event-driven simulations.
+	. Common Algorithms: Dijkstra’s Algorithm, Prim’s Algorithm, A* Search
+
+. Deque (Double-Ended Queue) :
+------------------------------
+	. Definition: A generalized form of queue that allows insertion and deletion at both ends.
+	. Advantages: Combines features of stacks and queues; efficient for dynamic scenarios.
+	. Disadvantages: Limited use cases; requires careful design for specific problems.
+	. Example: Browser history navigation, where you can move forward and backward.
+	. Time Complexity (Avg/Worst):
+		. Insert/Delete (Both Ends): O(1)
+	. Space Complexity: O(n)
+	. Performance: Flexible insertion/deletion; efficient for both FIFO and LIFO scenarios.
+	. Best Fit Scenarios: Use for sliding window problems, double-ended queues, or task scheduling.
+	. Common Algorithms: Sliding Window Problems, Deque-based Queue Operations
+
+. Heap :
+--------
+	. Definition: A tree-based data structure where the parent node is either smaller (min-heap) or larger (max-heap) than its children.
+	. Advantages: Efficient for finding and processing min/max elements.
+	. Disadvantages: Inefficient for arbitrary element access or searching.
+	. Example: CPU scheduling, where processes are executed based on priority.
+	. Time Complexity (Avg/Worst):
+		. Insert/Delete: O(log n)
+		. Access Min/Max: O(1)
+	. Space Complexity: O(n)
+	. Performance: Ideal for priority-based tasks; not suitable for fast search or random access.
+	. Best Fit Scenarios: Use for priority queues, scheduling algorithms (e.g., Dijkstra’s), or finding k-largest/smallest.
+	. Common Algorithms: Heapify, Insert (Push), Extract Min/Max, Priority Queue
+
+. Stack :
+---------
+	. Definition: A linear data structure that follows the Last-In-First-Out (LIFO) principle, where the last element added is the first one to be removed.
+	. Performance: Simple and fast for LIFO operations; not suitable for random access.
+	. Advantages: Easy to implement; ideal for function call management and backtracking.
+	. Example: Browser back button, where the most recent page is revisited first.
+	. Time Complexity (Avg/Worst):
+		. Push/Pop: O(1)
+		. Search: O(n)
+	. Space Complexity: O(n)
+	. Disadvantages: Limited operations; inefficient for large datasets.
+	. Best Fit Scenarios: Use for function calls, undo operations, or parsing expressions.
+	. Common Algorithms: Depth-First Search (DFS), Balanced Parentheses, Postfix Evaluation
+
+. Hash Table :
+--------------
+	. Definition: A data structure that maps keys to values using a hash function, enabling fast lookups.
+	. Advantages: Fast retrieval; efficient for key-value pair storage.
+	. Disadvantages: Requires good hash function; space overhead for collisions.
+	. Example: Storing and retrieving passwords in a database using hashes.
+	. Time Complexity (Avg/Worst):
+		. Insert/Delete/. Search: O(1)/O(n) (worst case)
+	. Space Complexity: O(n)
+	. Performance: Extremely fast lookups for large datasets; collisions can degrade performance to O(n).
+	. Best Fit Scenarios: Use for quick lookups by keys (e.g., dictionary, cache).
+	. Common Algorithms: Hashing, Insert, Search, Collision Resolution (Chaining)
+
+. Graph :
+---------
+	. Definition: A collection of nodes (vertices) connected by edges, which can be directed or undirected.
+	. Advantages: Models complex relationships; supports traversal and pathfinding.
+	. Disadvantages: High memory usage for dense graphs; complex algorithms for traversal.
+	. Example: Social media graphs, where users are vertices and connections are edges.
+	. Time Complexity (Avg/Worst):
+		. Add Vertex: O(1)
+		. Add Edge: O(1)
+		. Search: O(V + E)
+	. Space Complexity: O(V + E)
+	. Performance: Efficient for sparse graphs; less efficient for dense graphs.
+	. Best Fit Scenarios: Use for representing networks, social media connections, or routing algorithms.
+	. Common Algorithms: Breadth-First Search (BFS), Depth-First Search (DFS), Dijkstra's Algorithm

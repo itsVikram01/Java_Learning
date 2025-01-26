@@ -1,0 +1,253 @@
+Design Patterns : 
+
+	1. Creational Patterns
+		These patterns concern the creation of objects in a flexible way.
+		. Factory Method: 
+			Defines an interface for creating an object but lets subclasses decide which class to instantiate.	
+		. Abstract Factory: 
+			Provides an interface for creating families of related or dependent objects without specifying their concrete classes.   
+		. Builder: 
+			Separates the construction of a complex object from its representation.		
+		. Prototype: 
+			Creates new objects by copying existing objects.   		
+		. Singleton: 
+			Ensures a class has only one instance and provides a global point of access to it.
+	
+	2. Structural Patterns
+		These patterns deal with how classes and objects are composed to form larger structures.
+		. Adapter: 
+			Converts the interface of a class into another interface clients expect.		
+		. Decorator: 
+			Attaches additional responsibilities to an object dynamically.		
+		. Proxy: 
+			Provides a surrogate or placeholder for another object to control access to it.		
+		. Facade: 
+			Provides a simplified interface to a complex subsystem.		
+		. Composite: 
+			Composes objects into tree-like structures to represent part-whole hierarchies.		
+		. Flyweight: 
+			Uses sharing to support large numbers of fine-grained objects efficiently.
+	
+	3. Behavioral Patterns
+		These patterns are concerned with the interaction and assignment of responsibilities between objects.
+		. Observer: 
+			Defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically.   
+		. Strategy: 
+			Defines a family of algorithms, encapsulates each one, and makes them interchangeable.
+		. Template Method: 
+			Defines the skeleton of an algorithm in an operation, deferring some steps to subclasses.   
+		. Command: 
+			Encapsulates a request as an object, thereby letting you parameterize clients with different requests, queue or log requests, and support undoable operations.   
+		. Iterator: 
+			Provides a way to access the elements of an aggregate object sequentially without exposing its internal representation.   
+		. Mediator: 
+			Defines an object that encapsulates how a set of objects interact.
+		. Memento: 
+			Captures an object's internal state so that it can be restored to that state later.
+		. State: 
+			Allows an object to alter its behavior when its internal state changes.
+		. Visitor: 
+			Represents an operation to be performed on the elements of an object structure.
+		
+		. Saga Design Pattern :
+		-----------------------
+			Saga Design Pattern is a strategy used in distributed systems to manage long-running transactions and ensure data consistency in a microservices architecture. It is particularly useful when a single transaction spans multiple microservices, making it impractical to use traditional two-phase commit protocols due to scalability, performance, or reliability concerns.
+			
+			Example Use Case: E-commerce Order Processing
+				Step 1: Create an order (Order Service).
+				Step 2: Reserve inventory (Inventory Service).
+				Step 3: Process payment (Payment Service).
+				
+				Failure Scenario:
+					If payment fails, compensate by releasing the reserved inventory and canceling the order.
+
+		Key Concepts
+		-------------
+			. Saga: A sequence of transactions (or steps) that are executed in a distributed system to achieve a business goal.
+			. Compensation: If a step fails, compensating actions are executed to undo the changes made by the previous successful steps.
+			. Atomicity: Instead of enforcing strict atomicity at the system level, the Saga ensures that the overall workflow eventually reaches a consistent state.
+			
+		Types of Saga Patterns :
+		------------------------
+			2. Choreography:
+			----------------
+				Each service performs its step and publishes events that trigger subsequent steps in other services.
+				Decentralized approach: no central controller.
+				Suitable for simpler workflows.
+				
+				Example:
+					Order service places an order and emits an "Order Created" event.
+					Payment service listens for this event, processes the payment, and emits a "Payment Completed" event.
+					Inventory service updates the stock and emits a "Stock Updated" event.
+
+			1. Orchestration:
+			-----------------
+				A central orchestrator service coordinates the workflow by invoking each step in sequence.
+				Centralized approach: the orchestrator manages the logic and state of the Saga.
+				Suitable for complex workflows.
+				
+				Example:
+					. An Orchestrator service calls the Order service to create an order.
+					. If successful, it calls the Payment service to process payment.
+					. If any step fails, the orchestrator triggers compensating transactions (e.g., cancel the order).
+
+===========================================================================================
+
+
+Design Principles :
+===================
+
+SOLID Design Principles : 
+	SOLID is an acronym(a word formed from the initial letters of the several words) for five fundamental principles of object-oriented design (OOD). These principles help in creating software designs that are easy to understand, maintain, and extend.
+	
+	1. SRP (Single Responsibility Principle) :
+		. A class should have only one reason to change.
+		. This principle suggests that a class should have a single, well-defined responsibility. By adhering to SRP, you make your classes more focused, testable, and reusable.	
+			
+			@Data
+			class Employee {
+				private String name;
+				private int salary;
+			}
+			
+			class EmployeeReportGenerator {
+				public void generateReport(Employee employee) {
+					// Generate report logic
+				}
+			}
+			
+			In this example, the Employee class is responsible for employee data, while the EmployeeReportGenerator class is responsible for generating reports. This separation of concerns adheres to SRP.
+	
+	2. OCP (Open-Closed Principle) : 
+		. Software entities (classes, modules, functions, etc.) should be open for extension, but closed for modification.
+		. This principle states that you should be able to extend a class's behavior without modifying its source code. This is achieved through inheritance and polymorphism. 
+		
+			abstract class Shape {
+				abstract double calculateArea();
+			}
+
+			class Rectangle extends Shape {
+				private double width;
+				private double height;
+
+				// ... constructors and getters/setters
+
+				@Override
+				double calculateArea() {
+					return width * height;
+				}
+			}
+
+			class Circle extends Shape {
+				private double radius;
+
+				// ... constructors and getters/setters
+
+				@Override
+				double calculateArea() {
+					return Math.PI * radius * radius;
+				}
+			}
+			
+			New shapes can be added by creating new subclasses without modifying the Shape class. This adheres to OCP.
+		
+		
+	
+	3. LSP (Liskov Substitution Principle) :
+		. Objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program.   
+		. This principle states that derived classes must be substitutable for their base classes. In other words, a function that uses a base class must be able to use any of its subclasses without knowing it.
+		
+			class Bird {
+				public void fly() {
+					System.out.println("I am flying");
+				}
+			}
+
+			class Penguin extends Bird {
+				@Override
+				public void fly() {
+					// Penguins cannot fly
+					throw new UnsupportedOperationException();
+				}
+			}
+			
+		In this example, Penguin violates LSP because it cannot substitute for Bird in all cases. A better approach would be to create an AquaticBird interface and implement it for Penguin.
+			
+			interface FlyingBird {
+				void fly();
+			}
+
+			interface AquaticBird {
+				void swim();
+			}
+
+			class Sparrow implements FlyingBird {
+				@Override
+				public void fly() {
+					System.out.println("I am flying");
+				}
+			}
+
+			class Penguin implements AquaticBird {
+				@Override
+				public void swim() {
+					System.out.println("I am swimming");
+				}
+			}
+
+	
+	4. ISP (Interface Segregation Principle) :
+		. Clients should not be forced to depend on interfaces they do not use.
+		. This principle suggests that large interfaces should be split into smaller, more specific interfaces. This improves code flexibility and reusability.
+		
+			interface Shape {
+				double calculateArea();
+				void draw();
+			}
+
+			interface Resizable {
+				void resize(double factor);
+			}
+
+			class Rectangle implements Shape, Resizable {
+				// ... implementation
+			}
+
+			class Circle implements Shape {
+				// ... implementation
+			}
+			
+			In this example, Rectangle implements both Shape and Resizable, while Circle only implements Shape. This adheres to ISP.
+	
+	5. DIP (Dependency Inversion Principle) :
+		. High-level modules should not depend on low-level modules. Both should depend on abstractions.   
+		. This principle suggests that you should depend on abstractions, not concretions. This promotes loose coupling and makes your code more flexible.
+		
+			interface Database {
+				void connect();
+				void disconnect();
+			}
+
+			class MySQLDatabase implements Database {
+				// ... implementation
+			}
+
+			class Application {
+				private Database database;
+
+				public Application(Database database) {
+					this.database = database;
+				}
+
+				public void useDatabase() {
+					database.connect();
+					// ... use database
+					database.disconnect();
+				}
+			}
+			
+			In this example, the Application class depends on the Database interface, not a specific implementation. This allows you to easily switch databases without modifying the Application class.
+			
+			
+			
+			

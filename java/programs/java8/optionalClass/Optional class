@@ -1,0 +1,22 @@
+Java 8 Optional Class :
+    The Optional class in Java 8 is a container object that may or may not contain a non-null value.
+    It's designed to prevent NullPointerExceptions, which are a common source of errors in Java applications.
+
+Key Methods and Explanations
+    .  Optional.of(T value): Creates an Optional with the given non-null value. Throws NullPointerException if the value is null.
+    . Optional.ofNullable(T value): Creates an Optional with the given value, or an empty Optional if the value is null.
+    . Optional.empty(): Creates an empty Optional.
+    . isPresent(): Returns true if a value is present, otherwise false.
+    . get(): Returns the value if present, otherwise throws NoSuchElementException. Use cautiously!
+    . orElse(T other): Returns the value if present, otherwise returns the given default value.
+    . orElseGet(Supplier<? extends T> other): Returns the value if present, otherwise invokes the given supplier and returns its result.
+    . ifPresent(Consumer<? super T> consumer): If a value is present, performs the given action.
+    . map(Function<? super T, ? extends U> mapper): If a value is present, applies the given mapping function and returns an Optional containing the result.
+    . flatMap(Function<? super T, Optional<U>> mapper): Similar to map, but the mapping function returns an Optional.
+
+Best Practices
+    .  Use Optional to represent potentially null values.
+    . Avoid using get() unless you are absolutely certain that a value is present.
+    . Prefer orElse, orElseGet, or ifPresent for handling empty Optionals.
+    . Consider using map and flatMap for transformations.
+    . Remember that Optional is not a replacement for null checks in all cases.

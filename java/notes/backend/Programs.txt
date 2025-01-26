@@ -1,0 +1,256 @@
+PROGRAMS :
+----------
+
+	* Count the number of words present in a string :
+
+		public class WordsCountInString   {  
+			public static void main (String args[])  {  
+				String s = "Sharma is a good player and he is so punctual";  
+				String words[] = s.split(" ");  
+				System.out.println("The Number of words present in the string are : "+words.length);  
+			}  
+		} 
+		
+		
+	
+	* Fibnacci:
+	
+		public class Fibonacci {
+			public static void main(String[] args) {
+				int totalNo = 10;
+				int n1 = 0, n2 = 1, nextNo;
+				System.out.println("The first " + totalNo + " no of the Fibonacci sequence are : ");
+				for (int i = 1; i <= totalNo; ++i) {
+					System.out.print(n1 + " ");
+					nextNo = n1 + tn2;
+					n1 = n2;
+					n2 = nextNo;
+				}
+			}
+		}
+
+	
+	
+	* Find all characters occurance in string in java
+	
+		public class CharacterOccuranceInString {
+			public static void main(String[] args) {
+				String str = "Hello World";
+				Map<Character, Long> charCountMap = str.chars().mapToObj(c -> (char) c)
+								.collect(Collectors.groupingBy(c -> c, Collectors.counting()));
+				System.out.println("Character occurrences in string: " + str);
+				charCountMap.forEach((k, v) -> System.out.print(k+ "" +v));
+			}
+		}
+		
+		
+		public class CharacterOccurrence {
+			public static long countOccurrences(String str, char c) {
+				return str.chars().filter(ch -> ch == c).count();
+			}
+			
+			public static int countOccurrences(String str, char c) {
+				int count = 0;
+				for (int i = 0; i < str.length(); i++) {
+					if (str.charAt(i) == c) {
+						count++;
+					}
+				}
+				return count;
+			}
+			
+			public static void main(String[] args) {
+				String str = "Hello World";
+				char c = 'o';
+				long count = countOccurrences(str, c);
+				System.out.println("The character '" + c + "' occurs " + count + " times in the string '" + str + "'");
+			}
+		}
+
+		
+	* public class PairOfElementProductEqualsToGivenNoInArray {
+		/*public static void findPairs(int[] arr, int givenNumber) {
+			for (int i = 0; i < arr.length; i++) {
+				for (int j = i + 1; j < arr.length; j++) {
+					if (arr[i] * arr[j] == givenNumber) {
+						System.out.println(arr[i] + "," + arr[j]);
+					}
+				}
+			}
+		}*/
+
+		//using java 8
+		public static void findPairs(int[] arr, int givenNumber) {
+			IntStream.range(0, arr.length)
+					.mapToObj(i -> IntStream.range(i + 1, arr.length)
+							.mapToObj(j -> new int[] {arr[i], arr[j]})) // Create stream of int arrays
+					.flatMap(pairStream -> pairStream) // Flatten the stream of streams
+					.filter(pair -> pair[0] * pair[1] == givenNumber)
+					.forEach(pair -> System.out.println("(" + pair[0] + ", " + pair[1] + ")"));
+		}
+
+		public static void main(String[] args) {
+			int[] arr = {2, 3, 4, 5, 6};
+			int givenNumber = 12;
+			findPairs(arr, givenNumber);
+		}
+	}
+	
+		
+		
+	* 	Find product of array numbers except itself(ArrayOfElementProductExceptItself)
+
+	public class ArrayOfElementProductExceptItself {
+
+		public static void main(String[] args) {
+			int[] nums = {1, 2, 3, 4};
+			System.out.println("Input array is : "+Arrays.toString(nums));
+			
+			int[] result = productExceptSelf(nums);
+			System.out.println("Product of array elements except itself is : "+Arrays.toString(result)); 
+			// prints [24, 12, 8, 6]
+		}
+		
+		public static int[] productExceptSelf(int[] nums) {
+			int n = nums.length;
+
+			// Compute product of all elements
+			int product = 1;
+			for (int i = 0; i < n; i++) {
+				product =product*nums[i];
+			}
+
+			int[] result = new int[n];
+			Arrays.fill(result, 1);
+
+			// Compute product of all elements except current element
+			for (int i = 0; i < n; i++) {
+				result[i] = product / nums[i];
+			}
+
+			return result;
+		}
+	}
+
+	OR
+
+	import java.util.Arrays;
+	import java.util.Scanner;
+
+	public class ProductExceptSelf {
+		public static void main(String[] args) {
+			Scanner input = new Scanner(System.in);
+
+			// Read input array from user
+			System.out.print("Enter the size of the array: ");
+			int n = input.nextInt();
+
+			int[] nums = new int[n];
+			System.out.println("Enter the elements of the array: ");
+			for (int i = 0; i < n; i++) {
+				nums[i] = input.nextInt();
+			}
+
+			int[] result = productExceptSelf(nums);
+
+			// Print the product of all elements in the array except for the element itself
+			System.out.println("The product of all elements in the array except for the element itself is: " + Arrays.toString(result));
+		}
+
+		public static int[] productExceptSelf(int[] nums) {
+			int n = nums.length;
+			int[] result = new int[n];
+
+			// Multiply all the elements to the left of the current element
+			int leftProduct = 1;
+			for (int i = 0; i < n; i++) {
+				result[i] = leftProduct;
+				leftProduct *= nums[i];
+			}
+
+			// Multiply all the elements to the right of the current element
+			int rightProduct = 1;
+			for (int i = n - 1; i >= 0; i--) {
+				result[i] *= rightProduct;
+				rightProduct *= nums[i];
+			}
+
+			return result;
+		}
+	}
+	}
+
+
+
+	using java 8
+	---------------
+
+	import java.util.Arrays;
+
+	public class Main {
+
+		public static void main(String[] args) {
+			int[] nums = {1, 2, 3, 4};
+			int[] result = productExceptSelf(nums);
+			System.out.println(Arrays.toString(result)); // prints [24, 12, 8, 6]
+		}
+		
+		public static int[] productExceptSelf(int[] nums) {
+			int n = nums.length;
+
+			// Multiply all the elements
+			int product = Arrays.stream(nums).reduce(1, (a, b) -> a * b);
+
+			int[] result = new int[n];
+			Arrays.fill(result, 1);
+
+			// Now divide product by current element
+			for (int i = 0; i < n; i++) {
+				result[i] *= product / nums[i];
+			}
+
+			return result;
+		}
+	}
+	
+	
+	* Java Program to find the second-highest number in an array.
+	
+		public class SecondLargest {
+			public static void main(String[] args) {
+				int[] numbers = {5, 10, 3, 8, 1};
+				int secondLargest = Arrays.stream(numbers)
+						.boxed() // Convert int[] to Stream<Integer>
+						.sorted((a, b) -> b - a) // Sort the stream in descending order
+						.distinct() // Remove duplicates
+						.skip(1) // Skip the largest element
+						.findFirst() // Get the first element in the remaining stream
+						.orElse(-1); // Return -1 if there is no second largest element
+
+				System.out.println("Second largest number is: " + secondLargest);
+			}
+		}
+
+	* Mirror image of perpendicular starPattern
+
+	public class StarPatternMirror {
+	  public static void main(String[] args) {
+		int n = 5;
+		for (int i = 1; i <= n; i++) {
+		  for (int j = n - i; j >= 1; j--) {
+			System.out.print(" ");
+		  }
+		  for (int k = 1; k <= i; k++) {
+			System.out.print("*");
+		  }
+		  System.out.println();
+		}
+	  }
+	}
+	
+	output :
+				*
+			   **
+			  ***
+			 ****
+			*****

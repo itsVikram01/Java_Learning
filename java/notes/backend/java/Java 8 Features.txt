@@ -1,0 +1,708 @@
+JAVA 8 : 
+--------
+	Java 8 marked a significant step forward for the Java language, introducing several powerful features that improved code readability, conciseness, and functional programming capabilities
+
+	1. Lambda Expressions:
+		. lambda expression in Java is a feature that was introduced in Java 8. It provides a clear and concise way to represent an anonymous function (i.e., a function without a name) that can be passed around as an argument or returned as a value.
+		. Syntax: 
+		
+		(parameters) -> expression
+		(parameters) -> { statements; }
+
+		Example -- 
+
+			// Using lambda expression
+			Comparator<Integer> comparator = (a, b) -> a - b;
+			
+			// Traditional anonymous inner class
+			Comparator<Integer> comparator = new Comparator<Integer>() {
+				@Override
+				public int compare(Integer o1, Integer o2) {
+					return o1 - o2;
+				}
+			};
+			
+		
+		Understanding the Role of Lambda Expressions :
+			While lambda expressions themselves don't directly impact performance, they are essential tools in leveraging performance-enhancing features like the Stream API and parallel processing.
+		
+		Leveraging Stream API and Parallelism :
+			. Declarative Style: 
+				. The Stream API's declarative nature, often coupled with lambda expressions, allows you to focus on what you want to achieve rather than the implementation details. This can lead to more efficient and readable code.
+			
+			. Parallel Processing:
+				. The parallelStream() method enables you to distribute computations across multiple cores. Lambda expressions define the operations to be performed on each element, making them integral to this process.
+				. For computationally intensive tasks on large datasets, parallelism can significantly improve performance.
+				. However, it's essential to consider the overhead of parallelization. Not all operations benefit from it.
+			
+		import java.util.Arrays;
+		import java.util.List;
+
+		public class PerformanceExample {
+			public static void main(String[] args) {
+				List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
+
+				// Sequential processing
+				long startTime = System.nanoTime();
+				int sumSequential = numbers
+									.stream()
+									.reduce(0, Integer::sum);
+				long endTime = System.nanoTime();
+				System.out.println("Sequential sum: " + sumSequential + ", time: " + (endTime - startTime) / 1000000 + " ms");
+
+				// Parallel processing
+				startTime = System.nanoTime();
+				int sumParallel = numbers
+									.parallelStream()
+									.reduce(0, Integer::sum);
+									
+				endTime = System.nanoTime();
+				System.out.println("Parallel sum: " + sumParallel + ", time: " + (endTime - startTime) / 1000000 + " ms");
+			}
+		}
+
+		// .reduce(0, Integer::sum) ===> .reduce(0, (a, b) -> Integer.sum(a, b) )  OR  .reduce(0, (Integer a, Integer b) -> a + b )
+		// Method Reference: Integer::sum is a method reference in Java. It's a shorthand way to refer to a static method.
+		// Static Method: Integer.sum(int a, int b) is a static method in the Integer class that adds two integers and returns their sum.
+		
+	2. Functional Interfaces:
+		. Functional interface is an interface that contains exactly one abstract method. They are also known as Single Abstract Method (SAM) interfaces.
+		
+		. @FunctionalInterface annotation is not mandatory but recommended for functional interfaces. It improves code clarity.
+		
+			@FunctionalInterface
+			public interface Square {
+			  int square(int x);  //  This Square interface has a single abstract method
+			}
+			
+			@FunctionalInterface
+			public interface StringComparator {
+				int compare(String str1, String str2);
+			} //  This StringComparator interface has a single abstract method compare that takes two strings (a and b) and returns an integer indicating their relative order (-1 if a is less than b, 0 if they are equal, 1 if a is greater than b).
+			
+			public class Main {
+				public static void main(String[] args) {
+					List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+
+					// Using lambda expression:
+					Square squareLambda = x -> x * x;
+					List<Integer> squaresLambda = numbers.stream().map(squareLambda).collect(Collectors.toList());
+					System.out.println("Squares (lambda): " + squaresLambda); // Output: [1, 4, 9, 16, 25]
+
+					// Using method reference (corrected):
+					Square squareRef = Math::pow; // Correct method reference for squaring (power with 2)
+					List<Integer> squaresRef = numbers.stream().map(squareRef.apply(2)).collect(Collectors.toList()); // Apply method reference with second argument (2)
+					System.out.println("Squares (method reference): " + squaresRef); // Output: [1, 4, 9, 16, 25]
+					
+					
+					
+					
+					List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David");
+					// Lambda expression for alphabetical order (ascending)
+					StringComparator alphabeticalOrder = (str1, str2) -> str1.compareTo(str2);
+					// Sort the list using the lambda expression
+					List<String> sortedNames = names.stream()
+												   .sorted(alphabeticalOrder)
+												   .collect(Collectors.toList());
+					System.out.println("Sorted names (ascending): " + sortedNames);
+				}
+			}
+				
+		Benefits of functional interfaces:
+		-----------------------------------
+			. Concise and readable code: 
+			----------------------------
+				Lambda expressions and method references can be used to provide compact implementations for functional interfaces, leading to cleaner and more readable code.
+				
+					@FunctionalInterface
+					public interface StringModifier {
+						String modify(String str); // abstract method requiring implementation
+					}
+					public class StringModifierImpl implements StringModifier {
+						@Override
+						public String modify(String str) { // StringModifierImpl override StringModifier abstract method and provide implementation
+							// Your string modification logic here (e.g., uppercase, reverse)
+							return str.toUpperCase();
+						}
+					}
+					public class Main {
+						public static void main(String[] args) {
+							String hello = "Hello, world!";
+
+							StringModifier modifier = new StringModifierImpl();
+							String modifiedString = modifier.modify(hello);
+							System.out.println(modifiedString); // HELLO, WORLD!
+
+
+							// OR
+
+
+							// define the lambda expressions or method references directly within the Main class. These expressions provide the implementation for the modify method on the fly. While this approach keeps the logic within Main, it might slightly decrease readability for more complex modifications.
+							// Using lambda expression directly using FunctionalInterface
+							StringModifier toUpperCase = str -> str.toUpperCase();
+							StringModifier reverse = str -> new StringBuilder(str).reverse().toString();
+
+							String result1 = toUpperCase.modify(hello);
+							String result2 = reverse.modify(hello);
+
+							System.out.println("Uppercase: " + result1); // Uppercase: HELLO, WORLD!
+							System.out.println("Reversed: " + result2); // Reversed: !dlrow ,olleH
+
+							// Using method reference
+							StringModifier trimSpaces = String::trim;
+							String trimmedGreetings = trimSpaces.modify(hello);
+							System.out.println("Trimmed: " + trimmedGreetings); // Trimmed: Greetings from Java!
+						}
+					}
+
+
+				. Improved functional programming style: 
+				----------------------------------------
+					Functional interfaces enable a more functional programming paradigm in Java, allowing you to write code that focuses on what needs to be done rather than how.
+					
+					@FunctionalInterface
+					public interface IntegerOperation {
+						int operation(int a, int b);
+					}
+					public class Main {
+						public static void main(String[] args) {
+							int[] numbers = {1, 2, 3, 4, 5};
+
+							// Imperative Approach : 
+							int sum = 0;
+							for (int number : numbers) { // Iterate through the array and add each element to the sum
+								sum += number;
+							}
+							System.out.println("Sum: " + sum);
+
+
+							// OR
+
+							//Functional Approach :
+							IntBinaryOperator sum1 = (a, b) -> a + b; // Define a lambda expression for addition
+							//IntBinaryOperator sum1 = Integer::sum; // method reference
+
+							// Use the operation on the entire array with reduce()
+							int totalSum = IntStream.of(numbers).reduce(0, sum1); // Initial value is 0
+							System.out.println("Sum: " + totalSum);
+						}
+					}
+
+				. Higher-order functions: 
+				-------------------------
+					Functional interfaces play a vital role in using higher-order functions, which take functions as arguments or return functions as results. This enables powerful abstractions and composability.
+						
+						@FunctionalInterface
+						public interface IntegerOperation {
+							int operation(int a, int b);
+						}
+						public class Main {
+							public static void main(String[] args) {
+								String[] names = {"Alice", "Bob", "Charlie", "David", "Emily"};
+
+								// Filter names starting with "A" (higher-order function)
+								List<String> filteredNames = filter(names, name -> name.startsWith("A"));
+								System.out.println("Names starting with A: ");
+								for (String name : filteredNames) {
+									System.out.println(name);
+								}
+							}
+
+							// Higher-order function that takes a NameFilter as argument
+							public static List<String> filter(String[] names, NameFilter filter) {
+								List<String> filteredList = new ArrayList<>();
+								for (String name : names) {
+									if (filter.test(name)) {
+										filteredList.add(name);
+									}
+								}
+								return filteredList;
+							}
+						}
+
+
+		. Optional default and static methods in Functional interface : 
+		---------------------------------------------------------------
+			. Functional interface can have any number of default and static methods. These methods provide default implementations or utility functions that can be reused across implementations.
+				
+					@FunctionalInterface
+					public interface MathOperations {
+						// Abstract method requiring implementation in concrete classes
+						int add(int x, int y);
+						// Default method providing a default implementation for subtract
+						default int subtract(int x, int y) {
+							return x - y;
+						}
+						// Static method as a utility function
+						static int multiply(int x, int y) {
+							return x * y;
+						}
+					}
+					public class Calculator implements MathOperations {
+						@Override
+						public int add(int x, int y) {
+							return x + y;
+						}
+						// Not required to implement subtract as it has a default implementation
+					}
+					public class Main {
+						public static void main(String[] args) {
+							MathOperations operation = new Calculator();
+							int sum = operation.add(5, 3);
+							int difference = operation.subtract(10, 2); // Using default implementation
+							int product = MathOperations.multiply(4, 6); // Calling static method using className
+							
+							System.out.println("Sum: " + sum);
+							System.out.println("Difference: " + difference);
+							System.out.println("Product: " + product);
+						}
+					}
+
+
+		
+		. Java 8 introduced several built-in functional interfaces like Function (for functions that map one value to another), Predicate (for boolean-valued functions), Consumer (for functions that consume an argument), etc.
+
+		Some common examples of functional interfaces:
+		----------------------------------------------
+		
+		Supplier :
+		----------
+			A Supplier doesn’t accept any input parameters but produces a result when its get() method is invoked.
+				
+			The Supplier interface has a single abstract method:
+				. java.util.function.Supplier<T>:
+					T get();
+				
+		Consumer : 
+		----------
+			A Consumer is a functional interface that accepts a single input argument and performs some operation on it. It does not return any result.
+			. Use Consumer to perform actions on objects without returning a value.
+
+				. java.util.function.Consumer<T>: 
+				---------------------------------
+					This represents an operation that takes one argument of type T but doesn't return a value (void).
+					void accept(T t);	
+					
+						@FunctionalInterface
+						public interface Consumer<T> {
+							void accept(T t); // Here, T is the type of the input argument.
+						}
+						public class Main {
+							public static void main(String[] args) {
+								// Consumer to print a message
+								Consumer<String> printer = System.out::println;
+								printer.accept("This is a message to be printed."); // Output: This is a message to be printed.
+
+								// Consumer to modify a string in-place (assuming a mutable String implementation)
+								Consumer<StringBuilder> modifier = sb -> sb.append(" (modified)");
+								StringBuilder message = new StringBuilder("Original message");
+								modifier.accept(message);
+								System.out.println(message); // Output: Original message (modified)
+								
+								Consumer<String> printConsumer = (String s) -> System.out.println(s);
+								printConsumer.accept("Hello, World!"); // Output: Hello, World!
+								
+								//. Processing elements in a collection, like printing each element.
+								//. Performing an action on each element of a stream.
+								List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+								names.forEach((String name) -> System.out.println(name));
+								Consumer<String> printNames = name -> System.out.println(name.toUpperCase());
+								names.forEach(printNames);
+							}
+						}
+
+
+		Predicate : 
+		-----------
+			. A Predicate is a functional interface that represents a predicate (boolean-valued function) of one argument.
+			. A Predicate represents a function that takes an argument and returns a boolean value.
+			. It's used to test a condition on the input.	
+			
+			. Use Predicate to test conditions on objects and return true or false.
+
+
+				. java.util.Objects.Predicate<T>: 
+				----------------------------------
+					This represents a function that takes one argument of type T and returns a boolean value.
+					boolean test(T t);	
+						
+						@FunctionalInterface
+						public interface Predicate<T> {
+							boolean test(T t); // Here, T is the type of the input argument.
+						}
+						public class Main {
+							public static void main(String[] args) {
+								// Predicate to check if a number is even
+								Predicate<Integer> isEven = x -> x % 2 == 0;
+								int number = 10;
+								boolean isEvenNumber = isEven.test(number);
+								System.out.println(number + " is even: " + isEvenNumber); // Output: 10 is even: true
+
+								// Predicate to check if a string starts with "Java"
+								Predicate<String> startsWithJava = str -> str.startsWith("Java");
+								String text = "Java programming language";
+								boolean startsWith = startsWithJava.test(text);
+								System.out.println(text + " starts with 'Java': " + startsWith); // Output: Java programming language starts with 'Java': true
+								
+										
+								Predicate<Integer> isEven = (Integer i) -> i % 2 == 0;
+								System.out.println(isEven.test(4)); // Output: true
+								System.out.println(isEven.test(5)); // Output: false
+								
+												
+								//. Filtering elements in a collection or stream.
+								//. Defining conditions for elements.
+								List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+								
+								Predicate<Integer> isGreaterThan5 = num -> num > 5;
+								List<Integer> greaterNumbers = numbers.stream()
+																	.filter(isGreaterThan5)
+																	.forEach(System.out::println);
+								System.out.println(greaterNumbers);
+																	
+								Predicate<Integer> isEven = (Integer i) -> i % 2 == 0;
+								List<Integer> evenNumbers = numbers.stream()
+																	.filter(isEven)
+																	.collect(Collectors.toList());
+								System.out.println(evenNumbers); // Output: [2, 4, 6]
+							}
+						}
+					
+		Function : 
+		-----------
+			The Function is a functional interface in Java that represents a function that takes one argument of a specific type and returns a value of another type. It's a versatile interface used in various functional programming concepts like streams and higher-order functions.
+			
+			. java.util.Objects.Function<T, R>: 
+			------------------------------------
+				This represents a function that takes one argument of type T and returns a value of type R.
+				R apply(T t);
+				
+					@FunctionalInterface
+					public interface Function<T, R> {
+						R apply(T t); // Here, T is the type of the input argument.
+					}
+					public class Main {
+						public static void main(String[] args) {
+							
+							// Functions with Lambda Expressions:
+							Function<Integer, Integer> doubler = x -> x * 2; // Function to double a number
+							int result = doubler.apply(5); // Apply the function to 5
+							System.out.println("Double of 5: " + result); // Output: 10
+							
+							Function<String, String> toUpperCase = String::toUpperCase; // Function to convert a string to uppercase
+							String message = "Hello, world!";
+							String uppercasedMessage = toUpperCase.apply(message);
+							System.out.println("Uppercased message: " + uppercasedMessage); // Output: HELLO, WORLD!
+							
+							
+							// Higher-Order Functions:
+							List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+							List<String> uppercasedNames = transformList(names, String::toUpperCase);  // Uppercase all names
+							
+							// Method References:
+							Function<Integer, String> intToString = String::valueOf;  // Convert int to String
+							String numberString = intToString.apply(100);  // numberString will be "100"
+
+						}
+						
+						public static <T, R> List<R> transformList(List<T> list, Function<T, R> transformer) {
+							List<R> transformedList = new ArrayList<>();
+							for (T element : list) {
+								transformedList.add(transformer.apply(element));
+							}
+							return transformedList;
+						}
+
+					}
+
+	3. Stream API:
+		. stream in Java is a sequence of objects that supports various methods that can be pipelined to produce the desired result.
+		
+			1. Functional Operations:
+				. Streams allow you to perform functional-style operations on data.
+				. These operations include filtering, mapping, reducing, and collecting.
+				. Functional programming concepts (such as lambdas and method references) play a significant role in stream operations.
+				
+			2. Lazy Evaluation:
+				. Streams use lazy evaluation.
+				. Operations on a stream are not executed until a terminal operation is invoked.
+				. This allows for optimization and avoids unnecessary computations.
+			3. Pipeline of Operations:
+				. A stream operation consists of a pipeline of intermediate and terminal operations.
+				. Intermediate operations (e.g., filter, map, sorted) transform the stream and return a new stream.
+				. Terminal operations (e.g., collect, forEach, reduce) produce a result or a side effect.
+			4. Stream Sources:
+				. You can create a stream from various sources:
+					. Collections: Convert a collection (e.g., List, Set, Map) to a stream using stream() or parallelStream().
+					. Arrays: Use Arrays.stream(array) to create a stream from an array.
+					. Other Sources: Streams can be created from I/O channels, generators, or other data sources.	
+			5. Common Stream Operations:
+				. boxed(): The boxed() method is a useful tool when you need to convert a stream of primitive types into a stream of their corresponding wrapper types. 
+				. filter(): Use filter(Predicate) to select elements based on a specific condition(predicate). It allows you to create a filtered stream of elements where each element matches the provided predicate.
+				. map(): Use map(Function) to transform elements (e.g., convert to uppercase).
+					
+					1. map()
+						. The map() method is an intermediate operation in the Stream API.
+						. It transforms each element of a stream based on a given function.
+						. The function passed to map() produces one output value for each input value.
+						. The resulting stream has the same number of elements as the original stream.
+						. Use map() when you want to apply a one-to-one transformation.
+						
+						List<Integer> numbers = Arrays.asList(1, 2, 3, 4);
+						List<Integer> squaredNumbers = numbers.stream()
+							.map(n -> n * n)
+							.collect(Collectors.toList());
+						// Result: [1, 4, 9, 16]
+					
+					2. flatMap()
+						. The flatMap() method is also an intermediate operation.
+						. It transforms each element of a stream into zero or more elements.
+						. The function passed to flatMap() returns a stream of values (possibly empty) for . each input value.
+						. The resulting stream may have a different number of elements than the original stream.
+						. Use flatMap() when you need a one-to-many or many-to-many transformation.
+						
+						List<List<Integer>> nestedNumbers = Arrays.asList(
+							Arrays.asList(1, 2),
+							Arrays.asList(3, 4, 5),
+							Arrays.asList(6)
+						);
+						List<Integer> flattenedNumbers = nestedNumbers.stream()
+							.flatMap(List::stream)
+							.collect(Collectors.toList());
+						// Result: [1, 2, 3, 4, 5, 6]
+
+
+				. sorted(): Use sorted() or sorted(Comparator) to sort elements.
+				. Reducing: Use reduce to perform aggregation (e.g., sum, max, min).
+				. Collecting: Use collect(Collector) to accumulate elements into a collection (e.g., list, set, map).
+				
+				. Intermediate operations : Intermediate operations transform a stream into another stream. These operations are lazy and do not process the elements immediately. Instead, they return a new stream and are not executed until a terminal operation is invoked. Intermediate operations are typically used to build a stream pipeline.
+					. Common Intermediate Operations:
+						filter(): Filters elements based on a condition.
+						map(): Transforms each element of the stream.
+						flatMap(): Flattens nested streams.
+						distinct(): Removes duplicates from the stream.
+						sorted(): Sorts the elements of the stream.
+						limit(): Limits the number of elements in the stream.
+						skip(): Skips the first N elements.
+				
+				. Terminal operations : Terminal operations are the end of the stream pipeline. They trigger the processing of the stream and typically produce a result, such as a value or a collection. Once a terminal operation is executed, the stream is considered consumed, and it cannot be reused.
+					. Common Terminal Operations:
+						forEach(): Performs an action for each element.
+						collect(): Collects the elements into a collection (e.g., List, Set).
+						reduce(): Reduces the elements of the stream into a single value.
+						count(): Returns the count of elements in the stream.
+						findFirst(): Returns the first element in the stream (wrapped in an Optional).
+						anyMatch(), allMatch(), noneMatch(): Returns a boolean based on the condition applied to the elements.
+						toArray(): Returns an array containing the elements of the stream.
+				
+			6. Parallel Streams:
+				. Streams can be processed in parallel using parallelStream().
+				. Parallel processing leverages multiple threads for improved performance.
+				. Be cautious with parallel streams due to potential thread safety issues.	
+
+		
+		Example -- 
+		List<String> names = Arrays.asList("John", "Alice", "Bob");
+
+		// Filter names starting with A
+		List<String> filteredNames = names.stream()
+										 .filter(name -> name.startsWith("A"))
+										 .collect(Collectors.toList());
+
+		System.out.println(filteredNames); // Output: [Alice]
+		
+		
+		Java Streams follow a three-phased approach to process data :
+
+			1. Split : This phase involves creating the stream itself. You typically use a collection, an array, or a generator function as the data source. This source is then converted into a Stream object.
+
+			2. Apply : In this phase, you chain one or more intermediate operations onto the stream. These operations are lazily evaluated, meaning they are not executed until a terminal operation is called. Examples of intermediate operations include filter, map, and sorted.
+
+			3. Combine : Finally, you call a terminal operation on the stream. This terminal operation triggers the actual processing of the stream elements according to the specified logic. Terminal operations include forEach, collect, and count.
+			
+		
+		
+		Stream Creation
+			Streams can be created in several ways:
+
+			. From a collection: collection.stream()
+			. From an array: Arrays.stream(array)
+			. From static methods: Stream.of(), Stream.empty()
+			
+			
+		List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);	
+		/* . filter(Predicate<T> predicate): 
+			Returns a stream consisting of the elements that match the given predicate. */
+			
+			numbers.stream().filter(n -> n % 2 == 0).forEach(System.out::println);  // 2, 4
+			
+		/* . sorted(): 
+			Returns a stream with the elements sorted in natural order or using a custom comparator. */
+			
+			numbers.stream().sorted().forEach(System.out::println);
+			
+		/* . limit(long maxSize): 
+			Returns a stream consisting of the first maxSize elements. */
+			
+			numbers.stream().limit(3).forEach(System.out::println);
+			
+		/* . skip(long n): 
+			Skips the first n elements and returns the remaining ones. */
+			
+			numbers.stream().skip(2).forEach(System.out::println);
+			
+		/* . peek(Consumer<T> action): 
+			Useful for debugging, this method allows performing some action on each element as it is consumed by the stream. */
+			
+			numbers.stream().peek(System.out::println).collect(Collectors.toList());
+			
+	
+		List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+			
+		/* . map(Function<T, R> mapper):
+			Transforms each element using the given function and returns a stream of the transformed elements. */
+			
+			names.stream().map(String::toUpperCase).forEach(System.out::println);  // ALICE, BOB, CHARLIE
+			
+		/* . flatMap(Function<T, Stream<R>> mapper): 
+			Similar to map(), but the mapper function must return a stream. The result is a flattened stream. */
+			
+			List<List<String>> listOfLists = Arrays.asList(Arrays.asList("A", "B"), Arrays.asList("C", "D"));
+			
+			listOfLists.stream().flatMap(List::stream).forEach(System.out::println);  // A, B, C, D
+			
+		/* . forEach(Consumer<T> action): 
+			Performs an action for each element in the stream. */
+
+			names.stream().forEach(System.out::println);
+			
+		/* . collect(Collector<T, A, R> collector): 
+			Converts the elements of the stream into a different form, such as a list, set, or map. */
+			
+			List<String> result = names.stream().collect(Collectors.toList());
+			System.out.ptintln(result);
+			
+		/* . toArray(): Collects the elements into an array. */
+			
+			String[] namesArray = names.stream().toArray(String[]::new);
+			System.out.ptintln(namesArray);
+
+			
+
+
+	4. default and static Methods in Interfaces : 
+		. Java 8 allows adding default and static methods to interfaces.
+		. Default methods provide a way to define default implementations for interface methods, enabling backward compatibility with existing code.
+		. Static methods can be used to define utility methods that don't require an object instance of the interface.
+		
+		@FunctionalInterface
+		public interface Shape {
+			double calculateArea(); // Abstract method - needs implementation in implementing class
+
+			default void printInfo() { // Default method with implementation
+				System.out.println("This is a shape object.");
+			}
+
+			static double calculateTotalArea(Shape[] shapes) { // Static method - can be called directly using interface name
+				double totalArea = 0;
+				for (Shape shape : shapes) {
+					totalArea += shape.calculateArea();
+				}
+				return totalArea;
+			}
+		}
+		public class Circle implements Shape {
+			private double radius;
+			
+			public Circle(double radius) {
+				this.radius = radius;
+			}
+
+			@Override
+			public double calculateArea() {
+				return Math.PI * radius * radius;
+			}
+
+			// Can override the default method if needed
+			@Override
+			public void printInfo() {
+				System.out.println("This is a circle object with radius: " + radius);
+			}
+		}
+		public class Main {
+			public static void main(String[] args) {
+				Circle circle1 = new Circle(5);
+				Circle circle2 = new Circle(3);
+
+				System.out.println("Circle 1 Area: " + circle1.calculateArea()); // Calling abstract method through object
+
+				circle1.printInfo(); // Calling default method through object (can be overridden)
+
+				System.out.println("Total Area of both circles: " + Shape.calculateTotalArea(new Shape[]{circle1, circle2})); // Calling static method directly using interface name
+			}
+		}
+
+
+	5. Optional Class : 
+		The Optional class helps deal with null references in a safer and more elegant way. It provides methods to check for nullity, extract values if present, or provide alternative values in case of null.
+		
+		Example -- 
+		// Traditional null check
+		String name = getCustomer().getName();  // Could be null
+		if (name != null) {
+			System.out.println("Customer name: " + name);
+		}
+
+		// Using Optional
+		Optional<String> optionalName = Optional.ofNullable(getCustomer().getName());
+		optionalName.ifPresent(name -> System.out.println("Customer name: " + name));
+		
+		//using Stream api and Optional class and Lambda expression togather
+		getCustomer().stream()
+           .filter(Optional::isPresent) // Filter for non-null values using Optional::isPresent
+           .map(Optional::get)        // Extract the value from the Optional
+           .forEach(name -> System.out.println("Customer name: " + name)); // lambda expression
+
+		
+		//using method references
+		getCustomer().getName().ifPresent(System.out::println);
+
+
+
+	6. Date and Time API : 
+		. Java 8 introduced a revamped Date and Time API that's more intuitive and easier to use than the legacy java.util.Date class.
+		. It provides classes like LocalDate, LocalTime, and LocalDateTime for representing dates, times, and date-times, along with methods for manipulating and formatting them.
+		
+		Example -- 
+		LocalDate today = LocalDate.now();
+		System.out.println("Today's date: " + today);
+
+		LocalTime currentTime = LocalTime.now();
+		System.out.println("Current time: " + currentTime);
+
+
+	7. Method References : 
+		Method references provide a concise way to refer to existing methods without explicitly defining a lambda expression. They can be used for methods in classes or instances.
+	
+		Example --
+		List<String> names = Arrays.asList("John", "Alice", "Bob");
+
+		// Using lambda expression
+		names.sort((a, b) -> a.compareTo(b));
+
+		// Using method reference
+		names.sort(String::compareTo);
+		
+	8. Metaspace : 
+		Introduced in Java 8 (and later).
+		Replaced PermGen.
+		Uses native memory outside the Java heap, allowing for automatic growth by default.
+		More efficient garbage collection due to concurrent unloading of unused classes.
+		Offers better flexibility with flags like MetaspaceSize (initial size), MaxMetaspaceSize (maximum size), and MinMetaspaceFreeRatio (minimum free space after GC).
+
+		
+		
+		
+
+===========================================================================================

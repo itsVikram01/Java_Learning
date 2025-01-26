@@ -1,0 +1,37 @@
+Java 8 meta space : 
+
+From Java 8 PermGen was replaced by a new memory area called Metaspace. 
+It has the same role as PermGen which is to store class metadata. 
+Metaspace is not part of the JVM heap, but is allocated in native operating system memory. 
+It can auto-increase as needed to load additional class metadata.
+
+
+PermGen (Permanent Generation)
+
+Introduced in earlier Java versions (pre-Java 8)
+Fixed size memory space in the Java heap
+Stores class metadata like bytecode, field information, and method pointers
+Used to hold the String Pool (before Java 7)
+Garbage collection was less efficient, leading to "PermGen space" errors if overloaded
+You could configure the initial and maximum size using the -XX:PermSize and -XX:MaxPermSize flags
+
+
+Metaspace
+
+Introduced in Java 8 (and later)
+Replaced PermGen
+Uses native memory outside the Java heap, allowing for automatic growth by default
+More efficient garbage collection due to concurrent unloading of unused classes
+Offers better flexibility with flags like MetaspaceSize (initial size), MaxMetaspaceSize (maximum size), and MinMetaspaceFreeRatio (minimum free space after GC)
+
+In short:
+
+PermGen: Fixed size, less efficient GC, prone to errors in applications with many classes.
+Metaspace: Flexible size, more efficient GC, better suited for modern Java applications.
+
+
+<dependency>
+  <groupId>se.jiderhamn.classloader-leak-prevention</groupId>
+  <artifactId>classloader-leak-prevention-servlet3</artifactId>
+  <version>2.7.0</version>
+</dependency>

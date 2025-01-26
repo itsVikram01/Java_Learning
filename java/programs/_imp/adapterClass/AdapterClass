@@ -1,0 +1,40 @@
+Adapter class :
+		---------------
+			Adapter class is a class which provide empty implementation of every method present in interface.
+
+			interface MyInterface {
+				m1();
+				m2();
+				.
+				.
+				m1000();
+			}
+			abstract class MyAdapter implements MyInterface {
+				m1(){}
+				m2(){}
+				.
+				.
+				m1000(){}
+			}
+			class Test extends MyAdapter {
+				m1(){
+					//code
+				}
+			}
+			class Dummy extends MyAdapter {
+				m1000(){
+					//code
+				}
+			}
+
+
+
+			Withought using Adapter class :
+			we have to provide implementation of every method of interface in every class which implements Interface.
+			class WithoutAdapter implements MyInterface {
+				m1(){//code}
+				m2(){//code}
+				.
+				.
+				m1000(){//code}
+			}

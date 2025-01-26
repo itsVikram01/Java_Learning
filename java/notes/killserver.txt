@@ -1,0 +1,7 @@
+
+C:\Users\vikyr>netstat -ano | findstr :9006
+  TCP    0.0.0.0:9006           0.0.0.0:0              LISTENING       17832
+  TCP    [::]:9006              [::]:0                 LISTENING       17832
+
+C:\Users\vikyr>taskkill /PID 17832 /F
+SUCCESS: The process with PID 17832 has been terminated.

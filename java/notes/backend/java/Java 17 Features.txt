@@ -1,0 +1,45 @@
+Java 17 Features :
+
+1. Pattern Matching for Switch (JEP 406):
+	This feature enhances the switch statement by allowing pattern matching directly within the case labels.
+	You can use patterns (such as type patterns, null checks, and custom patterns) to simplify code and make it more expressive.
+	Example:
+	Java
+
+	String result = switch (input) {
+		case String s && s.length() > 5 -> "Long string";
+		case String s -> "Short string";
+		default -> "Unknown";
+	};
+	AI-generated code. Review and use carefully. More info on FAQ.
+	
+2. Sealed Classes and Interfaces (JEP 397):
+	Sealed classes restrict which other classes or interfaces can extend or implement them.
+	Helps improve encapsulation and maintainability.
+	Example:
+	Java
+
+	sealed interface Shape permits Circle, Rectangle, Triangle { /* ... */ }
+	final class Circle implements Shape { /* ... */ }
+	AI-generated code. Review and use carefully. More info on FAQ.
+	
+3. Enhanced Pseudo-Random Number Generators (JEP 356):
+	Provides new interfaces and implementations for PRNGs.
+	Allows easier interchangeability of algorithms and better support for stream-based programming.
+	Example:
+	Java
+
+4. IntStream randomInts = RandomGeneratorFactory.of("SHA1PRNG").create().ints(10, 0, 100);
+	AI-generated code. Review and use carefully. More info on FAQ.
+	Foreign Function & Memory API (JEP 389):
+	Enables interaction with native code and memory in a safer and more efficient way.
+	Useful for integrating with libraries written in other languages (e.g., C/C++).
+	Example:
+	Java
+
+5.MemorySegment segment = MemorySegment.allocateNative(1024);
+	AI-generated code. Review and use carefully. More info on FAQ.
+	Deprecation of the Applet API (JEP 398):
+	The Applet API, used for embedding Java applets in web browsers, has been deprecated.
+	Most modern browsers no longer support Java applets.
+	Developers are encouraged to migrate to other technologies (e.g., JavaFX, web components).

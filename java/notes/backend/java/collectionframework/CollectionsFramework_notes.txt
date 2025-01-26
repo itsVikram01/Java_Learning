@@ -1,0 +1,471 @@
+Collection Framework : 
+-----------------------
+	The Collection framework defines several key interfaces that represent different types of collections.
+
+Collection (I) : 
+-----------------------
+	The root interface of the Collection framework. It lies at the heart of the Java Collections Framework. 
+	
+	It defines a collection as a group of elements, typically of the same type. 
+	
+	It doesn't specify how the elements are stored internally (e.g., ordered vs. unordered). It has several subinterfaces that define more specific collection types like List (ordered collections), Set (unordered collections that don't contain duplicates), and Queue (collections that follow a specific order for insertion and removal of elements).
+	
+	It extends the Iterable interface, inheriting the iterator() method for iterating over elements.
+	
+	It provides a set of methods for performing common operations on collections, including:
+	. add(E element): Adds an element to the collection.
+	. remove(Object o): Removes an element from the collection.
+	. contains(Object o): Checks if the collection contains a specific element.
+	. isEmpty(): Checks if the collection is empty.
+	. size(): Returns the number of elements in the collection.
+	. clear(): Removes all elements from the collection.
+	. iterator(): Returns an Iterator object to iterate over elements.
+	
+	Benefits of Collection:
+	-----------------------
+	. Standardized Interface :
+		By implementing Collection, various collection classes provide a consistent set of operations, making it easier to work with different collection types using the same syntax.
+	. Code Reusability :  
+		 Code that operates on collections can be written generically to work with any class that implements Collection, promoting code reusability and maintainability.
+
+		Subinterfaces:
+		--------------				
+			. List: 
+			-------
+				. Ordered Collection: Elements are maintained in the order they were added.
+				. Duplicates Allowed: You can have multiple instances of the same element in a List.
+				. Indexed Access: You can access elements directly using their position (index) in the List. This starts from 0 (zero).
+				. Common Implementations: ArrayList (fast random access), LinkedList (faster insertion and deletion).
+						
+					. ArrayList: (implements List)
+					------------
+						. Uses an underlying array for storage.	
+						. Pros : Fast random access (get element by index), efficient for adding elements to the end.
+						. Cons : Resizing the array can be slow for frequent insertions/deletions in the middle. Not thread-safe.
+					
+					. LinkedList: (implements List)
+					-------------
+						. Uses doubly-linked nodes to store elements.
+						. Pros : Faster insertions/deletions anywhere in the list.
+						. Cons : Slower random access (needs to traverse nodes to find index). Not thread-safe.
+						
+					. Vector: 
+					---------
+						Vector is a part of the Java Collections Framework and is an implementation of the List interface. It is a legacy class, originally part of Java 1.0, and is located in the java.util package.
+						
+						1. Resizing Array Implementation:
+							. A Vector is similar to an ArrayList, as both are dynamically resizable arrays. The key difference is that a Vector is synchronized, making it thread-safe.
+							. This means that only one thread can modify a Vector at a time, which prevents inconsistent states.
+							
+						2. Thread Safety:
+							. All methods in a Vector are synchronized. This makes it safe to use in a multi-threaded environment without the need for additional synchronization code.
+							. However, because of this synchronization, Vector can have performance overhead compared to non-synchronized classes like ArrayList.
+							
+						3. Legacy Class:   
+							. Vector was part of the original Java 1.0 version but has since been replaced by newer, more versatile classes in the Collections Framework, like ArrayList.
+							. Despite being considered a legacy class, Vector is still present in the Java API for backward compatibility.
+							
+						4. Usage:
+							. Vector can be used when a thread-safe implementation of a resizable array is needed. However, in modern applications, other concurrent collections like CopyOnWriteArrayList or synchronization wrappers (Collections.synchronizedList()) around ArrayList are often preferred.
+							
+						5. Size and Capacity:
+							. Vector manages its capacity separately from its size. The capacity is the size of the array used to store the elements. The size is the number of elements that are actually present in the Vector.
+							. When elements are added and the current capacity is exceeded, the Vector grows dynamically by a factor of 2 by default (though this can be specified).
+						
+						6. Common Methods:
+							. add(E e): Adds the specified element to the end of the vector.
+							. add(int index, E element): Inserts the specified element at the specified position in the vector.
+							. remove(int index): Removes the element at the specified position.
+							. get(int index): Returns the element at the specified position in the vector.
+							. isEmpty(): Checks if the vector is empty.
+							. size(): Returns the number of elements in the vector.
+							. clear(): Removes all elements from the vector.
+							
+							
+						. Stack: 
+						---------
+							. Stack is a class that represents a last-in, first-out (LIFO) stack of objects. It is a part of the Java Collections Framework and extends the Vector class. This means that Stack inherits all the properties of a Vector, such as dynamic resizing and thread safety. 
+							. Stack is considered a legacy class, originally part of Java 1.0. While it is still present in the Java API for backward compatibility, newer, more versatile classes (such as Deque and LinkedList) are generally preferred for new applications.
+							. Methods: 
+								. push(E item): Pushes (adds) an item onto the top of the stack.
+								. pop(): Removes the object at the top of the stack and returns that object.
+								. peek(): Looks at the object at the top of the stack without removing it.
+								empty(): Tests if the stack is empty.
+								. search(Object o): Returns the 1-based position of an object on the stack. If the object is not found, it returns -1.
+				
+				
+			. Queue: 
+			--------
+				. Unique Order: The Queue interface prioritizes order of insertion (First-In-First-Out, FIFO). The order elements are added in is the order they are retrieved.Elements are added at the back (enqueue) and removed from the front (dequeue). eg. A line where the first person in line gets served first. 
+				. Duplicates Allowed: Some Queue implementations may not allow duplicates, depending on the specific implementation.
+				. Common Implementations: LinkedList (basic Queue implementation allows duplicates), PriorityQueue (prioritizes elements based on a custom order and allows duplicates)
+					
+					. PriorityQueue(C):
+					
+					. Deque(I): 
+						Extends Queue and provides additional methods for inserting and removing elements from both ends. (e.g., ArrayDeque)
+						
+						. ArrayDeque(C):
+						
+					. BlockingQueue(I):
+						. ArrayBlockingQueue(C)
+						. LinkedBlockingQueue(C)
+						. PriorityBlockingQueue(C)
+						. SynchronousQueue(C)
+				
+			. Set: 
+			------
+				. Unordered Collection: Elements are not stored in any specific order.
+				. No Duplicates: A Set cannot contain duplicate elements. If you try to add a duplicate, it's simply ignored.
+				. Unique Values: Sets are useful when you only care about distinct elements and not their order.
+				. Common Implementations: HashSet (fast average-case performance), LinkedHashSet (maintains insertion order), TreeSet (sorts elements based on a natural order or custom comparator).
+						
+					. HashSet(C): (implements Set)
+					----------
+						. Uses a hash table for fast average-time lookups.
+						. Pros : Unbeatable for checking if an element exists (contains method). Not ordered (insertion order not preserved).
+						. Cons : Doesn't allow duplicate elements. Not suitable when order matters. Not thread-safe.
+						
+						. LinkedHashSet(C):
+						----------------
+							. LinkedHashSet is a collection class that implements the Set interface and extends the HashSet class. It is a part of the Java Collections Framework and is located in the java.util package. LinkedHashSet combines the unique property of HashSet with the order-preserving property of a linked list, meaning it maintains a doubly-linked list running through all its entries.
+							. Maintains Insertion Order: 
+								Unlike HashSet, which does not guarantee any specific order of elements, LinkedHashSet maintains the order in which elements are inserted. 
+							. No Duplicate Elements: 
+							. Internally, LinkedHashSet uses a hash table (similar to HashSet) to store the elements, but it also maintains a linked list to preserve the insertion order. This combination allows LinkedHashSet to provide fast access times (O(1) for basic operations like add, remove, contains, and size), while also maintaining a predictable iteration order.
+							. The performance of a LinkedHashSet is slightly slower than that of a HashSet due to the overhead of maintaining the linked list. However, it is still generally faster than other ordered collections like TreeSet, which requires O(log n) time for basic operations.
+					
+					. SortedSet(I):
+						. SortedSet is an interface that extends the Set interface, representing a set that maintains its elements in ascending order. The SortedSet interface is part of the Java Collections Framework and is defined in the java.util package.
+						. SortedSet maintains its elements in a sorted order, either in their natural order (if the elements implement the Comparable interface) or according to a custom Comparator provided at the time of the set's creation. For example, integers are sorted in numeric order, and strings are sorted lexicographically by default.
+						. SortedSet is a subinterface of Set and has a well-known implementation class called TreeSet. TreeSet implements SortedSet and uses a self-balancing binary search tree (a Red-Black tree) to maintain order. This ensures that operations like add, remove, and contains have a time complexity of O(log n).
+					
+						. NavigableSet(I):
+
+							. TreeSet: (implements Set, SortedSet)
+							----------
+								. Stores elements in a sorted order based on their natural ordering or a custom comparator.
+								. Pros : Efficient for finding elements within a specific range (subSet method). Ordered set.
+								. Cons : Slower average-case lookups compared to HashSet. Not suitable when order doesn't matter. Not thread-safe.
+				
+			. Map(I): 
+			------
+				. The Map interface is the root interface for all map implementations.
+				. It defines the basic operations for working with key-value pairs.
+				. Key characteristics:
+					. Does not allow duplicate keys (each key is unique).
+					. Allows duplicate values.
+					. Provides methods for inserting, retrieving, and removing entries based on keys.
+				. Unordered: The order elements are added in is not preserved
+				. Fast Retrieval: You can efficiently retrieve a value by its key.
+				. Common methods include put(), get(), remove(), containsKey(), and more.
+				. Common Implementations: HashMap (fast average-case performance), LinkedHashMap (maintains insertion order), TreeMap (sorts keys based on a natural order or custom comparator).
+				
+					. HashMap(C): (implements Map)
+					----------
+						. Allows null keys and values.  
+						. No duplicates key(Unique Keys).
+						. Ordering: Does not guarantee any specific order of elements. Iteration order may change during resizing.
+						. Non-thread-safe: Not suitable for concurrent environments.  
+						. Non-Synchronized:HashMap is not synchronized by default.
+						. ConcurrentModificationException: Thrown if the map is modified while iterating over it.
+						. Performance: Generally performs well for most use cases. O(1) average time complexity for get() and put() operations.
+						
+						. LinkedHashMap
+							. Allow one Null Key and Multiple Null Values.
+							. No duplicates key(Unique Keys).
+							. Ordering: Maintains insertion order (order of elements added). Useful when you need predictable iteration order.
+							. Non-thread-safe: Not suitable for concurrent environments.  
+							. Non-Synchronized: LinkedHashMap is not synchronized by default.
+							. Performance: Similar to HashMap but with slightly higher memory overhead due to maintaining insertion order. O(1) average time complexity for get() and put() operations.
+					
+						
+					. LinkedHashMap
+						. Allow one Null Key and Multiple Null Values.
+						. No duplicates key(Unique Keys).
+						. Ordering: Maintains insertion order (order of elements added). Useful when you need predictable iteration order.
+						. Non-thread-safe: Not suitable for concurrent environments.  
+						. Non-Synchronized: LinkedHashMap is not synchronized by default.
+						. Performance: Similar to HashMap but with slightly higher memory overhead due to maintaining insertion order. O(1) average time complexity for get() and put() operations.
+						
+						
+							
+					. Hashtable(C):
+					---------------
+						A Hashtable in Java is a collection that implements a key-value pair data structure, similar to a HashMap, but it is synchronized and thread-safe. It doesn't allow null keys or null values.
+						
+						. Properties(C):
+						---------------
+							The Properties class in Java is a subclass of Hashtable that is specifically designed for managing configuration properties. It allows you to store key-value pairs as strings, making it ideal for handling application settings.
+						
+					. IdentityHashMap(C):
+					---------------------
+						IdentityHashMap in Java is a part of the java.util package and is a special type of Map that uses reference equality (i.e., ==) rather than object equality (equals()) for comparing keys and values.
+					
+					. WeakHashMap(C):
+					-----------------
+						WeakHashMap in Java is a special type of map that uses weak references for its keys. This means that if a key is no longer in use and only referenced by the map, it can be garbage collected. Once the garbage collector removes a key, the corresponding entry in the map is also removed automatically. This is useful for scenarios where you want to hold entries in a map only as long as the keys are in use elsewhere in the program.
+							
+					. ConcurrentMap(I):	
+					-------------------
+						. ConcurrentMap is designed to be thread-safe. This means that multiple threads can perform read and write operations on the map simultaneously without causing data corruption or inconsistencies. Unlike HashMap, which is not thread-safe, ConcurrentMap implementations handle all necessary synchronization internally.
+						. Methods of ConcurrentMap use non-blocking algorithms to ensure that threads can perform operations without having to wait for locks to be released. This improves performance in multi-threaded environments by reducing contention among threads.
+						
+						. ConcurrentHashMap(C):
+						---------------------			
+							. Doesn't allow null keys or values: To simplify implementation and avoid potential null pointer exceptions. 
+							. No duplicates key(Unique Keys).
+							. Ordering: Does not guarantee any specific order. Iteration order may not be predictable.
+							. Thread-safe: Designed for concurrent use in multi-threaded environments. 
+							. Synchronized: ConcurrentHashMap is synchronized by default.
+							. No ConcurrentModificationException: Allows modifications while iterating without throwing exception.  
+							. Performance: Optimized for concurrent access. Read operations are non-blocking.  Write operations are efficient due to segment-based locking. Has some performance overhead compared to HashMap due to synchronization mechanisms. So it is slower.
+						
+						. ConcurrentNavigableMap(I):
+						---------------------------
+							ConcurrentNavigableMap interface extends both ConcurrentMap and NavigableMap, providing a thread-safe, sorted map with additional methods for navigation, such as higher, lower, ceiling, floor, etc. It is part of the java.util.concurrent package and is typically implemented by classes like ConcurrentSkipListMap.
+							
+							. ConcurrentSkipListMap(C):
+							--------------------------
+								ConcurrentSkipListMap is a class in the java.util.concurrent package that implements the ConcurrentNavigableMap interface. It is a thread-safe, sorted map that allows for efficient concurrent access and is designed to be used in multi-threaded environments. It combines the features of a TreeMap (sorted keys) and a ConcurrentMap (thread safety).
+						
+						
+					. SortedMap(I):
+					----------------------
+						. The SortedMap interface extends Map.
+						. It maintains the keys in sorted order (usually based on their natural ordering or a custom comparator).
+						. Key characteristics:
+							. Sorted by keys (ascending order).
+							. Useful when you need a map with predictable key ordering.
+						. Common implementations include TreeMap.
+												
+						. NavigableMap(I):
+							. TreeMap(C): (implements Map, SortedMap)
+							-------------------------------------
+								TreeMap class in Java is a part of the java.util package and implements the Map interface. It provides a SortedMap based on the natural ordering of its keys or by a specified comparator. A TreeMap keeps its keys in sorted order, which allows for efficient range queries, such as finding the smallest or largest key in the map.
+							
+						
+							. ConcurrentNavigableMap(I):
+							---------------------------
+								ConcurrentNavigableMap interface extends both ConcurrentMap and NavigableMap, providing a thread-safe, sorted map with additional methods for navigation, such as higher, lower, ceiling, floor, etc. It is part of the java.util.concurrent package and is typically implemented by classes like ConcurrentSkipListMap.
+							
+								. ConcurrentSkipListMap(C):
+								--------------------------
+									ConcurrentSkipListMap is a class in the java.util.concurrent package that implements the ConcurrentNavigableMap interface. It is a thread-safe, sorted map that allows for efficient concurrent access and is designed to be used in multi-threaded environments. It combines the features of a TreeMap (sorted keys) and a ConcurrentMap (thread safety).
+								
+								
+					. AbstractMap : 
+					---------------
+						. HashMap
+						. IdentityHashMap
+						. WeakHashMap
+						. EnumMap(C) : 
+						--------------
+							EnumMap is a specialized Map implementation in Java that is used to associate Enum keys with values. It is a very efficient map when the keys are of an Enum type because it internally uses arrays to store the values, making it faster and more memory-efficient than other Map implementations like HashMap when the keys are enums.
+
+							Key Features:
+							Type-Safety: It only accepts Enum types as keys.
+							Performance: EnumMap provides better performance compared to other Map implementations when used with Enum keys due to its optimized internal structure.
+							Null Values: EnumMap does not allow null keys, but it allows null values.
+
+
+						. TreeMap
+						. ConcurrentHashMap
+						. ConcurrentSkipListMap
+
+
+
+		Choosing the Right Collection :
+		. Random access and frequent modifications in the middle: ArrayList for good balance, LinkedList for more insertions/deletions.
+		. Fast lookups and don't care about order: HashSet for Sets, HashMap for Maps.
+		. Need sorted elements: TreeSet for Sets, TreeMap for Maps.
+		. Thread-safety is a concern: Consider using synchronized versions of these collections or thread-safe alternatives like ConcurrentHashMap.
+
+		example --
+		
+		import java.util.*;
+		public class CollectionSubinterfacesExample {
+			public static void main(String[] args) {
+
+				// List (ArrayList) - Ordered collection, duplicates allowed
+				List<Integer> numbersList = new ArrayList<>();
+				numbersList.add(10);
+				numbersList.add(5);
+				numbersList.add(15);
+				numbersList.add(5); // Duplicates allowed
+
+				System.out.println("Numbers List (ArrayList): " + numbersList); // [10, 5, 15, 5] 
+				
+				// List (LinkedList) - Doubly-linked list, efficient for insertions/removals at any position
+				List<String> colorsList = new LinkedList<>();
+				colorsList.add("Red");
+				colorsList.add(0, "Green"); // Efficient insertion at index 0
+				colorsList.add("Blue");
+
+				System.out.println("Colors List (LinkedList): " + colorsList); // [Green, Red, Blue]
+
+				// List (Vector) - Thread-safe version of ArrayList (mostly legacy, use ArrayList for new code)
+				List<Integer> agesList = new Vector<>();
+				agesList.add(25);
+				agesList.add(30);
+				agesList.add(20);
+
+				System.out.println("Ages List (Vector): " + agesList); // [25, 30, 20]
+
+				// List (Stack) - LIFO (Last-In-First-Out) order for element access (consider using Deque for more flexibility)
+				List<String> booksStack = new Stack<>();
+				booksStack.push("Java for Beginners");
+				booksStack.push("Data Structures and Algorithms");
+				booksStack.push("Software Design Patterns");
+
+				System.out.println("Books Stack: " + booksStack); // [Software Design Patterns, Data Structures and Algorithms, Java for Beginners] (top element first)
+				
+				
+				
+				// Queue (PriorityQueue) - Elements prioritized based on natural ordering or comparator (default: min heap)
+				Queue<String> tasksQueue = new PriorityQueue<>();
+				tasksQueue.offer("High priority task");
+				tasksQueue.offer("Normal priority task");
+				tasksQueue.offer("Urgent task"); // Urgent task will be processed first
+
+				System.out.println("Tasks Queue (PriorityQueue): " + tasksQueue); // [Urgent task, High priority task, Normal priority task] (order based on priority)
+				
+				// Queue (LinkedList) - Can also be used as a Queue (FIFO - First-In-First-Out)
+				Queue<Integer> numbersQueue = new LinkedList<>();
+				numbersQueue.offer(1);
+				numbersQueue.offer(3);
+				numbersQueue.offer(2);
+
+				System.out.println("Numbers Queue (LinkedList): " + numbersQueue); // [1, 3, 2] (FIFO order)
+
+				// Queue (ArrayDeque) - Array-based Deque, efficient for adding/removing from both ends
+				Queue<Character> charsQueue = new ArrayDeque<>();
+				charsQueue.add('A');
+				charsQueue.add('B');
+				charsQueue.addLast('C');
+
+				System.out.println("Characters Queue (ArrayDeque): " + charsQueue); // [A, B, C] (FIFO order)
+
+				// Queue (ConcurrentLinkedQueue) - Thread-safe Queue implementation
+				Queue<String> tasksQueue = new ConcurrentLinkedQueue<>();
+				tasksQueue.offer("Task 1");
+				tasksQueue.offer("Task 2");
+				tasksQueue.offer("Task 3");
+
+				System.out.println("Tasks Queue (ConcurrentLinkedQueue): " + tasksQueue); // [Task 1, Task 2, Task 3] (FIFO order, thread-safe)
+				
+				// Deque (LinkedList) - Can add/remove from both ends efficiently (also implements List)
+				Deque<Character> charactersDeque = new LinkedList<>();
+				charactersDeque.addLast('A');
+				charactersDeque.addFirst('B');
+				charactersDeque.addLast('C');
+
+				System.out.println("Characters Deque (LinkedList): " + charactersDeque); // [B, A, C]
+				
+
+
+				// Set (HashSet) - Unique elements, no order
+				Set<String> fruitsSet = new HashSet<>();
+				fruitsSet.add("Apple");
+				fruitsSet.add("Banana");
+				fruitsSet.add("Orange");
+				//fruitsSet.add("Orange"); // Duplicate won't be added
+
+				System.out.println("Fruits Set (HashSet): " + fruitsSet); // [Apple, Banana, Orange] (order may vary)
+				
+				// Set (LinkedHashSet) - Remembers insertion order while maintaining uniqueness
+				Set<String> fruitsSet = new LinkedHashSet<>();
+				fruitsSet.add("Apple");
+				fruitsSet.add("Banana");
+				fruitsSet.add("Orange");
+				fruitsSet.add("Orange"); // Duplicate won't be added
+
+				System.out.println("Fruits Set (LinkedHashSet): " + fruitsSet); // [Apple, Banana, Orange] (maintains insertion order)
+
+				// Set (TreeSet) - Sorted set based on natural ordering or comparator
+				Set<Integer> numbersSet = new TreeSet<>();
+				numbersSet.add(10);
+				numbersSet.add(5);
+				numbersSet.add(15);
+				numbersSet.add(5); // Duplicates won't be added (as it's a Set)
+				
+				System.out.println("Numbers Set (TreeSet): " + numbersSet); // [5, 10, 15] (sorted in ascending order)
+
+
+
+				// Map (HashMap) - Key-value pairs, unique keys
+				Map<String, Integer> studentGrades = new HashMap<>();
+				studentGrades.put("Alice", 90);
+				studentGrades.put("Bob", 85);
+				studentGrades.put("Charlie", 95); // Overwrites existing key "Charlie"
+
+				System.out.println("Student Grades (HashMap): " + studentGrades); // {Alice=90, Bob=85, Charlie=95}
+				
+				// Map (LinkedHashMap) - Maintains insertion order for key-value pairs
+				Map<String, String> countriesMap = new LinkedHashMap<>();
+				countriesMap.put("India", "New Delhi");
+				countriesMap.put("China", "Beijing");
+				countriesMap.put("Brazil", "Brasilia");
+
+				System.out.println("Countries Map (LinkedHashMap): " + countriesMap); // {India=New Delhi, China=Beijing, Brazil=Brasilia} (maintains insertion order)
+
+				// Map (TreeMap) - Sorted map based on natural ordering or comparator for keys
+				Map<Integer, String> studentAgesMap = new TreeMap<>();
+				studentAgesMap.put(18, "Alice");
+				studentAgesMap.put(20, "Bob");
+				studentAgesMap.put(19, "Charlie");
+
+				System.out.println("Student Ages Map (TreeMap): " + studentAgesMap); // {18=Alice, 19=Charlie, 20=Bob} (sorted by key in ascending order)
+
+				// Map (ConcurrentHashMap) - Thread-safe implementation of HashMap
+				Map<String, Double> employeeSalariesMap = new ConcurrentHashMap<>();
+				employeeSalariesMap.put("Alice", 85000.0);
+				employeeSalariesMap.put("Bob", 90000.0);
+				employeeSalariesMap.put("Charlie", 78000.0);
+
+				System.out.println("Employee Salaries Map (ConcurrentHashMap): " + employeeSalariesMap); // {Alice=85000.0, Bob=90000.0, Charlie=78000.0} (thread-safe)
+
+				// Map (HashTable) - Legacy thread-safe implementation (less efficient than ConcurrentHashMap, use ConcurrentHashMap for new code)
+				Map<String, String> coursesMap = new Hashtable<>();
+				coursesMap.put("Java", "Introduction to Java Programming");
+				coursesMap.put("Python", "Python for Beginners");
+				coursesMap.put("C++", "Fundamentals of C++");
+
+				System.out.println("Courses Map (HashTable): " + coursesMap); // {Java=Introduction to Java Programming, Python=Python for Beginners, C++=Fundamentals of C++} (thread-safe, legacy)
+
+				// Map (IdentityHashMap) - Uses object identity for comparisons (reference equality)
+				Map<Student, String> studentsMap = new IdentityHashMap<>();
+				Student student1 = new Student("Alice", 18);
+				Student student2 = new Student("Bob", 20);
+				Student student3 = student1; // Same object as student1
+
+				studentsMap.put(student1, "Java");
+				studentsMap.put(student2, "Python");
+				studentsMap.put(student3, "C++"); // Will overwrite the entry for student1 since they refer to the same object
+
+				System.out.println("Students Map (IdentityHashMap): " + studentsMap); // {Student(name=Alice, age=18)=Java, Student(name=Bob, age=20)=Python} (uses reference equality)
+
+				// Map (EnumMap) - Compact map specifically designed for enum keys
+				enum Day { MONDAY, TUESDAY, WEDNESDAY, THURSDAY, FRIDAY }
+
+				Map<Day, String> weekdaysMap = new EnumMap<>(Day.class);
+				weekdaysMap.put(Day.MONDAY, "Monday Motivation");
+				weekdaysMap.put(Day.WEDNESDAY, "Hump Day!");
+				weekdaysMap.put(Day.FRIDAY, "TGIF!"); // Only enum values of Day can be used as keys
+
+				System.out.println("Weekdays Map (EnumMap): " + weekdaysMap); // {MONDAY=Monday Motivation, WEDNESDAY=Hump Day!, FRIDAY=TGIF!}
+				
+			}
+		}
+		
+		
+		
+	Collection vs. Collections in Java :
+		While both Collection and Collections are part of Java's collection framework and reside in the java.util package, they serve distinct purposes.
+		
+	Collections : 
+		. It's a utility class that provides static methods to operate on collections.
+		. Offers helper methods for searching, sorting, copying, and other common operations.
+		. Contains static methods like sort, reverse, shuffle, binarySearch, etc.
+		
+===========================================================================================

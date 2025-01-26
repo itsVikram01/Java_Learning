@@ -1,0 +1,5 @@
+volatile keyword :
+------------------
+    . When you declare a variable as volatile, you’re telling the Java Virtual Machine (JVM) that this variable can be accessed and modified by multiple threads.
+    . Changes made to this variable by one thread are immediately visible to other threads. No more hiding in caches or secret corners—everyone gets to see the latest value.
+    . Use volatile when you care more about visibility than atomicity.

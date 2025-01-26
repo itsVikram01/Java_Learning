@@ -1,0 +1,936 @@
+OOPS :
+------
+
+	Polymorphism :
+	--------------
+		Polymorphism is the ability of objects to behave differently depending on the context in which it is used.
+		OR
+		If one task is performed in different ways then it is known as polymorphism.
+		OR
+		Performing same operation differently in different class.
+
+		For example: to convince the customer differently, to draw something(shape, triangle, rectangle, etc.)
+		Another example can be to speak something : (a cat speaks meow, dog barks woof, etc.)
+
+		Polymorphism can be achieved by --
+
+		(1). Compile-time polymorphism(Overloading / Static Binding / Early Binding) :
+			-->Two methods said to be overloaded if and only if both have same name but different signature(argument no or type).
+				eg- abs(int i){}
+					abs(long l){}
+					abs(float f){}
+
+
+		(2). Run-time polymorphism(Overriding / Dynamic Binding / Late Binding) :
+			--> Overriding is a mechanism in which subclass provide its own implementation for a method that is already defined in its parent class.
+			--> It occure at runtime when child class has same method name and same signature(argument no and type.)
+			--> It also has same return type till 1.4v. But from 1.5v, the return type can be differ by co-varient relation(i.e. Parent to Child relation).
+
+			Co-Varient : Applicable only for Object type not for Primitive type.
+				Object --> Object / String / StringBuffer / ...
+				Number --> Number / Integer / ...
+
+
+
+		// main() method can't be overrided because it is static but it can use method hiding.
+		. Method hiding :
+				If subclass has a static method with the same name and signature as a static method in its parent class. The subclass static method hides the parent class static method when called through a reference of the subclass type.
+
+				class SuperClass {
+				  public static void printMessage() {
+					System.out.println("This is the message from SuperClass");
+				  }
+				}
+
+				class SubClass extends SuperClass {
+				  public static void printMessage() {
+					System.out.println("This is the message from SubClass");
+				  }
+				}
+
+				public class Main {
+				  public static void main(String[] args) {
+					SuperClass superRef = new SubClass(); // SubClass object with SuperClass reference
+					SubClass subRef = new SubClass(); // SubClass object with SubClass reference
+
+					superRef.printMessage(); // Output: This is the message from SuperClass (compile-time binding based on reference type)
+
+					subRef.printMessage();  // Output: This is the message from SubClass (compile-time binding based on reference type)
+				  }
+				}
+
+
+
+
+		Examples -
+			public class Animal {
+
+				// makeSound() Method to be overridden
+				public void makeSound() {
+					System.out.println("Animal makeSound() method");
+				}
+
+				// Animal static main() method
+				public static void main(String[] args) {
+					System.out.println("Animal static main(String[] args) method");
+				}
+			}
+			public class Parent extends Animal {
+				// Data hiding of static main() method
+				public static void main(String[] args) {
+					System.out.println("Hiding Animal static main(String[] args) method with Parent static main(String[] args) method");
+				}
+
+				// Overloading main method
+				public static void main(int[] args) {
+					System.out.println("Overloading Parent static main(String[] args) method with Parent static main(int[] args)");
+				}
+
+				// Overriding
+				@Override
+				public void makeSound() {
+					System.out.println("Overriding Animal makeSound() method with Parent makeSound() method");
+				}
+
+				// Parent static display() method
+				public static void display() {
+					System.out.println("Parent class static display() method");
+				}
+			}
+			public class Child extends Parent {
+				// Method hiding (Static method can not override but its data hiding)
+				public static void main(String[] args) {
+					System.out.println("Hiding Parent static main(String[] args) method with Child static main(String[] args) method");
+				}
+
+				// Method hiding of Parent static display() method with Child static display() method
+				public static void display() {
+					System.out.println("Hiding Parent static display() method with Child static display() method");
+				}
+
+				// Overloading
+				public static void main(Float[] args) {
+					System.out.println("Overloading Parent static main(String[] args) method with Child static main(Float[] args)");
+				}
+				public static void main() {
+					System.out.println("Overloading Child static main(float[] args) method with Child static main() ");
+				}
+
+				// Overriding
+				@Override
+				public void makeSound() {
+					System.out.println("Overriding Parent makeSound() method with Child makeSound() method");
+				}
+
+			}
+			public class Main {
+				public static void main(String[] args) {
+					System.out.println("Main main method ");
+
+					System.out.println("");
+					Parent parent = new Parent();
+					Parent parentChild =new Child();
+					Child child = new Child();
+					/*Child childParent = new Parent();*/ // Child class reference variable referencing a Parent class object not possible
+					Animal animal = new Animal();
+
+					parent.main(new String[0]); // Parent static main(String[] args) method
+					parentChild.main(new String[0]); // Parent static main(String[] args) method
+					parentChild.display(); // Parent class static display() method
+					animal.makeSound(); // Animal makeSound() method
+
+					//Overloading
+					System.out.println("");
+					System.out.println("Overloading :");
+					parent.main(new int[0]); // Overloading Parent static main(String[] args) method with Parent static main(int[] args)
+					child.main(new Float[0]); // Overloading Parent static main(String[] args) method with Child static main(Float[] args)
+					child.main();   // Overloading Child static main(float[] args) method with Child static main()
+
+					//Overriding
+					System.out.println("");
+					System.out.println("Overriding :");
+					parent.makeSound(); // Overriding Animal makeSound() method with Parent makeSound() method
+					parentChild.makeSound(); // Overriding Parent makeSound() method with Child makeSound() method
+					child.makeSound(); // Overriding Parent makeSound() method with Child makeSound() method
+
+					// Method hiding using class name
+					System.out.println("");
+					System.out.println("Method hiding using Class name :");
+					Child.main(new String[0]);  // Hiding Parent static main(String[] args) method with Parent static main(String[] args) method
+					Child.display(); // Hiding Parent static display() method with Child static display() method
+
+					// Method hiding using object
+					System.out.println("");
+					System.out.println("Method hiding using object :");
+					child.main(new String[0]); // Hiding Parent static main(String[] args) method with Parent static main(String[] args) method
+
+				}
+			}
+
+
+
+
+
+	Inheritance (IS-A relationship) in OOPs :
+	-----------------------------------------
+		"Reusability of programming code by inheriting the property of another class"
+
+		‘IS-A’ relationship is another name for inheritance.
+		When we inherit the base class from the derived class, then it forms a relationship between the classes. So that relationship is termed an ‘IS-A’ Relationship.
+
+		Example - Consider a Television (Typical CRT TV). Now another Smart TV  that is inherited from television class. So we can say that the Smart tv is also a TV.
+		Because CRT TV things can also be done in the Smart TV.
+
+		So here ‘IS-A’ Relationship formed. [ SmartTV ‘IS-A’ TV ].
+
+
+		In inheritance classes are devide into 2 category -
+		(1). Parent class(Base class / Super class) :
+		(2). Child class(Derived class / Sub class / Extended class
+
+
+		Type of Inheritance :
+		---------------------
+			(1). Single inheritance :
+			-------------------------
+				class Animal {
+					public void eat() {
+					System.out.println("Animal is eating");
+					}
+				}
+				class Dog extends Animal {
+					public void bark() {
+						System.out.println("Dog is barking");
+					}
+				}
+				public class Main {
+					public static void main(String[] args) {
+						Dog d = new Dog();
+						d.eat();  // Inherited from Animal
+						d.bark(); // Specific to Dog
+					}
+				}
+
+			(2). Multilevel inheritance :
+			-----------------------------
+				class Vehicle {
+					public void move() {
+						System.out.println("Vehicle is moving");
+					}
+				}
+				class Car extends Vehicle {
+					public void honk() {
+						System.out.println("Car is honking");
+					}
+				}
+				class SportsCar extends Car {
+					public void accelerate() {
+						System.out.println("Sports car is accelerating");
+					}
+				}
+				public class Main {
+					public static void main(String[] args) {
+					SportsCar sc = new SportsCar();
+						sc.move();  // Inherited from Vehicle
+						sc.honk();  // Inherited from Car
+						sc.accelerate(); // Specific to SportsCar
+					}
+				}
+
+
+			(3). Hierarchical inheritance :
+			-------------------------------
+				class Shape {
+					public void draw() {
+						System.out.println("Drawing a shape");
+					}
+				}
+				class Circle extends Shape {
+					public void roll() {
+						System.out.println("Circle is rolling");
+					}
+				}
+				class Rectangle extends Shape {
+					public void calculateArea() {
+						System.out.println("Calculating area of rectangle");
+					}
+				}
+				public class Main {
+					public static void main(String[] args) {
+						Circle c = new Circle();
+						c.draw();  // Inherited from Shape
+						c.roll();  // Specific to Circle
+
+						Rectangle r = new Rectangle();
+						r.draw();  // Inherited from Shape
+						r.calculateArea(); // Specific to Rectangle
+					}
+				}
+
+
+
+
+		Notes :
+		-------
+		Java does not  support multiple inheritance for classes due to Complexity and ambiguity :
+			With multiple inheritance, a subclass can inherit from multiple parent classes. If both parent classes have methods with the same name then this can lead to ambiguity. The compiler wouldn't know which method to call from the subclass. This is often referred to as the "diamond problem".
+
+
+		We can achieve code reuse and functionality similar to multiple inheritance by using Composition(has-a relationship) and Interfaces.
+
+		Composition :
+		-------------
+			Composition refers to a technique for creating complex objects by combining simpler objects. It's a way to establish a "has-a" relationship between objects.
+			eg.
+				public class Engine {
+				  public void start() {
+					// Simulate engine starting
+					System.out.println("Engine started!");
+				  }
+				}
+				public class Wheel {
+				  public void roll() {
+					// Simulate wheel rolling
+					System.out.println("Wheel rolling!");
+				  }
+				}
+				public class Car {
+				  private Engine engine;  // Car has-a Engine
+				  private Wheel[] wheels;  // Car has-a array of Wheels
+
+				  public Car(Engine engine, Wheel[] wheels) {
+					this.engine = engine;
+					this.wheels = wheels;
+				  }
+
+				  public void startAndDrive() {
+					engine.start();
+					for (Wheel wheel : wheels) {
+					  wheel.roll();
+					}
+				  }
+
+				}
+
+
+
+
+	Encapsulation :
+	---------------
+		Binding (or wrapping) code and data together into a single unit are known as encapsulation.
+		It helps developers to follow modularity while developing software by ensuring that each object is independent of other objects by having its own methods, attributes, and functionalities.
+
+		It is used for the security of the private properties of an object and hence serves the purpose of data hiding.
+
+		For example,
+		a capsule, it is wrapped with different medicines.
+		Java bean is the fully encapsulated class because all the data members are private here.
+
+
+		code example -
+			public class BankAccount {
+			  private double balance; // Private attribute to store account balance
+			  public double getBalance() { // Getter method to return balance
+				return balance;
+			  }
+			  public void deposit(double amount) { // Setter method to deposit funds
+				if (amount > 0) {
+				  balance += amount;
+				} //else {// Handle invalid deposit amount (optional)}
+			  }
+
+			  public BankAccount(double initialBalance) { //constructor
+				// Validate initial balance (optional)
+				this.balance = initialBalance;
+			  }
+
+			  public void withdraw(double amount) { // Setter method to withdraw funds
+				if (amount > 0 && amount <= balance) {
+				  balance -= amount;
+				} //else {// Handle invalid withdrawal amount (optional)}
+			  }
+			}
+
+
+
+
+
+	Abstraction :
+	-------------
+		Hiding internal details and showing only essential functionality is known as abstraction.
+		OR
+		"Process of representing only essential features". It allows developers to hide complex implementation details.
+
+		For example phone call, we don't know the internal processing.
+
+
+		In Java, we use abstract class and interface to achieve abstraction.
+
+		1.Abstract class : (0 to 100% abstraction achieved)
+		----------------------------------------------------
+			abstract modifier is applicabe for methods and classes only but not for variables.
+
+			. abstract method :
+				These are methods declared without implementation in an abstract class or interface.
+
+			. abstract class :
+				"Special type of class which does not provide a complete implementation for abstract methods present in it, hence cannot be instantiated using new keyword".
+				abstract class contain both abstract and non-abstract methods as well as instance variable and constructors.
+				Concrete subclasses are classes that provide concrete implementation for all the abstract methods defined in parent abstract class.
+
+				example -
+					public abstract class Shape { // abstract class
+						public abstract double calculateArea(); // abstract method
+					}
+					public class Circle extends Shape { // cannot use protected/private access modifier with Child class(Concrete subclass)
+						private final double radius;
+						public Circle(double radius) {
+							this.radius = radius;
+						}
+
+						@Override
+						public double calculateArea() { // concrete implementation of Parent abstract method calculateArea() by concrete subclass Circle
+							return Math.PI * radius * radius;
+						}
+					}
+					public class Main {
+						public static void main(String[] args) {
+							Circle circle = new Circle(5); // Object creation Of Circle class using Circle class refernce
+							System.out.println("Circle Area: " + circle.calculateArea());
+						}
+					}
+
+
+
+		2.Interface : (100% abstraction achieved)
+		-----------------------------------------
+			Interface are any Service Requirement Specification(SRS) which are  collection of abstract methods and constant fields.
+			It does not provide implementation of any methods.
+
+			To define an interface in java we use "interface" keyword followed by interface name.
+			Example -
+				public interface Shape {
+					double calculateArea(); // Abstract method - needs implementation in implementing class
+
+					default void printInfo() { // Default method with implementation
+						System.out.println("This is a shape object.");
+					}
+
+					static double calculateTotalArea(Shape[] shapes) { // Static method - can be called directly using interface name
+						double totalArea = 0;
+						for (Shape shape : shapes) {
+							totalArea += shape.calculateArea();
+						}
+						return totalArea;
+					}
+				}
+				public class Circle implements Shape {
+					private double radius;
+
+					public Circle(double radius) {
+						this.radius = radius;
+					}
+
+					@Override
+					public double calculateArea() {
+						return Math.PI * radius * radius;
+					}
+
+					// Can override the default method if needed
+					@Override
+					public void printInfo() {
+						System.out.println("This is a circle object with radius: " + radius);
+					}
+				}
+				public class Main {
+					public static void main(String[] args) {
+						Circle circle1 = new Circle(5);
+						Circle circle2 = new Circle(3);
+
+						System.out.println("Circle 1 Area: " + circle1.calculateArea()); // Calling abstract method through object
+
+						circle1.printInfo(); // Calling default method through object (can be overridden)
+
+						System.out.println("Total Area of both circles: " + Shape.calculateTotalArea(new Shape[]{circle1, circle2})); // Calling static method directly using interface name
+					}
+				}
+
+
+
+
+
+		Adapter class :
+		---------------
+			Adapter class is a class which provide empty implementation of every method present in interface.
+
+			interface MyInterface {
+				m1();
+				m2();
+				.
+				.
+				m1000();
+			}
+			abstract class MyAdapter implements MyInterface {
+				m1(){}
+				m2(){}
+				.
+				.
+				m1000(){}
+			}
+			class Test extends MyAdapter {
+				m1(){
+					//code
+				}
+			}
+			class Dummy extends MyAdapter {
+				m1000(){
+					//code
+				}
+			}
+
+
+
+			Withought using Adapter class :
+			we have to provide implementation of every method of interface in every class which implements Interface.
+			class WithoutAdapter implements MyInterface {
+				m1(){//code}
+				m2(){//code}
+				.
+				.
+				m1000(){//code}
+			}
+
+
+
+
+
+		Functional interface :
+			. functional interface is an interface that contains exactly one abstract method. They are also known as Single Abstract Method (SAM) interfaces.
+
+				@FunctionalInterface
+				public interface Square {
+				  int square(int x);
+				}
+
+				@FunctionalInterface
+				public interface StringComparator {
+					int compare(String str1, String str2);
+				} //  This StringComparator interface has a single abstract method compare that takes two strings (a and b) and returns an integer indicating their relative order (-1 if a is less than b, 0 if they are equal, 1 if a is greater than b).
+
+				public class Main {
+					public static void main(String[] args) {
+						List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5);
+
+						// Using lambda expression:
+						Square squareLambda = x -> x * x;
+						List<Integer> squaresLambda = numbers.stream().map(squareLambda).collect(Collectors.toList());
+						System.out.println("Squares (lambda): " + squaresLambda); // Output: [1, 4, 9, 16, 25]
+
+						// Using method reference (corrected):
+						Square squareRef = Math::pow; // Correct method reference for squaring (power with 2)
+						List<Integer> squaresRef = numbers.stream().map(squareRef.apply(2)).collect(Collectors.toList()); // Apply method reference with second argument (2)
+						System.out.println("Squares (method reference): " + squaresRef); // Output: [1, 4, 9, 16, 25]
+
+
+
+
+						List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David");
+						// Lambda expression for alphabetical order (ascending)
+						StringComparator alphabeticalOrder = (str1, str2) -> str1.compareTo(str2);
+						// Sort the list using the lambda expression
+						List<String> sortedNames = names.stream()
+													   .sorted(alphabeticalOrder)
+													   .collect(Collectors.toList());
+						System.out.println("Sorted names (ascending): " + sortedNames);
+					}
+				}
+
+
+
+
+			. Optional default and static methods:
+				. Functional interface can have any number of default and static methods. These methods provide default implementations or utility functions that can be reused across implementations.
+
+				@FunctionalInterface
+				public interface MathOperations {
+					// Abstract method requiring implementation in concrete classes
+					int add(int x, int y);
+					// Default method providing a default implementation for subtract
+					default int subtract(int x, int y) {
+						return x - y;
+					}
+					// Static method as a utility function
+					static int multiply(int x, int y) {
+						return x * y;
+					}
+				}
+				public class Calculator implements MathOperations {
+					@Override
+					public int add(int x, int y) {
+						return x + y;
+					}
+					// Not required to implement subtract as it has a default implementation
+				}
+				public class Main {
+					public static void main(String[] args) {
+						MathOperations calculator = new Calculator();
+						int sum = calculator.add(5, 3);
+						int difference = calculator.subtract(10, 2); // Using default implementation
+						int product = MathOperations.multiply(4, 6); // Calling static method
+						System.out.println("Sum: " + sum);
+						System.out.println("Difference: " + difference);
+						System.out.println("Product: " + product);
+					}
+				}
+
+			Note... @FunctionalInterface annotation is not mandatory but recommended for functional interfaces. It improves code clarity.
+
+
+
+			Benefits of functional interfaces:
+			-----------------------------------
+				. Concise and readable code:
+				----------------------------
+					Lambda expressions and method references can be used to provide compact implementations for functional interfaces, leading to cleaner and more readable code.
+
+					@FunctionalInterface
+					public interface StringModifier {
+						String modify(String str); // abstract method requiring implementation
+					}
+					public class StringModifierImpl implements StringModifier {
+						@Override
+						public String modify(String str) { // StringModifierImpl override StringModifier abstract method and provide implementation
+							// Your string modification logic here (e.g., uppercase, reverse)
+							return str.toUpperCase();
+						}
+					}
+					public class Main {
+						public static void main(String[] args) {
+							String hello = "Hello, world!";
+
+							// Using lambda expression with StringModifierImpl
+							StringModifier modifier = new StringModifierImpl();
+							String modifiedString = modifier.modify(hello);
+							System.out.println(modifiedString); // HELLO, WORLD!
+
+
+							// OR
+
+
+							// define the lambda expressions or method references directly within the Main class. These expressions provide the implementation for the modify method on the fly. While this approach keeps the logic within Main, it might slightly decrease readability for more complex modifications.
+							// Using lambda expression directly using FunctionalInterface
+							StringModifier toUpperCase = str -> str.toUpperCase();
+							StringModifier reverse = str -> new StringBuilder(str).reverse().toString();
+
+							String result1 = toUpperCase.modify(hello);
+							String result2 = reverse.modify(hello);
+
+							System.out.println("Uppercase: " + result1); // Uppercase: HELLO, WORLD!
+							System.out.println("Reversed: " + result2); // Reversed: !dlrow ,olleH
+
+							// Using method reference
+							StringModifier trimSpaces = String::trim;
+							String trimmedGreetings = trimSpaces.modify(hello);
+							System.out.println("Trimmed: " + trimmedGreetings); // Trimmed: Greetings from Java!
+						}
+					}
+
+
+				. Improved functional programming style:
+				----------------------------------------
+					Functional interfaces enable a more functional programming paradigm in Java, allowing you to write code that focuses on what needs to be done rather than how.
+
+					@FunctionalInterface
+					public interface IntegerOperation {
+						int operation(int a, int b);
+					}
+					public class Main {
+						public static void main(String[] args) {
+							int[] numbers = {1, 2, 3, 4, 5};
+
+							// Imperative Approach :
+							int sum = 0;
+							for (int number : numbers) { // Iterate through the array and add each element to the sum
+								sum += number;
+							}
+							System.out.println("Sum: " + sum);
+
+
+							// OR
+
+							//Functional Approach :
+							IntBinaryOperator sum1 = (a, b) -> a + b; // Define a lambda expression for addition
+							//IntBinaryOperator sum1 = Integer::sum; // method reference
+
+							// Use the operation on the entire array with reduce()
+							int totalSum = IntStream.of(numbers).reduce(0, sum1); // Initial value is 0
+							System.out.println("Sum: " + totalSum);
+						}
+					}
+
+				. Higher-order functions:
+				-------------------------
+					Functional interfaces play a vital role in using higher-order functions, which take functions as arguments or return functions as results. This enables powerful abstractions and composability.
+
+						@FunctionalInterface
+						public interface IntegerOperation {
+							int operation(int a, int b);
+						}
+						public class Main {
+							public static void main(String[] args) {
+								String[] names = {"Alice", "Bob", "Charlie", "David", "Emily"};
+
+								// Filter names starting with "A" (higher-order function)
+								List<String> filteredNames = filter(names, name -> name.startsWith("A"));
+								System.out.println("Names starting with A: ");
+								for (String name : filteredNames) {
+									System.out.println(name);
+								}
+							}
+
+							// Higher-order function that takes a NameFilter as argument
+							public static List<String> filter(String[] names, NameFilter filter) {
+								List<String> filteredList = new ArrayList<>();
+								for (String name : names) {
+									if (filter.test(name)) {
+										filteredList.add(name);
+									}
+								}
+								return filteredList;
+							}
+						}
+
+
+
+
+		Some common examples of functional interfaces:
+		----------------------------------------------
+			Function :
+			-----------
+				The Function is a functional interface in Java that represents a function that takes one argument of a specific type and returns a value of another type. It's a versatile interface used in various functional programming concepts like streams and higher-order functions.
+
+					. java.util.function.Function<T, R>:
+					------------------------------------
+						This represents a function that takes one argument of type T and returns a value of type R.
+
+						@FunctionalInterface
+						public interface Function<T, R> {
+							R apply(T t); // Here, T is the type of the input argument.
+						}
+						public class Main {
+							public static void main(String[] args) {
+
+								// Functions with Lambda Expressions:
+								Function<Integer, Integer> doubler = x -> x * 2; // Function to double a number
+								int result = doubler.apply(5); // Apply the function to 5
+								System.out.println("Double of 5: " + result); // Output: 10
+
+								Function<String, String> toUpperCase = String::toUpperCase; // Function to convert a string to uppercase
+								String message = "Hello, world!";
+								String uppercasedMessage = toUpperCase.apply(message);
+								System.out.println("Uppercased message: " + uppercasedMessage); // Output: HELLO, WORLD!
+
+
+								// Higher-Order Functions:
+								List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+								List<String> uppercasedNames = transformList(names, String::toUpperCase);  // Uppercase all names
+
+								// Method References:
+								Function<Integer, String> intToString = String::valueOf;  // Convert int to String
+								String numberString = intToString.apply(100);  // numberString will be "100"
+
+							}
+
+							public static <T, R> List<R> transformList(List<T> list, Function<T, R> transformer) {
+								List<R> transformedList = new ArrayList<>();
+								for (T element : list) {
+									transformedList.add(transformer.apply(element));
+								}
+								return transformedList;
+							}
+
+						}
+
+
+			Consumer :
+			----------
+				A Consumer is a functional interface that accepts a single input argument and performs some operation on it. It does not return any result.
+				. Use Consumer to perform actions on objects without returning a value.
+
+					. java.util.function.Consumer<T>:
+					---------------------------------
+						This represents an operation that takes one argument of type T but doesn't return a value (void).
+						@FunctionalInterface
+						public interface Consumer<T> {
+							void accept(T t); // Here, T is the type of the input argument.
+						}
+						public class Main {
+							public static void main(String[] args) {
+								// Consumer to print a message
+								Consumer<String> printer = System.out::println;
+								printer.accept("This is a message to be printed."); // Output: This is a message to be printed.
+
+								// Consumer to modify a string in-place (assuming a mutable String implementation)
+								Consumer<StringBuilder> modifier = sb -> sb.append(" (modified)");
+								StringBuilder message = new StringBuilder("Original message");
+								modifier.accept(message);
+								System.out.println(message); // Output: Original message (modified)
+
+								Consumer<String> printConsumer = (String s) -> System.out.println(s);
+								printConsumer.accept("Hello, World!"); // Output: Hello, World!
+
+								//. Processing elements in a collection, like printing each element.
+								//. Performing an action on each element of a stream.
+								List<String> names = Arrays.asList("Alice", "Bob", "Charlie");
+								names.forEach((String name) -> System.out.println(name));
+								Consumer<String> printNames = name -> System.out.println(name.toUpperCase());
+								names.forEach(printNames);
+							}
+						}
+
+
+
+			Predicate :
+			-----------
+				. A Predicate is a functional interface that represents a predicate (boolean-valued function) of one argument.
+				. A Predicate represents a function that takes an argument and returns a boolean value.
+				. It's used to test a condition on the input.
+
+				. Use Predicate to test conditions on objects and return true or false.
+
+
+					. java.util.function.Predicate<T>:
+					----------------------------------
+						This represents a function that takes one argument of type T and returns a boolean value.
+
+						@FunctionalInterface
+						public interface Predicate<T> {
+							boolean test(T t); // Here, T is the type of the input argument.
+						}
+						public class Main {
+							public static void main(String[] args) {
+								// Predicate to check if a number is even
+								Predicate<Integer> isEven = x -> x % 2 == 0;
+								int number = 10;
+								boolean isEvenNumber = isEven.test(number);
+								System.out.println(number + " is even: " + isEvenNumber); // Output: 10 is even: true
+
+								// Predicate to check if a string starts with "Java"
+								Predicate<String> startsWithJava = str -> str.startsWith("Java");
+								String text = "Java programming language";
+								boolean startsWith = startsWithJava.test(text);
+								System.out.println(text + " starts with 'Java': " + startsWith); // Output: Java programming language starts with 'Java': true
+
+
+								Predicate<Integer> isEven = (Integer i) -> i % 2 == 0;
+								System.out.println(isEven.test(4)); // Output: true
+								System.out.println(isEven.test(5)); // Output: false
+
+
+								//. Filtering elements in a collection or stream.
+								//. Defining conditions for elements.
+								List<Integer> numbers = Arrays.asList(1, 2, 3, 4, 5, 6);
+
+								Predicate<Integer> isGreaterThan5 = num -> num > 5;
+								List<Integer> greaterNumbers = numbers.stream()
+																	.filter(isGreaterThan5)
+																	.forEach(System.out::println);
+								System.out.println(greaterNumbers);
+
+								Predicate<Integer> isEven = (Integer i) -> i % 2 == 0;
+								List<Integer> evenNumbers = numbers.stream()
+																	.filter(isEven)
+																	.collect(Collectors.toList());
+								System.out.println(evenNumbers); // Output: [2, 4, 6]
+							}
+						}
+
+
+
+
+
+		Comparator :
+		------------
+			The Comparator interface is found in the java.util package and has a single method compare.
+			Comparator interface is used to define the order of objects. It's particularly useful when you want to sort collections or arrays of objects in a specific order that is different from their natural order (defined by the Comparable interface).
+
+				public class Product {
+					private String name;
+					private double price;
+					// Getters and setters for name and price
+				}
+				public class Main {
+					public static void main(String[] args) {
+						List<Product> products = Arrays.asList(new Product("Laptop", 800.00),
+																new Product("Phone", 500.00),
+																new Product("Headphones", 100.00));
+						// Comparator for sorting by price (ascending)
+						Comparator<Product> priceComparator = (product1, product2) -> Double.compare(product1.getPrice(), product2.getPrice());
+
+						// Sort the list using the comparator
+						List<Product> sortedProducts = products.stream()
+																.sorted(priceComparator)
+																.collect(Collectors.toList());
+						System.out.println("Products sorted by price (ascending):");
+						for (Product product : sortedProducts) {
+							System.out.println(product);
+						}
+					}
+				}
+
+
+
+		Marker interface :
+			Marker interface is an interface which doesn't contain any method but objects will get some ability by implementing them.
+			For example :
+				Serializable(I) :
+				-----------------
+					public class Person implements Serializable {
+						// Person class fields and methods
+					}
+
+					//. Person class implements the Serializable interface. This indicates that objects of the Person class can be converted into a stream of bytes for storage or transmission over a network. The Serializable interface itself doesn't provide any methods, but implementing it tells the JVM that the class can be serialized.
+
+				Cloneable(I) :
+				--------------
+					public class Document implements Cloneable {
+						// Document class fields and methods
+						@Override
+						public Object clone() throws CloneNotSupportedException {
+							// Implement logic to create a copy of the Document object
+							return super.clone();
+						}
+					}
+
+					//. The Document class implements the Cloneable interface. This interface signifies that objects of the Document class can be cloned. However, it's important to note that the Cloneable interface doesn't define how the cloning should be done. Classes that implement Cloneable must also override the clone() method from the Object class to provide the actual cloning implementation.
+
+				RandomAccess(I) :
+				-----------------
+					public class MyArrayList implements List<String> {
+						private List<String> data; // Internal data storage
+
+						// Implement List interface methods (add, remove, etc.)
+						@Override
+						public String get(int index) {
+							// Efficient access using index
+							return data.get(index);
+						}
+					}
+
+					//. MyArrayList implements the List<String> interface as well as the RandomAccess interface.
+					//. This indicates that the MyArrayList can efficiently access elements using their index (get(int index)) because it maintains an underlying data structure that allows for constant time lookups.
+					//. Implementations like ArrayList in the Java Collections Framework utilize arrays for data storage, enabling random access.
+
+				SingleThreadModel(I) :
+				----------------------
+					public class MySingleThreadServlet extends HttpServlet implements SingleThreadModel {
+						@Override
+						protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+							// Process the request in this single thread
+							resp.getWriter().println("This request is processed in a single thread.");
+						}
+					}
+
+					//. MySingleThreadServlet extends HttpServlet and implements SingleThreadModel.
+					//. This ensures that even if multiple requests come in for this servlet, only one thread will handle a request at a time for a specific instance. This can be useful for situations where you need to maintain state or avoid race conditions across requests.
+					//. The server might create multiple instances of the servlet to handle concurrent requests efficiently.

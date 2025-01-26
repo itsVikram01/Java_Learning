@@ -1,0 +1,1026 @@
+ANGULAR SETUP :
+---------------
+
+Install node
+Install nvm
+npm install -g @angular/cli
+
+Windows PowerShell :
+C:\Windows\system32> Set-ExecutionPolicy RemoteSigned
+Do you want to change the execution policy?
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help
+(default is "N"):A
+
+C:\Windows\system32> Get-ExecutionPolicy
+RemoteSigned
+
+
+
+C:\Users\vikyr>ng v
+
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+
+
+Angular CLI: 18.0.0
+Node: 20.13.1
+Package Manager: npm 10.8.0
+OS: win32 x64
+
+Angular:
+...
+
+Package                      Version
+------------------------------------------------------
+@angular-devkit/architect    0.1800.0 (cli-only)
+@angular-devkit/core         18.0.0 (cli-only)
+@angular-devkit/schematics   18.0.0 (cli-only)
+@schematics/angular          18.0.0 (cli-only)
+
+
+C:\Users\vikyr>node --version
+v20.13.1
+
+C:\Users\vikyr>npm --version
+10.8.0
+
+-- downgrade npm version : 
+C:\Users\vikyr>npm install -g npm@10.8.0
+
+C:\Users\vikyr>nvm -v
+1.1.12
+
+
+>ng new task_angular
+>ng serve
+>ng add @angular/material
+>
+
+npm install bootstrap save
+
+
+ng new crud_angular --no-standalone
+> ng new <project>
+> cd project
+\angular> cd src
+\angular\src> cd app
+\angular\src\app> mkdir components
+\angular\src\app> cd components
+\angular\src\app\components> ng g c firstComponent
+\angular\src\app\components> ng g c inlineStyleComponent --inline-style
+\angular\src\app\components> ng g c inlineTemplateComponent--inline-template 
+\angular\src\app\components> ng g c inlineStyleTemplateComponent --inline-style --inline-template 
+
+
+\angular\src\app\components> cd ..\ 
+\angular\src\app> mkdir modules
+\angular\src\app> cd modules
+\angular\src\app\modules> ng g m firstModule   
+\angular\src\app\modules> cd first-module
+\angular\src\app\modules\first-module> ng g c modelFirstComponent
+\angular\src\app\modules\first-module> ng g c modelSecondComponent
+
+ng serve
+
+Shortcuts
+  press r + enter to force reload browser
+  press u + enter to show server url
+  press o + enter to open in browser
+  press c + enter to clear console
+  press q + enter to quit
+  
+  
+
+
+===========================================================================================
+
+AngularJS : 
+	AngularJS is an open-source front-end web application framework maintained by Google. It helps developers build dynamic web applications by providing a model-view-controller (MVC) architecture and components commonly used in web development. AngularJS extends HTML with additional attributes and binds data to HTML with expression
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>AngularJS Example</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		<p>{{ message }}</p>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myController', function($scope) {
+				$scope.message = "Hello, AngularJS!";
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, AngularJS is used to bind the message variable to the HTML paragraph. The ng-app directive initializes the AngularJS application, and ng-controller specifies the controller.
+
+
+
+Directives in AngularJS : 
+	Directives are special markers on a DOM element (such as an attribute, element name, comment, or CSS class) that tell AngularJS to do something to that DOM element or even its children. AngularJS has built-in directives (e.g., ngBind, ngModel, ngClass), and you can also create custom directives.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>AngularJS Directives</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp">
+		<input type="text" ng-model="name">
+		<p ng-bind="name"></p>
+	</body>
+	</html>
+	
+	Here, ng-model binds the input field to the name variable, and ng-bind updates the paragraph content whenever name changes.
+
+
+Two-way data binding :
+	Two-way data binding in AngularJS synchronizes the data between the model and the view. Any change in the model updates the view and vice versa.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Two-Way Data Binding</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		<input type="text" ng-model="greeting">
+		<p>{{ greeting }}</p>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myController', function($scope) {
+				$scope.greeting = "Hello, World!";
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, changing the input field value updates the paragraph text in real-time and vice versa.
+	
+	
+Concept of scope in AngularJS : 
+	Scope is an object that refers to the model. It acts as a glue between the controller and the view. Scopes are arranged in a hierarchical structure, mimicking the DOM structure of the application. They provide a mechanism for watching the model and updating the view whenever the model changes.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>AngularJS Scope</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="parentController">
+		<p>Parent Message: {{ parentMessage }}</p>
+		<div ng-controller="childController">
+			<p>Child Message: {{ childMessage }}</p>
+		</div>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('parentController', function($scope) {
+				$scope.parentMessage = "Message from Parent";
+			});
+			app.controller('childController', function($scope) {
+				$scope.childMessage = "Message from Child";
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, there are two controllers with their own scopes. The parent controller's scope is accessible within the child controller's scope.
+	
+	
+Services in AngularJS : 
+	Services in AngularJS are singleton objects or functions that carry out specific tasks common to multiple modules. They can be created using .service(), .factory(), .provider(), or .value() methods.
+	
+	Example using .factory():
+	
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<title>AngularJS Services</title>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+		</head>
+		<body ng-app="myApp" ng-controller="myController">
+			<p>Random Number: {{ randomNumber }}</p>
+			<button ng-click="generateRandomNumber()">Generate</button>
+			<script>
+				var app = angular.module('myApp', []);
+				app.factory('randomNumberService', function() {
+					return {
+						generate: function() {
+							return Math.floor(Math.random() * 100);
+						}
+					};
+				});
+				app.controller('myController', function($scope, randomNumberService) {
+					$scope.generateRandomNumber = function() {
+						$scope.randomNumber = randomNumberService.generate();
+					};
+				});
+			</script>
+		</body>
+		</html>
+		
+	Here, randomNumberService is a factory service that generates a random number, which is used in the controller.
+	
+	
+Dependency injection in AngularJS : 
+	Dependency Injection (DI) is a software design pattern that deals with how components get hold of their dependencies. In AngularJS, DI helps manage components dependencies by providing a consistent way to create and inject them into controllers, services, and other components.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Dependency Injection</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		<p>{{ message }}</p>
+		<script>
+			var app = angular.module('myApp', []);
+			app.service('myService', function() {
+				this.getMessage = function() {
+					return "Hello from the service!";
+				};
+			});
+			app.controller('myController', function($scope, myService) {
+				$scope.message = myService.getMessage();
+			});
+		</script>
+	</body>
+	</html>
+
+	In this example, myService is injected into myController, and the controller uses it to set the message scope variable.
+
+
+Controller in AngularJS :
+	A controller in AngularJS is a JavaScript function that is used to build the model for the view. It acts as a link between the view and the model. Controllers are used to define the behavior and data of the application's scope.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>AngularJS Controller</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		<p>{{ greeting }}</p>
+		<button ng-click="changeGreeting()">Change Greeting</button>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myController', function($scope) {
+				$scope.greeting = "Hello, World!";
+				$scope.changeGreeting = function() {
+					$scope.greeting = "Hello, AngularJS!";
+				};
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, myController sets the initial greeting and defines a function to change the greeting when the button is clicked.
+	
+	
+Filters in AngularJS : 
+	Filters in AngularJS are used to format the data displayed to the user. They can be used in view templates, controllers, or services. AngularJS comes with several built-in filters, such as currency, date, filter, json, limitTo, lowercase, number, orderBy, and uppercase.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>AngularJS Filters</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		<p>Original: {{ amount }}</p>
+		<p>Currency: {{ amount | currency }}</p>
+		<p>Uppercase: {{ name | uppercase }}</p>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myController', function($scope) {
+				$scope.amount = 1234.56;
+				$scope.name = "angularjs";
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, filters are used to format a number as currency and to convert a string to uppercase.
+	
+
+Routing in AngularJS : 
+	Routing in AngularJS is used to create single-page applications (SPAs). It allows you to navigate between different views or pages without reloading the entire application. AngularJS provides the ngRoute module to configure routes.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>AngularJS Routing</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.min.js"></script>
+	</head>
+	<body ng-app="myApp">
+		<a href="#!/">Home</a>
+		<a href="#!/about">About</a>
+		<div ng-view></div>
+		<script>
+			var app = angular.module('myApp', ['ngRoute']);
+			app.config(function($routeProvider) {
+				$routeProvider
+				.when("/", {
+					template : "<h1>Home</h1><p>Welcome to the home page!</p>"
+				})
+				.when("/about", {
+					template : "<h1>About</h1><p>Learn more about us on this page.</p>"
+				})
+				.otherwise({
+					redirectTo: '/'
+				});
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, the ngRoute module is used to define routes for the home and about pages.
+
+
+Modules in AngularJS : 
+	Modules in AngularJS are containers for different parts of your application, such as controllers, services, filters, directives, etc. They help in organizing the code in a structured manner and managing dependencies.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>AngularJS Modules</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		<p>{{ message }}</p>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myController', function($scope) {
+				$scope.message = "Hello from the module!";
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, myApp is an AngularJS module that contains the myController controller.
+	
+	
+Difference between ng-if and ng-show/ng-hide : 
+	. ng-if: Conditionally includes or removes an element from the DOM based on the evaluation of an expression. If the expression evaluates to true, the element is included; otherwise, it is removed.
+	. ng-show / ng-hide: Conditionally shows or hides an element based on the evaluation of an expression. The element remains in the DOM, but its visibility is toggled using CSS.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>ng-if vs ng-show/ng-hide</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		<button ng-click="toggle()">Toggle</button>
+			<p ng-if="isVisible">This is visible with ng-if</p>
+		<p ng-show="isVisible">This is visible with ng-show</p>
+		<p ng-hide="!isVisible">This is visible with ng-hide</p>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myController', function($scope) {
+				$scope.isVisible = true;
+				$scope.toggle = function() {
+					$scope.isVisible = !$scope.isVisible;
+				};
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, ng-if will remove the paragraph from the DOM when isVisible is false, while ng-show and ng-hide will just toggle the visibility of the paragraphs.
+
+
+How do you create a custom directive in AngularJS : 
+	A custom directive in AngularJS allows you to extend HTML's functionality. You can create reusable components with custom behavior. Custom directives are created using the directive method.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Custom Directive</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+<body ng-app="myApp">
+    <hello-world></hello-world>
+    <script>
+        var app = angular.module('myApp', []);
+        app.directive('helloWorld', function() {
+				return {
+					template: '<h1>Hello, World!</h1>'
+				};
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, the helloWorld custom directive is created, which renders "Hello, World!" wherever it is used in the HTML.
+
+
+$scope object : 
+	The $scope object in AngularJS is used to pass data between the controller and the view. It acts as a bridge between the view and the controller, allowing you to store data and functions that can be accessed and manipulated within the view.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>$scope Object</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		<p>{{ message }}</p>
+		<button ng-click="changeMessage()">Change Message</button>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myController', function($scope) {
+				$scope.message = "Hello, World!";
+				$scope.changeMessage = function() {
+					$scope.message = "Hello, AngularJS!";
+				};
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, the $scope object holds the message variable and the changeMessage function, which updates the message.
+
+
+What is the $http service in AngularJS : 
+	The $http service in AngularJS is used to make HTTP requests to a remote server. It supports all the HTTP methods, including GET, POST, PUT, DELETE, etc. The service returns a promise, which allows you to handle the response asynchronously.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>$http Service</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		<p>Data: {{ data }}</p>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myController', function($scope, $http) {
+				$http.get('https://jsonplaceholder.typicode.com/posts/1')
+					.then(function(response) {
+						$scope.data = response.data;
+					}, function(error) {
+						$scope.data = "Error: " + error.statusText;
+					});
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, the $http service is used to make a GET request to a public API. The response data is then bound to the data variable in the scope.
+
+
+What is the difference between $scope and scope : 
+
+	. $scope: It is an AngularJS service that is injected into the controller function and other components. It is used to bind data and functions between the controller and the view.
+	
+	. scope: Typically refers to a generic term used to describe the concept of scope in JavaScript, which is the context in which variables and functions are accessible.
+	
+	In AngularJS, $scope is a specific implementation that provides a context for the model in the application.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>$scope vs scope</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		<p>{{ message }}</p>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myController', function($scope) {
+				$scope.message = "Hello, World!";
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, $scope is used within the controller to bind data to the view.
+
+
+Digest Cycle in AngularJS : 
+	The digest cycle is the process that AngularJS uses to check for changes in the scope model and update the DOM accordingly. It involves evaluating all the watchers in the application, checking if the values have changed, and then updating the view if necessary. The digest cycle can be triggered by user interactions (e.g., clicks, keypresses) or manually using $apply or $digest.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>Digest Cycle</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		<p>{{ message }}</p>
+		<button ng-click="changeMessage()">Change Message</button>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myController', function($scope) {
+				$scope.message = "Hello, World!";
+				$scope.changeMessage = function() {
+					$scope.message = "Hello, AngularJS!";
+					$scope.$digest(); // Manually triggering the digest cycle (for demonstration purposes)
+				};
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, the digest cycle is manually triggered using $digest, although this is usually not necessary as AngularJS handles it automatically.
+	
+AngularJS Promises : 
+	Promises in AngularJS are provided by the $q service and represent a way to handle asynchronous operations. A promise represents an operation that hasn't completed yet but is expected to in the future. It can be in one of three states: pending, resolved, or rejected.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>AngularJS Promises</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="myController">
+		<p>{{ message }}</p>
+		<script>
+			var app = angular.module('myApp', []);
+			app.controller('myController', function($scope, $q) {
+				var asyncTask = function() {
+					var deferred = $q.defer();
+					setTimeout(function() {
+						deferred.resolve("Hello, Promises!");
+					}, 2000);
+					return deferred.promise;
+				};
+
+				asyncTask().then(function(response) {
+					$scope.message = response;
+				});
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, a promise is created using $q.defer, and it resolves after 2 seconds, updating the scope variable message.
+	
+
+How can you communicate between two controllers in AngularJS? : 
+	Communication between controllers can be achieved using services, events, or the $rootScope. Services are the most preferred way as they provide a clean separation of concerns.
+	
+	Example using Services:
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<title>Communication Between Controllers</title>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+		</head>
+		<body ng-app="myApp">
+			<div ng-controller="controllerA">
+				<p>{{ message }}</p>
+			</div>
+			<div ng-controller="controllerB">
+				<button ng-click="updateMessage()">Update Message</button>
+			</div>
+			<script>
+				var app = angular.module('myApp', []);
+				app.service('sharedService', function() {
+					var message = "Initial Message";
+					return {
+						getMessage: function() {
+							return message;
+						},
+						setMessage: function(newMessage) {
+							message = newMessage;
+						}
+					};
+				});
+
+				app.controller('controllerA', function($scope, sharedService) {
+					$scope.message = sharedService.getMessage();
+				});
+
+				app.controller('controllerB', function($scope, sharedService) {
+					$scope.updateMessage = function() {
+						sharedService.setMessage("Updated Message from Controller B");
+					};
+				});
+			</script>
+		</body>
+		</html>
+	
+	In this example, sharedService is used to share data between controllerA and controllerB.
+	
+
+$rootScope and $scope in AngularJS : 
+	. $rootScope: It is the top-level scope that is available in the entire AngularJS application. Any variable or function attached to $rootScope can be accessed in any controller.
+	
+	. $scope: It is the scope object specific to the controller in which it is defined. Each controller has its own $scope.
+	
+	<!DOCTYPE html>
+	<html>
+	<head>
+		<title>$rootScope vs $scope</title>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+	</head>
+	<body ng-app="myApp" ng-controller="controllerA">
+		<p>{{ globalMessage }}</p>
+		<div ng-controller="controllerB">
+			<p>{{ localMessage }}</p>
+		</div>
+		<script>
+			var app = angular.module('myApp', []);
+			app.run(function($rootScope) {
+				$rootScope.globalMessage = "Hello from $rootScope!";
+			});
+
+			app.controller('controllerA', function($scope) {
+				$scope.localMessage = "Hello from $scope in controller A!";
+			});
+
+			app.controller('controllerB', function($scope) {
+				$scope.localMessage = "Hello from $scope in controller B!";
+			});
+		</script>
+	</body>
+	</html>
+	
+	In this example, globalMessage is defined on $rootScope and is accessible in both controllers, while localMessage is specific to each controller's $scope.
+	
+	
+How do you handle errors in AngularJS applications : 
+	Error handling in AngularJS can be done using the $http service's promise methods (.then and .catch) and $exceptionHandler for unhandled exceptions.
+
+	Example using $http service:
+		<!DOCTYPE html>
+		<html>
+		<head>
+			<title>Error Handling in AngularJS</title>
+			<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+		</head>
+		<body ng-app="myApp" ng-controller="myController">
+			<p>{{ data }}</p>
+			<p ng-if="errorMessage">{{ errorMessage }}</p>
+			<script>
+				var app = angular.module('myApp', []);
+				app.controller('myController', function($scope, $http) {
+					$http.get('https://jsonplaceholder.typicode.com/posts/12345') // Invalid URL to trigger error
+						.then(function(response) {
+							$scope.data = response.data;
+						})
+						.catch(function(error) {
+							$scope.errorMessage = "Error: " + error.statusText;
+						});
+				});
+			</script>
+		</body>
+		</html>
+		
+	In this example, an invalid URL is used to trigger an error, which is then caught and displayed using the .catch method.
+
+  
+
+===========================================================================================
+
+ANGULAR : 
+---------
+
+1. Components : 
+	The building blocks of Angular applications. Each component encapsulates a view (template) and logic (TypeScript class).
+	
+	@Component({
+		selector: 'app-product',
+		templateUrl: './product.component.html',
+		styleUrls: ['./product.component.css']
+	})
+	export class ProductComponent {
+		name = 'T-Shirt';
+		price = 19.99;
+	}
+	<h3>{{ name }}</h3>
+	<p>Price: ${{ price }}</p>
+
+
+2. Templates: 
+	Written in HTML-like syntax with Angular expressions ({{ }}) to display dynamic data and directives for custom behavior.
+
+	Example (continued from Component example):
+		The template displays the name and price properties of the ProductComponent class using Angular expressions.
+			
+		<h3>{{ name }}</h3>
+		<p>Price: ${{ price }}</p>
+		
+3. Directives: 
+	Extend HTML functionality. Built-in directives like *ngFor for loops and [ngClass] for dynamic class assignment, or create custom directives.
+	
+	<ul>
+		<li *ngFor="let item of items">{{ item }}</li>
+	</ul>
+
+	The *ngFor directive iterates over the items array, creating a list item for each element.
+	
+4. Services: 
+	Reusable data or logic providers that can be injected into components.
+	
+	import { Injectable } from '@angular/core';
+
+	@Injectable({
+		providedIn: 'root'
+	})
+	export class ProductService {
+		getProducts() {
+			// Simulate fetching data from an API
+			return [
+				{ name: 'T-Shirt', price: 19.99 },
+				{ name: 'Hat', price: 14.99 }
+			];
+		}
+	}
+	
+	This ProductService provides methods for product data access, which components can inject.
+
+
+5. Dependency Injection (DI): 
+	A mechanism for providing components with dependencies (services, etc.) without manual instantiation.
+	
+	constructor(private productService: ProductService) {}
+	ngOnInit() {
+		this.products = this.productService.getProducts();
+	}
+
+	The ProductComponent injects the ProductService into its constructor for data access.
+
+
+6. Modules: 
+	Organize application code. Components, directives, services, and pipes are typically grouped into modules.
+	
+	import { NgModule } from '@angular/core';
+	import { BrowserModule } from '@angular/platform-browser';
+
+	import { AppComponent } from './app.component';
+	import { ProductComponent } from './product/product.component';
+	import { ProductService } from './product/product.service';
+
+	@NgModule({
+		declarations: [
+			AppComponent,
+			ProductComponent
+		],
+		imports: [
+			BrowserModule
+		],
+		providers: [
+			ProductService
+		],
+		bootstrap: [AppComponent]
+	})
+	export class AppModule { }
+
+
+
+7. Routing: 
+	Defines navigation between views in your application.
+	
+	const routes: Routes = [
+	  { path: '', component: HomeComponent },
+	  { path: 'products', component: ProductsComponent }
+	];
+
+	@NgModule({
+	  imports: [RouterModule.forRoot(routes)],
+	  exports: [RouterModule]
+	})
+	export class AppRoutingModule { }
+
+	This configuration routes the root path (/) to the HomeComponent and /products to the ProductsComponent.
+	
+	
+8. Forms: 
+	Build interactive forms for user input. Use directives like ngModel for two-way data binding and validation directives for form validation.
+	
+	<form #myForm="ngForm" (ngSubmit)="onSubmit(myForm)">
+	  <input type="text" name="name" [(ngModel)]="user.name" required>
+	  <button type="submit">Submit</button>
+	</form>
+
+	This form binds the name input to the user.name property in the component's logic.
+	
+	
+	
+9. Http Client: 
+	Used for making HTTP requests to backend APIs.
+	
+	import { HttpClient } from '@angular/common/http';
+
+	constructor(private http: HttpClient) {}
+
+	getProducts() {
+	  return this.http.get<Product[]>('https://api.example.com/products');
+	}
+
+	The http service makes a GET request to the specified API endpoint and returns the fetched product data.
+	
+	
+
+10. Observables: 
+	Observables are a core concept in Angular's reactive programming approach to handling asynchronous data streams. They represent sequences of values that may be emitted over time.
+
+	import { Observable, of } from 'rxjs';
+
+	getProduct(id: number): Observable<Product> {
+	  // Simulate asynchronous data retrieval
+	  const products = [
+		{ id: 1, name: 'T-Shirt', price: 19.99 },
+		{ id: 2, name: 'Hat', price: 14.99 }
+	  ];
+	  const product = products.find(p => p.id === id);
+	  return of(product); // Emit the product as an Observable
+	}
+
+	// In a component
+	getProduct(id: number) {
+	  this.productService.getProduct(id)
+		.subscribe(product => this.currentProduct = product);
+	}
+
+	In this example, the getProduct method returns an Observable that emits the product data when subscribed to. The component subscribes to the Observable and updates its currentProduct property upon receiving the data.
+	
+Angular 18 new features :
+	. Zoneless Change Detection: This experimental feature allows applications to opt-out of the traditional zone.js based change detection, potentially leading to better performance and simplified debugging.
+
+	. Route Redirects with Functions: Instead of static strings, you can now define route redirects using functions. This enables more dynamic logic for handling redirects based on application state or other runtime information.
+
+	. Improved Forms API: Angular 18 introduces new control state change events, making it easier to track and react to changes in form controls.
+
+	. TypeScript 4.7 Support: Angular 18 embraces the latest features and improvements in TypeScript 4.7, including template literal types, enhanced readonly support, and new import types.
+
+	. Other Enhancements: Several other improvements include a revamped AOT compilation process, better server-side rendering with hydration support, and elevated debugging experience with upgraded tooling.
+
+===========================================================================================
+
+Differrence between AngularJS and Angular : 
+	AngularJS and Angular are both frameworks for building web applications, but they differ significantly in terms of design, structure, and features. Here are the key differences between AngularJS and Angular:
+	
+	1. Architecture
+		. AngularJS (Angular 1.x):
+			. Follows the Model-View-Controller (MVC) architecture.
+			. The View is responsible for displaying data, the Controller handles business logic, and the Model manages data.
+		
+		. Angular (Angular 2+):
+			. Follows a component-based architecture.
+			. The application is built using reusable and encapsulated components, each with its own template, logic, and styles.
+		
+	2. Language
+		. AngularJS:
+			. Written in JavaScript.
+			. Uses JavaScript for building applications.
+		
+		. Angular:
+			. Written in TypeScript, a superset of JavaScript.
+			. TypeScript provides static typing, classes, interfaces, and other features that help in building large-scale applications.
+
+	3. Mobile Support
+		. AngularJS:
+			. Limited support for mobile development.
+			. Not optimized for mobile performance and development.
+			
+		. Angular:
+			. Designed with mobile support in mind.
+			. Provides tools and features for building high-performance mobile applications.
+	
+	4. Performance
+		. AngularJS:
+			. Relatively slower due to its two-way data binding and digest cycle.
+			. Handles large applications less efficiently.
+		
+		. Angular:
+			. Improved performance with a more efficient change detection mechanism.
+			. Uses one-way data binding and a hierarchical dependency injection system.
+	
+	5. Dependency Injection
+		. AngularJS:
+			. Has a built-in dependency injection system.
+			. Services and components are injected using the $injector service.
+		
+		. Angular:
+			. A more advanced and hierarchical dependency injection system.
+			. Dependencies are provided and injected in a tree-shakable manner, improving performance.
+
+	6. Directives
+		. AngularJS:
+			. Directives are used to extend HTML with custom behavior.
+			. Two types: Built-in directives (e.g., ng-bind, ng-model) and custom directives.
+		
+		. Angular:
+			. Directives are split into components and directives.
+			. Components are a special type of directive with a template, while directives add behavior to existing DOM elements.
+
+	7. Data Binding
+		. AngularJS:
+			. Two-way data binding.
+			. Changes in the model update the view and vice versa automatically.
+		
+		. Angular:
+			. One-way data binding by default, with optional two-way data binding using ngModel.
+			. More predictable and easier to debug.
+
+	8. Routing
+		. AngularJS:
+			. Uses the ngRoute module or third-party libraries like ui-router for routing.
+		
+		. Angular:
+			. Uses the Angular Router, a more advanced and feature-rich routing module.
+			. Supports lazy loading of modules, route guards, and more.
+
+	9. Forms
+		. AngularJS:
+			. Forms are handled using ngModel and directives like ngForm.
+		
+		. Angular:
+			. Provides both template-driven and reactive forms.
+			. Reactive forms offer more control and flexibility for complex form scenarios.
+
+	10. Community and Ecosystem
+		. AngularJS:
+			. Older framework with a large number of legacy applications.
+			. Community support has decreased as focus has shifted to Angular.
+		
+		. Angular:
+			.  Actively maintained and developed with a growing ecosystem.
+			. Strong community support and frequent updates.
+
+	11. Tooling and Development Experience
+		. AngularJS:
+			. Basic development tools and debugging support.
+			. Relies on manual setup and configuration.
+		
+		. Angular:
+			. Modern development tools like Angular CLI for scaffolding, building, and testing applications.
+			. Integrated with tools like Webpack for module bundling and optimization.
+
+
+
+
+	Example Comparison
+		AngularJS Example:
+			<!DOCTYPE html>
+			<html ng-app="myApp">
+			<head>
+				<title>AngularJS Example</title>
+				<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+				<script>
+					var app = angular.module('myApp', []);
+					app.controller('myController', function($scope) {
+						$scope.message = "Hello, AngularJS!";
+					});
+				</script>
+			</head>
+			<body ng-controller="myController">
+				<p>{{ message }}</p>
+			</body>
+			</html>
+			
+		Angular Example:
+			<!-- app.component.html -->
+			<p>{{ message }}</p>
+
+
+			<!-- app.component.ts -->
+			import { Component } from '@angular/core';
+
+			@Component({
+			  selector: 'app-root',
+			  templateUrl: './app.component.html'
+			})
+			export class AppComponent {
+			  message: string = "Hello, Angular!";
+			}
+
+
+			<!-- app.module.ts -->
+			import { NgModule } from '@angular/core';
+			import { BrowserModule } from '@angular/platform-browser';
+			import { AppComponent } from './app.component';
+
+			@NgModule({
+			  declarations: [AppComponent],
+			  imports: [BrowserModule],
+			  bootstrap: [AppComponent]
+			})
+			export class AppModule { }
+
+
+			<!-- main.ts -->
+			import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
+			import { AppModule } from './app.module';
+
+			platformBrowserDynamic().bootstrapModule(AppModule);
+
+
+
+
+===========================================================================================
+
+In conclusion, Angular (2+) is a complete rewrite of AngularJS (1.x) with significant improvements in performance, maintainability, and scalability, making it more suitable for modern web application development.
+
+===========================================================================================

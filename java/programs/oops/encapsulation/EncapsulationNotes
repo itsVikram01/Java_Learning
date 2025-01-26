@@ -1,0 +1,52 @@
+Encapsulation : (Data hiding)
+	---------------
+		Binding (or wrapping) code and data together into a single unit are known as encapsulation.
+
+		It helps developers to follow modularity while developing software by ensuring that each object is independent of other objects by having its own methods, attributes, and functionalities.
+
+		It is used for the security of the private properties of an object and hence serves the purpose of data hiding.
+
+		For example,
+		a capsule, it is wrapped with different medicines.
+		OR
+		Java bean is the fully encapsulated class because all the data members are private here.
+		OR
+		Scenario:
+			Imagine a Bank Account class that needs to manage account holder information and balance securely.
+
+		code example -
+			public class BankAccount {
+				private double balance; // Private attribute to store account balance
+
+				public BankAccount(double initialBalance) { //constructor
+					// Validate initial balance (optional)
+					this.balance = initialBalance;
+				}
+
+				public double getBalance() { // method to return balance/getter method
+					return balance;
+				}
+				public void deposit(double amount) { // method to deposit funds/setter method
+					if (amount > 0) {
+						balance = balance + amount;
+					} else {
+						throw new IllegalArgumentException("Amount cannot be negative.");
+					}
+				}
+
+				public void withdraw(double amount) { // method to withdraw funds/setter method
+					if (amount > 0 && amount <= balance) {
+						balance = balance - amount;
+					} //else {// Handle invalid withdrawal amount (optional)}
+				}
+			}
+			public class Main {
+				public static void main(String[] args) {
+					BankAccount bankAccount = new BankAccount(100);
+					System.out.println(bankAccount.getBalance()); // 100.0
+					bankAccount.deposit(1000);
+					System.out.println(bankAccount.getBalance()); // 1100.0
+					bankAccount.withdraw(500);
+					System.out.println(bankAccount.getBalance()); // 600.0
+				}
+			}

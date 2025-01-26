@@ -1,0 +1,8 @@
+Default methods:
+    These are methods with a default implementation provided in the interface.
+    Implementing classes can either use the default implementation or override it with their own.
+
+
+Static methods:
+    These are methods that belong to the interface itself, not to instances of classes implementing the interface.
+    They can be called directly on the interface name.

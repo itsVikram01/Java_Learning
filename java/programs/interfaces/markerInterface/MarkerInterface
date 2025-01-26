@@ -1,0 +1,54 @@
+Marker interface :
+			Marker interface is an interface which doesn't contain any method but objects will get some ability by implementing them.
+			For example :
+				Serializable(I) :
+				-----------------
+					public class Person implements Serializable {
+						// Person class fields and methods
+					}
+
+					//. Person class implements the Serializable interface. This indicates that objects of the Person class can be converted into a stream of bytes for storage or transmission over a network. The Serializable interface itself doesn't provide any methods, but implementing it tells the JVM that the class can be serialized.
+
+				Cloneable(I) :
+				--------------
+					public class Document implements Cloneable {
+						// Document class fields and methods
+						@Override
+						public Object clone() throws CloneNotSupportedException {
+							// Implement logic to create a copy of the Document object
+							return super.clone();
+						}
+					}
+
+					//. The Document class implements the Cloneable interface. This interface signifies that objects of the Document class can be cloned. However, it's important to note that the Cloneable interface doesn't define how the cloning should be done. Classes that implement Cloneable must also override the clone() method from the Object class to provide the actual cloning implementation.
+
+				RandomAccess(I) :
+				-----------------
+					public class MyArrayList implements List<String> {
+						private List<String> data; // Internal data storage
+
+						// Implement List interface methods (add, remove, etc.)
+						@Override
+						public String get(int index) {
+							// Efficient access using index
+							return data.get(index);
+						}
+					}
+
+					//. MyArrayList implements the List<String> interface as well as the RandomAccess interface.
+					//. This indicates that the MyArrayList can efficiently access elements using their index (get(int index)) because it maintains an underlying data structure that allows for constant time lookups.
+					//. Implementations like ArrayList in the Java Collections Framework utilize arrays for data storage, enabling random access.
+
+				SingleThreadModel(I) :
+				----------------------
+					public class MySingleThreadServlet extends HttpServlet implements SingleThreadModel {
+						@Override
+						protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+							// Process the request in this single thread
+							resp.getWriter().println("This request is processed in a single thread.");
+						}
+					}
+
+					//. MySingleThreadServlet extends HttpServlet and implements SingleThreadModel.
+					//. This ensures that even if multiple requests come in for this servlet, only one thread will handle a request at a time for a specific instance. This can be useful for situations where you need to maintain state or avoid race conditions across requests.
+					//. The server might create multiple instances of the servlet to handle concurrent requests efficiently.

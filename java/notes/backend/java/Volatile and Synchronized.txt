@@ -1,0 +1,113 @@
+Volatile and Synchronized : 
+
+public class Employee{
+	String name;
+	int salary;
+}
+
+Let processor have core(c1, c2, c3, c4) and each core has its own cache in cache processor(l1, l2, l3, l4) .
+Let java have allocated some memory to program in RAM(Main memory) : 
+
+	Employee e1 = new Employee();
+	name : Ankit
+	salary : 10000
+						
+						
+Caching is used to improve  the performance of programming.
+
+
+Volatile : 
+When variable is volatile, Processor will always fetch latest value from RAM for volatile variable. It won't use cached values.
+		
+	Let we have 3 task to update in salary.
+	Bonus : +500
+	Tax : -1000
+	PF : -500
+	
+	
+	At present, 
+	Current salary 	= 	10000
+	add bonus 		= 	+500
+	substract tax	=	-1000
+	substract PF	=	-500
+						--------
+						9000 final in-hand salary
+						--------
+						
+	public class Employee{
+		String name;
+		int salary;
+	}
+						
+	Let thread t1 will get the salary e1.salary=10000 and perform update operation() on salary with bonus(+500) and set the updated value(10500) into cache and also write the value(10500) in RAM.
+	
+	After that t2 will get the salary e1.salary=10500 and perform update operation() on salary with tax(-1000) and set the updated value 9500 into cache and also write the value(9500) in RAM.
+	
+	Let say pf updation is picked by t2, then it get the values(9500) from cache and perform update operation() on 9500 with pf(-500) and set the updated value(9000) into cache and also write the value(9000) in RAM which is correct.
+	
+	But if
+	
+	Let say pf updation is picked by t1, then it get the values(10500) from cache because it doesn't know the changes made by t2 and perform update operation() on 10500 with pf(-500) and set the updated value 10000 into cache and also write the value(10000) in RAM which is wrong.
+		
+		To avoid this situation we use volatile keyword.
+		
+			public class Employee{
+				public String name;
+				public volatile int salary; //processor will never use cache value, It will go to RAM, Read the latest value and Write the value directly into RAM.
+			}
+
+Synchronized : 
+When a method or a block-of-code is synchonized, then only one thread will be able to execute that code. Other thread will wait until the executing thread finishes.
+
+	
+	Let we have 2 task to update in salary.
+	Bonus : +500
+	Tax : -1000
+	
+	At present, 
+	Current salary 	= 	10000
+	add bonus 		= 	+500
+	substract tax	=	-1000
+						--------
+						9500 final in-hand salary
+						--------
+						
+	
+	public class Employee{
+		private String name;
+		private volatile int salary; //processor will never use cache value, It will go to RAM, Read the latest value and Write the value directly into RAM.
+		
+		void updateSalary(int s, String type){
+			//critical code : can't be execute paralarlly it must be execute simultaneously.
+			if(type == "INCREMENT"){
+				this.salary = this.salary + s;
+			}else{
+				this.salary = this.salary - s;
+			}
+		}
+	}
+	
+	If adding bonus task pick by t1 and substracting tax picked by t2 simulteneously, 
+	then they read the value(10000) and perform operation of adding bonus(+500) and substracting tax(-1000). 
+	
+	After performing update operation on salary, t1 try to write the updated salary(10500) into RAM and t2 also try to write the updated salary(9000) into RAM.
+	But here both values are incorrect, correct value should be 9500.
+	
+	If the 2 thread try to execute the critical code paralaraly then it is the RACE condition. So that it must be execute simultaneously.
+	For that we use synchonized keyword.
+	
+	public class Employee{
+		private String name;
+		private volatile int salary; 
+		
+		void synchonized updateSalary(int s, String type){
+			//critical code : can't be execute paralarlly it must be execute simultaneously.
+			if(type == "INCREMENT"){
+				this.salary = this.salary + s;
+			}else{
+				this.salary = this.salary - s;
+			}
+		}
+	}
+	
+	when 2 thread try to update the salary, then only one thread will get the lock and able to execute the code. When the execution of one thread is complete then other thread will get the chance to execute the code.

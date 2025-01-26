@@ -1,0 +1,85 @@
+Extensions : 
+	Auto Rename Tag
+	Bracket Pair Color DLW
+	ES7 React/Redux/GrapgQL/React-Native snippets
+	Live Server.CreateObject
+	Prettier - code formatter
+	
+
+React App : 
+	npx create-react-app my-react-app
+	PS D:\vscode_workspace\react> cd my-react-app
+	PS D:\vscode_workspace\react\my-react-app> npm start
+	
+my-react-app
+	src
+		App.js : 
+		--------
+		
+			import logo from './logo.svg';
+			import './App.css';
+
+			function App() {
+			  return (
+				<div className="App">
+				  <header className="App-header">
+					<img src={logo} className="App-logo" alt="logo" />
+					<p>
+					  Edit <code>src/App.js</code> and save to reload.
+					</p>
+					<a
+					  className="App-link"
+					  href="https://reactjs.org"
+					  target="_blank"
+					  rel="noopener noreferrer"
+					>
+					  Vikram Learn React
+					</a>
+				  </header>
+				</div>
+			  );
+			}
+
+			export default App;
+
+		
+		index.js : 
+		----------
+			
+			import React from 'react';
+			import ReactDOM from 'react-dom/client';
+			import './index.css';
+			import App from './App';
+			import reportWebVitals from './reportWebVitals';
+
+			//const root = ReactDOM.createRoot(document.getElementById('root'));
+			//root.render(
+			ReactDOM.render(  
+			  <React.StrictMode>
+				<App />
+			  </React.StrictMode>,
+			  document.getElementById('root')
+			);
+
+			// If you want to start measuring performance in your app, pass a function
+			// to log results (for example: reportWebVitals(console.log))
+			// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+			reportWebVitals();
+
+
+
+Note that the development build is not optimized.
+To create a production build, use npm run build.
+	*** To create a production build, use : npm run build.
+	
+	
+vscode
+	setting -- (emmet)
+		Emmet: Include Language
+			key: javascript,   value: javascriptreact, Ok
+			
+			
+			
+React Router DOM:
+-----------------
+	npm i react-router-dom

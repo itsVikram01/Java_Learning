@@ -1,0 +1,313 @@
+MULTITHREADING :
+----------------
+	Multithreading is a programming concept that allows a program to execute multiple parts concurrently. This creates the illusion that the program is doing multiple things at the same time, but in reality, a single processor is rapidly switching between different tasks (threads). It's beneficial for improving the responsiveness of a program and utilizing the full potential of multi-core processors.
+
+	Threads:
+	--------
+		Threads are lightweight units of execution within a process.They share the same memory space and resources of the process. A process can have multiple threads running concurrently.
+		It is an instance of "java.lang.Thread"
+
+		Thread Lifecycle:
+		-----------------
+			. New: The thread object is created but not yet started.
+			. Runnable: The thread is ready to be run by the scheduler.
+			. Running: The thread is currently executing instructions.
+			. Waiting/Blocked: The thread is waiting for an event (e.g. I/O operation) to complete before it can continue.
+			.Terminated: The thread has finished execution.
+
+		Thread Creation :
+		-----------------
+			1. Extending the Thread class:
+			------------------------------
+				This involves creating a subclass of the Thread class and overriding the run method. The run method defines the code that the thread will execute.
+
+				// Extending Thread class
+				public class MyThread extends Thread {
+				  @Override
+				  public void run() {
+					// Code to be executed by the thread
+					System.out.println("This is from MyThread extending Thread class");
+				  }
+				}
+
+			2. Implementing the Runnable interface:
+			---------------------------------------
+				This approach involves creating a class that implements the Runnable interface. The Runnable interface has a single abstract method called run. You need to implement the run method to specify the code the thread will execute.
+
+				// Implementing Runnable interface
+				public class MyRunnable implements Runnable {
+				  @Override
+				  public void run() {
+					// Code to be executed by the thread
+					System.out.println("This is from MyRunnable implementing Runnable interface");
+				  }
+				}
+
+
+
+	Processes:
+		Processes are heavyweight entities that have their own memory space and resources. They are independent of each other.
+
+
+	Multithreading Benefits:
+	. Improved responsiveness:
+		By executing non-blocking tasks (e.g., waiting for network data) in separate threads, the program remains responsive to user interactions.
+	. Efficient resource utilization:
+		Multithreading allows a program to take advantage of multiple cores in a processor, improving overall performance.
+	. Background tasks:
+		Long-running tasks can be placed in separate threads to avoid blocking the main thread responsible for the user interface.
+
+	Multithreading Challenges:
+	--------------------------
+		. Synchronization:
+		------------------
+			When multiple threads access shared data, there's a risk of data races and inconsistencies. Synchronization mechanisms like locks and semaphores are needed to ensure proper access and modification of shared data.
+
+			Synchronization in Java refers to the coordination of access between multiple threads to shared resources.
+			It's crucial to prevent data races and inconsistencies when multiple threads are working with the same data.
+
+			1. The Problem: Data Races
+			Imagine two threads trying to update a bank account balance at the same time. Without synchronization, you might encounter a data race:
+
+			. Thread 1 reads the balance (e.g., $100).
+			. Thread 2 reads the same balance ($100).
+			. Thread 1 subtracts $50 (but the in-memory value is still $100).
+			. Thread 2 subtracts $50 (also from the outdated $100 value).
+			. The final balance might incorrectly be $0 instead of the expected $50.
+
+			Synchronization Mechanisms:
+			---------------------------
+				. Synchronized methods() :
+				--------------------------
+					Declaring a method as synchronized ensures that only one thread can execute that method at a time. Other threads trying to access the synchronized method will be blocked until the current thread finishes executing it.
+
+					public class BankAccount {
+					  private int balance;
+
+					  public synchronized void withdraw(int amount) {
+						// Synchronized method to ensure safe withdrawal
+						balance -= amount;
+					  }
+					}
+
+				. Synchronized blocks{} :
+				-------------------------
+					You can use a synchronized block to control access to a specific code section within a method. Only one thread can enter the synchronized block at a time.
+
+					public class SynchronizedBlockCounter {
+					  private int count;
+
+					  public void increment() {
+						synchronized (this) { // Synchronize on the current object
+						  count++;
+						}
+					  }
+					}
+
+					OR
+
+					public class SynchronizedBlockSharedCounter {
+					  private int count = 0;
+					  public void increment() {
+						synchronized (this) { // Synchronize on the current object
+						  count++;
+						}
+					  }
+					  public int getCount() {
+						return count;
+					  }
+
+					  public static void main(String[] args) throws InterruptedException {
+						SynchronizedBlockSharedCounter counter = new SynchronizedBlockSharedCounter();
+						Thread thread1 = new Thread(() -> {
+						  for (int i = 0; i < 10000; i++) {
+							counter.increment();
+						  }
+						});
+						Thread thread2 = new Thread(() -> {
+						  for (int i = 0; i < 10000; i++) {
+							counter.increment();
+						  }
+						});
+
+						thread1.start();
+						thread2.start();
+
+						thread1.join();
+						thread2.join();
+
+						System.out.println("Final count: " + counter.getCount()); // Should print 20000
+					  }
+					}
+
+				static synchronized :
+				---------------------
+					static synchronization is a specific type of synchronization that applies to class-level locks rather than object-level locks used in regular synchronized methods and blocks.
+
+					When a static method of a class accesses shared resources (static or non-static) of that class, static synchronization can be used to ensure only one thread can execute that method at a time. This prevents race conditions and data inconsistencies.
+
+					public class StaticSynchronizedMyClass {
+					  private static int counter = 0;
+
+					  public static synchronized void incrementCounter() {
+						counter++;
+					  }
+					}
+
+					OR
+
+					public class StaticSynchronizedPrinter {
+					  public static synchronized void printDocument(String document) {
+						// Simulate printing process (slow)
+						System.out.println("Printing document: " + document);
+						try {
+						  Thread.sleep(1000);
+						} catch (InterruptedException e) {
+						  e.printStackTrace();
+						}
+					  }
+					}
+
+					public class Main {
+					  public static void main(String[] args) {
+						Thread thread1 = new Thread(() -> StaticSynchronizedPrinter.printDocument("Doc 1"));
+						Thread thread2 = new Thread(() -> StaticSynchronizedPrinter.printDocument("Doc 2"));
+
+						thread1.start();
+						thread2.start();
+					  }
+					}
+
+
+
+
+		. Deadlocks:
+			A deadlock occurs when two or more threads are waiting for each other's resources, creating a permanent halt. Careful design and resource management are crucial to avoid deadlocks.
+		. Complexity:
+			Multithreaded code can be more complex to write and debug compared to single-threaded code.
+
+
+		Java Multithreading Example:
+		----------------------------
+			public class MultithreadingExample {
+				public static void main(String[] args) {
+
+					// Thread 1 to print even numbers
+					Thread evenThread = new Thread(() -> {
+						for (int i = 0; i <= 10; i += 2) {
+							System.out.println(i);
+						}
+					});
+
+					// Thread 2 to print odd numbers
+					Thread oddThread = new Thread(() -> {
+						for (int i = 1; i <= 9; i += 2) {
+							System.out.println(i);
+						}
+					});
+
+					// Start the threads
+					evenThread.start();
+					oddThread.start();
+				}
+			}
+
+
+
+	final :
+	-------
+		final keyword is an access modifier which used to apply restrictions on class, methods, and variables.
+
+		. final class can not be inherited.
+		. final method can not be overridden.
+		. final variable value can not be changed.
+
+
+	finally{} Block:
+	----------------
+		The finally{} block is an optional block that always executes, regardless of whether an exception occurs or not. It's typically used to release resources (e.g., closing files, database connections) that were acquired within the try block. The finally block ensures that these resources are properly cleaned up even if an exception disrupts the normal program flow.
+
+
+		You cannot use a finally block by itself without a try block. The finally block relies on the try block to define the code segment it needs to execute after.
+
+		try(){}...catch(){}...catch(){}...finally{}
+		try(){}...catch(){}...finally{}
+		try(){}...finally{}
+
+
+		Notes :
+		. You cannot have multiple try blocks with a single catch. catch creates ambiguity about which exception the catch block should handle
+
+		. some alternative approaches:
+			Nested Try-Catch Blocks
+			Multiple Catch Blocks
+			Separate Try-Catch Blocks
+
+
+	finalize() method :
+	-------------------
+		finalize method in Java is a garbage collection mechanism that allows objects to perform some cleanup tasks before they are removed from memory.
+
+		. Non-deterministic:
+			There's no guarantee exactly when the finalize method will be called. It might be called immediately after the object becomes eligible for garbage collection, or it might be delayed until much later. You should not rely on finalize to perform critical cleanup tasks that must happen before the object is garbage collected.
+		. Protected method:
+			The finalize method is declared as protected in the Object class, meaning it can be directly invoked only by subclasses or from within the same package.
+		. No arguments and no return value:
+			The finalize method takes no arguments and doesn't return any value.
+
+
+		ex -
+		class Resource {
+			private boolean isReleased = false;
+
+			public void close() {
+				// Simulate releasing a resource (e.g., closing a file)
+				System.out.println("Resource released.");
+				isReleased = true;
+			}
+
+			@Override
+			protected void finalize() throws Throwable {
+				if (!isReleased) {
+				  System.out.println("Resource was not released properly! Performing forced cleanup in finalize...");
+				  close();
+				}
+				super.finalize(); // Call finalize method of parent class (Object)
+			  }
+			}
+
+			public class Main {
+			  public static void main(String[] args) {
+				Resource resource = new Resource();
+				// ... use the resource
+
+				// Forget to close the resource explicitly
+			}
+
+
+		Explanation:
+
+		. The Resource class has a close method that simulates releasing a resource.
+		. The finalize method checks if the resource is released (isReleased flag).
+		. If not released, it prints a message and calls the close method to perform the cleanup.
+		. The finalize method also calls super.finalize() to ensure proper finalization of the parent class (Object).
+
+
+		Problems with finalize():
+
+		. Unreliable timing:
+			As mentioned earlier, the timing of finalize is unpredictable. You cannot rely on it to happen at a specific time.
+		. Not guaranteed to be called:
+			In some cases, the garbage collector might not call finalize at all, especially if the object is unreachable and there's no memory pressure.
+		. Potential performance overhead:
+			Finalization adds some overhead to the garbage collection process.
+		. Exceptions in finalize can cause problems:
+			If an exception occurs within the finalize method, it's ignored and the garbage collection process continues. This can lead to unexpected behavior or resource leaks.
+
+
+		Alternatives to finalize:
+
+		. Use   statement:
+			This is the preferred way to manage resources in Java 7 and later. It ensures that the resource's close method is called automatically when the resource is no longer needed, even if an exception occurs.
+		. Utilize dependency injection:
+			By injecting resources through constructors or dependency injection frameworks, you can ensure that the resources are properly managed by the container or framework itself.

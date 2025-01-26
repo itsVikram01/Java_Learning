@@ -1,0 +1,365 @@
+HashMap : 
+	A HashMap is a data structure that stores key-value pairs. It's based on the concept of hashing, which provides efficient insertion, search, and deletion operations.
+
+Key Components :
+	. Key: The unique identifier for a value.
+	. Value: The data associated with a key.
+	. Bucket Array: An array of linked lists.
+	. Hash Function: A function that converts keys into integer indices (bucket indices).
+	
+	
+	
+Internal Working of HashMap : 
+----------------------------
+
+HashMap<String, String> hashMap = new HashMap<>();
+hashMap.put("KEY", "Value") : ("key" : must be an object, It can't be primitive data type.)
+
+	1. create bucket :
+	------------------
+
+		. In the heap memory JVM will create 16 buckets.(All the java object are created in heap memory and hashMap is also an object.)
+		. hashMap uses a hash table, which is an array of buckets. 
+		. Each bucket can hold a linked list of key-value pairs (Entry objects).
+		
+		. Heap Memory: Java objects, including HashMap instances, are created in the heap memory managed by the JVM.
+		. Initial Capacity: The default initial capacity for a HashMap is typically 16 (a power of 2), but it's configurable. You can set a different initial capacity if you know the expected size of your map beforehand.
+		. Hash Table: A HashMap utilizes a hash table structure, which consists of an array of buckets. Each bucket holds a linked list of key-value pairs (Entry objects).
+							
+			.Now lets represent bucket in computer programming language .
+			The buckets form a hash table
+
+				+-------------------+
+			0	|       Bucket 1     |
+				+-------------------+
+				+-------------------+
+			1	|       Bucket 2     |
+				+-------------------+
+				+-------------------+
+			2	|       Bucket 3     |
+				+-------------------+
+				+-------------------+
+			3	|       Bucket 4     |
+				+-------------------+
+				+-------------------+
+			4	|       Bucket 5     |
+				+-------------------+
+				+-------------------+
+			5	|       Bucket 6     |
+				+-------------------+
+				+-------------------+
+			6	|       Bucket 7     |
+				+-------------------+
+				+-------------------+
+			7	|       Bucket 8     |
+				+-------------------+
+				+-------------------+
+			8	|       Bucket 9     |
+				+-------------------+
+				+-------------------+
+			9	|       Bucket 10    |
+				+-------------------+
+				+-------------------+
+			10	|       Bucket 11    |
+				+-------------------+
+				+-------------------+
+			11	|       Bucket 12    |
+				+-------------------+
+				+-------------------+
+			12	|       Bucket 13    |
+				+-------------------+
+				+-------------------+
+			13	|       Bucket 14    |
+				+-------------------+
+				+-------------------+
+			14	|       Bucket 15    |
+				+-------------------+
+				+-------------------+
+			15	|       Bucket 16    |
+				+-------------------+
+				
+			
+		
+
+	1. Find hashCode : 
+	------------------
+		At first JVM will get the hash code value of key using the hashCode() method of Hashing.
+		hashCode() method is come from Object class so that we can not use primitive types as key.
+			
+			"KEY".hashCode(); // == hash code value
+			
+			"FB".hashCode(); // == 2236
+			"LD".hashCode(); // == 2424
+			
+				+------------+
+				|P 	|2236|N  | ---->
+				+------------+ 
+				
+				+------------+
+				|P 	|2424|N  | ---->
+				+------------+ 
+				
+		Hashing: 
+		--------
+			When a key-value pair is inserted, the hash function(convert large value into smaller value) calculates a hash code(integer value generated from a key, used for indexing) based on the key. 
+			This hash code is then used to determine the bucket index where the pair will be stored.
+			Should be work in O(1) or O(length) for string. But O(length) not preffered.
+			
+			h(input) = output
+			h(input) = output1 // never happen
+			h(input) = output
+			h(input1) = output/output1 // can have same/different output for different input 
+			
+			
+			. For integer key : 
+				weighted sum : h(key) = key % m  
+				//where m is a prime number. If you're using a hash table, m is often chosen to be the size of the hash table.
+			
+			. For String keys : 
+				weighted sum : h("key") = (ASC[0]*x⁰ + ASC[1]*x¹ + ASC[2]*x²) / m
+			
+			. For object keys : weighted sum : 
+				Simple Sum : Add the hash codes of all significant fields.
+					h(object) = hash(field1) + hash(field2) + ... + hash(fieldN)
+				Weighted Sum : Assign weights to different fields based on their importance.
+					h(object) = weight1 * hash(field1) + weight2 * hash(field2) + ... + weightN * hash(fieldN)
+				XOR-Based Combination : Combine hash codes using XOR for better distribution.
+					h(object) = hash(field1) ^ hash(field2) ^ ... ^ hash(fieldN)
+					
+					
+			
+		.Load Factor :
+			If HashMap reaches more than 75%(Bucket 12) of it's capacity then it double the existing capacity(ie. 32).
+			
+			Load factor = 75% or 0.75 or 3/4
+	
+	3. Bucket Selection: 
+		The calculated hash code is typically subjected to a modulo operation with the size of the bucket array to obtain the final bucket index.
+		
+		find bucket index :  
+		---------------------------
+			bucket index is the bitwise AND operation value of hashCode with (bucket size - 1).
+	
+			hashcode & (bucket size - 1) = bucket index
+				
+				. 2236 & (16-1) = 12
+					
+					Let's convert 2236 and 15 to binary:
+						2236 = 10001101100
+						15 = 00001111
+						Performing the bitwise AND operation :
+
+							10001101100
+						& 	   00001111
+							-----------
+							   00001100 = 12
+							-----------
+
+				. 2424 & (16-1) = 8
+	
+	4. Collision Handling: 
+		If multiple keys hash have the same bucket index, a collision occurs. HashMaps usually handle collisions using linked lists. The key-value pairs are stored in a linked list at that bucket index.
+		
+		find hash collision : 
+		---------------------
+			If multiple keys hash code value has the same bucket index, then this condition is known as the hash collision.
+		
+				"FB".hashCode() == 2236
+				2236 & 15 = 12
+				
+				"Ea".hashCode() == 2236
+				2236 & 15 = 12
+				
+				
+				+------------+			+------------+
+				|P 	|2236|N  | ---->	|P 	|2236|N  | ---->
+				+------------+ 			+------------+ 
+		
+	5. If there is no hash collision : 
+		Simply add hash code value to bucket(LinkedList) as first node at there bucket index.
+		
+				"FB".hashCode(); // == 2236
+				2236 & 15 = 12
+				
+					+------------+
+				12	|P 	|2236|N  | ---->
+					+------------+ 
+					
+				"LD".hashCode(); // 2424
+				2424 & (16-1) = 8
+				
+					+------------+
+				8	|P 	|2236|N  | ---->
+					+------------+ 
+	
+	
+	6. If there is hash collision : 
+		Compare the key with existing key using "key".equals("existing-key") method.
+		If present keys and existing are equal then replace existing node with present node, otherwise add key to next node of that bucket index.
+		
+			. If key is already present : 
+		
+				"FB".hashCode() == 2236
+				2236 & 15 = 12
+				
+				"FB".hashCode() == 2236
+				2236 & 15 = 12
+				
+				
+					+------------+
+				12	|P|2236(FB)|N| ---->
+					+------------+ 
+					
+					+------------+
+				12	|P|2236(FB)|N| ---->
+					+------------+ 
+					
+			. If key is not present already :
+			
+				"FB".hashCode() == 2236
+				2236 & 15 = 12
+				
+				"Ea".hashCode() == 2236
+				2236 & 15 = 12
+				
+					+------------+			+------------+
+				12	|P|2236(FB)|N| ---->	|P|2236(Ea)|N| ---->
+					+------------+ 			+------------+ 
+		
+	
+	5. Retrieval: 
+		To retrieve a value, the hash function is applied to the key to find the corresponding bucket index. The linked list at that index is then traversed to find the key-value pair
+		
+		Searching in Linked List: 
+			We have to traverse the list one by one from the begning in Linked List.
+			And that is the only drawback of the LinkedList because it reduces the performance.
+			
+		map.get("key") : traversing is very fast for hash map because of time complexity is O(1).
+		----------------
+			. map.get("Ea");
+				step-1. HashCode of Ea = 2236
+				step-2. Find bucket index = 12
+				step-3. Goto bucket index(12) and get the key-value pair.:
+					Ideally one bucket contains one node but due to collision bucket has multiple node which reduces performance. That's why hashMap is inhanced in java8 using TREEIFY_THRESHOLD.
+					
+					TREEIFY_THRESHOLD : If there is more than 8 nodes in a bucket then HahMap is reached to TREEIFY_THRESHOLD.Now change the LinkedList implementation with self balancing tree(O() -> log1+len(len)). JVM uses compareTo() method to check the order of items.
+					
+					. tree is also called red-black tree or binary search tree or self balancing tree.
+					
+				step-4. retun value.
+
+=================================================================================================================================
+
+Summary : 
+
+	hashMap.put("key", "value");	--->	HahMap utilize hash table(bucket array of initial size 16)
+														|
+														|	
+											Find hashCode() of the key : "key".hashCode(); 
+														|
+														|
+											Find bucket index using hash code : bitwise AND operation value of hashCode with (bucket size - 1).
+														|
+														|
+											Hash Collision	--->	No	---> 	Simply add to LinkedList as first node.
+														|
+														|
+														Yes	
+														|
+														|
+											Key already present : "key".equals("existing-key"); 	--->	No	--->	Add to LinkedList as next node.
+														|
+														|
+														Yes	--->	Add to LinkedList by replacing existing equal node.
+
+
+
+HashMap vs Hashtable in Java : 
+	HashMap and Hashtable are both implementations of the Map interface in Java, used for storing key-value pairs.
+	
+	. HashMap: 
+		. Not synchronized, which means it's faster but not thread-safe. It's suitable for single-threaded environments or when you explicitly handle synchronization.
+		. Allows one null key and multiple null values.  
+		. Generally faster due to the absence of synchronization overhead.
+		. HashMap uses Iterator.
+		. HashMap inherits from AbstractMap.
+	
+	. Hashtable: 
+		. Synchronized, making it thread-safe but slower compared to HashMap. It's suitable for multi-threaded environments where thread safety is a priority. 
+		. Doesn't allow null keys or values.
+		. Slower due to the synchronization overhead.
+		. Hashtable uses Enumerator.
+		. Hashtable inherits from Dictionary.
+		
+	Modern Recommendation:
+		While Hashtable is still available, ConcurrentHashMap is generally preferred for multi-threaded scenarios due to better performance and flexibility.
+		
+
+Feature					HashMap					Hashtable
+Synchronization:		Not synchronized		Synchronized
+Null keys:				Allowed					Not allowed
+Null values:			Allowed					Not allowed
+Performance:			Faster					Slower
+Iterator:				Iterator				Enumerator
+Inheritance:			AbstractMap				Dictionary
+
+
+
+Hashmap<Integer,Integer> mymap= new Hashmap<>();
+
+class Hasmap{
+
+	private static final int InitialCapacity=16;
+	private static final int LoadFactor=0.75;
+
+	private LinkedList<Entry<K,V>[] buckets;
+
+	private int size;
+	private static class Entry<K,V>
+	{
+	   final K key;
+	   V value;
+	   
+	   Entry(K key, V value){
+	   
+		   this.key=key;
+		   this.value=value;
+	   }
+	}
+
+	public Hasmap()
+	{
+	  this.buckets= new LinkedList[InitialCapacity];
+	  this.size=0;
+	}
+
+	private int hash(K key){
+
+	  return (key==null)?0;Math.abs(key.hashcode() % buckets.length)
+	}
+
+    public void put(K key, V value)
+	{
+	  int index=hash(key);
+	  if (buckets[index]==null)
+	  {
+	     buckets[index]= new LinkedList<>();
+	  }
+	 
+	    for(Entry<K,V> entry: buckets[index])
+	 	{
+		  if(entry.key.equals(key))
+		  {
+			entry.value=value;
+		  }
+		}
+		
+		buckets[index].add(new Entry<>(key,value));
+		size++;
+		
+		if(size>=buckets.length*LoadFactor){
+		resize();
+		}
+	
+	}
+}

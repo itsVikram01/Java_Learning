@@ -1,0 +1,78 @@
+Method References in Java 8 :
+    Method references are a concise way to refer to a method without explicitly writing a lambda expression.
+    They're particularly useful when the lambda expression simply calls an existing method.
+
+
+Types of Method References :
+    There are three main types of method references:
+    1. Reference to a Static Method
+        interface Printable {
+            void print(String s);
+        }
+
+        class MyClass {
+            public static void printStatic(String s) {
+                System.out.println(s);
+            }
+        }
+
+        public class MethodReferenceExample {
+            public static void main(String[] args) {
+                Printable printable = MyClass::printStatic;
+                printable.print("Hello, World!");
+            }
+        }
+
+
+    2. Reference to an Instance Method
+        interface Printable {
+            void print(String s);
+        }
+
+        class MyClass {
+            public void printInstance(String s) {
+                System.out.println(s);
+            }
+        }
+
+        public class MethodReferenceExample {
+            public static void main(String[] args) {
+                MyClass obj = new MyClass();
+                Printable printable = obj::printInstance;
+                printable.print("Hello, World!");
+            }
+        }
+
+    3. Reference to a Constructor
+        interface PersonFactory {
+            Person createPerson(String name, int age);
+        }
+
+        class Person {
+            String name;
+            int age;
+
+            public Person(String name, int age) {
+                this.name = name;
+                this.age = age;
+            }
+        }
+
+        public class MethodReferenceExample {
+            public static void main(String[] args) {
+                PersonFactory factory = Person::new;
+                Person person = factory.createPerson("Alice", 30);
+                System.out.println(person.name + ", " + person.age);
+            }
+        }
+
+
+When to Use Method References
+    . When the lambda expression simply calls an existing method.
+    . To improve code readability and conciseness.
+    . When dealing with functional interfaces.
+
+Additional Notes
+    . Method references must be compatible with the target type (functional interface).
+    . The :: operator is used to create method references.
+    . Method references can be used with various built-in functional interfaces like Consumer, Predicate, Function, etc.

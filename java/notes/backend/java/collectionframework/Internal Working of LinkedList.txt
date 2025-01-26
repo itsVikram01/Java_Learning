@@ -1,0 +1,44 @@
+Internal Working of LinkedList : 
+--------------------------------
+
+List<Integer> list = new LinkedList<>();		
+list.add(10);
+	
+	1. Node Creation:
+		. When you create a LinkedList object (List<Integer> list = new LinkedList<>();), an empty doubly linked list is initialized internally.
+		. When you call list.add(10), a new node is created. This node has three parts:
+			. Data field: This stores the value you added (10 in this case).
+			. next pointer: This pointer initially points to null since there's no next node yet.
+			. prev pointer: This pointer also points to null initially.
+	
+	2. Head and Tail Reference:
+		. The LinkedList class maintains two references:
+			. head: This points to the first node in the list. Initially, head is null for an empty list.
+			. tail: This points to the last node in the list. Initially, tail is also null.
+		
+	3. Adding the First Element:
+		. When you add the first element (10), the newly created node becomes both the head and tail of the list.
+		. The head and tail pointers in the LinkedList object are updated to point to this new node.
+						
+			A
+		_____________		_____________
+		|P	|10	|N	|--->	|	null	|
+		-------------		-------------
+		
+	. list.add(20);
+	. list.add(30);
+			A					B					C
+		_____________		_____________		_____________
+		|P	|10	|N	|--->	|P	|20	|N	|--->	|P	|30	|N	|--->
+		-------------		-------------		-------------
+		
+	
+	. If we want to remove any element.
+		list.remove(1); // It will remove 1 position element B(ie. 20).
+		list.remove(new Integer(20)); // It will remove 20 valued element B.
+			A					C
+		_____________		_____________
+		|P	|10	|N	|--->	|P	|30	|N	|--->
+		-------------		-------------
+		
+	. After removing B element from linked list it will be garbage collected.

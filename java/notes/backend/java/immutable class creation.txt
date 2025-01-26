@@ -1,0 +1,63 @@
+Immutable classes in Java are those that cannot be modified after they are created. This ensures data integrity and thread safety in your programs. 
+
+
+Here's how you can create an immutable class in Java:
+
+	1. Declare the class as final: 
+		This prevents inheritance and ensures the class behavior remains consistent.
+
+	2. Make fields private and final: 
+		Private access restricts direct modification, and final ensures the values are assigned only once.
+		
+	3. Use a parameterized constructor: 
+		Initialize all final fields in the constructor.
+
+	4. Don't provide setter methods: 
+		Since the object shouldn't be changed after creation, there's no need for setters.
+
+	5. Perform deep copy in getters: 
+		If a field is a mutable object (like an array or another class), return a copy of the data in the getter methods instead of the original object. This prevents modification through the getter.
+		
+		
+		
+	example : 
+		
+		public final class Person { // 1. Declare the class as final: 
+
+			private final String name; // 2. Make fields private and final: 
+			
+			private final Address address; // Address class assumed to be immutable
+
+			public Person(String name, Address address) { // 3. Use a parameterized constructor: 
+				this.name = name;
+				this.address = address;
+			}
+
+			// 4. Don't provide setter methods: 
+
+			public String getName() {
+				return name;
+			}
+
+			public Address getAddress() {
+				// 5. Deep copy the address object (assuming Address is immutable)
+				return new Address(address.getStreet(), address.getCity(), address.getState()); // Or use Address copy constructor if available
+			}
+		}
+
+		public final class Address {
+			// ... Address fields and methods (assumed immutable)
+			private final String street;
+			private final String city;
+			private final String state;
+			
+			// parameterized constructor
+			// Don't provide setter methods
+			
+		}
+		
+		
+		Key Points : 
+		. Primitive types and immutable objects can be returned directly.
+		. Use clone() or copyOf() for mutable collections.
+		. Create new arrays for mutable arrays.

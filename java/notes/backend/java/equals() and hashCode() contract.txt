@@ -1,0 +1,46 @@
+equals() and hashCode() contract : 
+----------------------------------
+
+If you are  overriding equals method, then you must override hashCode method properly.
+
+It means if two objects are equal then hashCode method must return same value.
+
+	Student s1 = new Student(1, "Sam");
+	Student s2 = new Student(1, "Sam");
+	
+	if 
+		s1.equals(s2); => true
+	then 
+		s1.hashCode() == s2.hashCode(); => true
+		
+		
+	eg - 
+		Student {
+			private int rollNum;
+			private String name;
+			
+			@Override
+			public boolean equals(Student s2){
+				// if two student object have same rollNum return true otherwise return false
+			}
+			
+			@Override
+			public int hashCode() {
+				// return rollNum
+			}
+			
+			
+			// OR
+			
+			
+			
+			@Override
+			public boolean equals(Student s2){
+				// if rollNum is same return true otherwise return false
+			}
+			
+			// doesn't override
+			/* public int hashCode() {
+				// in the default implementation of hashcode() method, it return integer value based on Object address
+			} */
+		}

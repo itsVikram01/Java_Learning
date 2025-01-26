@@ -1,0 +1,58 @@
+Future Interface :
+	-----------------
+		The Future interface in Java represents the eventual result of an asynchronous computation. It's used in conjunction with the Callable interface to manage tasks that can return results and potentially throw exceptions.
+
+The Future interface in Java represents the result of an asynchronous computation. It provides a mechanism to check if the computation is complete, wait for its completion, and retrieve the result.
+
+		Functionality:
+			. Result Placeholder: A Future acts as a placeholder for the result of a task submitted to an ExecutorService.
+			. Checking Completion: You can use methods like isDone() to check if the task has finished execution.
+			. Cancelling Tasks: Some implementations might support cancelling the task using cancel() before it finishes (depending on the task's nature).
+			. Retrieving Results: The get() method allows you to retrieve the result of the task once it's complete. However, get() might block the calling thread until the task finishes.
+
+		Key Points:
+			. Threads don't directly interact with the Future object. The ExecutorService manages the task execution, and the Future provides a way to interact with the result asynchronously.
+			. The get() method can throw exceptions if the task execution throws an exception or if the task is cancelled.
+			. Future offers a way to decouple the code that submits a task from the code that retrieves the result, promoting asynchronous programming.
+
+		public class FutureExample implements Callable<Integer> {
+			@Override
+			public Integer call() throws Exception {
+				// Simulate some work and return a result
+				int sum = 0;
+				for (int i = 1; i <= 10; i++) {
+					sum += i;
+				}
+				return sum;
+			}
+		}
+		public class Main {
+			public static void main(String[] args) throws Exception {
+				ExecutorService executor = Executors.newSingleThreadExecutor();
+				// Submit the Callable task to the ExecutorService
+				Future<Integer> future = executor.submit(new FutureExample());
+				// Check if the task is done (optional)
+				if (future.isDone()) {
+					System.out.println("Task completed!");
+				}
+				// Get the result from the Future object (blocks until the thread finishes)
+				int result = future.get();
+				System.out.println("The sum is: " + result);
+				executor.shutdown();
+			}
+		}
+
+
+Important Methods of Future Interface
+    . boolean isDone(): Checks if the computation is complete.
+    . boolean isCancelled(): Checks if the computation was cancelled.
+    . V get(): Blocks until the computation is complete and returns the result.
+    . V get(long timeout, TimeUnit unit): Blocks for a specified time and returns the result if available, otherwise throws a TimeoutException.
+    . boolean cancel(boolean mayInterruptIfRunning): Attempts to cancel the computation.
+
+Key Points
+    . Future is essential for asynchronous programming.
+    . Use isDone() to check for completion without blocking.
+    . get() is blocking, use it carefully to avoid thread blocking.
+    . Consider using get(long timeout, TimeUnit unit) for time-bound operations.
+    . Handle potential exceptions thrown by the task.

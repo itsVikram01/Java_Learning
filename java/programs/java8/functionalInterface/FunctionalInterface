@@ -1,0 +1,17 @@
+Functional interface :
+    A functional interface in Java is an interface that contains exactly one abstract method.
+    It's also known as a SAM (Single Abstract Method) interface.
+
+
+Real-world Use Cases
+    . GUI development: ActionListener, Runnable
+    . Data processing: Consumer, Function, Predicate
+    . Concurrency: Callable, Supplier
+    . Sorting and comparing: Comparator
+
+
+Key Points to Remember
+    . Functional interfaces are essential for lambda expressions and method references.
+    . They promote a functional programming style in Java.
+    . Built-in functional interfaces provide common abstractions.
+    . Custom functional interfaces can be created for specific needs.

@@ -1,0 +1,172 @@
+ANGULAR SETUP :
+---------------
+
+Install node
+Install nvm
+npm install -g @angular/cli
+
+Windows PowerShell :
+C:\Windows\system32> Set-ExecutionPolicy RemoteSigned
+Do you want to change the execution policy?
+[Y] Yes  [A] Yes to All  [N] No  [L] No to All  [S] Suspend  [?] Help
+(default is "N"):A
+
+C:\Windows\system32> Get-ExecutionPolicy
+RemoteSigned
+
+
+
+C:\Users\vikyr>ng v
+
+     _                      _                 ____ _     ___
+    / \   _ __   __ _ _   _| | __ _ _ __     / ___| |   |_ _|
+   / △ \ | '_ \ / _` | | | | |/ _` | '__|   | |   | |    | |
+  / ___ \| | | | (_| | |_| | | (_| | |      | |___| |___ | |
+ /_/   \_\_| |_|\__, |\__,_|_|\__,_|_|       \____|_____|___|
+                |___/
+
+
+Angular CLI: 18.0.0
+Node: 20.13.1
+Package Manager: npm 10.8.0
+OS: win32 x64
+
+Angular:
+...
+
+Package                      Version
+------------------------------------------------------
+@angular-devkit/architect    0.1800.0 (cli-only)
+@angular-devkit/core         18.0.0 (cli-only)
+@angular-devkit/schematics   18.0.0 (cli-only)
+@schematics/angular          18.0.0 (cli-only)
+
+
+C:\Users\vikyr>node --version
+v20.13.1
+
+C:\Users\vikyr>npm --version
+10.8.0
+
+-- downgrade npm version : 
+C:\Users\vikyr>npm install -g npm@10.8.0
+
+C:\Users\vikyr>nvm -v
+1.1.12
+
+
+>ng new task_angular
+>ng serve
+>ng add @angular/material
+>
+
+npm install bootstrap save
+
+
+ng new crud_angular --no-standalone
+> ng new <project>
+> cd project
+\angular> cd src
+\angular\src> cd app
+\angular\src\app> mkdir components
+\angular\src\app> cd components
+\angular\src\app\components> ng g c firstComponent
+\angular\src\app\components> ng g c inlineStyleComponent --inline-style
+\angular\src\app\components> ng g c inlineTemplateComponent--inline-template 
+\angular\src\app\components> ng g c inlineStyleTemplateComponent --inline-style --inline-template 
+
+
+\angular\src\app\components> cd ..\ 
+\angular\src\app> mkdir modules
+\angular\src\app> cd modules
+\angular\src\app\modules> ng g m firstModule   
+\angular\src\app\modules> cd first-module
+\angular\src\app\modules\first-module> ng g c modelFirstComponent
+\angular\src\app\modules\first-module> ng g c modelSecondComponent
+
+ng serve
+
+Shortcuts
+  press r + enter to force reload browser
+  press u + enter to show server url
+  press o + enter to open in browser
+  press c + enter to clear console
+  press q + enter to quit
+  
+  
+===========================================================================================
+
+In conclusion, Angular (2+) is a complete rewrite of AngularJS (1.x) with significant improvements in performance, maintainability, and scalability, making it more suitable for modern web application development.
+
+===========================================================================================
+
+
+1. main.ts
+	platformBrowserDynamic().bootstrapModule(AppModule, {
+		ngZoneEventCoalescing: true
+	})
+	
+2. app.module.ts 
+	@NgModule({
+		declarations: [
+			AppComponent
+		],
+		imports: [
+			BrowserModule,
+			AppRoutingModule
+		],
+		providers: [
+			provideClientHydration()
+		],
+		bootstrap: [AppComponent]
+	})
+	export class AppModule { }
+	
+3. app.component.ts
+	@Component({
+		selector: 'app-root',
+		templateUrl: './app.component.html',
+		styleUrl: './app.component.css'
+	})
+	export class AppComponent {
+		title = 'crud_angular';
+	}
+	
+
+4. index.html 
+	<!doctype html>
+	<html lang="en">
+	<head>
+	  <meta charset="utf-8">
+	  <title>CrudAngular</title>
+	  <base href="/">
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <link rel="icon" type="image/x-icon" href="favicon.ico">
+	</head>
+	<body>
+	  <app-root></app-root>
+	</body>
+	</html>
+	
+5. app.routing.module.ts
+		const routes: Routes = [];
+
+		@NgModule({
+		  imports: [RouterModule.forRoot(routes)],
+		  exports: [RouterModule]
+		})
+		export class AppRoutingModule { }
+		
+		
+
+================================================================
+
+APP ---> Router 	--->	createComponent				<---
+					|										|
+					--->	updateComponent				<---
+					|										|	EmployeeCrudService
+					--->	employeeListComponent		<---		[HttpClient(Handle RestAPI requests(Get, Post, Put))]
+					|										|
+					--->	employeeDetailsComponent	<---
+					
+					

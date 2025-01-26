@@ -1,0 +1,27 @@
+Java 8 Streams:
+    . A sequence of elements: Streams represent a sequence of elements, which can be processed in various ways.
+    . Functional in nature: Operations on streams are declarative and functional, meaning they describe what to do rather than how to do it.
+    . Lazy evaluation: Intermediate operations are not executed until a terminal operation is performed.
+
+Additional Stream Operations:
+    . Filtering: filter()
+    . Mapping: map(), flatMap()
+    . Reducing: reduce(), collect()
+    . Sorting: sorted()
+    . Matching: allMatch(), anyMatch(), noneMatch()
+
+
+
+
+Why we need Stream???
+
+1. Functional programming
+2. Code reduce
+3. Bulk Operation
+
+methods :
+1. filter : for conditional check
+2. forEach : for iteration
+
+
+

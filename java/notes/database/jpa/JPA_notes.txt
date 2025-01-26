@@ -1,0 +1,24 @@
+JPA (Java Persistence API):
+	. JPA is a Java specification that defines how ORM (Object-Relational Mapping) should work in Java applications. It provides a set of rules and guidelines for implementing object-relational mapping.
+	. JPA is an API that defines how Java objects can be mapped to relational databases. It provides a high-level abstraction, eliminating the need for direct JDBC or SQL code.
+	
+	. JPA is only a specification; it doesn’t perform any functionality by itself.
+	. It defines interfaces for implementing ORM.
+	. Supports cleaner and more integrated object-relational mapping.
+	. Allows dynamic and named queries.
+	. It’s like the “guidelines” for ORM.
+	
+	Integration:
+		Spring Boot integrates JPA seamlessly. When you include the spring-boot-starter-data-jpa dependency in your project, it brings in JPA API, JPA Implementation (which is Hibernate by default), JDBC, and other necessary libraries1.
+		
+	Configuration:
+		 In your application.properties or application.yml, you can configure the database connection details (e.g., URL, username, password, dialect). Spring Boot automatically sets up the data source and initializes Hibernate.
+	
+	Implementation: 
+		JPA doesn’t do anything on its own; it needs an implementation. That’s where Hibernate comes in!.
+	
+	Core concepts:
+		. Entity: A Java class representing a database table.
+		. EntityManager: The primary interface for interacting with the persistence context (a unit of work).
+		. Persistence context: A container for managed entities.
+		. Transaction: A unit of work that ensures data consistency.

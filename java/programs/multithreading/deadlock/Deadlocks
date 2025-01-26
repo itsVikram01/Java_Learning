@@ -1,0 +1,6 @@
+. Deadlocks:
+	A deadlock occurs when two or more threads are waiting for each other's resources, creating a permanent halt.
+	Careful design and resource management are crucial to avoid deadlocks.
+
+. Complexity:
+    Multithreaded code can be more complex to write and debug compared to single-threaded code.

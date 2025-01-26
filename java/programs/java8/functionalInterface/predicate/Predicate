@@ -1,0 +1,59 @@
+Predicate Interface in Java :
+
+A Predicate in Java is a functional interface that represents a boolean-valued function of one argument.
+It accepts an input and returns a boolean value indicating whether the input satisfies the given condition.
+
+Key Points:
+    . Functional interface: Contains only one abstract method, test().
+    . Returns boolean: The test() method takes an argument and returns a boolean.
+    . Used for filtering: Commonly used to filter elements from collections based on specific criteria.
+    . Default methods: Provides several default methods for combining predicates (e.g., and, or, negate).
+
+
+Common Use Cases
+    . Filtering collections: Used with Stream API's filter() method to filter elements based on a condition.
+    . Validating data: Checking if input data meets certain criteria.
+    . Conditional logic: Making decisions based on boolean expressions.
+
+Additional Notes
+    . Predicate is widely used in functional programming paradigms.
+    . The negate() method inverts the result of the predicate.
+    . The or method creates a predicate that is true if either of the input predicates is true.
+
+
+
+package java.util.function;
+
+import java.util.Objects;
+
+@FunctionalInterface
+public interface Predicate<T> {
+
+    boolean test(T t);
+
+    default Predicate<T> and(Predicate<? super T> other) {
+        Objects.requireNonNull(other);
+        return (t) -> test(t) && other.test(t);
+    }
+
+    default Predicate<T> negate() {
+        return (t) -> !test(t);
+    }
+
+    default Predicate<T> or(Predicate<? super T> other) {
+        Objects.requireNonNull(other);
+        return (t) -> test(t) || other.test(t);
+    }
+
+    static <T> Predicate<T> isEqual(Object targetRef) {
+        return (null == targetRef)
+                ? Objects::isNull
+                : object -> targetRef.equals(object);
+    }
+
+    @SuppressWarnings("unchecked")
+    static <T> Predicate<T> not(Predicate<? super T> target) {
+        Objects.requireNonNull(target);
+        return (Predicate<T>)target.negate();
+    }
+}

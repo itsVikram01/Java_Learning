@@ -1,0 +1,25 @@
+. Transient Keyword: Fields marked as transient are not serialized.
+    . When you mark a variable as transient, the Java Virtual Machine (JVM) knows to exclude it from the serialization process.
+    . The value of a transient variable won’t be saved in the serialized form of the object. Instead, it’ll be ignored during serialization and deserialization.
+
+
+    Example with Transient Field -
+    ----------------------------
+        public class Employee implements Serializable {
+            private static final long serialVersionUID = 1L;
+
+            private String name;
+            private int age;
+            private transient String password; // this field will not be serialized
+
+            public Employee(String name, int age, String password) {
+                this.name = name;
+                this.age = age;
+                this.password = password;
+            }
+
+            @Override
+            public String toString() {
+                return "Employee [name=" + name + ", age=" + age + ", password=" + password + "]";
+            }
+        }

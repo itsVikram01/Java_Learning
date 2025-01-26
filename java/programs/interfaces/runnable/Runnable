@@ -1,0 +1,49 @@
+Runnable interface :
+	--------------------
+		In Java, the Runnable interface is a fundamental building block for multithreading. It defines a single abstract method called run() that specifies the code a thread will execute.
+
+		The Runnable interface serves as a contract between a class and the Thread class. By implementing Runnable, a class indicates that its objects can be used to represent tasks that can be executed concurrently by separate threads
+
+		Runnable has only one abstract method : public abstract void run();
+
+		 A class that needs to be used with threads must implement the Runnable interface and provide its own implementation of the run() method. This implementation specifies the specific work the thread will perform.
+
+		public interface Runnable {
+		  void run();
+		}
+		public class MyRunnable implements Runnable {
+			@Override
+			public void run() {
+				// Code to be executed by the thread
+				System.out.println("This is from MyRunnable implementing Runnable interface");
+				for (int i = 0; i < 5; i++) {
+					System.out.println("Running task in MyRunnable: " + i);
+					try {
+						Thread.sleep(1000); // Simulate some work
+					} catch (InterruptedException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+		}
+		public class Main {
+			public static void main(String[] args) {
+				MyRunnable myRunnable = new MyRunnable();
+				Thread thread = new Thread(myRunnable); // Create a Thread object with the Runnable implementation
+				thread.start(); // Start the thread to begin execution
+				System.out.println("This is from the main thread");
+			}
+		}
+
+
+
+Key Points
+    . The run() method is the entry point for the thread.
+    . The Thread class is used to create and manage threads.
+    . Calling start() on a thread begins its execution.
+    . Avoid calling run() directly, as it won't create a new thread.
+
+Additional Notes
+    . You can use lambda expressions to create Runnable objects concisely.
+    . The Thread class provides methods for controlling thread execution (e.g., sleep, join, interrupt).
+    . Proper synchronization is essential for managing shared resources in multithreaded environments.

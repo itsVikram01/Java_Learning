@@ -1,0 +1,193 @@
+. Array :
+------
+	Definition: A collection of elements stored in contiguous memory locations.
+	Time Complexity (Avg/Worst):
+	Access: O(1)
+	Search: O(n)
+	Insert/Delete: O(n)/O(n)
+	Space Complexity: O(n)
+	Performance: Fast random access; inefficient insertions and deletions due to shifting elements.
+	Best Fit Scenarios: Use when size is fixed, and random access is critical.
+	Common Algorithms: Linear Search, Binary Search, Merge Sort, Quick Sort
+
+. Linked List :
+-------------
+	Definition: A sequential collection of nodes where each node contains data and a pointer to the next node.
+	Time Complexity (Avg/Worst):
+	Access: O(n)
+	Search: O(n)
+	Insert/Delete: O(1)/O(1)
+	Space Complexity: O(n)
+	Performance: Efficient insertions and deletions; poor cache performance and slow lookups.
+	Best Fit Scenarios: Use for dynamic data with frequent insertions and deletions.
+	Common Algorithms: Insertion Sort, Merge Sort (modified), Reverse Linked List
+
+. Doubly Linked List :
+--------------------
+	Definition: A linked list where nodes contain pointers to both the next and previous nodes.
+	Time Complexity (Avg/Worst):
+	Access: O(n)
+	Search: O(n)
+	Insert/Delete: O(1)/O(1)
+	Space Complexity: O(n)
+	Performance: Bidirectional traversal; extra memory overhead due to an additional pointer.
+	Best Fit Scenarios: Use when bidirectional traversal is needed (e.g., undo/redo systems).
+	Common Algorithms: Insertion Sort, Merge Sort, Reverse Linked List
+
+. Circular Linked List :
+----------------------
+	Definition: A linked list where the last node points to the first node.
+	Time Complexity (Avg/Worst):
+	Access: O(n)
+	Search: O(n)
+	Insert/Delete: O(1)/O(1)
+	Space Complexity: O(n)
+	Performance: Suitable for cyclic data; same limitations as singly/doubly linked lists.
+	Best Fit Scenarios: Use for round-robin scheduling or cyclic data (e.g., playlist looping).
+	Common Algorithms: Josephus Problem, Circular Queue Operations
+
+. Binary Tree :
+-------------
+	Definition: A tree where each node has at most two children.
+	Time Complexity (Avg/Worst):
+	Insert/Search/Delete: O(log n)/O(n)
+	Space Complexity: O(n)
+	Performance: Good for hierarchical data; can become unbalanced, leading to degraded performance.
+	Best Fit Scenarios: Use for organizing hierarchical data, such as file systems.
+	Common Algorithms: In-order Traversal, Pre-order Traversal, Post-order Traversal
+
+. Binary Search Tree (BST) :
+--------------------------
+	Definition: A binary tree where left children are smaller, and right are larger.
+	Time Complexity (Avg/Worst):
+	Insert/Search/Delete: O(log n)/O(n)
+	Space Complexity: O(n)
+	Performance: Efficient for sorted data; unbalanced trees degrade to O(n).
+	Best Fit Scenarios: Use for dynamic datasets requiring sorted data and fast search operations.
+	Common Algorithms: In-order Traversal, Search, Insertion/Deletion
+
+. Red-Black Tree :
+----------------
+	Definition: A self-balancing BST with red/black node coloring.
+	Time Complexity (Avg/Worst):
+	Insert/Delete/Search: O(log n)
+	Space Complexity: O(n)
+	Performance: Balances faster than AVL; slightly less balanced but more efficient for frequent insertions/deletions.
+	Best Fit Scenarios: Use for maintaining sorted data efficiently, like TreeMap in Java.
+	Common Algorithms: Insertion, Deletion, Search, Rebalancing
+
+. AVL Tree :
+----------
+	Definition: A self-balancing BST with height difference ≤ 1.
+	Time Complexity (Avg/Worst):
+	Insert/Delete/Search: O(log n)
+	Space Complexity: O(n)
+	Performance: Always balanced; insertion/deletion requires rebalancing, increasing overhead compared to basic BST.
+	Best Fit Scenarios: Use for highly dynamic sorted data with strict balancing requirements.
+	Common Algorithms: Insertion, Deletion, Rebalancing (Rotation)
+
+. B-Tree :
+--------
+	Definition: A self-balancing search tree optimized for disk storage.
+	Time Complexity (Avg/Worst):
+	Search/Insert/Delete: O(log n)
+	Space Complexity: O(n)
+	Performance: Optimized for disk reads/writes; excellent for large datasets.
+	Best Fit Scenarios: Use for databases and file systems where efficient disk storage and retrieval are needed.
+	Common Algorithms: Insertion, Deletion, Search, B-Tree Split
+
+. B+ Tree :
+---------
+	Definition: An extension of B-Tree with linked leaf nodes.
+	Time Complexity (Avg/Worst):
+	Search/Insert/Delete: O(log n)
+	Space Complexity: O(n)
+	Performance: Faster traversal due to linked leaf nodes; commonly used in database systems.
+	Best Fit Scenarios: Use for database indexing, where fast range queries are necessary.
+	Common Algorithms: Insertion, Deletion, Search, Range Queries
+
+. Set :
+------
+	Definition: A collection of unique elements without any specific order.
+	Time Complexity (Avg/Worst):
+	Insert/Delete/Search: O(1) (avg)
+	Space Complexity: O(n)
+	Performance: Efficient for membership checking; no duplicates allowed.
+	Best Fit Scenarios: Use when unique elements and fast membership tests are required (e.g., in databases).
+	Common Algorithms: Union, Intersection, Difference, Subset Checks
+
+. Queue :
+------
+	Definition: A First-In-First-Out (FIFO) data structure.
+	Time Complexity (Avg/Worst):
+	Enqueue/Dequeue: O(1)
+	Search: O(n)
+	Space Complexity: O(n)
+	Performance: Excellent for sequential processing; lacks random access capabilities.
+	Best Fit Scenarios: Use for task scheduling, breadth-first search, or buffering data.
+	Common Algorithms: Breadth-First Search (BFS), Level-order Traversal
+
+. Priority Queue :
+----------------
+	Definition: A queue where elements are dequeued based on priority rather than order.
+	Time Complexity (Avg/Worst):
+	Insert/Delete: O(log n)
+	Access Min/Max: O(1)
+	Space Complexity: O(n)
+	Performance: Efficient for processing based on priority; slower than standard queue operations.
+	Best Fit Scenarios: Use for job scheduling, Dijkstra’s algorithm, or event-driven simulations.
+	Common Algorithms: Dijkstra’s Algorithm, Prim’s Algorithm, A* Search
+	
+. Deque (Double-Ended Queue) :
+----------------------------
+	Definition: A queue where elements can be added or removed from both ends.
+	Time Complexity (Avg/Worst):
+	Insert/Delete (Both Ends): O(1)
+	Space Complexity: O(n)
+	Performance: Flexible insertion/deletion; efficient for both FIFO and LIFO scenarios.
+	Best Fit Scenarios: Use for sliding window problems, double-ended queues, or task scheduling.
+	Common Algorithms: Sliding Window Problems, Deque-based Queue Operations
+
+. Heap :
+------
+	Definition: A tree where the parent is smaller/larger than its children.
+	Time Complexity (Avg/Worst):
+	Insert/Delete: O(log n)
+	Access Min/Max: O(1)
+	Space Complexity: O(n)
+	Performance: Ideal for priority-based tasks; not suitable for fast search or random access.
+	Best Fit Scenarios: Use for priority queues, scheduling algorithms (e.g., Dijkstra’s), or finding k-largest/smallest.
+	Common Algorithms: Heapify, Insert (Push), Extract Min/Max, Priority Queue
+
+. Stack :
+------
+	Definition: A Last-In-First-Out (LIFO) data structure.
+	Time Complexity (Avg/Worst):
+	Push/Pop: O(1)
+	Search: O(n)
+	Space Complexity: O(n)
+	Performance: Simple and fast for LIFO operations; not suitable for random access.
+	Best Fit Scenarios: Use for function calls, undo operations, or parsing expressions.
+	Common Algorithms: Depth-First Search (DFS), Balanced Parentheses, Postfix Evaluation
+	
+. Hash Table :
+------------
+	Definition: A collection of key-value pairs using a hash function.
+	Time Complexity (Avg/Worst):
+	Insert/Delete/Search: O(1)/O(n) (worst case)
+	Space Complexity: O(n)
+	Performance: Extremely fast lookups for large datasets; collisions can degrade performance to O(n).
+	Best Fit Scenarios: Use for quick lookups by keys (e.g., dictionary, cache).
+	Common Algorithms: Hashing, Insert, Search, Collision Resolution (Chaining)
+
+. Graph :
+------
+	Definition: A collection of nodes connected by edges.
+	Time Complexity (Avg/Worst):
+	Add Vertex: O(1)
+	Add Edge: O(1)
+	Search: O(V + E)
+	Space Complexity: O(V + E)
+	Performance: Efficient for sparse graphs; less efficient for dense graphs.
+	Best Fit Scenarios: Use for representing networks, social media connections, or routing algorithms.
+	Common Algorithms: Breadth-First Search (BFS), Depth-First Search (DFS), Dijkstra's Algorithm

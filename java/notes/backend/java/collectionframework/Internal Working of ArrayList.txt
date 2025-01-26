@@ -1,0 +1,55 @@
+Internal Working of ArrayList : 
+--------------------------------
+
+List<Integer> list = new ArrayList<>();
+	. Initially, an arraylist will be created of size 10 from 0 to 9;
+	_________________________________________
+	|	|	|	|	|	|	|	|	|	|	|
+	-----------------------------------------
+	0	1	2	3	4	5	6	7	8	9	
+	
+list.add(5);
+	_________________________________________
+	|5	|	|	|	|	|	|	|	|	|	|
+	-----------------------------------------
+	0	1	2	3	4	5	6	7	8	9	
+	
+
+list.add(10);
+list.add(20);
+list.add(30);
+list.add(40);
+list.add(50);
+list.add(60);
+list.add(70);
+list.add(80);
+list.add(90);
+	_________________________________________
+	|5  |10 |20	|30	|40	|50	|60	|70 |80	|90	|	(old) ---> a
+	-----------------------------------------
+	0	1	2	3	4	5	6	7	8	9	
+	
+	
+	. If we add 11th element,
+		list.add(100);
+	
+	In normal scenario it will give ArrayIndexOutOfBoundException. But for arraylist it create new dynamic array of size using the formula (3n / 2 + 1), where n is the old size of arraylist.
+	
+		ie. (3 X 10)/2 + 1 = 16 
+	_________________________________________________________________
+	|5  |10 |20	|30	|40	|50	|60	|70 |80	|90	|100|	|	|	|	|	|	(new) ---> a
+	-----------------------------------------------------------------
+	 0	 1	 2	 3	 4	 5	 6	 7	 8	 9	 10	 11	 12	 13	 14	 15
+	
+	
+	. After creating the new dynamic array of size 16, previous array elements will be copied to new array and previous array will be garbage collected.
+	
+	
+	. If we want to remove any element.
+		list.remove(10); // It will remove 10 position element.
+		list.remove(new Integer(100)); // It will remove 100 valued element.
+		
+	. If we remove the 10th element array doesn't reduce it size to previous array size.
+	It is the drawback of arraylist.
+	
+	. We can explicitly call a method trimToSize() to reduce size.

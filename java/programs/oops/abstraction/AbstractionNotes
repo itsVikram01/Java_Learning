@@ -1,0 +1,101 @@
+Abstraction :
+	-------------
+		"Process of representing only essential features(focusing on what an object does rather than how it does it ) and Hiding internal details(This emphasizes the ability of abstraction to shield users from the complexities of an object's inner workings)". It allows developers to hide complex implementation details.
+
+		For example -
+			. phone call, we don't know the internal processing.
+			. car (user interacts with steering, brakes, etc., without knowing engine mechanics)
+
+
+		In Java, we use abstract class and interface to achieve abstraction.
+
+		1.Abstract class : (0 to 100% abstraction achieved)
+		----------------------------------------------------
+			abstract modifier is applicabe for methods and classes only but not for variables.
+
+			. abstract method :
+				These are methods declared without implementation in an abstract class or interface.
+
+					public abstract double calculateArea(); // abstract method
+
+			. abstract class :
+				"Special type of class which does not provide a complete implementation for abstract methods present in it, hence cannot be instantiated using new keyword".
+				Concrete subclasses are classes that provide concrete implementation for all the abstract methods defined in parent abstract class.
+				abstract class contain both abstract and non-abstract methods as well as instance variable and constructors.
+
+				example -
+					public abstract class Shape { // abstract class
+						public abstract double calculateArea(); // abstract method
+					}
+					public class Circle extends Shape { // cannot use protected/private access modifier with Child class(Concrete subclass)
+						private final double radius;
+						public Circle(double radius) {
+							this.radius = radius;
+						}
+
+						@Override
+						public double calculateArea() { // concrete implementation of Parent abstract method calculateArea() by concrete subclass Circle
+							return Math.PI * radius * radius;
+						}
+					}
+					public class Main {
+						public static void main(String[] args) {
+							Circle circle = new Circle(5); // Object creation Of Circle class using Circle class refernce
+							System.out.println("Circle Area: " + circle.calculateArea());
+						}
+					}
+
+
+
+		2.Interface : (100% abstraction achieved)
+		-----------------------------------------
+			Interface are any Service Requirement Specification(SRS) which are  collection of abstract methods and constant fields.
+			It does not provide implementation of any methods.
+
+			To define an interface in java we use "interface" keyword followed by interface name.
+			Example -
+				public interface Shape {
+					double calculateArea(); // Abstract method - needs implementation in implementing class
+
+					default void printInfo() { // Default method with implementation
+						System.out.println("This is a shape object.");
+					}
+
+					static double calculateTotalArea(Shape[] shapes) { // Static method - can be called directly using interface name
+						double totalArea = 0;
+						for (Shape shape : shapes) {
+							totalArea += shape.calculateArea();
+						}
+						return totalArea;
+					}
+				}
+				public class Circle implements Shape {
+					private double radius;
+
+					public Circle(double radius) {
+						this.radius = radius;
+					}
+
+					@Override
+					public double calculateArea() {
+						return Math.PI * radius * radius;
+					}
+
+					// Can override the default method if needed
+					@Override
+					public void printInfo() {
+						System.out.println("This is a circle object with radius: " + radius);
+					}
+				}
+				public class Main {
+					public static void main(String[] args) {
+						Circle circle1 = new Circle(5);
+						Circle circle2 = new Circle(3);
+
+						System.out.println("Circle 1 Area: " + circle1.calculateArea()); // Calling abstract method through object
+
+						circle1.printInfo(); // Calling default method through object (can be overridden)
+
+						System.out.println("Total Area of both circles: " + Shape.calculateTotalArea(new Shape[]{circle1, circle2})); // Calling static method directly using interface name
+					}
+				}

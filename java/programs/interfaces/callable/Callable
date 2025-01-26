@@ -1,0 +1,76 @@
+Callable Interface :
+	--------------------
+		The Callable interface in Java is an extension of the Runnable interface that provides more functionality for working with threads.
+		It allows threads to return a result and potentially throw checked exceptions.
+
+		. Return Value:
+			Unlike Runnable which has a void return type for its run method, Callable defines a method with a generic return type V.
+
+			public V call() throws Exception;
+
+		. Checked Exceptions:
+			The run method of Runnable can only throw unchecked exceptions (RuntimeException and its subclasses).
+			The call method of Callable allows throwing both checked and unchecked exceptions. This provides more flexibility in handling potential errors within the thread.
+
+
+		Benefits of Callable :
+		. Results:
+			You can retrieve the result of a thread's execution using the Future interface returned by the ExecutorService.submit method.
+			This is useful when you need the output of a thread for further processing in the main thread.
+
+		. Checked Exceptions:
+			By allowing checked exceptions, Callable enables you to handle potential errors that occur within the thread and propagate them back to the main thread for proper handling.
+
+		public interface Callable<V> {
+			V call() throws Exception;
+		}
+		public class FactorialTask implements Callable<Integer> {
+			private int number;
+			public FactorialTask(int number) {
+				this.number = number;
+			}
+			@Override
+			public Integer call() throws Exception {
+			if (number < 0) {
+				throw new IllegalArgumentException("Number must be non-negative");
+			}
+			int result = 1;
+			for (int i = 1; i <= number; i++) {
+			  result *= i;
+			}
+			return result;
+			}
+		}
+		public class CallableExample implements Callable<Integer> {
+			@Override
+			public Integer call() throws Exception {
+				// Simulate some work and return a result
+				int sum = 0;
+				for (int i = 1; i <= 10; i++) {
+				  sum += i;
+				}
+				return sum;
+			}
+		}
+		public class Main {
+			public static void main(String[] args) throws Exception {
+				ExecutorService executor = Executors.newSingleThreadExecutor(); // This line creates an ExecutorService object using the Executors.newSingleThreadExecutor() factory method. This creates a thread pool with a single thread.
+
+				// Submit the Callable task to the ExecutorService
+				Future<Integer> future = executor.submit(new CallableExample()); // This line submits the CallableExample object (an instance that represents the task) to the ExecutorService. The submit method returns a Future object which holds the eventual result of the task.
+
+				// Get the result from the Future object (blocks until the thread finishes)
+				int result = future.get(); // This line calls the get method on the Future object. This method retrieves the result of the task executed by the CallableExample class. However, this line blocks until the task finishes execution.
+
+				System.out.println("The sum is: " + result); // This line prints the retrieved sum obtained from the CallableExample task.
+
+				executor.shutdown(); // This line shuts down the ExecutorService, indicating that no new tasks will be submitted.
+			}
+		}
+
+		In this example:
+		. The CallableExample class implements Callable and overrides the call method.
+		. The call method calculates the sum of numbers from 1 to 10 and returns the result.
+		. The main method uses an ExecutorService to submit the Callable task.
+		. The submit method returns a Future object.
+		. The get method of the Future object is used to retrieve the result (the sum) after the thread finishes execution.

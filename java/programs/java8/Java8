@@ -1,0 +1,158 @@
+JAVA 8 :
+--------
+	Java 8 marked a significant step forward for the Java language, introducing several powerful features that improved code readability, conciseness, and functional programming capabilities
+
+	1. Lambda Expressions:
+		. Lambda expressions provide a concise way to define anonymous functions. They eliminate the need for bulky anonymous inner classes, making code more compact and readable.
+		. Syntax: (parameters) -> { body }
+
+		Example --
+		// Traditional anonymous inner class
+		Comparator<Integer> comparator = new Comparator<Integer>() {
+			@Override
+			public int compare(Integer o1, Integer o2) {
+				return o1 - o2;
+			}
+		};
+
+		// Using lambda expression
+		Comparator<Integer> comparator = (a, b) -> a - b;
+
+
+	2. Functional Interfaces:
+		. Functional interface is an interface that contains exactly one abstract method. They are also known as Single Abstract Method (SAM) interfaces.
+
+		. Optional default and static methods:
+			. It can have any number of default and static methods. These methods provide default implementations or utility functions that can be reused across implementations.
+
+		. @FunctionalInterface annotation is not mandatory but recommended for functional interfaces. It improves code clarity.
+
+		. Java 8 introduced several built-in functional interfaces like Function (for functions that map one value to another), Predicate (for boolean-valued functions), Consumer (for functions that consume an argument), etc.
+
+
+	3. Stream API:
+		. The Stream API offers a powerful way to process collections of data in a declarative and functional style. It allows you to perform operations like filtering, mapping, and reducing on streams of elements without explicit loops.
+		. Streams are lazy, meaning operations are not executed until a terminal operation (e.g., count, collect) is called.
+
+		Example --
+		List<String> names = Arrays.asList("John", "Alice", "Bob");
+
+		// Filter names starting with A
+		List<String> filteredNames = names.stream()
+										 .filter(name -> name.startsWith("A"))
+										 .collect(Collectors.toList());
+
+		System.out.println(filteredNames); // Output: [Alice]
+
+
+		Java Streams follow a three-phased approach to process data:
+
+			1. Split: This phase involves creating the stream itself. You typically use a collection, an array, or a generator function as the data source. This source is then converted into a Stream object.
+
+			2. Apply: In this phase, you chain one or more intermediate operations onto the stream. These operations are lazily evaluated, meaning they are not executed until a terminal operation is called. Examples of intermediate operations include filter, map, and sorted.
+
+			3. Combine: Finally, you call a terminal operation on the stream. This terminal operation triggers the actual processing of the stream elements according to the specified logic. Terminal operations include forEach, collect, and count.
+
+
+	4. Default and Static Methods in Interfaces:
+		. Java 8 allows adding default and static methods to interfaces.
+		. Default methods provide a way to define default implementations for interface methods, enabling backward compatibility with existing code.
+		. Static methods can be used to define utility methods that don't require an object instance of the interface.
+
+		@FunctionalInterface
+		public interface Shape {
+			double calculateArea(); // Abstract method - needs implementation in implementing class
+
+			default void printInfo() { // Default method with implementation
+				System.out.println("This is a shape object.");
+			}
+
+			static double calculateTotalArea(Shape[] shapes) { // Static method - can be called directly using interface name
+				double totalArea = 0;
+				for (Shape shape : shapes) {
+					totalArea += shape.calculateArea();
+				}
+				return totalArea;
+			}
+		}
+		public class Circle implements Shape {
+			private double radius;
+
+			public Circle(double radius) {
+				this.radius = radius;
+			}
+
+			@Override
+			public double calculateArea() {
+				return Math.PI * radius * radius;
+			}
+
+			// Can override the default method if needed
+			@Override
+			public void printInfo() {
+				System.out.println("This is a circle object with radius: " + radius);
+			}
+		}
+		public class Main {
+			public static void main(String[] args) {
+				Circle circle1 = new Circle(5);
+				Circle circle2 = new Circle(3);
+
+				System.out.println("Circle 1 Area: " + circle1.calculateArea()); // Calling abstract method through object
+
+				circle1.printInfo(); // Calling default method through object (can be overridden)
+
+				System.out.println("Total Area of both circles: " + Shape.calculateTotalArea(new Shape[]{circle1, circle2})); // Calling static method directly using interface name
+			}
+		}
+
+
+	5. Optional Class:
+		The Optional class helps deal with null references in a safer and more elegant way. It provides methods to check for nullity, extract values if present, or provide alternative values in case of null.
+
+		Example --
+		// Traditional null check
+		String name = getCustomer().getName();  // Could be null
+		if (name != null) {
+			System.out.println("Customer name: " + name);
+		}
+
+		// Using Optional
+		Optional<String> optionalName = Optional.ofNullable(getCustomer().getName());
+		optionalName.ifPresent(name -> System.out.println("Customer name: " + name));
+
+		//using Stream api and Optional class and Lambda expression togather
+		getCustomer().stream()
+           .filter(Optional::isPresent) // Filter for non-null values using Optional::isPresent
+           .map(Optional::get)        // Extract the value from the Optional
+           .forEach(name -> System.out.println("Customer name: " + name)); // lambda expression
+
+
+		//using method references
+		getCustomer().getName().ifPresent(System.out::println);
+
+
+
+	6. Date and Time API:
+		. Java 8 introduced a revamped Date and Time API that's more intuitive and easier to use than the legacy java.util.Date class.
+		. It provides classes like LocalDate, LocalTime, and LocalDateTime for representing dates, times, and date-times, along with methods for manipulating and formatting them.
+
+		Example --
+		LocalDate today = LocalDate.now();
+		System.out.println("Today's date: " + today);
+
+		LocalTime currentTime = LocalTime.now();
+		System.out.println("Current time: " + currentTime);
+
+
+	7. Method References:
+		Method references provide a concise way to refer to existing methods without explicitly defining a lambda expression. They can be used for methods in classes or instances.
+
+		Example --
+		List<String> names = Arrays.asList("John", "Alice", "Bob");
+
+		// Using lambda expression
+		names.sort((a, b) -> a.compareTo(b));
+
+		// Using method reference
+		names.sort(String::compareTo);

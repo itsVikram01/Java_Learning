@@ -1,0 +1,25 @@
+Singleton class :
+A class which has only one instance created in heap memory.
+
+There should be no other way to create another instance of that class.
+
+	class Employee{
+		private Employee(){} // 1. private default constructor
+
+		private static volatile Employee object = null; // 2. static volatile object initialized to null.
+	   
+		public static Employee instance(){ // 3. Static method which return Employee object.
+			
+			if(object == null){ // 4. Create a new object if the object is not already created and return the object.
+			
+				synchronized(Employee.class){ // 5. Double Checked locking Pattern : checking null condition above and below synchronized method.
+					
+					if(object == null){ // 6. Create a new object if the object is not already created and return the object.
+						object = new Employee();
+					}
+				}
+			}
+			
+			return object;
+	   }
+	}

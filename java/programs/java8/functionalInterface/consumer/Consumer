@@ -1,0 +1,31 @@
+The Consumer interface in Java 8 is a functional interface that represents an operation which accepts a single input argument and returns no result. It's primarily used for performing actions on data, such as printing, modifying, or saving it.
+
+
+Key points:
+    . Functional interface: Contains only one abstract method, accept().
+    . No return value: Performs an operation on the input argument but doesn't return anything.
+    . Side effects: Often used for operations that produce side effects, like modifying objects or printing to the console.
+    . andThen() method: Can be used to chain multiple consumers together.
+
+Common Use Cases
+    . Printing to the console: Displaying information about an object.
+    . Modifying objects: Updating fields or values of an object.
+    . Saving data: Persisting data to a file or database.
+    . Performing actions: Triggering other operations based on the input.
+
+
+Additional Notes
+    . Consumer is often used in conjunction with streams for performing actions on elements.
+    . The andThen() method allows for creating complex consumer pipelines.
+
+    public class ConsumerExample {
+        public static void main(String[] args) {
+            Consumer<String> consumer = (name) -> System.out.println("Hello,  " + name + "!");
+            consumer.accept("Alice");
+
+            // Using andThen()
+            Consumer<String> consumer1 = name -> System.out.println("Processing: " + name);
+            Consumer<String> consumer2 = name -> System.out.println("Done processing: " + name);
+            consumer1.andThen(consumer2).accept("Bob");
+        }
+    }

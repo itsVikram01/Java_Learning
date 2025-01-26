@@ -1,0 +1,6 @@
+enum (short for "enumeration") is a special data type in programming that represents a collection of named values. These values are typically constants, and enum is used to define a variable that can hold only one of the predefined constants.
+
+Key Points:
+enum Day defines an enumeration with the constants SUNDAY, MONDAY, etc.
+The switch statement shows how to use an enum in decision-making.
+The values() method returns an array of all constants in the enum, allowing you to iterate through them.

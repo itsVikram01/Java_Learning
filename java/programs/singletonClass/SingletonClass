@@ -1,0 +1,60 @@
+Singleton class :
+-----------------
+	Class in which we can create only one OBJECT but it can be shared.
+
+
+	Understand this with the help of an example-:
+	---------------------------------------------
+	Consider the water jug in the office and if every employee wants that water then they will not create a new water jug for drinking water.They will use the existing one with their own reference as a glass. So programmatically it should be implemented as -
+
+	class WaterJug{
+        private WaterJug(){}
+
+        private int waterQuantity = 500;
+        private static WaterJug object = null;
+
+        public int getWater(int quantity){
+            waterQuantity -= quantity;
+            return quantity;
+        }
+        public static WaterJug getInstance(){
+            if(object == null){
+                object = new WaterJug();
+            }
+            return object;
+        }
+    }
+
+
+	In the above class, the Constructor is private so we cannot create the object of the class. But we can get the object by calling the method getInstance().
+	And the getInstance is static so it can be called without creating the object. And it returns the object.
+	Now with that object, we can call getWater() to get the water.
+
+	Waterjug glass1 = WaterJug.getInstance();
+	glass1.getWater(1);
+	We can get the single object using this getInstance(). And it is static, so it is a thread-safe singleton class.
+	Although there are many ways to create a thread-safe singleton class. So thread-safe classes can also be:
+
+	When singletons are written with double-checked locking, they can be thread-safe.
+	We can use static singletons that are initialized during class loading. Like we did in the above example.
+	But the most straightforward way to create a thread-safe singleton is to use Java enums.
+
+
+	OR
+
+	public class LazySingleton {
+
+        // Instance not created at the time of class loading
+        private static LazySingleton instance;
+
+        // Private constructor to prevent instantiation from other classes
+        private LazySingleton() { }
+
+        // Public method to provide access to the instance
+        public static LazySingleton getInstance() {
+            if (instance == null) {
+                instance = new LazySingleton();
+            }
+            return instance;
+        }
+    }

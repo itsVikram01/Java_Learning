@@ -1,0 +1,16 @@
+Windows:
+	1. Right-click on the JAR file and select "Open with."
+	2. If "Java(TM) Platform SE binary" is listed, select it.
+	3. If not, choose "Choose another app" and navigate to your Java installation directory (e.g., C:\Program Files\Java\jdk-17\bin\javaw.exe).
+	
+
+Linux:
+	1. Open a terminal and navigate to the directory containing the JAR file.
+	2. Use the following command: java -jar your_jar_file.jar
+	
+	
+	
+Command-Line Execution (Optional):
+	If you prefer command-line execution or encounter issues, use the following command in a terminal:
+	
+	java -jar your_jar_file.jar
