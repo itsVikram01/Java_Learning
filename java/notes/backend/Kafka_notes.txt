@@ -17,14 +17,115 @@ Kafka component :
 
 Producer : publisher is Producer.
 Consumer : subscriber is Consumer.
+
 Broker : Kafka broker is nothing but just a server. In simple word, A broker is just an intermediate entity that helps in message exchanges between a producer and a consumer.
+
 Cluster : There can be one or more brokers in the Kafka Cluster(broker1+broker2+broker3+... = Kafka Cluster)
+
 Topic : It specifies the category of the message or the classification of the message. Listeners can then just respond to the messsages that belongs the topics they are listening on.(Topic are just like database table)
+
 Partition : If any partion goes off the others partion are available to handle the load without any downtime. It increases perfoformance.
+
 Offset : In Kafka, the sequence no is assigned to each messages in each partion of a kafka topic are called Offsets.
+
 Consumer Groups : Consumer1+Consumer2+Consumer3+... = Consumer Groups
 
 Zookeeper : Zookeeper is a prerequisite for Kafka. Kafka is a distributed system, and it uses Zookeeper for coordination and to track the status of Kafka cluster nodes. It also keeps track of Kafka topics, partions, etc.
 
 
 
+Steps to run Apache kafka from terminal:
+-----------------------------------------
+Open kafka_2.12-3.7.0 folder in terminal.
+1. Start zookeeper-server-start.bat: //default zookeeper port - 2181
+	bin/windows/zookeeper-server-start.bat config/zookeeper.properties
+
+2. Start kafka-server-start.bat: // default kafka server/broker port - 9002
+	bin/windows/kafka-server-start.bat config/server.properties
+
+3. Create kafka-topics.bat : // create topics
+	bin/windows/kafka-topics.bat --bootstrap-server localhost:9002 --create --topic my-kafka-topic1 --partitions 3 --replication-factor 1
+
+
+	. View topic list :
+		bin/windows/kafka-topics.bat --bootstrap-server localhost:9002 --list
+
+	. Describe topic :
+		bin/windows/kafka-topics.bat --bootstrap-server localhost:9002 --describe --topic my-kafka-topic1
+
+4. Open Offset explorer
+	Create cluster --> <ClusterName>
+
+5. Start kafka-console-producer.bat : //producer
+	bin/windows/kafka-console-producer.bat --broker-list localhost:9002 --topic my-kafka-topic1
+
+	. Send message from .csv file : 
+		type C:\Users\vikyr\Downloads\users.csv | .\bin\windows\kafka-console-producer.bat --bootstrap-server localhost:9002 --topic my-kafka-topic1
+
+6. Start kafka-console-consumer.bat : //consumer
+	.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic my-kafka-topic1 --from-beginning
+	
+	
+	
+
+Steps to run Confluent kafka from terminal:
+-------------------------------------------
+Open confluent-7.6.1 folder in terminal.
+1. Start zookeeper-server-start.bat: //default zookeeper port - 2181
+	bin/windows/zookeeper-server-start.bat etc/kafka/zookeeper.properties
+
+2. Start kafka-server-start.bat: // default kafka server/broker port - 9002
+	bin/windows/kafka-server-start.bat etc/kafka/server.properties
+
+3. Create kafka-topics.bat : // create topics
+	bin/windows/kafka-topics.bat --bootstrap-server localhost:9002 --create --topic my-kafka-topic1 --partitions 3 --replication-factor 1
+
+
+	. View topic list :
+		bin/windows/kafka-topics.bat --bootstrap-server localhost:9002 --list
+
+	. Describe topic :
+		bin/windows/kafka-topics.bat --bootstrap-server localhost:9002 --describe --topic my-kafka-topic1
+
+4. Open Offset explorer
+	Create cluster --> <ClusterName>
+
+5. Start kafka-console-producer.bat : //producer
+	bin/windows/kafka-console-producer.bat --broker-list localhost:9002 --topic my-kafka-topic1
+
+	. Send message from .csv file : 
+		type C:\Users\vikyr\Downloads\users.csv | .\bin\windows\kafka-console-producer.bat --bootstrap-server localhost:9002 --topic my-kafka-topic1
+
+6. Start kafka-console-consumer.bat : //consumer
+	.\bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic my-kafka-topic1 --from-beginning
+	
+	
+	
+Open InteliJ Idea: create folder kafka-installation-docker-setup.
+docker-compose.yml : 
+--------------------
+version: '3.8'
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+    container_name: zookeeper
+    ports:
+      - "2181:2181"
+
+  kafka:
+    image: wurstmeister/kafka
+    container_name: kafka
+    ports:
+      - "9092:9002"
+
+    environment:
+      KAFKA_ADVERTISED_HOST_NAME: localhost
+      KAFKA_ZOO
+
+
+
+
+
+
+PS E:\Kafka\kafka-installation-docker-setup> docker compose -f docker-compose.yml up -d

@@ -12,3 +12,25 @@ git branch -m abc master
 git fetch origin
 git branch -u origin/master master
 git remote set-head origin -a
+
+=======================================================
+
+C:\Users\vikyr>git config --global user.name itsVikram01
+
+C:\Users\vikyr>git config --global user.email "vikyrajvikram95@gmail.com"
+
+C:\Users\vikyr>E:
+
+E:\>cd workspace\InteliJ_workspace\Java_Learning
+
+E:\workspace\InteliJ_workspace\Java_Learning>git init
+
+E:\workspace\InteliJ_workspace\Java_Learning>git add .
+
+E:\workspace\InteliJ_workspace\Java_Learning>git commit -m "Initial commit"
+
+E:\workspace\InteliJ_workspace\Java_Learning>git remote add origin https://github.com/itsVikram01/Java_Learning.git
+
+E:\workspace\InteliJ_workspace\Java_Learning>git branch -M main
+
+E:\workspace\InteliJ_workspace\Java_Learning>git push -u origin main
