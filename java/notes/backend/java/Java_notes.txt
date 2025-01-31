@@ -274,10 +274,12 @@ OOPS :
 		Polymorphism can be achieved by --
 
 			(1). Compile-time polymorphism(Overloading / Static Binding / Early Binding) :
-				-->Two methods said to be overloaded if and only if both have same name but different signature(argument no or type). 
+				-->Two methods said to be overloaded if and only if both have same name but different signature(argument no or type) in same class. 
 					eg- abs(int i){}
 						abs(long l){}
 						abs(float f){}
+						
+					Overloading can't happen in different classes.
 						
 			(2). Run-time polymorphism(Overriding / Dynamic Binding / Late Binding) : 
 				--> Overriding is a mechanism in which subclass provide its own implementation for a method that is already defined in its parent class.
