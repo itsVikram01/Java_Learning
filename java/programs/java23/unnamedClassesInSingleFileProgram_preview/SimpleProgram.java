@@ -1,4 +1,4 @@
-package java23.unnamedClassesInSingleFileProgram_preview;
+package programs.java23.unnamedClassesInSingleFileProgram_preview;
 
 // Single-file program
 /*

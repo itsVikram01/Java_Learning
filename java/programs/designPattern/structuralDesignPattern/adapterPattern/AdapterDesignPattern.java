@@ -1,6 +1,5 @@
+package programs.designPattern.structuralDesignPattern.adapterPattern;
 /*
-package designPattern.structuralDesignPattern.adapterPattern;
-
 interface MediaPlayer {
     void play(String audioType, String fileName);
 }

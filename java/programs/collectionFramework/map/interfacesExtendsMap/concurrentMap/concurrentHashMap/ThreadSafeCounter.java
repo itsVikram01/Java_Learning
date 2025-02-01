@@ -1,4 +1,4 @@
-package java.collectionFramework.map.interfacesExtendsMap.concurrentMap.concurrentHashMap;
+package programs.collectionFramework.map.interfacesExtendsMap.concurrentMap.concurrentHashMap;
 
 import java.util.concurrent.ConcurrentHashMap;
 

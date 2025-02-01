@@ -1,4 +1,4 @@
-package java.dsa.algorithms.sorting.randomQuickSort;
+package programs.dsa.algorithms.sorting.randomQuickSort;
 
 import java.util.Random;
 

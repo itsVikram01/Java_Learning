@@ -1,4 +1,4 @@
-package java.collectionFramework.queue;
+package programs.collectionFramework.queue;
 
 import java.util.*;
 import java.util.concurrent.ConcurrentLinkedQueue;

@@ -1,4 +1,4 @@
-package num;
+package programs.num;
 
 public class Fibonacci_011235 {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.stack;
+package programs.dsa.dataStructures.stack;
 
 import java.util.Stack;
 

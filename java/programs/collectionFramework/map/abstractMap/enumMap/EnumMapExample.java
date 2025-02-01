@@ -1,4 +1,4 @@
-package java.collectionFramework.map.abstractMap.enumMap;
+package programs.collectionFramework.map.abstractMap.enumMap;
 
 import java.util.EnumMap;
 

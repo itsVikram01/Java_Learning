@@ -1,4 +1,4 @@
-package java8.functionalInterface.customFunctionalInterface;
+package programs.java8.functionalInterface.customFunctionalInterface;
 
 public class FunctionalInterfaceExample {
     public static void main(String[] args) {

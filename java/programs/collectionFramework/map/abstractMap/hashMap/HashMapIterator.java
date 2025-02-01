@@ -1,4 +1,4 @@
-package java.collectionFramework.map.abstractMap.hashMap;
+package programs.collectionFramework.map.abstractMap.hashMap;
 
 import java.util.HashMap;
 import java.util.Iterator;

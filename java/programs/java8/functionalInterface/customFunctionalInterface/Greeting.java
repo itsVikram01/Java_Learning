@@ -1,4 +1,4 @@
-package java8.functionalInterface.customFunctionalInterface;
+package programs.java8.functionalInterface.customFunctionalInterface;
 
 @FunctionalInterface
 interface Greeting {

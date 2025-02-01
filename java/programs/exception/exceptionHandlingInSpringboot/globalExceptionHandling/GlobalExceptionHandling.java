@@ -1,4 +1,4 @@
-package java.exception.exceptionHandlingInSpringboot.globalExceptionHandling;
+package programs.exception.exceptionHandlingInSpringboot.globalExceptionHandling;
 
 //@ControllerAdvice
 public class GlobalExceptionHandling {

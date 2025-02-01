@@ -1,4 +1,4 @@
-package java.dsa.algorithms.graph.depthFirstSearch;
+package programs.dsa.algorithms.graph.depthFirstSearch;
 
 import java.util.*;
 

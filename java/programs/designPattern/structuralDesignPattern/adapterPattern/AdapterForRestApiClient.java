@@ -1,6 +1,5 @@
+package programs.designPattern.structuralDesignPattern.adapterPattern;
 /*
-package designPattern.structuralDesignPattern.adapterPattern;
-
 interface RestClient {
     String get(String url);
 }

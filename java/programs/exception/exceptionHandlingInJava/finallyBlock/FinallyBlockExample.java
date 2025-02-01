@@ -1,4 +1,4 @@
-package java.exception.exceptionHandlingInJava.finallyBlock;
+package programs.exception.exceptionHandlingInJava.finallyBlock;
 
 public class FinallyBlockExample {
     public static void main(String[] args) {

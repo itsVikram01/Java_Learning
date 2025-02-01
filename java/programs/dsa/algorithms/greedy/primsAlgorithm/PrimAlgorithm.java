@@ -1,4 +1,4 @@
-package java.dsa.algorithms.greedy.primsAlgorithm;
+package programs.dsa.algorithms.greedy.primsAlgorithm;
 
 import java.util.Arrays;
 

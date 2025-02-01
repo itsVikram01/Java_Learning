@@ -1,4 +1,4 @@
-package java.exception.exceptionHandlingInSpringboot.extendingResponseEntityExceptionHandler;
+package programs.exception.exceptionHandlingInSpringboot.extendingResponseEntityExceptionHandler;
 
 /*
 @RestControllerAdvice

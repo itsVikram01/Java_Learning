@@ -1,4 +1,4 @@
-package java23.keyEncapsulationMechanism_finalized;
+package programs.java23.keyEncapsulationMechanism_finalized;
 
 import javax.crypto.KeyAgreement;
 import java.security.KeyPair;

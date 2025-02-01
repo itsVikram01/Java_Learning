@@ -1,4 +1,4 @@
-package java.dsa.algorithms.sorting.radixSort;
+package programs.dsa.algorithms.sorting.radixSort;
 
 public class RadixSort {
     public static void radixSort(int[] arr) {

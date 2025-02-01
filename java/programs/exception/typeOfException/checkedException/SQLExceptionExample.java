@@ -1,4 +1,4 @@
-package java.exception.typeOfException.checkedException;
+package programs.exception.typeOfException.checkedException;
 
 public class SQLExceptionExample {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package java.collectionFramework.map.classesImplementsMap.linkedHashMap;
+package programs.collectionFramework.map.classesImplementsMap.linkedHashMap;
 
 public class LinkedHashMapInternalImpl<K, V> {
     private static final int INITIAL_CAPACITY = 16;

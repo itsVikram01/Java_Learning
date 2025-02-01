@@ -1,4 +1,4 @@
-package java.interfaces.future;
+package programs.interfaces.future;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;

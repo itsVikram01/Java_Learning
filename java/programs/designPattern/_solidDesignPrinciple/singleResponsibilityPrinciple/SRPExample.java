@@ -1,4 +1,4 @@
-package java.designPattern._solidDesignPrinciple.singleResponsibilityPrinciple;
+package programs.designPattern._solidDesignPrinciple.singleResponsibilityPrinciple;
 
 // Bad Example (violates SRP)
 /*class User {

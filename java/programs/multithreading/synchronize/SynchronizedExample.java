@@ -1,4 +1,4 @@
-package multithreading.synchronize;
+package programs.multithreading.synchronize;
 
 public class SynchronizedExample {
     // MutualExclusionPriority : synchronized provides mutual exclusion (only one thread at a time in a critical section).

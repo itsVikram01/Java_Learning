@@ -1,4 +1,4 @@
-package java23.scopedValue_Finalize;
+package programs.java23.scopedValue_Finalize;
 
 /*public class ScopedValuesExample {
     private static final ScopedValue<String> CURRENT_USER = ScopedValue.newInstance();

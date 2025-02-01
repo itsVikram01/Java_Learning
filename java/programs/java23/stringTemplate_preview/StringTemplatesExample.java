@@ -1,4 +1,4 @@
-package java23.stringTemplate_preview;
+package programs.java23.stringTemplate_preview;
 
 //String templates simplify dynamic string composition with placeholders.
 /*public class StringTemplatesExample {

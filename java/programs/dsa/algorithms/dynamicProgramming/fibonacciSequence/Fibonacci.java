@@ -1,4 +1,4 @@
-package java.dsa.algorithms.dynamicProgramming.fibonacciSequence;
+package programs.dsa.algorithms.dynamicProgramming.fibonacciSequence;
 
 public class Fibonacci {
     public static int fibonacci(int n) {

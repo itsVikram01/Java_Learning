@@ -1,4 +1,4 @@
-package java.exception.error;
+package programs.exception.error;
 
 //OutOfMemoryErrorExample
 public class ErrorExample {

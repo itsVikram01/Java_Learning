@@ -1,4 +1,4 @@
-package num.patterns;
+package programs.num.patterns;
 
 public class StarPatternMirror {
     public static void main(String[] args) {

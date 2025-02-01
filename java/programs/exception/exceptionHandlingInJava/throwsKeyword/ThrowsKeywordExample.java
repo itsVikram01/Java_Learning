@@ -1,4 +1,4 @@
-package java.exception.exceptionHandlingInJava.throwsKeyword;
+package programs.exception.exceptionHandlingInJava.throwsKeyword;
 
 public class ThrowsKeywordExample {
     public static void main(String[] args) throws NullPointerException {

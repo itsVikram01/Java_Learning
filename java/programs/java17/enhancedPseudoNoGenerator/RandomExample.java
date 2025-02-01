@@ -1,4 +1,4 @@
-package java17.enhancedPseudoNoGenerator;
+package programs.java17.enhancedPseudoNoGenerator;
 
 import java.util.random.RandomGenerator;
 

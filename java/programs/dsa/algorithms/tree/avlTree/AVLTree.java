@@ -1,4 +1,4 @@
-package java.dsa.algorithms.tree.avlTree;
+package programs.dsa.algorithms.tree.avlTree;
 
 class AVLTree {
     public static int height(Node node) {

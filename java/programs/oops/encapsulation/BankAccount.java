@@ -1,4 +1,4 @@
-package oops.encapsulation;
+package programs.oops.encapsulation;
 
 public class BankAccount {
     private double balance; // Private attribute to store account balance

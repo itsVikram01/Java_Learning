@@ -1,4 +1,4 @@
-package java.exception.exceptionHandlingInSpringboot.usingRestControllerAdvice;
+package programs.exception.exceptionHandlingInSpringboot.usingRestControllerAdvice;
 
 import java.time.LocalDateTime;
 

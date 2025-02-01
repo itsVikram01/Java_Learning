@@ -1,4 +1,4 @@
-package oops.inheritance.hierarchical;
+package programs.oops.inheritance.hierarchical;
 
 public class Circle extends Shape {
     public void roll() {

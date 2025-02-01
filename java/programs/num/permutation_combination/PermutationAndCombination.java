@@ -1,4 +1,4 @@
-package num.permutation_combination;
+package programs.num.permutation_combination;
 
 import java.util.ArrayList;
 import java.util.List;

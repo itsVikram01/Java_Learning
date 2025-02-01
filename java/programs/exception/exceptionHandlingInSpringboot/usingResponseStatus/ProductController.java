@@ -1,4 +1,4 @@
-package java.exception.exceptionHandlingInSpringboot.usingResponseStatus;
+package programs.exception.exceptionHandlingInSpringboot.usingResponseStatus;
 
 
 //@RestController

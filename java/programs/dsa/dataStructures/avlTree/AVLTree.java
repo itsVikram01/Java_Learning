@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.avlTree;
+package programs.dsa.dataStructures.avlTree;
 
 class AVLTree {
     private Node root;

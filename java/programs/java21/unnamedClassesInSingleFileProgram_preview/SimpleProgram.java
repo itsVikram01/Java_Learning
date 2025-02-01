@@ -1,4 +1,4 @@
-package java21.unnamedClassesInSingleFileProgram_preview;
+package programs.java21.unnamedClassesInSingleFileProgram_preview;
 
 // Single-file program
 /*

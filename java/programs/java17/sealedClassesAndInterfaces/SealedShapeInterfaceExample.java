@@ -1,4 +1,4 @@
-package java17.sealedClassesAndInterfaces;
+package programs.java17.sealedClassesAndInterfaces;
 
 sealed interface Shapes permits Circles, Rectangles {
     String describe();

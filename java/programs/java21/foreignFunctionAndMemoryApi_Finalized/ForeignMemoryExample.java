@@ -1,6 +1,5 @@
+package programs.java21.foreignFunctionAndMemoryApi_Finalized;
 /*
-package java21.foreignFunctionAndMemoryApi_Finalized;
-
 import java.lang.foreign.*;
 import java.lang.invoke.*;
 

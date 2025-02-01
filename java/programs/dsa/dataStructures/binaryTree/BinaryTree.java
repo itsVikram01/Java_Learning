@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.binaryTree;
+package programs.dsa.dataStructures.binaryTree;
 
 class BinaryTree {
     private Node root;

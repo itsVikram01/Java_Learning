@@ -1,4 +1,4 @@
-package java.collectionFramework.map.classesImplementsMap.identityHashMap;
+package programs.collectionFramework.map.classesImplementsMap.identityHashMap;
 
 import java.util.IdentityHashMap;
 import java.util.Map;

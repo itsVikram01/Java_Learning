@@ -1,4 +1,4 @@
-package java.interfaces.supplier;
+package programs.interfaces.supplier;
 
 import java.util.ArrayList;
 import java.util.function.Supplier;

@@ -1,4 +1,4 @@
-package java.dsa.algorithms.sorting.countingSort;
+package programs.dsa.algorithms.sorting.countingSort;
 
 public class CountingSortSimple {
     public static void countingSort(int[] arr) {

@@ -1,4 +1,4 @@
-package java.designPattern._solidDesignPrinciple.openClosedPrinciple;
+package programs.designPattern._solidDesignPrinciple.openClosedPrinciple;
 
 // Bad Example (violates OCP)
 /*class ShapeCalculator {

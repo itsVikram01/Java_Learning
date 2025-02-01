@@ -1,4 +1,4 @@
-package java17.patternMatchingForSwitch_preview;
+package programs.java17.patternMatchingForSwitch_preview;
 
 // If you can't enable preview features, you can achieve similar functionality using instanceof checks in Java 17:
 public class InstanceofExample {

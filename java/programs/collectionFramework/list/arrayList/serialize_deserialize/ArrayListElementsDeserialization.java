@@ -1,4 +1,4 @@
-package java.collectionFramework.list.arrayList.serialize_deserialize;
+package programs.collectionFramework.list.arrayList.serialize_deserialize;
 
 import java.io.FileInputStream;
 import java.io.IOException;

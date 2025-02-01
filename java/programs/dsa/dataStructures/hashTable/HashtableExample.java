@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.hashTable;
+package programs.dsa.dataStructures.hashTable;
 
 import java.util.Hashtable;
 import java.util.Map;

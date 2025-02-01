@@ -1,4 +1,4 @@
-package java.dsa.algorithms.greedy.dijkstrasAlgorithm;
+package programs.dsa.algorithms.greedy.dijkstrasAlgorithm;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package num.swapno;
+package programs.num.swapno;
 
 public class SwapTwoNo {
     public static void main(String[] args) {

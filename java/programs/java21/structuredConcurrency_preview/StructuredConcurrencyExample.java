@@ -1,4 +1,4 @@
-package java21.structuredConcurrency_preview;
+package programs.java21.structuredConcurrency_preview;
 
 /*import java.util.concurrent.*;
 import jdk.incubator.concurrent.StructuredTaskScope;

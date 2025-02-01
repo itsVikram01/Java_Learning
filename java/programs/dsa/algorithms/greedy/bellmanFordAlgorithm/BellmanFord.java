@@ -1,4 +1,4 @@
-package java.dsa.algorithms.greedy.bellmanFordAlgorithm;
+package programs.dsa.algorithms.greedy.bellmanFordAlgorithm;
 
 import java.util.Arrays;
 

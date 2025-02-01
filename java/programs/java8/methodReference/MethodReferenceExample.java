@@ -1,4 +1,4 @@
-package java8.methodReference;
+package programs.java8.methodReference;
 
 import java.util.Arrays;
 import java.util.List;

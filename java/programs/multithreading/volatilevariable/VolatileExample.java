@@ -1,4 +1,4 @@
-package multithreading.volatilevariable;
+package programs.multithreading.volatilevariable;
 
 public class VolatileExample {
     // VisibilityPriority : volatile ensures visibility without locking.

@@ -1,4 +1,4 @@
-package num.add;
+package programs.num.add;
 
 public class AddTwoVariableWithoutUsingThird {
     public static void main(String[] args) {

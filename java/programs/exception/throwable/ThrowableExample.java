@@ -1,4 +1,4 @@
-package java.exception.throwable;
+package programs.exception.throwable;
 
 //ArithmeticException
 public class ThrowableExample {

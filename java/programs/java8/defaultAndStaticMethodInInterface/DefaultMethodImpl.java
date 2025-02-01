@@ -1,4 +1,4 @@
-package java8.defaultAndStaticMethodInInterface;
+package programs.java8.defaultAndStaticMethodInInterface;
 
 /*interface MyInterface1 {
     void existingMethod();

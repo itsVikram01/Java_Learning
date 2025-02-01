@@ -1,4 +1,4 @@
-package num.reverse;
+package programs.num.reverse;
 
 
 import static java.lang.System.out;

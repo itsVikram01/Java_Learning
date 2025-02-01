@@ -1,4 +1,4 @@
-package multithreading.diamondproblem;
+package programs.multithreading.diamondproblem;
 
 interface A {
     default void display() {

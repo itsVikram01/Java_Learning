@@ -1,4 +1,4 @@
-package java.designPattern.behavioralDesignPattern.strategyPattern;
+package programs.designPattern.behavioralDesignPattern.strategyPattern;
 
 interface PaymentStrategy {
     void pay(int amount);

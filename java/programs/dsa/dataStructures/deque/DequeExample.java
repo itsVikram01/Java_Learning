@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.deque;
+package programs.dsa.dataStructures.deque;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

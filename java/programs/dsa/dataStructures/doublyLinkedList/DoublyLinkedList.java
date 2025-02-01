@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.doublyLinkedList;
+package programs.dsa.dataStructures.doublyLinkedList;
 
 class DoublyLinkedList {
     private Node head;

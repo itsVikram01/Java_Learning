@@ -1,4 +1,4 @@
-package java.dsa.algorithms.tree.binarySearchTree;
+package programs.dsa.algorithms.tree.binarySearchTree;
 
 class BST {
     public static Node insert(Node root, int key) {

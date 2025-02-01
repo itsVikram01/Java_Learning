@@ -1,4 +1,4 @@
-package java.interfaces.runnable;
+package programs.interfaces.runnable;
 
 public class MyRunnable implements Runnable {
     public static void main(String[] args) {

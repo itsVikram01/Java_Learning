@@ -1,4 +1,4 @@
-package java.collectionFramework.map.classesImplementsMap.hashTable.properties;
+package programs.collectionFramework.map.classesImplementsMap.hashTable.properties;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;

@@ -1,4 +1,4 @@
-package java.collectionFramework.map.treeMap;
+package programs.collectionFramework.map.treeMap;
 
 import java.util.Iterator;
 import java.util.Map;

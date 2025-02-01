@@ -1,4 +1,4 @@
-package java.collectionFramework.map.abstractMap.hashTable;
+package programs.collectionFramework.map.abstractMap.hashTable;
 
 import java.util.Hashtable;
 

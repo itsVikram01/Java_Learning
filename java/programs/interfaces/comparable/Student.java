@@ -1,4 +1,4 @@
-package java.interfaces.comparable;
+package programs.interfaces.comparable;
 
 class Student implements Comparable<Student> {
     int rollno;

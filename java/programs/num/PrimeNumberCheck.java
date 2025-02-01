@@ -1,4 +1,4 @@
-package num;
+package programs.num;
 
 public class PrimeNumberCheck {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.array;
+package programs.dsa.dataStructures.array;
 
 public class ArrayExample {
     public static void main(String[] args) {

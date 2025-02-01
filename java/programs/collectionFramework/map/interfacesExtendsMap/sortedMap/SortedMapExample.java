@@ -1,4 +1,4 @@
-package java.collectionFramework.map.interfacesExtendsMap.sortedMap;
+package programs.collectionFramework.map.interfacesExtendsMap.sortedMap;
 
 public interface SortedMapExample {
 }

@@ -1,4 +1,4 @@
-package java8.stream.parallelStream;
+package programs.java8.stream.parallelStream;
 
 import java.util.stream.IntStream;
 

@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.graph;
+package programs.dsa.dataStructures.graph;
 
 import java.util.*;
 

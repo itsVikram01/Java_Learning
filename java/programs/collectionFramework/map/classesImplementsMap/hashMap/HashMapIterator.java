@@ -1,4 +1,4 @@
-package java.collectionFramework.map.classesImplementsMap.hashMap;
+package programs.collectionFramework.map.classesImplementsMap.hashMap;
 
 import java.util.HashMap;
 import java.util.Iterator;

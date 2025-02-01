@@ -1,4 +1,4 @@
-package java.dsa.algorithms.dynamicProgramming.knapsackProblem;
+package programs.dsa.algorithms.dynamicProgramming.knapsackProblem;
 
 public class Knapsack {
     public static int knapsack(int[] weights, int[] values, int capacity) {

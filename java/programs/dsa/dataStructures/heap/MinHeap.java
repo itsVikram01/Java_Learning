@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.heap;
+package programs.dsa.dataStructures.heap;
 
 import java.util.ArrayList;
 

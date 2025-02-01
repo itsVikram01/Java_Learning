@@ -1,4 +1,4 @@
-package oops.polymorphism.methodoverriding;
+package programs.oops.polymorphism.methodoverriding;
 
 class Animal {
     // Method to be overridden

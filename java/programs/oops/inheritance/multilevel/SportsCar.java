@@ -1,4 +1,4 @@
-package oops.inheritance.multilevel;
+package programs.oops.inheritance.multilevel;
 
 public class SportsCar extends Car {
     public void accelerate() {

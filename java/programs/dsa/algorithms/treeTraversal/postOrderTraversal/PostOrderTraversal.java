@@ -1,4 +1,4 @@
-package java.dsa.algorithms.treeTraversal.postOrderTraversal;
+package programs.dsa.algorithms.treeTraversal.postOrderTraversal;
 
 class PostOrderTraversal {
     public static void postOrder(Node root) {

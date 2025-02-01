@@ -1,4 +1,4 @@
-package java17.sealedClassesAndInterfaces;
+package programs.java17.sealedClassesAndInterfaces;
 
 // Sealed classes restrict which other classes or interfaces can extend or implement them.
 sealed class Shape permits Circle, Rectangle {

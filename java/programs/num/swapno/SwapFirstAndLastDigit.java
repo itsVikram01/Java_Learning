@@ -1,4 +1,4 @@
-package num.swapno;
+package programs.num.swapno;
 
 
 import static java.lang.System.out;

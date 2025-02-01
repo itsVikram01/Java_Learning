@@ -1,4 +1,4 @@
-package java21.virtualThread_finalized;
+package programs.java21.virtualThread_finalized;
 
 // Virtual threads allow lightweight and scalable thread management, enabling high-concurrency applications.
 /*public class VirtualThreadsExample {

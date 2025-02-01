@@ -1,4 +1,4 @@
-package java.designPattern.creationalDesignPattern.singletonPattern;
+package programs.designPattern.creationalDesignPattern.singletonPattern;
 
 public class Singleton {
     private static Singleton instance;

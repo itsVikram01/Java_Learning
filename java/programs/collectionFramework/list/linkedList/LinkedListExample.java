@@ -1,4 +1,4 @@
-package java.collectionFramework.list.linkedList;
+package programs.collectionFramework.list.linkedList;
 
 public class LinkedListExample {
 

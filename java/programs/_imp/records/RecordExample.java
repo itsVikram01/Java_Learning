@@ -1,4 +1,4 @@
-package java._imp.records;
+package programs._imp.records;
 
 // record in Java is a special kind of class introduced in Java 14 as a preview feature (and made permanent in Java 16).
 // Records are a quick way to create classes that are meant to hold immutable data.

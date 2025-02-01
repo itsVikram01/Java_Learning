@@ -1,4 +1,4 @@
-package java.exception.exceptionHandlingInSpringboot.usingResponseStatus;
+package programs.exception.exceptionHandlingInSpringboot.usingResponseStatus;
 
 //@ResponseStatus(HttpStatus.NOT_FOUND)
 public class ResponseStatusExample extends RuntimeException {

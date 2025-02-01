@@ -1,4 +1,4 @@
-package java.collectionFramework.map.interfacesExtendsMap.sortedMap.navigableMap;
+package programs.collectionFramework.map.interfacesExtendsMap.sortedMap.navigableMap;
 
 public interface NavigableMap {
 }

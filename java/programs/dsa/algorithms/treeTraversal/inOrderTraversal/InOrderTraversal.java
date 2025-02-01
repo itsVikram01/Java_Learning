@@ -1,4 +1,4 @@
-package java.dsa.algorithms.treeTraversal.inOrderTraversal;
+package programs.dsa.algorithms.treeTraversal.inOrderTraversal;
 
 class InOrderTraversal {
     public static void inOrder(Node root) {

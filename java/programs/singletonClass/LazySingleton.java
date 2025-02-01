@@ -1,4 +1,4 @@
-package singletonClass;
+package programs.singletonClass;
 
 public class LazySingleton {
 

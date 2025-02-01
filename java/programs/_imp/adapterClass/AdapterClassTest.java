@@ -1,4 +1,4 @@
-package java._imp.adapterClass;
+package programs._imp.adapterClass;
 /* Interface are collection of abstract methods and constant fields which are any Service Requirement Specification(SRS).
 It does not provide implementation of any methods.
 To define an interface in java we use "interface" keyword followed by interface name. */

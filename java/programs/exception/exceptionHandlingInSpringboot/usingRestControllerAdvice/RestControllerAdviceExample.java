@@ -1,4 +1,4 @@
-package java.exception.exceptionHandlingInSpringboot.usingRestControllerAdvice;
+package programs.exception.exceptionHandlingInSpringboot.usingRestControllerAdvice;
 
 //@RestControllerAdvice
 public class RestControllerAdviceExample {

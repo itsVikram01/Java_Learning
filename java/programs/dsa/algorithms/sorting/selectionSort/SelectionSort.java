@@ -1,4 +1,4 @@
-package java.dsa.algorithms.sorting.selectionSort;
+package programs.dsa.algorithms.sorting.selectionSort;
 
 public class SelectionSort {
     public static void main(String[] args) {

@@ -1,4 +1,4 @@
-package java17.patternMatchingForSwitch_preview;
+package programs.java17.patternMatchingForSwitch_preview;
 
 // Patterns in switch are not supported at language level '17'.
 // Pattern Matching for switch was introduced as a preview feature in Java 17, meaning it is not enabled by default in the standard language level.

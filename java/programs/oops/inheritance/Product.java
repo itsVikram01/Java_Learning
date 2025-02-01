@@ -1,4 +1,4 @@
-package oops.inheritance;
+package programs.oops.inheritance;
 
 public class Product {
     private final String name = "abc";

@@ -1,4 +1,4 @@
-package java.designPattern._solidDesignPrinciple.dependencyInversionPrinciple;
+package programs.designPattern._solidDesignPrinciple.dependencyInversionPrinciple;
 
 // Bad Example (violates DIP)
 /*class Car {

@@ -1,4 +1,4 @@
-package java.collectionFramework.map.classesImplementsMap.hashMap.serialize_deserialize;
+package programs.collectionFramework.map.classesImplementsMap.hashMap.serialize_deserialize;
 
 import java.io.FileOutputStream;
 import java.io.IOException;

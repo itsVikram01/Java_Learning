@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.set;
+package programs.dsa.dataStructures.set;
 
 import java.util.HashSet;
 import java.util.Set;

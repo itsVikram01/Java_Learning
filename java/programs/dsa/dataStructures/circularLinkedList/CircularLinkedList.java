@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.circularLinkedList;
+package programs.dsa.dataStructures.circularLinkedList;
 
 class CircularLinkedList {
     private Node head;

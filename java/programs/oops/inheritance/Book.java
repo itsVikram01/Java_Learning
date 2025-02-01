@@ -1,4 +1,4 @@
-package oops.inheritance;
+package programs.oops.inheritance;
 
 public class Book extends Product {
     // Getters and Setters for author and numPages

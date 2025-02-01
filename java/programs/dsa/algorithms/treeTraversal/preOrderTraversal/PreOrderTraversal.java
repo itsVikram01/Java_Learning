@@ -1,4 +1,4 @@
-package java.dsa.algorithms.treeTraversal.preOrderTraversal;
+package programs.dsa.algorithms.treeTraversal.preOrderTraversal;
 
 class PreOrderTraversal {
     public static void preOrder(Node root) {

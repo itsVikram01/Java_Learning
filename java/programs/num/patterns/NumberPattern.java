@@ -1,4 +1,4 @@
-package num.patterns;
+package programs.num.patterns;
 
 import java.util.Scanner;
 

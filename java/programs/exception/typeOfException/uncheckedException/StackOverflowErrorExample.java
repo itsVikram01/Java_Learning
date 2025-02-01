@@ -1,4 +1,4 @@
-package java.exception.typeOfException.uncheckedException;
+package programs.exception.typeOfException.uncheckedException;
 
 public class StackOverflowErrorExample {
     public static void main(String[] args) {

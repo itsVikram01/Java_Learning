@@ -1,4 +1,4 @@
-package java.dsa.algorithms.sorting.insertionSort;
+package programs.dsa.algorithms.sorting.insertionSort;
 
 public class InsertionSort {
     public static void main(String[] args) {

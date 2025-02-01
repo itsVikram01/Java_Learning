@@ -1,4 +1,4 @@
-package java.designPattern.creationalDesignPattern.singletonPattern;
+package programs.designPattern.creationalDesignPattern.singletonPattern;
 
 
 import java.util.HashMap;

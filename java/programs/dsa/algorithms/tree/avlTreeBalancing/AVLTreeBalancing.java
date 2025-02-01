@@ -1,4 +1,4 @@
-package java.dsa.algorithms.tree.avlTreeBalancing;
+package programs.dsa.algorithms.tree.avlTreeBalancing;
 
 class AVLTreeBalancing {
     // Get the height of a node

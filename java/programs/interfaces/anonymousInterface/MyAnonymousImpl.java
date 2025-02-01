@@ -1,4 +1,4 @@
-package java.interfaces.anonymousInterface;
+package programs.interfaces.anonymousInterface;
 
 interface MyAnonymousInterface {
     // anonymous interface can have 2 or more than 2 methods unlike functional interface which have only one abstract method.

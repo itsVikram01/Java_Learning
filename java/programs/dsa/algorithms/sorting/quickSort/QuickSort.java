@@ -1,4 +1,4 @@
-package java.dsa.algorithms.sorting.quickSort;
+package programs.dsa.algorithms.sorting.quickSort;
 
 public class QuickSort {
     public static void quickSort(int[] arr, int low, int high) {

@@ -1,4 +1,4 @@
-package java.collectionFramework.map.interfacesExtendsMap.concurrentNavigableMap;
+package programs.collectionFramework.map.interfacesExtendsMap.concurrentNavigableMap;
 
 import java.util.concurrent.ConcurrentNavigableMap;
 import java.util.concurrent.ConcurrentSkipListMap;

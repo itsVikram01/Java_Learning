@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.redBlackTree;
+package programs.dsa.dataStructures.redBlackTree;
 
 class RedBlackTree {
     private Node root;

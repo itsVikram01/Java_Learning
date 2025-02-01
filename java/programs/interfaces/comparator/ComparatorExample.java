@@ -1,4 +1,4 @@
-package java.interfaces.comparator;
+package programs.interfaces.comparator;
 
 import java.util.ArrayList;
 import java.util.Comparator;

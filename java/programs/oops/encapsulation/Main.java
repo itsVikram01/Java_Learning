@@ -1,4 +1,4 @@
-package oops.encapsulation;
+package programs.oops.encapsulation;
 
 public class Main {
     public static void main(String[] args) {

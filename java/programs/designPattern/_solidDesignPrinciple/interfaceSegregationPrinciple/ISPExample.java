@@ -1,4 +1,4 @@
-package java.designPattern._solidDesignPrinciple.interfaceSegregationPrinciple;
+package programs.designPattern._solidDesignPrinciple.interfaceSegregationPrinciple;
 
 // Bad Example (violates ISP)
 /*interface MultifunctionalDevice {

@@ -1,4 +1,4 @@
-package java8.functionalInterface.supplier;
+package programs.java8.functionalInterface.supplier;
 
 import java.util.function.Supplier;
 

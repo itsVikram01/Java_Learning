@@ -1,4 +1,4 @@
-package java23.patternMatchingForSwitch_finalized;
+package programs.java23.patternMatchingForSwitch_finalized;
 
 public class PatternMatchingExample {
     public static void main(String[] args) {

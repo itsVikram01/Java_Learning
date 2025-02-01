@@ -1,4 +1,4 @@
-package oops.polymorphism.methodhiding;
+package programs.oops.polymorphism.methodhiding;
 
 class Parent {
 

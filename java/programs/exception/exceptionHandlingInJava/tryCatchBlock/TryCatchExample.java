@@ -1,4 +1,4 @@
-package java.exception.exceptionHandlingInJava.tryCatchBlock;
+package programs.exception.exceptionHandlingInJava.tryCatchBlock;
 
 public class TryCatchExample {
     public static void main(String[] args) {

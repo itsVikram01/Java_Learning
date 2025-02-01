@@ -1,4 +1,4 @@
-package java.dsa.algorithms.greedy.huffmanCoding;
+package programs.dsa.algorithms.greedy.huffmanCoding;
 
 import java.util.Comparator;
 import java.util.PriorityQueue;

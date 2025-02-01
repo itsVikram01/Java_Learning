@@ -1,4 +1,4 @@
-package java.collectionFramework.map.interfacesExtendsMap.sortedMap.navigableMap.treeMap;
+package programs.collectionFramework.map.interfacesExtendsMap.sortedMap.navigableMap.treeMap;
 
 import java.util.Map;
 import java.util.TreeMap;

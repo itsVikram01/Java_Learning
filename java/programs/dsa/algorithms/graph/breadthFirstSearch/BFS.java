@@ -1,4 +1,4 @@
-package java.dsa.algorithms.graph.breadthFirstSearch;
+package programs.dsa.algorithms.graph.breadthFirstSearch;
 
 import java.util.*;
 

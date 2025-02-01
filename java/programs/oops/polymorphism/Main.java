@@ -1,5 +1,5 @@
-package oops.polymorphism;/*
-package java_codes.program.oops.polymorphism;
+package programs.oops.polymorphism;
+/*
 
 class Animal {
     public void makeSound() { // makeSound() Method to be overridden

@@ -1,4 +1,4 @@
-package java.designPattern.creationalDesignPattern.factoryPattern;
+package programs.designPattern.creationalDesignPattern.factoryPattern;
 
 interface Shape {
     void draw();

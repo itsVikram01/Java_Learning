@@ -1,4 +1,4 @@
-package java.collectionFramework.map.abstractMap.treeMap;
+package programs.collectionFramework.map.abstractMap.treeMap;
 
 import java.util.Map;
 import java.util.TreeMap;

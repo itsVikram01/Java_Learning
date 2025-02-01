@@ -1,4 +1,4 @@
-package java23.recordPattern_finalized;
+package programs.java23.recordPattern_finalized;
 
 // Record patterns enhance destructuring and pattern matching for record types.
 /*

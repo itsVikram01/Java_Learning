@@ -1,4 +1,4 @@
-package java.dsa.algorithms.sorting.mergeSort;
+package programs.dsa.algorithms.sorting.mergeSort;
 
 public class MergeSort {
     public static void merge(int[] arr, int left, int mid, int right) {

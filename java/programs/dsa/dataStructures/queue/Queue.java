@@ -1,4 +1,4 @@
-package java.dsa.dataStructures.queue;
+package programs.dsa.dataStructures.queue;
 
 import java.util.LinkedList;
 import java.util.NoSuchElementException;

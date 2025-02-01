@@ -1,4 +1,4 @@
-package java.collectionFramework.list.arrayList;
+package programs.collectionFramework.list.arrayList;
 
 public class ArrayElementsNthPositionValue {
     public static void main(String[] args) {

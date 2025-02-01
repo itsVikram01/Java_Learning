@@ -1,4 +1,4 @@
-package java.designPattern.creationalDesignPattern.abstractFactory;
+package programs.designPattern.creationalDesignPattern.abstractFactory;
 
 // Abstract Product
 interface Chair {

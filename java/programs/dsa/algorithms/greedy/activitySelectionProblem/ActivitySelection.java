@@ -1,4 +1,4 @@
-package java.dsa.algorithms.greedy.activitySelectionProblem;
+package programs.dsa.algorithms.greedy.activitySelectionProblem;
 
 import java.util.Arrays;
 

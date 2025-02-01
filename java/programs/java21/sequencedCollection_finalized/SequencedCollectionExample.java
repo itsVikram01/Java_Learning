@@ -1,4 +1,4 @@
-package java21.sequencedCollection_finalized;
+package programs.java21.sequencedCollection_finalized;
 
 // A new interface, SequencedCollection, was introduced, which combines the properties of List and Set while maintaining order guarantees.
 /*

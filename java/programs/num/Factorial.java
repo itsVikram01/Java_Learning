@@ -1,4 +1,4 @@
-package num;
+package programs.num;
 
 public class Factorial {
     public static void main(String[] args) {

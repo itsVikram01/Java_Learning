@@ -1,4 +1,4 @@
-package java.exception.exceptionHandlingInSpringboot.localExceptionHandling;
+package programs.exception.exceptionHandlingInSpringboot.localExceptionHandling;
 
 //@RestController
 public class LocalExceptionHandlingInController {

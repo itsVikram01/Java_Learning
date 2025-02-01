@@ -1,4 +1,4 @@
-package java.collectionFramework.map.abstractMap;
+package programs.collectionFramework.map.abstractMap;
 
 public abstract class AbstractMapExample {
 }

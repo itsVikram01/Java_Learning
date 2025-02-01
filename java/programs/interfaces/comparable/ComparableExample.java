@@ -1,4 +1,4 @@
-package java.interfaces.comparable;
+package programs.interfaces.comparable;
 
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package java.dsa.algorithms.searching.linearSearch;
+package programs.dsa.algorithms.searching.linearSearch;
 
 public class LinearSearch {
     public static void main(String[] args) {

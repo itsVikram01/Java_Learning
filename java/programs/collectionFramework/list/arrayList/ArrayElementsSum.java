@@ -1,4 +1,4 @@
-package java.collectionFramework.list.arrayList;
+package programs.collectionFramework.list.arrayList;
 
 import static java.lang.System.out;
 
