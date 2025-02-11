@@ -14,6 +14,7 @@ git branch -u origin/master master
 git remote set-head origin -a
 
 =======================================================
+open cmd
 
 C:\Users\vikyr>git config --global user.name itsVikram01
 
@@ -27,10 +28,18 @@ E:\workspace\InteliJ_workspace\Java_Learning>git init
 
 E:\workspace\InteliJ_workspace\Java_Learning>git add .
 
-E:\workspace\InteliJ_workspace\Java_Learning>git commit -m "Initial commit"
+E:\workspace\InteliJ_workspace\Java_Learning>git commit -m "first commit"
 
 E:\workspace\InteliJ_workspace\Java_Learning>git remote add origin https://github.com/itsVikram01/Java_Learning.git
 
 E:\workspace\InteliJ_workspace\Java_Learning>git branch -M main
 
 E:\workspace\InteliJ_workspace\Java_Learning>git push -u origin main
+
+echo "# JWTSecurity" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M main
+git remote add origin https://github.com/itsVikram01/JWTSecurity.git
+git push -u origin main

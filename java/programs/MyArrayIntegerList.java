@@ -1,110 +1,90 @@
 package programs;
 
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class MyArrayIntegerList {
     public static void main(String[] args) {
 
-        /* array list */
-        List<Integer> list = new ArrayList<>();
-        list.add(1);
-        list.add(3);
-        list.add(5);
-        list.add(5);
-        list.add(6);
-        list.add(4);
-        list.add(4);
-        System.out.println("list" + list);
-
-        // Collectors.groupingBy using a HashMap internally for grouping.
-        // In a HashMap, the iteration order of entries is not guaranteed to match the order of insertion from the list.
-/*
-        Map<Integer, Long> map = list.stream()
-                .collect(Collectors.groupingBy(i -> i, LinkedHashMap::new, Collectors.counting())); // Using LinkedHashMap to maintain insertion order
-*/
-/*
-        list.stream().collect(Collectors.groupingBy(i -> i, LinkedHashMap::new, Collectors.counting()))
-                .forEach((k, v) -> System.out.println(k + " : " + v));
-*/
+        /* int list */
+        List<Integer> intList = new ArrayList<>();
+        intList.add(1);
+        intList.add(3);
+        intList.add(5);
+        intList.add(5);
+        intList.add(6);
+        intList.add(4);
+        intList.add(4);
+        System.out.println("intList : " + intList);
 
         /* occurrence of element */
-/*
-        System.out.println("arrayList elements counts : ");
-        map.forEach((k, v) -> System.out.println(k + " : " + v));
-*/
 
-        /* first repeating  */
-/*
+        Map<Integer, Long> map = intList.stream()
+                .collect(Collectors.groupingBy(i -> i, LinkedHashMap::new, Collectors.counting())); // Using LinkedHashMap to maintain insertion order
+
+        System.out.println("intList elements counts : ");
+        map.forEach((k, v) -> System.out.println(k + " : " + v));
+        // Collectors.groupingBy using a HashMap internally for grouping.
+        // In a HashMap, the iteration order of entries is not guaranteed to match the order of insertion from the intList.
+
+        /* duplicate intList element */
+        System.out.println("Duplicate intList element : ");
+        map.entrySet()
+                .stream()
+                .filter(entry -> entry.getValue() > 1)
+                .forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
+
+        /* first repeating element */
         System.out.println("First repeating element : ");
         map.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue() > 1)
                 .skip(0)
                 .findFirst()
-                .ifPresent(entry -> System.out.println(entry.getKey()));
-*/
-/*
-        list.stream().collect(Collectors.groupingBy(i -> i, LinkedHashMap::new, Collectors.counting()))
-                .entrySet().stream().filter(entry -> entry.getValue() > 1)
-                .skip(0).findFirst()
-                .ifPresent(entry -> System.out.println(entry.getKey()));
-*/
+                .ifPresent(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
 
-/*
-        System.out.println("Duplicate arrayList element : ");
-        map.entrySet()
-                .stream()
-                .filter(entry -> entry.getValue() > 1)
-                .forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
-*/
-        list.stream().collect(Collectors.groupingBy(i -> i, LinkedHashMap::new, Collectors.counting()))
-                .entrySet().stream().filter(entry -> entry.getValue() > 1)
-                .forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
 
-/*
-        System.out.println("Unique arrayList element : ");
+        /* unique intList element */
+        System.out.println("Unique intList element : ");
         map.entrySet()
                 .stream()
                 .filter(entry -> entry.getValue() == 1)
                 .forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
-*/
 
-/*
-        list.stream().collect(Collectors.groupingBy(i -> i, LinkedHashMap::new, Collectors.counting()))
-                .entrySet().stream().filter(entry -> entry.getValue() == 1)
-                .forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
-*/
+        /* first unique element */
+        System.out.println("First unique element : ");
+        map.entrySet().stream().filter(entry -> entry.getValue() == 1)
+                .skip(0).findFirst().ifPresent(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
 
-        /* list sorting */
-/*
-        List<Integer> sortedList = list.stream().sorted().toList();
-        System.out.println("Sorted arrayList : " + sortedList);
-*/
-//        list.stream().sorted().toList().forEach(System.out::println);
-        for (int i = 0; i < list.size() - 1; i++) {
-            for (int j = 0; j < list.size() - i - 1; j++) {
-                if (list.get(j) > list.get(j + 1)) {
-                    int temp = list.get(j);
-                    list.set(j, list.get(j + 1));
-                    list.set(j + 1, temp);
+        /* intList sorting */
+        List<Integer> sortedList = intList.stream().sorted().toList();
+        System.out.println("Sorted intList : " + sortedList);
+        /*for (int i = 0; i < intList.size() - 1; i++) {
+            for (int j = 0; j < intList.size() - i - 1; j++) {
+                if (intList.get(j) > intList.get(j + 1)) {
+                    int temp = intList.get(j);
+                    intList.set(j, intList.get(j + 1));
+                    intList.set(j + 1, temp);
                 }
             }
         }
-        System.out.println("Sorted list : " + list);
+        System.out.println("Sorted intList : " + intList);*/
 
+        /* intList reverse */
+        /*Collections.reverse(intList);
+        System.out.println("Reversed intList : " + intList);*/
 
-        /* list reverse */
-/*
-        Collections.reverse(list);
-        System.out.println("Reversed arrayList : " + list);
-*/
+        /*second-smallest element in intList*/
+        intList.stream()
+                .sorted()
+                .distinct()
+                .skip(1).findFirst().ifPresent(System.out::println);
 
-        list.stream().sorted(Comparator.reverseOrder()).distinct().skip(1).findFirst().ifPresent(System.out::println);
-        list.stream().sorted().distinct().skip(1).findFirst().ifPresent(System.out::println);
+        /*second-largest element in intList*/
+        intList.stream()
+                .sorted(Comparator.reverseOrder())
+                .distinct()
+                .skip(1).findFirst().ifPresent(System.out::println);
 
     }
 }

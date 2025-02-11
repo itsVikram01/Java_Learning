@@ -1,4 +1,4 @@
-package oops.inheritance.single;
+package programs.oops.inheritance.single;
 
 public class Dog extends Animal {
     public void bark() {

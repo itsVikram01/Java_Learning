@@ -1,4 +1,4 @@
-package programs;
+package interviewcode;
 
 import java.util.Arrays;
 

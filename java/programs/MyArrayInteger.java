@@ -8,62 +8,44 @@ import java.util.stream.Collectors;
 
 public class MyArrayInteger {
     public static void main(String[] args) {
-        /* array */
-        //int[] arr = {4, 5, 2, 6, 7, 8, 9, 1, 3, 7, 8, 7};
-        int[] arr = {1, 2, 3, 4, 5};
-        System.out.println("arr : " + Arrays.toString(arr));
+        int[] intArr = {4, 5, 2, 6, 7, 8, 9, 1, 3, 7, 8, 7};
+        System.out.println("intArr : " + Arrays.toString(intArr));
 
 
         /* Array sorting */
-        //Arrays.sort(arr);
-        /*System.out.println(Arrays.toString(arr));
-        int[] sortedArray = Arrays.stream(arr).sorted().toArray();
+        //Arrays.sort(intArr);
+        /*System.out.println(Arrays.toString(intArr));
+        int[] sortedArray = Arrays.stream(intArr).sorted().toArray();
         System.out.println("Sorted array : " + Arrays.toString(sortedArray));*/
 
         /* reverse array */
-        //int n = arr.length;
+        //int n = intArr.length;
         /*for (int i = 0; i < n/2; i++) {
-            int temp = arr[i];
-            arr[i] = arr[n-i-1];
-            arr[n-i-1] = temp;
+            int temp = intArr[i];
+            intArr[i] = intArr[n-i-1];
+            intArr[n-i-1] = temp;
         }*/
         /*IntStream.rangeClosed(0, n/2).boxed()
                 .forEach(i -> {
-                    int temp = arr[i];
-                    arr[i] = arr[n-i-1];
-                    arr[n-i-1] = temp;
+                    int temp = intArr[i];
+                    intArr[i] = intArr[n-i-1];
+                    intArr[n-i-1] = temp;
                 });
-        System.out.println("Reversed array : " + Arrays.toString(arr));*/
+        System.out.println("Reversed array : " + Arrays.toString(intArr));*/
+        
 
         /* elements count */
-        Map<Integer, Long> map1 = Arrays.stream(arr).boxed()
+        Map<Integer, Long> map = Arrays.stream(intArr).boxed()
                 .collect(Collectors.groupingBy(i -> i, LinkedHashMap::new, Collectors.counting()));
         System.out.println("array elements counts : ");
-        map1.forEach((k, v) -> System.out.println(k + " : " + v));
+        map.forEach((k, v) -> System.out.println(k + " : " + v));
 
 
-        /* Array duplicate and unique */
-
-        /* duplicate element */
-        /*System.out.println("Duplicate array element : ");
-        map1.entrySet().stream().filter(entry -> entry.getValue() > 1).forEach(System.out::println);*/
-        /*map1.forEach((k, v) -> {
-            if (v > 1) {
-                System.out.println(k + " : " + v);
-            }
-        });*/
-
-        /* unique element */
-        //System.out.println("Unique array element : ");
-        /*map1.forEach((k, v) -> {
-            if (v == 1) {
-                System.out.println(k + " : " + v);
-            }
-        });*/
+        /* Array duplicate and unique using Set */
 
         /*Set<Integer> duplicate = new LinkedHashSet<>();
         Set<Integer> unique = new LinkedHashSet<>();
-        for (int num : arr) {
+        for (int num : intArr) {
             if (!unique.add(num)) {
                 unique.remove(num);
                 duplicate.add(num);
@@ -72,67 +54,78 @@ public class MyArrayInteger {
         System.out.println("Unique elements : " + unique);
         System.out.println("Repeating elements : " + duplicate);*/
 
+        /* duplicate element */
+        System.out.println("Duplicate array element : ");
+        map.entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
+
+        /* first repeating element */
+        System.out.println("First repeating element : ");
+        map.entrySet().stream()
+                .filter(entry -> entry.getValue() > 1)
+                .skip(0).findFirst().ifPresent(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
+
+        /* unique element */
+        System.out.println("Unique array element : ");
+        map.entrySet().stream()
+                .filter(entry -> entry.getValue() == 1)
+                .forEach(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
+
+        /* first unique element */
+        System.out.println("First unique element : ");
+        map.entrySet().stream().filter(entry -> entry.getValue() == 1)
+                .skip(0).findFirst().ifPresent(entry -> System.out.println(entry.getKey() + " : " + entry.getValue()));
 
 
-        /* First repeating element :  */
-        /*System.out.println("First repeating element : ");
-        map1.entrySet().stream().filter(entry -> entry.getValue() > 1)
-                .skip(0).findFirst().ifPresent(entry -> System.out.println(entry.getKey());*/
+        /* Most repeating element */
+        map.entrySet().stream()
+                .max(Map.Entry.comparingByValue()).stream()
+                //.max(Comparator.comparing(entry -> entry.getValue())).stream()
+                //.max(Comparator.comparing(Map.Entry::getValue)).stream()
+                .skip(0).findFirst().ifPresent(entry -> System.out.println("max repeating key in the array = "+entry.getKey() + " : " + entry.getValue()));
 
-        /* Most repeating element : mode */
-        /*Arrays.stream(arr).boxed() // Convert int to Integer for Stream operations
-                .collect(Collectors.groupingBy(num -> num, Collectors.counting())) // Group by element and count
-                .entrySet().stream()
-                .max(Map.Entry.comparingByValue())
-                //.max(Comparator.comparing(entry -> entry.getValue()))
-                //.max(Comparator.comparing(Map.Entry::getValue))
-                .stream().skip(0)
-                .findFirst().ifPresent(entry -> System.out.println("max repeating key in the array = "+entry.getKey()));*/
-
-        /* average/mean - (a1+a2+...an)/n  */
-        OptionalDouble average = Arrays.stream(arr).average();
-        int avg = Arrays.stream(arr).sum() / (arr.length);
+        /* average/mean = (a1+a2+...an)/n  */
+        OptionalDouble average = Arrays.stream(intArr).average();
+        int avg = Arrays.stream(intArr).sum() / (intArr.length);
         System.out.println(average + " : " + avg);
 
-        /* median - ((n + 1)/2)th term if n is odd and (n/2)th term if n is even */              // Compute the average of the selected element(s)
-        int n = arr.length;
+        /* median = ((n + 1)/2)th term if n is odd and (n/2)th term if n is even */              // Compute the average of the selected element(s)
+        int n = intArr.length;
         if (n == 0) {
-            Arrays.stream(arr).filter(mid -> mid == arr[n / 2]).findFirst().ifPresent(System.out::println);
+            Arrays.stream(intArr).filter(mid -> mid == intArr[n / 2]).findFirst().ifPresent(System.out::println);
         } else {
-            Arrays.stream(arr).filter(mid -> mid == (arr[n / 2] + arr[(n + 1) / 2]) / 2).findFirst().ifPresent(System.out::println);
+            Arrays.stream(intArr).filter(mid -> mid == (intArr[n / 2] + intArr[(n + 1) / 2]) / 2).findFirst().ifPresent(System.out::println);
         }
 
 
 /************************************** smallest, secondSmallest, largest & secondLargest **********************************************/
 
-        /*int[] arr = {4, 5, 2, 6, 7, 8, 9, 1, 3, 7, 8};*/
         /* smallest */
-        /*Arrays.stream(arr).boxed()
-                .sorted((a, b) -> a - b) // sorted in descending order. without sorting, it is not possible to find
+        Arrays.stream(intArr).boxed()
+                .sorted((a, b) -> a - b) // sorted in ascending order. without sorting, it is not possible to find
                 .distinct()
-                .skip(0)
-                .findFirst().ifPresent(System.out::println);*/
+                .skip(0).findFirst().ifPresent(System.out::println);
 
         /* secondSmallest */
-        /*Arrays.stream(arr).boxed()
-                .sorted((a,b) -> a-b) // sorted in descending order. without sorting, it is not possible to find
+        Arrays.stream(intArr).boxed()
+                .sorted((a,b) -> a-b) // sorted in ascending order. without sorting, it is not possible to find
                 .distinct()
                 .skip(1)
-                .findFirst().ifPresent(System.out::println);*/
+                .findFirst().ifPresent(System.out::println);
 
         /* largest */
-        /*Arrays.stream(arr).boxed()
-                .sorted((a, b) -> b - a) //  // sorted in ascending order. without sorting, it is not possible to find secondLargest
+        Arrays.stream(intArr).boxed()
+                .sorted((a, b) -> b - a) //  // sorted in descending order. without sorting, it is not possible to find secondLargest
                 .distinct()
-                .skip(0)
-                .findFirst().ifPresent(System.out::println);*/
+                .skip(0).findFirst().ifPresent(System.out::println);
 
         /* secondLargest */
-        /*Arrays.stream(arr).boxed()
-                .sorted((a,b) -> b-a) //  // sorted in ascending order. without sorting, it is not possible to find secondLargest
+        Arrays.stream(intArr).boxed()
+                .sorted((a,b) -> b-a) //  // sorted in descending order. without sorting, it is not possible to find secondLargest
                 .distinct()
                 .skip(1)
-                .findFirst().ifPresent(System.out::println);*/
+                .findFirst().ifPresent(System.out::println);
 
         /************************************** Merge Array into List **********************************************/
 
@@ -201,7 +194,7 @@ public class MyArrayInteger {
 /************************************** sum of array elements **********************************************/
 
         /*int sum = 0;
-        for (int num : arr)
+        for (int num : intArr)
             sum += num;
         System.out.println(sum);*/
     }

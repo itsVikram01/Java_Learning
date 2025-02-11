@@ -5,7 +5,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Data
 @NoArgsConstructor
@@ -31,9 +33,11 @@ public class EmployeeListManipulation {
         employees.add(new Employee("Brook", "Musician", "Male", 30000, 10, 400, "Blue", 30));
         employees.add(new Employee("Sanji", "Cook", "Male", 30000, 20, 150, "Blue", 15));
 
+
         /* min salary */
         /*employees.stream()
-                .map(Employee::getSalary)
+                //.map(Employee::getSalary)
+                .map(employee -> employee.getSalary() > 20000 && employee.getExp() > 10 && employee.getAge() > 30  && employee.getBonus() == 5000)
                 .distinct()
                 .sorted() //ascending order
                 .skip(0)
@@ -116,10 +120,12 @@ public class EmployeeListManipulation {
         /* ******************************************************************************************** */
 
         /* add bonus to filtered salary  */
-        /*employees.stream().filter(emp -> emp.getSalary() > 20000).forEach(emp -> {
-            emp.setSalary(emp.getSalary() + emp.getBonus());
-            System.out.println(emp);
-        });*/
+        employees.stream()
+                .filter(emp -> emp.getSalary() > 20000)
+                .forEach(emp -> {
+                    emp.setSalary(emp.getSalary() + emp.getBonus());
+                    System.out.println(emp);
+                });
         /* filter Employees By salary, exp, age */
         /*employees.stream()
                 .filter(employee -> employee.getSalary() > 20000
@@ -135,7 +141,7 @@ public class EmployeeListManipulation {
         /* ******************************************************************************************** */
 
         /* employee data */
-        employees.stream()
+        /*employees.stream()
                 .filter(emp -> emp.getFirstName().matches("Luffy")
                         || emp.getLastName().matches("Cook")
                         || emp.getFirstName().startsWith("Z")
@@ -149,7 +155,7 @@ public class EmployeeListManipulation {
                 )
                 //.map(emp -> emp.getFirstName() + " " + emp.getLastName())
                 //.map(Employee::getFirstName)
-                .forEach(System.out::println);
+                .forEach(System.out::println);*/
 
         /* ******************************************************************************************** */
 
@@ -181,11 +187,11 @@ public class EmployeeListManipulation {
         /* ******************************************************************************************** */
 
         /* select firstName and lastName as fullName */
-        /*System.out.println("Full name : ");
+        System.out.println("Full name : ");
         employees.stream()
-                .filter(emp -> emp.getSalary() > 20000)
                 .map(emp -> emp.getFirstName() + " " + emp.getLastName())
-                .forEach(System.out::println);*/
+                .forEach(System.out::println);
+
 
     }
 }
