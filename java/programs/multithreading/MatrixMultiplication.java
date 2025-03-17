@@ -24,13 +24,13 @@ public class MatrixMultiplication extends Thread {
         }
     }
 
-    public static void main(String args[]) {
+    public static void main(String[] args) {
         int i, j;
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         System.out.print("Enter the order of Matrix : ");
         try {
             n = Integer.parseInt(br.readLine());
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         in1 = new int[n][n];
         in2 = new int[n][n];
@@ -40,7 +40,7 @@ public class MatrixMultiplication extends Thread {
             for (j = 0; j < n; j++) {
                 try {
                     in1[i][j] = Integer.parseInt(br.readLine());
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }
@@ -49,7 +49,7 @@ public class MatrixMultiplication extends Thread {
             for (j = 0; j < n; j++) {
                 try {
                     in2[i][j] = Integer.parseInt(br.readLine());
-                } catch (Exception e) {
+                } catch (Exception ignored) {
                 }
             }
         }
@@ -59,7 +59,7 @@ public class MatrixMultiplication extends Thread {
         try {
             for (i = 0; i < n; i++)
                 mat[i].join();
-        } catch (Exception e) {
+        } catch (Exception ignored) {
         }
         System.out.println("OUTPUT :");
         for (i = 0; i < n; i++)
