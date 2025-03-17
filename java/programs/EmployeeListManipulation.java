@@ -33,6 +33,43 @@ public class EmployeeListManipulation {
         employees.add(new Employee("Brook", "Musician", "Male", 30000, 10, 400, "Blue", 30));
         employees.add(new Employee("Sanji", "Cook", "Male", 30000, 20, 150, "Blue", 15));
 
+        int size = employees.size();
+        System.out.println("Total employees : "+size);
+
+        //double avgSal = employees.stream().collect(Collectors.averagingDouble(Employee::getSalary));
+        //double avgSal = employees.stream().collect(Collectors.averagingInt(Employee::getSalary));
+        //double avgSal = employees.stream().collect(Collectors.averagingLong(Employee::getSalary));
+
+        /* OR */
+
+        /*double totalSalary = 0;
+        for (Employee emp : employees) {
+            totalSalary += emp.getSalary();
+        }
+        double avgSal = totalSalary / employees.size();*/
+
+        /*final double[] totalSalary = {0};
+        final int[] count = {0};
+        employees.stream()
+                .filter(emp -> emp.getSalary() > 0)
+                .forEach(employee -> {
+                    totalSalary[0] += employee.getSalary();
+                    count[0]++;
+                });
+        double avgSal = count[0] == 0 ? 0 : totalSalary[0] / count[0];*/
+
+        List<Integer> salaries = new ArrayList<>();
+        employees.stream()
+                .map(Employee::getSalary)
+                .forEach(salaries::add);
+                /*.map(emp -> emp.getSalary())
+                .forEach(sal -> salaries.add(sal));*/
+        double totalSalary = 0;
+        for (double salary : salaries) {
+            totalSalary += salary;
+        }
+        double avgSal = totalSalary / salaries.size();
+        System.out.println("Average salary : "+avgSal);
 
         /* min salary */
         /*employees.stream()

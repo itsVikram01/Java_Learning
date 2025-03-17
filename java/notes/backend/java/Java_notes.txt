@@ -1,75 +1,17 @@
-Java Core Features :
-	. Object-Oriented: 
-		Java is fully object-oriented, supporting encapsulation, inheritance, polymorphism, and abstraction. This promotes code reusability, modularity, and flexibility.
-	. Platform Independence: 
-		The "Write Once, Run Anywhere (WORA)" principle is a cornerstone of Java. Code is compiled into bytecode, which can be executed on any system with a Java Virtual Machine (JVM), ensuring portability.
-	. Simple: 
-		Java's syntax is relatively straightforward, making it easier to learn and understand compared to languages like C++. It eliminates complex features like pointers and operator overloading.
-	. Secure: 
-		Java incorporates security features like bytecode verification, class loaders, and security managers to protect against viruses and malicious code.
-	. Robust: 
-		“robust” refers to the language’s ability to handle unexpected situations, errors, and edge cases gracefully.
-		
-		. Strong Typing and Compile-Time Checking:
-			. Java enforces strong typing, meaning that every variable and expression has a well-specified data type. This type checking occurs at compile time.
-			. As a result, many potential runtime mistakes (such as type mismatches and null pointer exceptions) are caught before the program even runs. Java programs are more stable because unexpected faults are less likely during runtime.
-		. Exception Handling:
-			. Java’s robustness is significantly influenced by its exception handling system.
-			. Developers can use try-catch blocks to catch exceptions, log them, and take necessary actions. This approach allows for graceful handling of exceptional circumstances.
-			. Exception handling prevents crashes and ensures that applications can recover from failures without compromising data integrity or system stability.
-		. Garbage Collection:
-			. Java’s automatic garbage collection is another critical feature that enhances its durability.
-			. The garbage collector manages memory allocation and deallocation, preventing common issues like memory leaks and dangling pointers.
-			. By automating memory management, Java reduces the likelihood of system crashes caused by memory-related problems.
-		. Platform Independence:
-			. Java’s robustness is closely tied to its famous “Write Once, Run Anywhere” motto.
-			. The Java Virtual Machine (JVM) abstracts the underlying hardware and operating system specifics, allowing Java applications to run consistently on various platforms.
-			. Platform independence increases the reliability of Java software by minimizing compatibility issues and runtime errors.
-		
-	. Multi-threaded: 
-		Java supports concurrent programming, allowing multiple threads to execute independently, improving performance and responsiveness.
-	. Distributed: 
-		Java provides networking capabilities to build distributed applications that can communicate across different systems.
-
-Additional Features
-	. High Performance: 
-		While interpreted, Java's Just-In-Time (JIT) compiler optimizes code execution, delivering performance comparable to compiled languages.
-	. Dynamic: 
-		Java can adapt to changing conditions through features like reflection, which allows programs to examine and modify their own structure at runtime.
-	. Architecture Neutral: 
-		Java bytecode can run on any system with a JVM, making it independent of underlying hardware.
-	. Interpreted: 
-		Java bytecode is executed by the JVM, providing platform independence but potentially sacrificing some performance compared to compiled languages.
-
-
-========================================================================================================================================================================
-
 1. JDK (Java Development Kit)
-	Definition: 
-		The JDK is a software development kit used to develop Java applications. It includes the JRE, a compiler(javac), an archiver(jar), an interpreter/loader(Java), a documentation generator(Javadoc), and other tools needed for Java development.
-	
-	Role:
-	. Development: Provides tools to compile, debug, and execute Java applications.
-	. Components:
-		. JRE: The runtime environment needed to run Java applications.
-		. Development Tools: Includes javac (compiler), jar (archiver), javadoc (documentation generator), and other tools for development.
+		The JDK is a software development kit used to develop Java applications. 
+		It includes the JRE, and Development tools(a compiler(javac), an archiver(jar), an interpreter/loader(Java), a documentation generator(Javadoc),Debuggers,Profilers ) needed for Java development.
 	
 2. JRE (Java Runtime Environment)
-	Definition: The JRE is a part of the JDK that provides the libraries, Java Virtual Machine (JVM), and other components to run applications written in Java.
-	
-	Role:
-	. Runtime Environment: It provides the necessary environment for running Java applications.
-	. Components:
-		. JVM: To run the Java bytecode.
-		. Libraries: Standard class libraries that provide common functionalities (e.g., collections, I/O, networking).
+		It provides the necessary environment for running Java applications.
+		The JRE is a part of the JDK that provides the Java Virtual Machine (JVM), necessary libraries that provide common functionalities (e.g., collections, I/O, networking) to run applications written in Java.
 		
 3. JVM (Java Virtual Machine)
-	Definition: The JVM is a virtual machine that enables a computer to run Java programs. It converts Java bytecode into machine code that can be executed by the host operating system.
-	
-	. Role:
-		. Execution: It is responsible for running Java applications. When you run a Java program, the JVM interprets or compiles the bytecode into machine code.
-		. Memory Management: Manages the memory allocation and garbage collection.
+		The JVM is a virtual machine that enables a computer to run Java programs and responsible for running Java applications. 
+		When you run a Java program, the JVM interprets or compiles the bytecode into machine code.
+		. It also manages the memory allocation and garbage collection.
 		. Platform Independence: Allows Java programs to be run on any device or operating system that has a JVM implementation, making Java programs "write once, run anywhere" (WORA).
+	
 	. Components:
 		. Class Loader: Loads class files.
 		. Bytecode Verifier: Checks the code fragments for illegal code that can violate access rights.
@@ -80,11 +22,11 @@ JDK
 ├── JRE
 │   ├── JVM
 │   │	├── Class Loader : Dynamically load Java classes and Reads the bytecode for a class from its file (.class file) and loads it into the JVM.  	
-│	│	│					Initializes static variables and executesstatic blocks.
+│	│	│					Initializes static variables and executes static blocks.
 │   │	├── Bytecode Verifier: When a class is loaded into the JVM for the first time, the bytecode verifier runs to check the bytecode of the class.
 │	│	│						It ensuring that code adheres to strict rules to maintain safety, security, and stability even when compiled from untrusted sources.
 │   │	├── Interpreter : Java Virtual Machine (JVM) acts as an interpreter, translating Java bytecode into platform-specific machine code during runtime..
-│   │	└── JIT : The JIT compiler converts Java bytecode into native machine code at runtime, allowing the program to execute faster than interpreting bytecode line-by-line.
+│   │	└── Just-In-Time(JIT) : The JIT compiler converts Java bytecode into native machine code at runtime, allowing the program to execute faster than interpreting bytecode line-by-line.
 │	│
 │   └── Libraries : collection of pre-written code, modules, or routines that provide functionality or services to applications, allowing developers to reuse code without writing it from 
 │					scratch.
@@ -98,16 +40,27 @@ JDK
 	│										It extracts special comments (called Javadoc comments) from the code and converts them into a structured format that describes the classes, methods,
 	│											constructors, and fields.	
     └── Other tools (debuggers, profilers) : 
-			Debuggers : They allow step-by-step execution, variable inspection, and manipulation of program flow to identify and resolve issues such as logical errors, crashes, and incorrect 				outputs by examine the state of an application during execution.
-			Profilers : Profilers are performance analysis tools that help developers understand how an application uses resources like CPU, memory, and threads by identifying bottlenecks, 				memory leaks, and inefficient code paths.
+			Debuggers : They allow step-by-step execution, variable inspection, and manipulation of program flow to identify and resolve issues such as logical errors, crashes, and incorrect outputs by examine the state of an application during execution.
+			Profilers : Profilers are performance analysis tools that help developers understand how an application uses resources like CPU, memory, and threads by identifying bottlenecks, memory leaks, and inefficient code paths.
 
 
 Summary
 	. JDK: Provides tools to develop Java applications, including the JRE.
 	. JRE: Provides the necessary libraries and JVM to run Java applications.
 	. JVM: Runs Java bytecode and enables platform independence.
+	
+	
+Q1. Internals of JVM. Where is class , variables , objects stored in JVM
+Ans.  
+	. Classes are stored in the method area of JVM's memory.
+	. Static variables are stored in the method area.
+	. Local variables are stored in the stack.
+	. Primitive data types are stored in the stack.
+	. Instance variables are stored in the heap.
+	. Objects are stored in the heap area of JVM's memory.
+	. References to objects are stored in the stack or heap depending on their scope and lifetime.
 
-===========================================================================================
+====================================================================================================
 
 Access Specifiers in Java:
 	1. public : Accessible from anywhere in the application. When you want a class, method, or variable to be accessible from any other class, regardless of package.
@@ -119,10 +72,1615 @@ Access Specifiers in Java:
 	4. Default (Package-Private) : Accessible only within the same package. When you want to restrict access to members within a package but not outside.
 
 	ex- 
-		application[package1{class1(Default + public + protected + private) + class2() + ...} + package2{} + ...]
+		application [
+			package1 {
+				class1 {
+					+ public
+					# protected
+					~ default
+					- private
+				}
+				class2 extends class1 {
+					+ public
+					# protected
+					~ default
+				}
+			}
+			package2 {
+				class3 extends class1 {
+					+ public
+				}
+			}
+		]
+
 		
 		
 ==================================================================================================================================================================================
+
+
+
+Core Java Features :
+	1. Simple: 
+		Java is often described as a "simple" language because it provide Clean-Readable Syntax, Strong Standard Library, Platform Independence, Automatic Garbage Collection, and Robustness.
+		. Clean, Readable Syntax:
+			Java’s syntax is designed to be straightforward and familiar—borrowing much from C/C++ but without the more confusing features such as operator overloading and multiple inheritance (of classes).
+		. Strong Standard Library:
+			The Java API provides a wide array of built-in classes and methods for everything from data structures to networking, making it easier to build applications without reinventing the wheel.
+			
+	2. Platform Independence: 
+		. The "Write Once, Run Anywhere (WORA)" principle is a cornerstone of Java. Code is compiled into bytecode, which can be executed on any system with a Java Virtual Machine (JVM), ensuring portability.
+	
+	3. Robust: 
+		“robust” refers to the language’s ability to handle Strong Typing Checking at Compile-Time, Platform Independence, Garbage Collection, and Exception Handling.
+		
+		. Strong Typing Checking at Compile-Time :
+			. Java enforces strong typing, meaning that every variable and expression has a well-specified data type. This type checking occurs at compile time.
+			. As a result, many potential runtime mistakes (such as type mismatches and null pointer exceptions) are caught before the program even runs. Java programs are more stable because unexpected faults are less likely during runtime.
+		
+		. Automatic Garbage Collection: 
+			In Java, garbage collection is the process by which the JVM automatically reclaims memory by removing objects that are no longer reachable. 
+			
+				. Class metadata refers to the internal information that the JVM maintains for every loaded class. This metadata includes details such as:
+					. Class Structure:
+						The class name, package, fields, methods, constructors, interfaces implemented, and annotations.
+						
+					. Constant Pool Information:
+						A table of literals and symbolic references used by the class.
+
+					. Method Signatures and Bytecode:
+						The actual bytecode for methods and information needed for method invocation and linking.
+
+					. Security and Reflection Data:
+						Data that supports runtime type checking, reflection, and security checks.
+			
+				. PermGen vs. Metaspace:
+				------------------------
+					. Before Java 8:
+						Class metadata was stored in a fixed-size area called the Permanent Generation (PermGen). This could lead to out-of-memory errors if too many classes were loaded or in environments with dynamic class loading (e.g., application servers).
+					
+					. In Java 8:
+						PermGen was removed and replaced with Metaspace, which is allocated in native memory and can grow dynamically. This change reduces the risk of PermGen-related out-of-memory errors and simplifies GC tuning for class metadata.
+							
+							*** native memory : 
+								. Thread stacks - Each thread in the JVM has its own stack
+								. ByteBuffers direct memory
+								. Code cache holds the native machine code generated by the JIT-compiler
+								. JNI (Java Native Interface) Memory - Memory allocated by native libraries or via JNI calls that isn’t managed by the garbage collector.
+				
+			1. Working :
+				. Reachability Analysis: 
+					The GC periodically scans the heap to determine which objects are reachable from a set of root references (like local variables, static fields, and JNI references). Objects that are not reachable are marked for collection.
+				. Mark-and-Sweep:
+					The GC “marks” all reachable objects, then “sweeps” or deallocates the memory used by the unmarked objects.
+				. Compaction:
+					In many collectors, after sweeping, the GC may compact the remaining live objects to eliminate fragmentation and make allocation faster.
+			
+			2. JVM’s memory model:
+				Most objects in Java are short-lived. To optimize performance, the heap is divided into:
+				. Young Generation: 
+					. Allocation Site: 
+						Eden space is a part of the Young Generation in the heap. It’s where most new objects are allocated when you use the new keyword.
+						
+					. Lifecycle: 
+						Most objects are short-lived. When Eden fills up, a minor garbage collection is triggered. During this process, unreachable objects in Eden are collected and the surviving ones are moved to one of the Survivor spaces.
+					
+					. Efficiency: 
+						Since many objects become unreachable quickly, the Eden space is reclaimed often, making minor GCs relatively fast.
+				
+				. Old (Tenured) Generation: 
+					Long-lived objects are promoted here after surviving multiple minor GCs. Major or full GCs are less frequent but can be more expensive.
+				
+				. Metaspace: 
+					In modern JVMs (post-Java 8), class metadata is stored here instead of the old permanent generation.
+			
+			3. Types of Garbage Collectors:
+				. Serial GC: 
+					A simple, single-threaded collector(Garbage Collector) ideal for small applications.
+				
+				. Parallel GC: 
+					Uses multiple threads for both minor and major collections, designed for throughput.
+				
+				. Concurrent Mark-Sweep (CMS): (deprecated in Java 9 and eventually removed from Java 14 onward.)
+					Aimed at reducing pause times by doing most of its work concurrently.
+				
+				. G1 (Garbage First): (from java 9, default for server-class machines.)
+					Balances throughput and low pause times by dividing the heap into regions and collecting the regions with the most reclaimable space.
+				
+				New Collectors:
+				. ZGC: (Introduced experimentally in Java 11 and production-ready from Java 15)
+					ZGC is designed for very large heaps (up to many terabytes) with pause times typically below 10 ms.
+				.  Shenandoah GC: 
+					Also focused on ultra-low pause times, Shenandoah performs most work concurrently and is available in several OpenJDK distributions.
+				
+			4. Monitoring: 
+				Use tools like VisualVM, JConsole, or GC logs to monitor GC behavior and performance.
+				
+				Example Code - 
+					public class GarbageCollectionDemo {
+						public static void main(String[] args) {
+							System.out.println("Starting GarbageCollectionDemo...");
+
+							// Allocate many objects to fill the heap quickly
+							for (int i = 0; i < 100000; i++) {
+								// Create a 1KB array; these objects will reside in Eden.
+								byte[] data = new byte[1024];
+							}
+							System.out.println("Finished allocating objects.");
+
+							// Suggest that the JVM perform GC (note: this is only a hint)
+							System.gc();
+							System.out.println("Requested garbage collection.");
+
+							// Pause to allow observation (if using GC logging)
+							try {
+								Thread.sleep(3000);
+							} catch (InterruptedException e) {
+								Thread.currentThread().interrupt();
+							}
+						}
+					}
+					
+					
+					Run with GC Logging:
+						To see detailed GC logs, run the program with a flag such as:
+							
+							. Before Java 8:
+								java -XX:+PrintGCDetails -Xmx128m GarbageCollectionDemo
+							
+							. In Java 8:
+								java -XX:+PrintGCDetails -XX:+UseParallelGC -Xmx128m GarbageCollectionDemo
+								
+								(Optionally, add -XX:+UseStringDeduplication if running with G1 GC.)
+							
+							. In Latest Java Versions (Java 9+):
+								java -XX:+PrintGCDetails -XX:+UseG1GC -Xmx128m GarbageCollectionDemo
+								
+								Or switch to ZGC (if available) with:
+									java -XX:+UseZGC -Xmx128m GarbageCollectionDemo
+					
+					
+					
+		
+		. EXCEPTION HANDELING : 
+		-----------------------
+
+			Throwable : 
+				. The Throwable class in Java is the root of exceptions and errors in the Java language. 
+				. All exception and error classes in Java (including Exception, RuntimeException, Error, etc.) directly or indirectly inherit from Throwable.
+
+				. When an exception occurs, a Throwable object is created and thrown. This object encapsulates information about the error, such as the type of exception, its message, and the call stack (trace of method calls leading to the exception).
+
+				. Methods : Throwable provides several useful methods for handling exceptions:
+					. getMessage() : 
+						Returns the detail message associated with the exception (if any).
+					. printStackTrace() : 
+						Prints the stack trace of the exception to the standard error output stream. This is helpful for debugging purposes.
+					. getCause() : 
+						Returns the cause of this throwable (if any). This allows for chaining exceptions, where one exception can be caused by another.
+					. getStackTrace() : 
+						Returns an array of StackTraceElement objects representing the call stack at the time the exception was thrown.
+					
+					public class DivisionByZero {
+						public static void main(String[] args) {
+							try {
+								int result = 10 / 0; // This line will throw an ArithmeticException
+								System.out.println(result);
+							} catch (Throwable t) {
+								System.out.println("An error occurred:");
+								// Get the type of exception
+								System.out.println("Exception type: " + t.getClass().getName());
+								// Get the error message (if any)
+								System.out.println("Error message: " + t.getMessage());
+								// Print the stack trace for debugging
+								t.printStackTrace();
+							}
+						}
+					}
+				
+				Output:
+				An error occurred:
+				Exception type: java.lang.ArithmeticException
+				Error message: / by zero
+				java.lang.ArithmeticException: / by zero
+				at DivisionByZero.main(DivisionByZero.java:7)
+				
+				. Using Throwable directly in catch blocks is generally not recommended unless you intend to handle all possible exceptions in the same way.
+				
+
+			Error : 
+				. Error is a subclass of Throwable that represents serious problems that are typically not recoverable within an application. These errors often indicate environmental or system issues that are beyond the program's control.
+				
+				. Errors are intended for exceptional situations that should not occur under normal program execution. They signal severe resource issues, virtual machine malfunctions, or other critical problems.
+				
+				. Unlike checked exceptions, catching Error is not mandatory in a try-catch block. The Java compiler doesn't require you to declare throws Error in method signatures, as these errors are not anticipated.
+				
+				.Recovering from an Error is generally difficult or impossible within the application itself. Often, these errors require program termination or system intervention.
+				
+				. Subclasses of Error : 
+					. OutOfMemoryError, 
+					. StackOverflowError, and 
+					. VirtualMachineError. 
+					
+				public class OutOfMemoryErrorExample {
+
+					public static void main(String[] args) {
+						try {
+							// Code that intentionally allocates a massive amount of memory,
+							// potentially causing an OutOfMemoryError
+							byte[] largeArray = new byte[Integer.MAX_VALUE];
+						} catch (Error e) { // Not recommended to catch Error directly
+							System.out.println("A critical error occurred:");
+							System.out.println("Error type: " + e.getClass().getName());
+							System.out.println("Error message: " + e.getMessage());
+							// Consider logging the error or gracefully terminating the program
+						}
+					}
+				}
+				
+				. Catching Error is generally not advisable. It's better to design your application to avoid situations that might lead to these errors or implement robust error handling mechanisms for specific Error subclasses if necessary.
+				
+
+			Exception :
+			-----------
+				. Exceptions are events that disrupt the normal flow of program execution. They represent unexpected conditions that occur during runtime.
+				. When an exception occurs, an exception object is created and thrown. This object contains information about the error, including the type of exception and its message.
+
+				Type of Exception :
+					1. Checked Exceptions: 
+						These exceptions are compiled-time errors. The Java compiler requires you to either declare that a method throws a checked exception or handle it within the method itself using a try-catch block. 
+						Examples include IOException (for file input/output issues) and ClassNotFoundException (when a class cannot be found).
+
+					2. Unchecked Exceptions: 
+						These exceptions are runtime errors. The Java compiler doesn't force you to handle them, but it's generally good practice to do so for robust applications. Unchecked exceptions typically represent programming errors or unexpected conditions that can be handled gracefully. 
+						Examples (e.g., NullPointerException, IndexOutOfBoundsException).
+						
+				Exception Handling Mechanisms : 
+					1. try-catch Block: 
+						This is the most common way to handle exceptions. It consists of a try block that contains the code you want to monitor for exceptions, followed by one or more catch blocks that specify the type of exception to handle and the code to execute if that exception occurs.
+						
+						try {
+							int result = 10 / 0; // This line will throw an ArithmeticException
+							System.out.println(result);
+						} catch (ArithmeticException e) {
+							System.out.println("Division by zero error occurred!");
+						}
+
+					2. throws Keyword: 
+						This keyword is used within a method declaration to indicate that the method might throw a specific exception (or exceptions). It helps callers understand the potential exceptions that could arise when calling the method and allows them to handle them appropriately.
+						
+						public void readFile(String filename) throws IOException {
+							// Code that reads a file
+						}
+
+					3. finally{} Block: 
+						The finally{} block is an optional block that always executes, regardless of whether an exception occurs or not. It's typically used to release resources (e.g., closing files, database connections) that were acquired within the try block. The finally block ensures that these resources are properly cleaned up even if an exception disrupts the normal program flow.
+						You cannot use a finally block by itself without a try block. The finally block relies on the try block to define the code segment it needs to execute after.
+
+						Notes :
+							try(){}...catch(){}...catch(){}...finally{}
+							try(){}...catch(){}...finally{}
+							try(){}...finally{} 
+							
+						. You cannot have multiple try blocks with a single catch. try creates ambiguity about which exception the catch block should handle
+
+						. some alternative approaches: 
+							. Nested Try-Catch Blocks
+							. Multiple Catch Blocks
+							. Separate Try-Catch Blocks
+						
+						
+							try (Scanner scanner = new Scanner(new File("data.txt"))) {
+								// Code that reads data from the file
+							} catch (FileNotFoundException e) {
+								System.out.println("File not found!");
+							} finally { 
+								// Scanner object will be automatically closed here
+							}
+					
+						Benefits of Exception Handling : 
+
+						. Robustness: 
+							By handling exceptions gracefully, you can prevent your program from crashing unexpectedly and make it more resilient to unexpected errors.
+						. Maintainability: 
+							Exception handling improves the code's readability and maintainability by separating normal program flow from error handling logic.
+						. Informative Error Messages: 
+							You can provide informative error messages to users when exceptions occur, helping them understand the issue and possibly take corrective actions.
+
+===========================================================================================	
+		
+	4. MULTITHREADING : 
+	------------------
+		Multithreading in Java refers to a concurrent execution technique where two or more threads (smaller units of a process) run independently but share the same process resources, improving performance and responsiveness. Multithreading allows for performing multiple tasks simultaneously, leading to more efficient CPU utilization.
+
+		Threads: 
+		--------
+			Threads are lightweight units of execution within a process.They share the same memory space and resources of the process. A process can have multiple threads running concurrently.
+			It is an instance of "java.lang.Thread"
+			
+			Thread Lifecycle:
+			-----------------
+				. New: The thread object is created but not yet started.
+				. Runnable: The thread is ready to be run by the scheduler.
+				. Running: The thread is currently executing instructions.
+				. Waiting/Blocked: The thread is waiting for an event (e.g. I/O operation) to complete before it can continue.
+				.Terminated: The thread has finished execution.
+			
+			Thread Creation :
+			-----------------
+				1. Extending the Thread class: 
+				------------------------------
+					This involves creating a subclass of the Thread class and overriding the run method. The run method defines the code that the thread will execute.
+					
+					// Extending Thread class
+					public class MyThread extends Thread {
+					  @Override
+					  public void run() {
+						// Code to be executed by the thread
+						System.out.println("This is from MyThread extending Thread class");
+					  }
+					}
+					
+				2. Implementing the Runnable interface: 
+				---------------------------------------
+					This approach involves creating a class that implements the Runnable interface. The Runnable interface has a single abstract method called run. You need to implement the run method to specify the code the thread will execute.
+					
+					// Implementing Runnable interface
+					public class MyRunnable implements Runnable {
+					  @Override
+					  public void run() {
+						// Code to be executed by the thread
+						System.out.println("This is from MyRunnable implementing Runnable interface");
+					  }
+					}
+
+
+
+		Processes:
+			Processes are heavyweight entities that have their own memory space and resources. They are independent of each other.
+
+
+		Multithreading Benefits:
+		. Improved responsiveness: 
+			By executing non-blocking tasks (e.g., waiting for network data) in separate threads, the program remains responsive to user interactions.
+		. Efficient resource utilization: 
+			Multithreading allows a program to take advantage of multiple cores in a processor, improving overall performance.
+		. Background tasks: 
+			Long-running tasks can be placed in separate threads to avoid blocking the main thread responsible for the user interface.
+
+		Multithreading Challenges:
+		--------------------------
+			. Synchronization: 
+			------------------
+				Synchronization in Java refers to the coordination of access between multiple threads to shared resources.
+				It's crucial to prevent data races and inconsistencies when multiple threads are working with the same data.
+				
+				When multiple threads access shared data, there's a risk of data races and inconsistencies. Synchronization mechanisms like locks and semaphores are needed to ensure proper access and modification of shared data.
+				
+				
+				1. The Problem: Data Races
+				Imagine two threads trying to update a bank account balance at the same time. Without synchronization, you might encounter a data race:
+
+				. Thread 1 reads the balance (e.g., $100).
+				. Thread 2 reads the same balance ($100).
+				. Thread 1 subtracts $50 (but the in-memory value is still $100).
+				. Thread 2 subtracts $50 (also from the outdated $100 value).
+				. The final balance might incorrectly be $0 instead of the expected $50.
+			
+			
+				Synchronization Mechanisms:
+				---------------------------
+					. Synchronized keyword with method : 
+					--------------------------
+						Declaring a method as synchronized ensures that only one thread can execute that method at a time. Other threads trying to access the synchronized method will be blocked until the current thread finishes executing it.
+					
+						public class BankAccount {
+						  private int balance;
+
+						  public synchronized void withdraw(int amount) {
+							// Synchronized method to ensure safe withdrawal
+							balance -= amount;
+						  }
+						}
+					
+					. Synchronized blocks{} : 
+					-------------------------
+						You can use a synchronized block to control access to a specific code section within a method. Only one thread can enter the synchronized block at a time.
+						
+						public class SynchronizedBlockCounter {
+						  private int count;
+
+						  public void increment() {
+							synchronized (this) { // Synchronize on the current object
+							  count++;
+							}
+						  }
+						}
+						
+						OR
+						
+						public class SynchronizedBlockSharedCounter {
+						  private int count = 0;
+						  public void increment() {
+							synchronized (this) { // Synchronize on the current object
+							  count++;
+							}
+						  }
+						  public int getCount() {
+							return count;
+						  }
+
+						  public static void main(String[] args) throws InterruptedException {
+							SynchronizedBlockSharedCounter counter = new SynchronizedBlockSharedCounter();
+							Thread thread1 = new Thread(() -> {
+							  for (int i = 0; i < 10000; i++) {
+								counter.increment();
+							  }
+							});
+							Thread thread2 = new Thread(() -> {
+							  for (int i = 0; i < 10000; i++) {
+								counter.increment();
+							  }
+							});
+
+							thread1.start();
+							thread2.start();
+
+							thread1.join();
+							thread2.join();
+
+							System.out.println("Final count: " + counter.getCount()); // Should print 20000
+						  }
+						}
+
+
+					. static synchronized :
+					---------------------
+						static synchronization is a specific type of synchronization that applies to class-level locks rather than object-level locks used in regular synchronized methods and blocks.
+						
+						When a static method of a class accesses shared resources (static or non-static) of that class, static synchronization can be used to ensure only one thread can execute that method at a time. This prevents race conditions and data inconsistencies.
+						
+						public class StaticSynchronizedMyClass {
+						  private static int counter = 0;
+
+						  public static synchronized void incrementCounter() {
+							counter++;
+						  }
+						}
+						
+						OR
+						
+						public class StaticSynchronizedPrinter {
+						  public static synchronized void printDocument(String document) {
+							// Simulate printing process (slow)
+							System.out.println("Printing document: " + document);
+							try {
+							  Thread.sleep(1000);
+							} catch (InterruptedException e) {
+							  e.printStackTrace();
+							}
+						  }
+						}
+
+						public class Main {
+						  public static void main(String[] args) {
+							Thread thread1 = new Thread(() -> StaticSynchronizedPrinter.printDocument("Doc 1"));
+							Thread thread2 = new Thread(() -> StaticSynchronizedPrinter.printDocument("Doc 2"));
+
+							thread1.start();
+							thread2.start();
+						  }
+						}
+
+
+					
+				
+			. Deadlocks: 
+			------------
+				A deadlock occurs when two or more threads are waiting for each other's resources, creating a permanent halt. Careful design and resource management are crucial to avoid deadlocks.
+					
+					public class DeadlockExample {
+						private final Object resource1 = new Object();
+						private final Object resource2 = new Object();
+
+						private void method1() {
+							System.out.println("method1.........");
+							// Locking resource1
+							synchronized (resource1) {
+								System.out.println(Thread.currentThread().getName() + " locked resource1");
+								System.out.println("method1...synchronized (resource1)......");
+								try {
+									Thread.sleep(500); // Simulate some processing time
+									System.out.println("method1...synchronized (resource1)...try...");
+								} catch (InterruptedException e) {
+									throw new RuntimeException(e);
+								}
+
+								// Attempting to lock resource2.
+								// If another thread already holds resource2, the current thread will wait here.
+								System.out.println(Thread.currentThread().getName() + " waiting for resource2");
+								synchronized (resource2) {
+									System.out.println(Thread.currentThread().getName() + " locked resource2");
+									// Critical section: both resources are now locked.
+									System.out.println("method1...synchronized (resource1)...synchronized (resource2)......");
+								}
+								// At this point, resource2 is automatically released when the inner block ends.
+								System.out.println(Thread.currentThread().getName() + " released resource2");
+							}
+							// Here, resource1 is automatically released when the outer block ends.
+							System.out.println(Thread.currentThread().getName() + " released resource1");
+						}
+
+						private void method2() {
+							System.out.println("method2.........");
+							// Locking resource2
+							synchronized (resource2) {
+								System.out.println("method2...synchronized (resource2)......");
+								System.out.println(Thread.currentThread().getName() + " locked resource2");
+								try {
+									Thread.sleep(500); // Simulate some processing time
+									System.out.println("method2...synchronized (resource2)...try...");
+								} catch (InterruptedException e) {
+									throw new RuntimeException(e);
+								}
+
+								// Attempting to lock resource1.
+								// If another thread holds resource1, the current thread will wait here.
+								System.out.println(Thread.currentThread().getName() + " waiting for resource1");
+								synchronized (resource1) {
+									System.out.println(Thread.currentThread().getName() + " locked resource1");
+									// Critical section: both resources are now locked.
+									System.out.println("method2...synchronized (resource2)...synchronized (resource1)......");
+								}
+								// resource1 is released automatically when exiting the inner synchronized block.
+								System.out.println(Thread.currentThread().getName() + " released resource1");
+							}
+							// resource2 is released automatically when exiting the outer synchronized block.
+							System.out.println(Thread.currentThread().getName() + " released resource2");
+						}
+
+
+
+						private final Object resource3 = new Object();
+						private final Object resource4 = new Object();
+
+						// thread safe to avoid deadlock
+						private void safeMethod1() {
+							System.out.println("safeMethod1.........");
+							// Locking resource1
+							synchronized (resource3) {
+								System.out.println(Thread.currentThread().getName() + " locked resource3");
+								System.out.println("safeMethod1...synchronized (resource3)......");
+								try {
+									Thread.sleep(500); // Simulate some processing time
+									System.out.println("safeMethod1...synchronized (resource3)...try...");
+								} catch (InterruptedException e) {
+									throw new RuntimeException(e);
+								}
+
+								// Attempting to lock resource4.
+								// If another thread already holds resource4, the current thread will wait here.
+								System.out.println(Thread.currentThread().getName() + " waiting for resource4");
+								synchronized (resource4) {
+									System.out.println(Thread.currentThread().getName() + " locked resource4");
+									// Critical section: both resources are now locked.
+									System.out.println("safeMethod1...synchronized (resource3)...synchronized (resource4)......");
+								}
+								// At this point, resource2 is automatically released when the inner block ends.
+								System.out.println(Thread.currentThread().getName() + " released resource4");
+							}
+							// Here, resource1 is automatically released when the outer block ends.
+							System.out.println(Thread.currentThread().getName() + " released resource3");
+						}
+						private void safeMethod2() {
+							System.out.println("safeMethod2.........");
+							// Acquire locks in the same order as safeMethod1 to avoid deadlock
+							// Locking resource1
+							synchronized (resource3) {
+								System.out.println(Thread.currentThread().getName() + " locked resource3");
+								System.out.println("safeMethod2...synchronized (resource3)......");
+								try {
+									Thread.sleep(500); // Simulate some processing time
+									System.out.println("method3...synchronized (resource3)...try...");
+								} catch (InterruptedException e) {
+									throw new RuntimeException(e);
+								}
+
+								// Attempting to lock resource2.
+								// If another thread holds resource2, the current thread will wait here.
+								System.out.println(Thread.currentThread().getName() + " : Waiting for resource4");
+								synchronized (resource4) {
+									System.out.println(Thread.currentThread().getName() + " locked resource4");
+									// Critical section: both resources are now locked.
+									System.out.println("safeMethod2...synchronized (resource3)...synchronized (resource4)......");
+								}
+								// resource2 is released automatically when exiting the inner synchronized block.
+								System.out.println(Thread.currentThread().getName() + " released resource4");
+							}
+							// resource1 is released automatically when exiting the outer synchronized block.
+							System.out.println(Thread.currentThread().getName() + " released resource3");
+						}
+
+
+						public static void main(String[] args) {
+
+							DeadlockExample example = new DeadlockExample();
+
+							Thread thread1 = new Thread(() -> example.method1(), "Thread-1");
+							Thread thread2 = new Thread(() -> example.method2(), "Thread-2");
+							thread1.start();
+							thread2.start();
+
+							Thread safeThread1 = new Thread(() -> example.safeMethod1(), "Thread-3");
+							Thread safeThread2 = new Thread(() -> example.safeMethod2(), "Thread-4");
+							safeThread2.start();
+							safeThread1.start();
+						}
+
+					}
+
+
+			. Complexity: 
+			-------------
+				Multithreaded code can be more complex to write and debug compared to single-threaded code.
+
+
+			Java Multithreading Example:
+			----------------------------
+				public class MultithreadingExample {
+					public static void main(String[] args) {
+						
+						// Thread 1 to print even numbers
+						Thread evenThread = new Thread(() -> {
+							for (int i = 0; i <= 10; i += 2) {
+								System.out.println(i);
+							}
+						});
+
+						// Thread 2 to print odd numbers
+						Thread oddThread = new Thread(() -> {
+							for (int i = 1; i <= 9; i += 2) {
+								System.out.println(i);
+							}
+						});
+
+						// Start the threads
+						evenThread.start();
+						oddThread.start();
+					}
+				}
+
+
+
+		final : 
+		-------
+			final is a keyword which used as an access modifier to apply restrictions on class, methods, and variables.
+
+			. final class can not be inherited.
+			. final method can not be overridded.
+			. final variable value can not be changed.
+
+
+		finally{} Block: 
+		----------------
+			The finally{} block is an optional block that always executes, regardless of whether an exception occurs or not. It's typically used to release resources (e.g., closing files, database connections) that were acquired within the try block. The finally block ensures that these resources are properly cleaned up even if an exception disrupts the normal program flow.
+						
+			You cannot use a finally block by itself without a try block. The finally block relies on the try block to define the code segment it needs to execute after.
+
+			try(){}...catch(){}...catch(){}...finally{}
+			try(){}...catch(){}...finally{}
+			try(){}...finally{}
+
+
+			Notes : 
+			. You cannot have multiple try blocks with a single catch. catch creates ambiguity about which exception the catch block should handle
+
+			. some alternative approaches: 
+				Nested Try-Catch Blocks
+				Multiple Catch Blocks
+				Separate Try-Catch Blocks
+
+			
+		finalize() method :
+		------------------- 
+			finalize method in Java is a garbage collection mechanism that allows objects to perform some cleanup tasks before they are removed from memory.
+			
+			. Non-deterministic: 
+				There's no guarantee exactly when the finalize method will be called. It might be called immediately after the object becomes eligible for garbage collection, or it might be delayed until much later. You should not rely on finalize to perform critical cleanup tasks that must happen before the object is garbage collected.
+			. Protected method: 
+				The finalize method is declared as protected in the Object class, meaning it can be directly invoked only by subclasses or from within the same package.
+			. No arguments and no return value: 
+				The finalize method takes no arguments and doesn't return any value.
+				
+				
+			ex - 
+			class Resource {
+				private boolean isReleased = false;
+				
+				public void close() {
+					// Simulate releasing a resource (e.g., closing a file)
+					System.out.println("Resource released.");
+					isReleased = true;
+				}
+
+				@Override
+				protected void finalize() throws Throwable {
+					if (!isReleased) {
+					  System.out.println("Resource was not released properly! Performing forced cleanup in finalize...");
+					  close();
+					}
+					super.finalize(); // Call finalize method of parent class (Object)
+				}
+			}
+
+			public class Main {
+				public static void main(String[] args) {
+					Resource resource = new Resource();
+					// ... use the resource
+
+					// Forget to close the resource explicitly
+				}
+			}
+			
+			
+			Explanation:
+
+			. The Resource class has a close method that simulates releasing a resource.
+			. The finalize method checks if the resource is released (isReleased flag).
+			. If not released, it prints a message and calls the close method to perform the cleanup.
+			. The finalize method also calls super.finalize() to ensure proper finalization of the parent class (Object).
+			
+			
+			Problems with finalize():
+
+			. Unreliable timing: 
+				As mentioned earlier, the timing of finalize is unpredictable. You cannot rely on it to happen at a specific time.
+			. Not guaranteed to be called: 
+				In some cases, the garbage collector might not call finalize at all, especially if the object is unreachable and there's no memory pressure.
+			. Potential performance overhead: 
+				Finalization adds some overhead to the garbage collection process.
+			. Exceptions in finalize can cause problems: 
+				If an exception occurs within the finalize method, it's ignored and the garbage collection process continues. This can lead to unexpected behavior or resource leaks.
+				
+				
+		StringBuilder vs StringBuffer : 
+		--------------------------------
+			. Thread Safety: 
+				StringBuilder is not, while StringBuffer is thread-safe.
+			. Use Cases: 
+				Choose StringBuilder for single-threaded scenarios and StringBuffer for multi-threaded scenarios where thread safety is a concern.
+			. Performance: 
+				StringBuilder is generally faster in single-threaded environments due to its lack of synchronization overhead.
+				
+				
+				
+		volatile keyword :
+		------------------
+			. When you declare a variable as volatile, you’re telling the Java Virtual Machine (JVM) that this variable can be accessed and modified by multiple threads.
+			. Changes made to this variable by one thread are immediately visible to other threads. No more hiding in caches or secret corners—everyone gets to see the latest value.
+			. Use volatile when you care more about visibility than atomicity.
+
+===========================================================================================
+
+	
+	5. Secure: 
+	---------
+		Java incorporates security features like bytecode verification, class loaders, and security managers to protect against viruses and malicious code.
+		Java is considered secure due to its multi-layered security architecture that minimizes common vulnerabilities.
+		
+		. Bytecode Verification:
+			When Java source code is compiled, it becomes bytecode that is then verified by the JVM. This verification process ensures that the code adheres to language rules and doesn’t perform unsafe operations like illegal pointer arithmetic, preventing many types of security breaches.
+			
+		. Class Loaders and Sandbox Environment:
+			Java uses a hierarchical class loading mechanism to isolate classes. The Security Manager (when enabled) and the use of custom class loaders create a sandbox environment that restricts what code can do, especially code from untrusted sources (historically, applets and Java Web Start applications). This separation prevents unauthorized access to system resources.
+			
+		. Strong Type Checking and Memory Management:
+			Java’s strict type checking and automatic garbage collection eliminate many common vulnerabilities seen in languages like C/C++ (e.g., buffer overflows and dangling pointers). This reduces the attack surface related to memory corruption.
+		
+		. Access Control and Security Policies:
+			Java’s security model uses access control mechanisms (like access modifiers and the Security Manager) that enforce fine-grained policies. This allows administrators to define what resources a piece of code can access using policy files, effectively limiting the impact if code is compromised.
+
+		. Robust API and Cryptographic Support:
+			Java provides a rich set of APIs for secure communication, encryption, and authentication (e.g., Java Cryptography Architecture), making it easier to build secure applications.
+		
+	==================================================================================================================================================================================
+
+
+	6. OOPS : 
+	--------
+		Java is fully object-oriented, supporting encapsulation, inheritance, polymorphism, and abstraction. This promotes code reusability, modularity, and flexibility.
+
+		1. Encapsulation :
+		------------------
+			Binding (or wrapping) code and data together into a single unit are known as encapsulation. 
+			It helps developers to follow modularity while developing software by ensuring that each object is independent of other objects by having its own methods, attributes, and functionalities.
+
+			It is used for the security of the private properties of an object and hence serves the purpose of data hiding.
+
+			For example, 
+			a capsule, it is wrapped with different medicines.
+			Java bean is the fully encapsulated class because all the data members are private here.
+
+
+			code example -
+				public class BankAccount {
+					private double balance; // Private attribute to store account balance
+					
+					public double getBalance() { // Getter method to return balance
+						return balance;
+					}
+					
+					public void deposit(double amount) { // Setter method to deposit funds
+						if (amount > 0) {
+							balance += amount;
+						} //else {// Handle invalid deposit amount (optional)}
+					}
+				  
+					public BankAccount(double initialBalance) { //constructor
+						// Validate initial balance (optional)
+						this.balance = initialBalance;
+					}
+
+					public void withdraw(double amount) { // Setter method to withdraw funds
+						if (amount > 0 && amount <= balance) {
+							balance -= amount;
+						} //else {// Handle invalid withdrawal amount (optional)}
+					}
+				}
+
+
+		2. Polymorphism : 
+		--------------
+			Performing same operation differently in different class is known as polymorphism.
+			
+			Polymorphism can be achieved by --
+
+				(1). Compile-time polymorphism(Overloading / Static Binding / Early Binding) :
+					-->Two methods said to be overloaded if and only if both have same name but different signature(argument no or type) in same class. 
+						eg- abs(int i){}
+							abs(long l){}
+							abs(float f){}
+							
+						Overloading can't happen in different classes.
+							
+				(2). Run-time polymorphism(Overriding / Dynamic Binding / Late Binding) : 
+					--> Overriding is a mechanism in which subclass provide its own implementation for a method that is already defined in its parent class.
+					--> It occure at runtime when child class has same method name and same signature(argument no and type.) when extends the parent class.
+					--> It also has same return type till 1.4v. But from 1.5v, the return type can be differ by co-varient relation(i.e. Parent to Child relation).
+					
+					Co-Varient : Applicable only for Object type not for Primitive type.
+						Object --> Object / String / StringBuffer / ...
+						Number --> Number / Integer / ...
+						
+				// main() method can't be overrided because it is static but it can use method hiding.
+				. Method hiding : 
+					If subclass has a static method with the same name and signature as a static method in its parent class. The subclass static method hides the parent class static method when called through a reference of the subclass type.
+						
+						class SuperClass {
+							public static void printMessage() {
+								System.out.println("This is the message from SuperClass");
+							}
+						}
+
+						class SubClass extends SuperClass {
+							public static void printMessage() {
+								System.out.println("This is the message from SubClass");
+							}
+						}
+
+						public class Main {
+							public static void main(String[] args) {
+								SuperClass superRef = new SubClass(); // SubClass object with SuperClass reference
+								SubClass subRef = new SubClass(); // SubClass object with SubClass reference
+
+								superRef.printMessage(); // Output: This is the message from SuperClass (compile-time binding based on reference type)
+								
+								subRef.printMessage();  // Output: This is the message from SubClass (compile-time binding based on reference type)
+							}
+						}
+
+						
+			Example -
+			
+				class Animal {
+					
+					// makeSound() Method to be overridden
+					public void makeSound() {
+						System.out.println("Animal makeSound() method");
+					}
+					
+					// Animal static main() method
+					public static void main(String[] args) {
+						System.out.println("Animal static main(String[] args) method");
+					}
+				}
+				class Parent extends Animal {
+					// Data hiding of static main() method
+					public static void main(String[] args) {
+						System.out.println("Hiding Animal static main(String[] args) method with Parent static main(String[] args) method");
+					}
+					
+					// Overloading main method
+					public static void main(int[] args) {
+						System.out.println("Overloading Parent static main(String[] args) method with Parent static main(int[] args)");
+					}
+					
+					// Overriding
+					@Override
+					public void makeSound() {
+						System.out.println("Overriding Animal makeSound() method with Parent makeSound() method");
+					}
+					
+					// Parent static display() method
+					public static void display() {
+						System.out.println("Parent class static display() method");
+					}
+				}
+				class Child extends Parent {
+					// Method hiding (Static method can not override but its data hiding)
+					public static void main(String[] args) {
+						System.out.println("Hiding Parent static main(String[] args) method with Child static main(String[] args) method");
+					}
+					
+					// Method hiding of Parent static display() method with Child static display() method
+					public static void display() {
+						System.out.println("Hiding Parent static display() method with Child static display() method");
+					}
+
+					// Overloading
+					public static void main(Float[] args) {
+						System.out.println("Overloading Parent static main(String[] args) method with Child static main(Float[] args)");
+					}
+					public static void main() {
+						System.out.println("Overloading Child static main(float[] args) method with Child static main() ");
+					}
+					
+					// Overriding
+					@Override
+					public void makeSound() {
+						System.out.println("Overriding Parent makeSound() method with Child makeSound() method");
+					}
+					
+				}
+				class Main {
+					public static void main(String[] args) {
+						System.out.println("Main main method ");
+
+						System.out.println("");
+						Parent parent = new Parent();
+						Parent parentChild =new Child();
+						Child child = new Child();
+						/*Child childParent = new Parent();*/ // Child class reference variable referencing a Parent class object not possible
+						Animal animal = new Animal();
+
+						parent.main(new String[0]); // Parent static main(String[] args) method
+						parentChild.main(new String[0]); // Parent static main(String[] args) method
+						parentChild.display(); // Parent class static display() method
+						animal.makeSound(); // Animal makeSound() method
+
+						//Overloading
+						System.out.println("");
+						System.out.println("Overloading :");
+						parent.main(new int[0]); // Overloading Parent static main(String[] args) method with Parent static main(int[] args)
+						child.main(new Float[0]); // Overloading Parent static main(String[] args) method with Child static main(Float[] args)
+						child.main();   // Overloading Child static main(float[] args) method with Child static main()
+
+						//Overriding
+						System.out.println("");
+						System.out.println("Overriding :");
+						parent.makeSound(); // Overriding Animal makeSound() method with Parent makeSound() method
+						parentChild.makeSound(); // Overriding Parent makeSound() method with Child makeSound() method
+						child.makeSound(); // Overriding Parent makeSound() method with Child makeSound() method
+
+						// Method hiding using class name
+						System.out.println("");
+						System.out.println("Method hiding using Class name :");
+						Child.main(new String[0]);  // Hiding Parent static main(String[] args) method with Parent static main(String[] args) method
+						Child.display(); // Hiding Parent static display() method with Child static display() method
+
+						// Method hiding using object
+						System.out.println("");
+						System.out.println("Method hiding using object :");
+						child.main(new String[0]); // Hiding Parent static main(String[] args) method with Parent static main(String[] args) method
+
+					}
+				}
+
+
+
+
+		3. Inheritance (IS-A relationship) in OOPs : ‘IS-A’ relationship is another name for inheritance.
+		-----------------------------------------
+			"Reusability of programming code by inheriting the property of another class".
+			
+			Example - 
+				Consider a Television (Typical CRT TV). Now another Smart TV  that is inherited from television class. So we can say that the Smart tv is also a TV. 
+				Because CRT TV things can also be done in the Smart TV.
+				So here ‘IS-A’ Relationship formed. [ SmartTV ‘IS-A’ TV ].
+			
+			In inheritance classes are devide into 2 category -
+				(1). Parent class(Base class / Super class) :
+				(2). Child class(Derived class / Sub class / Extended class
+				
+
+			Type of Inheritance :
+			---------------------
+				(1). Single inheritance : 
+				-------------------------
+					class Animal {
+						public void eat() {
+							System.out.println("Animal is eating");
+						}
+					}
+					class Dog extends Animal {
+						public void bark() {
+							System.out.println("Dog is barking");
+						}
+					}
+					public class Main {
+						public static void main(String[] args) {
+							Dog d = new Dog();
+							d.eat();  // Inherited from Animal
+							d.bark(); // Specific to Dog
+						}
+					}
+
+				(2). Multilevel inheritance : 
+				-----------------------------
+					class Vehicle {
+						public void move() {
+							System.out.println("Vehicle is moving");
+						}
+					}
+					class Car extends Vehicle {
+						public void honk() {
+							System.out.println("Car is honking");
+						}
+					}
+					class SportsCar extends Car {
+						public void accelerate() {
+							System.out.println("Sports car is accelerating");
+						}
+					}
+					public class Main {
+						public static void main(String[] args) {
+						SportsCar sc = new SportsCar();
+							sc.move();  // Inherited from Vehicle
+							sc.honk();  // Inherited from Car
+							sc.accelerate(); // Specific to SportsCar
+						}
+					}
+					
+					
+				(3). Hierarchical inheritance : 
+				-------------------------------
+					class Shape {
+						public void draw() {
+							System.out.println("Drawing a shape");
+						}
+					}
+					class Circle extends Shape {
+						public void roll() {
+							System.out.println("Circle is rolling");
+						}
+					}
+					class Rectangle extends Shape {
+						public void calculateArea() {
+							System.out.println("Calculating area of rectangle");
+						}
+					}
+					public class Main {
+						public static void main(String[] args) {
+							Circle c = new Circle();
+							c.draw();  // Inherited from Shape
+							c.roll();  // Specific to Circle
+
+							Rectangle r = new Rectangle();
+							r.draw();  // Inherited from Shape
+							r.calculateArea(); // Specific to Rectangle
+						}
+					}
+
+
+				Notes : 
+				-------
+					Java does not  support multiple inheritance for classes due to Complexity and ambiguity. But we can use multiple inheritance for interfaces.
+					Diamond problem :
+					-----------------
+						subclass can inherit from multiple parent classes. If both parent classes have methods with the same name then this can lead to ambiguity. The compiler wouldn't know which method to call from the subclass. This is often referred to as the "diamond problem".
+						
+						class Shape1 {
+							public void draw() {
+								System.out.println("Drawing shape1");
+							}
+						}
+						class Shape2 {
+							public void draw() {
+								System.out.println("Drawing shape2");
+							}
+						}
+						class Rectangle extends Shape1, Shape2 { // Class cannot extend multiple classes
+							public void calculateArea() {
+								System.out.println("Calculating area of rectangle");
+							}
+						}
+						public class Main {
+							public static void main(String[] args) {
+								Rectangle r = new Rectangle();
+								r.draw();  // Inherited
+								r.calculateArea(); // Specific to Rectangle						
+							}
+						}
+						
+
+			* We can achieve code reuse and functionality similar to multiple inheritance by using Composition(has-a relationship) and Interfaces.
+			  
+			Composition :
+			-------------
+				Composition refers to a technique for creating complex objects by combining simpler objects. It's a way to establish a "has-a" relationship between objects.
+				eg.
+					public class Engine {
+						public void start() {
+							// Simulate engine starting
+							System.out.println("Engine started!");
+						}
+					}
+					public class Wheel {
+						public void roll() {
+							// Simulate wheel rolling
+							System.out.println("Wheel rolling!");
+						}
+					}
+					public class Car {
+						private Engine engine;  // Car has-a Engine
+						private Wheel[] wheels;  // Car has-a array of Wheels
+
+						public Car(Engine engine, Wheel[] wheels) {
+							this.engine = engine;
+							this.wheels = wheels;
+						}
+
+						public void startAndDrive() {
+							engine.start();
+							for (Wheel wheel : wheels) {
+								wheel.roll();
+							}
+						}
+					  
+					}
+
+
+		4. Abstraction :
+		----------------
+			Hiding internal details and showing only essential functionality is known as abstraction. 
+			OR
+			"Process of representing only essential features". It allows developers to hide complex implementation details.
+			
+			In Java, we use abstract class and interface to achieve abstraction.
+			
+				For example phone call, we don't know the internal processing.
+
+			1.abstract : (0 to 100% abstraction achieved) 
+			----------------------------------------------------
+				abstract modifier is applicabe for methods and classes only but not for variables.
+				
+				. abstract method : 
+					These are methods declared without implementation in an abstract class or interface. 
+					
+				. abstract class : 
+					"Special type of class which does not provide a complete implementation for abstract methods present in it, hence cannot be instantiated using new keyword", but they can be subclassed. Concrete subclasses are classes that provide concrete implementation for all the abstract methods defined in parent abstract class.
+					
+					abstract class contain both abstract and non-abstract methods as well as instance variable and constructors.
+					
+					example - 
+						public abstract class Shape { // abstract class
+							public abstract double calculateArea(); // abstract method
+						}
+						public class Circle extends Shape { // cannot use protected/private access modifier with Child class(Concrete subclass)
+							private final double radius;
+							public Circle(double radius) {
+								this.radius = radius;
+							}
+
+							@Override
+							public double calculateArea() { // concrete implementation of Parent abstract method calculateArea() by concrete subclass Circle
+								return Math.PI * radius * radius;
+							}
+						}
+						public class Main {
+							public static void main(String[] args) {
+								Circle circle = new Circle(5); // Object creation Of Circle class using Circle class reference
+								System.out.println("Circle Area: " + circle.calculateArea());
+							}
+						}
+			
+			
+
+			2.Interface : (100% abstraction achieved) and we can also achieve multiple inheritance.
+			---------------------------------------------------------------------------------------
+				Interface are any Service Requirement Specification(SRS) which are  collection of abstract methods and constant fields.
+				It does not provide implementation of any methods. 
+				
+				To define an interface in java we use "interface" keyword followed by interface name.
+				Java interface is a collection of abstract methods and constants.
+				Example - 
+					public interface Shape {
+						double calculateArea(); // Abstract method - needs implementation in implementing class
+
+						default void printInfo() { // Default method with implementation
+							System.out.println("This is a shape object.");
+						}
+
+						static double calculateTotalArea(Shape[] shapes) { // Static method - can be called directly using interface name
+							double totalArea = 0;
+							for (Shape shape : shapes) {
+								totalArea += shape.calculateArea();
+							}
+							return totalArea;
+						}
+					}
+					public class Circle implements Shape {
+						private double radius;
+						
+						public Circle(double radius) {
+							this.radius = radius;
+						}
+
+						@Override
+						public double calculateArea() {
+							return Math.PI * radius * radius;
+						}
+
+						// Can override the default method if needed
+						@Override
+						public void printInfo() {
+							System.out.println("This is a circle object with radius: " + radius);
+						}
+					}
+					public class Main {
+						public static void main(String[] args) {
+							Circle circle1 = new Circle(5);
+							Circle circle2 = new Circle(3);
+
+							System.out.println("Circle 1 Area: " + circle1.calculateArea()); // Calling abstract method through object
+
+							circle1.printInfo(); // Calling default method through object (can be overridden)
+
+							System.out.println("Total Area of both circles: " + Shape.calculateTotalArea(new Shape[]{circle1, circle2})); // Calling static method directly using interface name
+						}
+					}
+			
+			
+				Some Common used interfaces are :
+
+				. Marker interface : 
+				--------------------
+					Marker interface is an interface which doesn't contain any method but objects will get some ability by implementing them.
+					
+					For example : 
+					
+						Serializable(I) : 
+						-----------------
+							public class Person implements Serializable {
+								// Person class fields and methods
+							}
+							
+							//. Person class implements the Serializable interface. This indicates that objects of the Person class can be converted into a stream of bytes for storage or transmission over a network. The Serializable interface itself doesn't provide any methods, but implementing it tells the JVM that the class can be serialized.
+							
+						
+						Cloneable(I) : 
+						--------------
+							public class Document implements Cloneable {
+								// Document class fields and methods
+								@Override
+								public Object clone() throws CloneNotSupportedException {
+									// Implement logic to create a copy of the Document object
+									return super.clone();
+								}
+							}
+							
+							//. The Document class implements the Cloneable interface. This interface signifies that objects of the Document class can be cloned. However, it's important to note that the Cloneable interface doesn't define how the cloning should be done. Classes that implement Cloneable must also override the clone() method from the Object class to provide the actual cloning implementation.
+							
+						RandomAccess(I) : 
+						-----------------
+							public class MyArrayList implements List<String> {
+								private List<String> data; // Internal data storage
+
+								// Implement List interface methods (add, remove, etc.)
+								@Override
+								public String get(int index) {
+									// Efficient access using index
+									return data.get(index);
+								}
+							}
+							
+							//. MyArrayList implements the List<String> interface as well as the RandomAccess interface.
+							//. This indicates that the MyArrayList can efficiently access elements using their index (get(int index)) because it maintains an underlying data structure that allows for constant time lookups.
+							//. Implementations like ArrayList in the Java Collections Framework utilize arrays for data storage, enabling random access.
+								
+							
+							
+						SingleThreadModel(I) : 
+						----------------------
+							public class MySingleThreadServlet extends HttpServlet implements SingleThreadModel {
+								@Override
+								protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+									// Process the request in this single thread
+									resp.getWriter().println("This request is processed in a single thread.");
+								}
+							}
+							
+							//. MySingleThreadServlet extends HttpServlet and implements SingleThreadModel.
+							//. This ensures that even if multiple requests come in for this servlet, only one thread will handle a request at a time for a specific instance. This can be useful for situations where you need to maintain state or avoid race conditions across requests.
+							//. The server might create multiple instances of the servlet to handle concurrent requests efficiently.
+									
+									
+				. Runnable interface :
+				----------------------
+					In Java, the Runnable interface is a fundamental building block for multithreading.
+					Runnable has only one abstract method that specifies the code a thread will execute : public abstract void run();
+					
+					. Return Value: 
+						Runnable has a void return type for its run method.
+							void run();	
+					. UnChecked Exceptions:
+						The run method of Runnable can only throw unchecked exceptions (RuntimeException and its subclasses).
+				
+					The Runnable interface serves as a contract between a class and the Thread class. By implementing Runnable, a class indicates that its objects can be used to represent tasks that can be executed concurrently by separate threads
+					
+					
+					 A class that needs to be used with threads must implement the Runnable interface and provide its own implementation of the run() method. This implementation specifies the specific work the thread will perform.
+					 
+					public interface Runnable {
+					  void run(); //public abstract
+					}
+					public class MyRunnable implements Runnable {
+						@Override
+						public void run() {
+							// Code to be executed by the thread
+							System.out.println("This is from MyRunnable implementing Runnable interface");
+							for (int i = 0; i < 5; i++) {
+								System.out.println("Running task in MyRunnable: " + i);
+								try {
+									Thread.sleep(1000); // Simulate some work
+								} catch (InterruptedException e) {
+									e.printStackTrace();
+								}
+							}
+						}
+					}
+					public class Main {
+						public static void main(String[] args) {
+							MyRunnable myRunnable = new MyRunnable();
+							Thread thread = new Thread(myRunnable); // Create a Thread object with the Runnable implementation
+							thread.start(); // Start the thread to begin execution
+							System.out.println("This is from the main thread");
+						}
+					}
+
+
+				Callable Interface :
+				--------------------
+					The Callable interface in Java is an extension of the Runnable interface that provides more functionality for working with threads. It allows threads to return a result and potentially throw checked exceptions.
+					
+					. Return Value: 
+						Unlike Runnable which has a void return type for its run method, Callable defines a method with a generic return type V.
+							public V call() throws Exception;	
+					. Checked Exceptions: 
+						The call method of Callable allows throwing both checked and unchecked exceptions. This provides more flexibility in handling potential errors within the thread.
+						
+					Benefits of Callable :
+					. Results: 
+						You can retrieve the result of a thread's execution using the Future interface returned by the ExecutorService.submit method. This is useful when you need the output of a thread for further processing in the main thread.
+					. Checked Exceptions: 
+						By allowing checked exceptions, Callable enables you to handle potential errors that occur within the thread and propagate them back to the main thread for proper handling.
+
+					public interface Callable<V> {
+						V call() throws Exception;
+					}
+					public class FactorialTask implements Callable<Integer> {
+						private int number;
+						public FactorialTask(int number) {
+							this.number = number;
+						}
+						@Override
+						public Integer call() throws Exception {
+						if (number < 0) {
+							throw new IllegalArgumentException("Number must be non-negative");
+						}
+						int result = 1;
+						for (int i = 1; i <= number; i++) {
+						  result *= i;
+						}
+						return result;
+						}
+					}
+					public class CallableExample implements Callable<Integer> {
+						@Override
+						public Integer call() throws Exception {
+							// Simulate some work and return a result
+							int sum = 0;
+							for (int i = 1; i <= 10; i++) {
+							  sum += i;
+							}
+							return sum;
+						}
+					}
+					public class Main {
+						public static void main(String[] args) throws Exception {
+							ExecutorService executor = Executors.newSingleThreadExecutor(); // This line creates an ExecutorService object using the Executors.newSingleThreadExecutor() factory method. This creates a thread pool with a single thread.
+
+							// Submit the Callable task to the ExecutorService
+							Future<Integer> future = executor.submit(new CallableExample()); // This line submits the CallableExample object (an instance that represents the task) to the ExecutorService. The submit method returns a Future object which holds the eventual result of the task.
+
+							// Get the result from the Future object (blocks until the thread finishes)
+							int result = future.get(); // This line calls the get method on the Future object. This method retrieves the result of the task executed by the CallableExample class. However, this line blocks until the task finishes execution.
+
+							System.out.println("The sum is: " + result); // This line prints the retrieved sum obtained from the CallableExample task.
+
+							executor.shutdown(); // This line shuts down the ExecutorService, indicating that no new tasks will be submitted.
+						}
+					}
+					
+					In this example:
+					. The CallableExample class implements Callable and overrides the call method.
+					. The call method calculates the sum of numbers from 1 to 10 and returns the result.
+					. The main method uses an ExecutorService to submit the Callable task.
+					. The submit method returns a Future object.
+					. The get method of the Future object is used to retrieve the result (the sum) after the thread finishes execution.
+					
+
+
+				Future Interface : 
+				-----------------
+					The Future interface in Java represents the eventual result of an asynchronous computation. It's used in conjunction with the Callable interface to manage tasks that can return results and potentially throw exceptions.
+					
+					There was some shortcoming of the Future interface that are as follows:
+						Using Future, the computation cannot be completed manually.
+						It does not notify once the commutation is completed.
+						Its chain cannot be created and combined.
+					
+					In order to overcome the above limitations, Java 8 introduced CompletableFuture.
+					
+					Functionality:
+						. Result Placeholder: A Future acts as a placeholder for the result of a task submitted to an ExecutorService.
+						. Checking Completion: You can use methods like isDone() to check if the task has finished execution.
+						. Cancelling Tasks: Some implementations might support cancelling the task using cancel() before it finishes (depending on the task's nature).
+						. Retrieving Results: The get() method allows you to retrieve the result of the task once it's complete. However, get() might block the calling thread until the task finishes.
+						
+					Key Points:
+						. Threads don't directly interact with the Future object. The ExecutorService manages the task execution, and the Future provides a way to interact with the result asynchronously.
+						. The get() method can throw exceptions if the task execution throws an exception or if the task is cancelled.
+						. Future offers a way to decouple the code that submits a task from the code that retrieves the result, promoting asynchronous programming.
+						
+						public class FutureExample implements Callable<Integer> {
+							@Override
+							public Integer call() throws Exception {
+								// Simulate some work and return a result
+								int sum = 0;
+								for (int i = 1; i <= 10; i++) {
+									sum += i;
+								}
+								return sum;
+							}
+						}
+						public class Main {
+							public static void main(String[] args) throws Exception {
+								ExecutorService executor = Executors.newSingleThreadExecutor();
+								// Submit the Callable task to the ExecutorService
+								Future<Integer> future = executor.submit(new FutureExample());
+								// Check if the task is done (optional)
+								if (future.isDone()) {
+									System.out.println("Task completed!");
+								}
+								// Get the result from the Future object (blocks until the thread finishes)
+								int result = future.get();
+								System.out.println("The sum is: " + result);
+								executor.shutdown();
+							}
+						}
+
+
+				Comparator :  
+				------------				
+					The Comparator interface is found in the java.util package and has a single method compare. 
+					Comparator interface is used to define the order of objects. It's particularly useful when you want to sort collections or arrays of objects in a specific order that is different from their natural order (defined by the Comparable interface). 
+						
+						. int compare(T o1, T o2); 
+						
+						Example :
+							public class Product {
+								private String name;
+								private double price;
+								// Getters and setters for name and price
+							}
+							public class Main {
+								public static void main(String[] args) {
+									List<Product> products = Arrays.asList(new Product("Laptop", 800.00), 
+																			new Product("Phone", 500.00), 
+																			new Product("Headphones", 100.00));
+																			
+									// Comparator for sorting by price (ascending)
+									Comparator<Product> priceComparator = (product1, product2) -> Double.compare(product1.getPrice(), product2.getPrice());
+									
+									// Sort the list using the comparator
+									List<Product> sortedProducts = products.stream()
+																			.sorted(priceComparator)
+																			.collect(Collectors.toList());
+									System.out.println("Products sorted by price (ascending):");
+									for (Product product : sortedProducts) {
+										System.out.println(product);
+									}
+								}
+							}
+							
+							
+							
+						. boolean equals(Object obj);
+						
+							Comparator interface in Java does have an equals(Object obj) method, but it's not used for standard object equality comparison.
+							
+								. The equals method is inherited from the Object class, but in Comparator, it has a specific meaning related to sorting behavior.
+								. It doesn't necessarily check if two Comparator objects are the same instance.
+								. Instead, it ensures that two Comparator objects define the same sorting order for any two objects they compare.
+
+
+
+						
+
+
+	
+	7. Distributed: 
+		Java is distributed as a combination of runtime environments and development kits, provided by both commercial vendors and open-source communities. This wide variety of distribution methods ensures that Java can be used across different platforms and use cases—from desktop and server applications to embedded systems and cloud deployments.
+		
+		Here are the main ways Java is distributed:
+			1. Java Development Kit (JDK) and Java Runtime Environment (JRE)
+				. JDK (Java Development Kit):
+					This is the complete package needed for developing Java applications. It includes:
+					. The Java compiler (javac), which translates source code into bytecode.
+					. The Java Virtual Machine (JVM) to run Java applications.
+					. A comprehensive set of libraries and tools (debugger, documentation generator, etc.).
+				
+				. JRE (Java Runtime Environment):
+					For end-users who only need to run Java applications, the JRE includes the JVM and the core libraries but omits development tools.
+					
+			2. Vendor and Open-Source Distributions
+				. Oracle JDK:
+					Historically, Oracle has been the primary distributor of Java. Oracle JDK is often used in enterprise environments but now comes with specific licensing terms.
+
+				. OpenJDK:
+					This is the open-source reference implementation of Java SE. Many vendors, such as AdoptOpenJDK (now Eclipse Temurin), Red Hat, Azul, and Amazon Corretto, provide their own builds of OpenJDK.
+
+				. Specialized Distributions:
+					There are distributions targeting specific platforms or purposes, such as Java ME for mobile or embedded devices and Java Card for smart cards.
+					
+			3. Packaging and Distribution Channels
+				. Downloadable Installers and Archives:
+					Java is available as downloadable installers (for Windows, macOS, Linux) or compressed archives for manual installation.
+
+				. Package Managers:
+					On Linux distributions, Java can be installed via package managers (e.g., APT for Debian/Ubuntu, YUM/DNF for Red Hat/CentOS).
+
+				. Container Images:
+					Many organizations now use containerization (e.g., Docker) to deploy Java applications, with official or community-maintained Java images available on container registries.
+
+				. Cloud Services:
+					Cloud providers often offer managed Java environments, making it easy to deploy Java applications without worrying about the underlying distribution.
+
+Additional Features
+	8. High Performance: 
+		While interpreted, Java's Just-In-Time (JIT) compiler optimizes code execution, delivering performance comparable to compiled languages.
+	
+	9. Dynamic: 
+		Java can adapt to changing conditions through features like reflection, which allows programs to examine and modify their own structure at runtime.
+	
+	10. Architecture Neutral: 
+		Java bytecode can run on any system with a JVM, making it independent of underlying hardware.
+	
+	11. Interpreted: 
+		Java bytecode is executed by the JVM, providing platform independence but potentially sacrificing some performance compared to compiled languages.
+
+
+========================================================================================================================================================================
 
 
 class ClassName {
@@ -221,750 +1779,6 @@ class ClassName {
 
 . { }:
 	Method Body: The curly braces { } define the body of the main method. Inside these braces, you would write the code that you want to execute when the program starts.
-
-==================================================================================================================================================================================
-
-
-OOPS : 
-------
-
-	1. Encapsulation :
-	------------------
-		Binding (or wrapping) code and data together into a single unit are known as encapsulation. 
-		It helps developers to follow modularity while developing software by ensuring that each object is independent of other objects by having its own methods, attributes, and functionalities.
-
-		It is used for the security of the private properties of an object and hence serves the purpose of data hiding.
-
-		For example, 
-		a capsule, it is wrapped with different medicines.
-		Java bean is the fully encapsulated class because all the data members are private here.
-
-
-		code example -
-			public class BankAccount {
-				private double balance; // Private attribute to store account balance
-				
-				public double getBalance() { // Getter method to return balance
-					return balance;
-				}
-				
-				public void deposit(double amount) { // Setter method to deposit funds
-					if (amount > 0) {
-						balance += amount;
-					} //else {// Handle invalid deposit amount (optional)}
-				}
-			  
-				public BankAccount(double initialBalance) { //constructor
-					// Validate initial balance (optional)
-					this.balance = initialBalance;
-				}
-
-				public void withdraw(double amount) { // Setter method to withdraw funds
-					if (amount > 0 && amount <= balance) {
-						balance -= amount;
-					} //else {// Handle invalid withdrawal amount (optional)}
-				}
-			}
-
-
-	2. Polymorphism : 
-	--------------
-		Performing same operation differently in different class is known as polymorphism.
-		
-		Polymorphism can be achieved by --
-
-			(1). Compile-time polymorphism(Overloading / Static Binding / Early Binding) :
-				-->Two methods said to be overloaded if and only if both have same name but different signature(argument no or type) in same class. 
-					eg- abs(int i){}
-						abs(long l){}
-						abs(float f){}
-						
-					Overloading can't happen in different classes.
-						
-			(2). Run-time polymorphism(Overriding / Dynamic Binding / Late Binding) : 
-				--> Overriding is a mechanism in which subclass provide its own implementation for a method that is already defined in its parent class.
-				--> It occure at runtime when child class has same method name and same signature(argument no and type.) when extends the parent class.
-				--> It also has same return type till 1.4v. But from 1.5v, the return type can be differ by co-varient relation(i.e. Parent to Child relation).
-				
-				Co-Varient : Applicable only for Object type not for Primitive type.
-					Object --> Object / String / StringBuffer / ...
-					Number --> Number / Integer / ...
-					
-			// main() method can't be overrided because it is static but it can use method hiding.
-			. Method hiding : 
-				If subclass has a static method with the same name and signature as a static method in its parent class. The subclass static method hides the parent class static method when called through a reference of the subclass type.
-					
-					class SuperClass {
-						public static void printMessage() {
-							System.out.println("This is the message from SuperClass");
-						}
-					}
-
-					class SubClass extends SuperClass {
-						public static void printMessage() {
-							System.out.println("This is the message from SubClass");
-						}
-					}
-
-					public class Main {
-						public static void main(String[] args) {
-							SuperClass superRef = new SubClass(); // SubClass object with SuperClass reference
-							SubClass subRef = new SubClass(); // SubClass object with SubClass reference
-
-							superRef.printMessage(); // Output: This is the message from SuperClass (compile-time binding based on reference type)
-							
-							subRef.printMessage();  // Output: This is the message from SubClass (compile-time binding based on reference type)
-						}
-					}
-
-					
-		Example -
-		
-			class Animal {
-				
-				// makeSound() Method to be overridden
-				public void makeSound() {
-					System.out.println("Animal makeSound() method");
-				}
-				
-				// Animal static main() method
-				public static void main(String[] args) {
-					System.out.println("Animal static main(String[] args) method");
-				}
-			}
-			class Parent extends Animal {
-				// Data hiding of static main() method
-				public static void main(String[] args) {
-					System.out.println("Hiding Animal static main(String[] args) method with Parent static main(String[] args) method");
-				}
-				
-				// Overloading main method
-				public static void main(int[] args) {
-					System.out.println("Overloading Parent static main(String[] args) method with Parent static main(int[] args)");
-				}
-				
-				// Overriding
-				@Override
-				public void makeSound() {
-					System.out.println("Overriding Animal makeSound() method with Parent makeSound() method");
-				}
-				
-				// Parent static display() method
-				public static void display() {
-					System.out.println("Parent class static display() method");
-				}
-			}
-			class Child extends Parent {
-				// Method hiding (Static method can not override but its data hiding)
-				public static void main(String[] args) {
-					System.out.println("Hiding Parent static main(String[] args) method with Child static main(String[] args) method");
-				}
-				
-				// Method hiding of Parent static display() method with Child static display() method
-				public static void display() {
-					System.out.println("Hiding Parent static display() method with Child static display() method");
-				}
-
-				// Overloading
-				public static void main(Float[] args) {
-					System.out.println("Overloading Parent static main(String[] args) method with Child static main(Float[] args)");
-				}
-				public static void main() {
-					System.out.println("Overloading Child static main(float[] args) method with Child static main() ");
-				}
-				
-				// Overriding
-				@Override
-				public void makeSound() {
-					System.out.println("Overriding Parent makeSound() method with Child makeSound() method");
-				}
-				
-			}
-			class Main {
-				public static void main(String[] args) {
-					System.out.println("Main main method ");
-
-					System.out.println("");
-					Parent parent = new Parent();
-					Parent parentChild =new Child();
-					Child child = new Child();
-					/*Child childParent = new Parent();*/ // Child class reference variable referencing a Parent class object not possible
-					Animal animal = new Animal();
-
-					parent.main(new String[0]); // Parent static main(String[] args) method
-					parentChild.main(new String[0]); // Parent static main(String[] args) method
-					parentChild.display(); // Parent class static display() method
-					animal.makeSound(); // Animal makeSound() method
-
-					//Overloading
-					System.out.println("");
-					System.out.println("Overloading :");
-					parent.main(new int[0]); // Overloading Parent static main(String[] args) method with Parent static main(int[] args)
-					child.main(new Float[0]); // Overloading Parent static main(String[] args) method with Child static main(Float[] args)
-					child.main();   // Overloading Child static main(float[] args) method with Child static main()
-
-					//Overriding
-					System.out.println("");
-					System.out.println("Overriding :");
-					parent.makeSound(); // Overriding Animal makeSound() method with Parent makeSound() method
-					parentChild.makeSound(); // Overriding Parent makeSound() method with Child makeSound() method
-					child.makeSound(); // Overriding Parent makeSound() method with Child makeSound() method
-
-					// Method hiding using class name
-					System.out.println("");
-					System.out.println("Method hiding using Class name :");
-					Child.main(new String[0]);  // Hiding Parent static main(String[] args) method with Parent static main(String[] args) method
-					Child.display(); // Hiding Parent static display() method with Child static display() method
-
-					// Method hiding using object
-					System.out.println("");
-					System.out.println("Method hiding using object :");
-					child.main(new String[0]); // Hiding Parent static main(String[] args) method with Parent static main(String[] args) method
-
-				}
-			}
-
-
-
-
-	3. Inheritance (IS-A relationship) in OOPs : ‘IS-A’ relationship is another name for inheritance.
-	-----------------------------------------
-		"Reusability of programming code by inheriting the property of another class".
-		
-		Example - 
-			Consider a Television (Typical CRT TV). Now another Smart TV  that is inherited from television class. So we can say that the Smart tv is also a TV. 
-			Because CRT TV things can also be done in the Smart TV.
-			So here ‘IS-A’ Relationship formed. [ SmartTV ‘IS-A’ TV ].
-		
-		In inheritance classes are devide into 2 category -
-			(1). Parent class(Base class / Super class) :
-			(2). Child class(Derived class / Sub class / Extended class
-			
-
-		Type of Inheritance :
-		---------------------
-			(1). Single inheritance : 
-			-------------------------
-				class Animal {
-					public void eat() {
-						System.out.println("Animal is eating");
-					}
-				}
-				class Dog extends Animal {
-					public void bark() {
-						System.out.println("Dog is barking");
-					}
-				}
-				public class Main {
-					public static void main(String[] args) {
-						Dog d = new Dog();
-						d.eat();  // Inherited from Animal
-						d.bark(); // Specific to Dog
-					}
-				}
-
-			(2). Multilevel inheritance : 
-			-----------------------------
-				class Vehicle {
-					public void move() {
-						System.out.println("Vehicle is moving");
-					}
-				}
-				class Car extends Vehicle {
-					public void honk() {
-						System.out.println("Car is honking");
-					}
-				}
-				class SportsCar extends Car {
-					public void accelerate() {
-						System.out.println("Sports car is accelerating");
-					}
-				}
-				public class Main {
-					public static void main(String[] args) {
-					SportsCar sc = new SportsCar();
-						sc.move();  // Inherited from Vehicle
-						sc.honk();  // Inherited from Car
-						sc.accelerate(); // Specific to SportsCar
-					}
-				}
-				
-				
-			(3). Hierarchical inheritance : 
-			-------------------------------
-				class Shape {
-					public void draw() {
-						System.out.println("Drawing a shape");
-					}
-				}
-				class Circle extends Shape {
-					public void roll() {
-						System.out.println("Circle is rolling");
-					}
-				}
-				class Rectangle extends Shape {
-					public void calculateArea() {
-						System.out.println("Calculating area of rectangle");
-					}
-				}
-				public class Main {
-					public static void main(String[] args) {
-						Circle c = new Circle();
-						c.draw();  // Inherited from Shape
-						c.roll();  // Specific to Circle
-
-						Rectangle r = new Rectangle();
-						r.draw();  // Inherited from Shape
-						r.calculateArea(); // Specific to Rectangle
-					}
-				}
-
-
-			Notes : 
-			-------
-				Java does not  support multiple inheritance for classes due to Complexity and ambiguity.
-				Diamond problem :
-				-----------------
-					subclass can inherit from multiple parent classes. If both parent classes have methods with the same name then this can lead to ambiguity. The compiler wouldn't know which method to call from the subclass. This is often referred to as the "diamond problem".
-					
-					class Shape1 {
-						public void draw() {
-							System.out.println("Drawing shape1");
-						}
-					}
-					class Shape2 {
-						public void draw() {
-							System.out.println("Drawing shape2");
-						}
-					}
-					class Rectangle extends Shape1, Shape2 { // Class cannot extend multiple classes
-						public void calculateArea() {
-							System.out.println("Calculating area of rectangle");
-						}
-					}
-					public class Main {
-						public static void main(String[] args) {
-							Rectangle r = new Rectangle();
-							r.draw();  // Inherited
-							r.calculateArea(); // Specific to Rectangle						
-						}
-					}
-					
-
-		* We can achieve code reuse and functionality similar to multiple inheritance by using Composition(has-a relationship) and Interfaces.
-		
-		Composition :
-		-------------
-			Composition refers to a technique for creating complex objects by combining simpler objects. It's a way to establish a "has-a" relationship between objects.
-			eg.
-				public class Engine {
-					public void start() {
-						// Simulate engine starting
-						System.out.println("Engine started!");
-					}
-				}
-				public class Wheel {
-					public void roll() {
-						// Simulate wheel rolling
-						System.out.println("Wheel rolling!");
-					}
-				}
-				public class Car {
-					private Engine engine;  // Car has-a Engine
-					private Wheel[] wheels;  // Car has-a array of Wheels
-
-					public Car(Engine engine, Wheel[] wheels) {
-						this.engine = engine;
-						this.wheels = wheels;
-					}
-
-					public void startAndDrive() {
-						engine.start();
-						for (Wheel wheel : wheels) {
-							wheel.roll();
-						}
-					}
-				  
-				}
-
-
-	4. Abstraction :
-	----------------
-		Hiding internal details and showing only essential functionality is known as abstraction. 
-		OR
-		"Process of representing only essential features". It allows developers to hide complex implementation details.
-		
-		In Java, we use abstract class and interface to achieve abstraction.
-		
-			For example phone call, we don't know the internal processing.
-
-		1.abstract class : (0 to 100% abstraction achieved) 
-		----------------------------------------------------
-			abstract modifier is applicabe for methods and classes only but not for variables.
-			
-			. abstract method : 
-				These are methods declared without implementation in an abstract class or interface. 
-				
-			. abstract class : 
-				"Special type of class which does not provide a complete implementation for abstract methods present in it, hence cannot be instantiated using new keyword", but they can be subclassed. Concrete subclasses are classes that provide concrete implementation for all the abstract methods defined in parent abstract class.
-				
-				abstract class contain both abstract and non-abstract methods as well as instance variable and constructors.
-				
-				example - 
-					public abstract class Shape { // abstract class
-						public abstract double calculateArea(); // abstract method
-					}
-					public class Circle extends Shape { // cannot use protected/private access modifier with Child class(Concrete subclass)
-						private final double radius;
-						public Circle(double radius) {
-							this.radius = radius;
-						}
-
-						@Override
-						public double calculateArea() { // concrete implementation of Parent abstract method calculateArea() by concrete subclass Circle
-							return Math.PI * radius * radius;
-						}
-					}
-					public class Main {
-						public static void main(String[] args) {
-							Circle circle = new Circle(5); // Object creation Of Circle class using Circle class reference
-							System.out.println("Circle Area: " + circle.calculateArea());
-						}
-					}
-		
-		
-
-		2.Interface : (100% abstraction achieved) and we can also achieve multiple inheritance.
-		---------------------------------------------------------------------------------------
-			Interface are any Service Requirement Specification(SRS) which are  collection of abstract methods and constant fields.
-			It does not provide implementation of any methods. 
-			
-			To define an interface in java we use "interface" keyword followed by interface name.
-			Java interface is a collection of abstract methods and constants.
-			Example - 
-				public interface Shape {
-					double calculateArea(); // Abstract method - needs implementation in implementing class
-
-					default void printInfo() { // Default method with implementation
-						System.out.println("This is a shape object.");
-					}
-
-					static double calculateTotalArea(Shape[] shapes) { // Static method - can be called directly using interface name
-						double totalArea = 0;
-						for (Shape shape : shapes) {
-							totalArea += shape.calculateArea();
-						}
-						return totalArea;
-					}
-				}
-				public class Circle implements Shape {
-					private double radius;
-					
-					public Circle(double radius) {
-						this.radius = radius;
-					}
-
-					@Override
-					public double calculateArea() {
-						return Math.PI * radius * radius;
-					}
-
-					// Can override the default method if needed
-					@Override
-					public void printInfo() {
-						System.out.println("This is a circle object with radius: " + radius);
-					}
-				}
-				public class Main {
-					public static void main(String[] args) {
-						Circle circle1 = new Circle(5);
-						Circle circle2 = new Circle(3);
-
-						System.out.println("Circle 1 Area: " + circle1.calculateArea()); // Calling abstract method through object
-
-						circle1.printInfo(); // Calling default method through object (can be overridden)
-
-						System.out.println("Total Area of both circles: " + Shape.calculateTotalArea(new Shape[]{circle1, circle2})); // Calling static method directly using interface name
-					}
-				}
-		
-		
-			Some Common used interfaces are :
-
-			. Marker interface : 
-			--------------------
-				Marker interface is an interface which doesn't contain any method but objects will get some ability by implementing them.
-				
-				For example : 
-				
-					Serializable(I) : 
-					-----------------
-						public class Person implements Serializable {
-							// Person class fields and methods
-						}
-						
-						//. Person class implements the Serializable interface. This indicates that objects of the Person class can be converted into a stream of bytes for storage or transmission over a network. The Serializable interface itself doesn't provide any methods, but implementing it tells the JVM that the class can be serialized.
-						
-					
-					Cloneable(I) : 
-					--------------
-						public class Document implements Cloneable {
-							// Document class fields and methods
-							@Override
-							public Object clone() throws CloneNotSupportedException {
-								// Implement logic to create a copy of the Document object
-								return super.clone();
-							}
-						}
-						
-						//. The Document class implements the Cloneable interface. This interface signifies that objects of the Document class can be cloned. However, it's important to note that the Cloneable interface doesn't define how the cloning should be done. Classes that implement Cloneable must also override the clone() method from the Object class to provide the actual cloning implementation.
-						
-					RandomAccess(I) : 
-					-----------------
-						public class MyArrayList implements List<String> {
-							private List<String> data; // Internal data storage
-
-							// Implement List interface methods (add, remove, etc.)
-							@Override
-							public String get(int index) {
-								// Efficient access using index
-								return data.get(index);
-							}
-						}
-						
-						//. MyArrayList implements the List<String> interface as well as the RandomAccess interface.
-						//. This indicates that the MyArrayList can efficiently access elements using their index (get(int index)) because it maintains an underlying data structure that allows for constant time lookups.
-						//. Implementations like ArrayList in the Java Collections Framework utilize arrays for data storage, enabling random access.
-							
-						
-						
-					SingleThreadModel(I) : 
-					----------------------
-						public class MySingleThreadServlet extends HttpServlet implements SingleThreadModel {
-							@Override
-							protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-								// Process the request in this single thread
-								resp.getWriter().println("This request is processed in a single thread.");
-							}
-						}
-						
-						//. MySingleThreadServlet extends HttpServlet and implements SingleThreadModel.
-						//. This ensures that even if multiple requests come in for this servlet, only one thread will handle a request at a time for a specific instance. This can be useful for situations where you need to maintain state or avoid race conditions across requests.
-						//. The server might create multiple instances of the servlet to handle concurrent requests efficiently.
-								
-								
-			. Runnable interface :
-			----------------------
-				In Java, the Runnable interface is a fundamental building block for multithreading.
-				Runnable has only one abstract method that specifies the code a thread will execute : public abstract void run();
-				
-				. Return Value: 
-					Runnable has a void return type for its run method.
-						void run();	
-				. UnChecked Exceptions:
-					The run method of Runnable can only throw unchecked exceptions (RuntimeException and its subclasses).
-			
-				The Runnable interface serves as a contract between a class and the Thread class. By implementing Runnable, a class indicates that its objects can be used to represent tasks that can be executed concurrently by separate threads
-				
-				
-				 A class that needs to be used with threads must implement the Runnable interface and provide its own implementation of the run() method. This implementation specifies the specific work the thread will perform.
-				 
-				public interface Runnable {
-				  void run(); //public abstract
-				}
-				public class MyRunnable implements Runnable {
-					@Override
-					public void run() {
-						// Code to be executed by the thread
-						System.out.println("This is from MyRunnable implementing Runnable interface");
-						for (int i = 0; i < 5; i++) {
-							System.out.println("Running task in MyRunnable: " + i);
-							try {
-								Thread.sleep(1000); // Simulate some work
-							} catch (InterruptedException e) {
-								e.printStackTrace();
-							}
-						}
-					}
-				}
-				public class Main {
-					public static void main(String[] args) {
-						MyRunnable myRunnable = new MyRunnable();
-						Thread thread = new Thread(myRunnable); // Create a Thread object with the Runnable implementation
-						thread.start(); // Start the thread to begin execution
-						System.out.println("This is from the main thread");
-					}
-				}
-
-
-			Callable Interface :
-			--------------------
-				The Callable interface in Java is an extension of the Runnable interface that provides more functionality for working with threads. It allows threads to return a result and potentially throw checked exceptions.
-				
-				. Return Value: 
-					Unlike Runnable which has a void return type for its run method, Callable defines a method with a generic return type V.
-						public V call() throws Exception;	
-				. Checked Exceptions: 
-					The call method of Callable allows throwing both checked and unchecked exceptions. This provides more flexibility in handling potential errors within the thread.
-					
-				Benefits of Callable :
-				. Results: 
-					You can retrieve the result of a thread's execution using the Future interface returned by the ExecutorService.submit method. This is useful when you need the output of a thread for further processing in the main thread.
-				. Checked Exceptions: 
-					By allowing checked exceptions, Callable enables you to handle potential errors that occur within the thread and propagate them back to the main thread for proper handling.
-
-				public interface Callable<V> {
-					V call() throws Exception;
-				}
-				public class FactorialTask implements Callable<Integer> {
-					private int number;
-					public FactorialTask(int number) {
-						this.number = number;
-					}
-					@Override
-					public Integer call() throws Exception {
-					if (number < 0) {
-						throw new IllegalArgumentException("Number must be non-negative");
-					}
-					int result = 1;
-					for (int i = 1; i <= number; i++) {
-					  result *= i;
-					}
-					return result;
-					}
-				}
-				public class CallableExample implements Callable<Integer> {
-					@Override
-					public Integer call() throws Exception {
-						// Simulate some work and return a result
-						int sum = 0;
-						for (int i = 1; i <= 10; i++) {
-						  sum += i;
-						}
-						return sum;
-					}
-				}
-				public class Main {
-					public static void main(String[] args) throws Exception {
-						ExecutorService executor = Executors.newSingleThreadExecutor(); // This line creates an ExecutorService object using the Executors.newSingleThreadExecutor() factory method. This creates a thread pool with a single thread.
-
-						// Submit the Callable task to the ExecutorService
-						Future<Integer> future = executor.submit(new CallableExample()); // This line submits the CallableExample object (an instance that represents the task) to the ExecutorService. The submit method returns a Future object which holds the eventual result of the task.
-
-						// Get the result from the Future object (blocks until the thread finishes)
-						int result = future.get(); // This line calls the get method on the Future object. This method retrieves the result of the task executed by the CallableExample class. However, this line blocks until the task finishes execution.
-
-						System.out.println("The sum is: " + result); // This line prints the retrieved sum obtained from the CallableExample task.
-
-						executor.shutdown(); // This line shuts down the ExecutorService, indicating that no new tasks will be submitted.
-					}
-				}
-				
-				In this example:
-				. The CallableExample class implements Callable and overrides the call method.
-				. The call method calculates the sum of numbers from 1 to 10 and returns the result.
-				. The main method uses an ExecutorService to submit the Callable task.
-				. The submit method returns a Future object.
-				. The get method of the Future object is used to retrieve the result (the sum) after the thread finishes execution.
-				
-
-
-			Future Interface : 
-			-----------------
-				The Future interface in Java represents the eventual result of an asynchronous computation. It's used in conjunction with the Callable interface to manage tasks that can return results and potentially throw exceptions.
-				
-				There was some shortcoming of the Future interface that are as follows:
-					Using Future, the computation cannot be completed manually.
-					It does not notify once the commutation is completed.
-					Its chain cannot be created and combined.
-				
-				In order to overcome the above limitations, Java 8 introduced CompletableFuture.
-				
-				Functionality:
-					. Result Placeholder: A Future acts as a placeholder for the result of a task submitted to an ExecutorService.
-					. Checking Completion: You can use methods like isDone() to check if the task has finished execution.
-					. Cancelling Tasks: Some implementations might support cancelling the task using cancel() before it finishes (depending on the task's nature).
-					. Retrieving Results: The get() method allows you to retrieve the result of the task once it's complete. However, get() might block the calling thread until the task finishes.
-					
-				Key Points:
-					. Threads don't directly interact with the Future object. The ExecutorService manages the task execution, and the Future provides a way to interact with the result asynchronously.
-					. The get() method can throw exceptions if the task execution throws an exception or if the task is cancelled.
-					. Future offers a way to decouple the code that submits a task from the code that retrieves the result, promoting asynchronous programming.
-					
-					public class FutureExample implements Callable<Integer> {
-						@Override
-						public Integer call() throws Exception {
-							// Simulate some work and return a result
-							int sum = 0;
-							for (int i = 1; i <= 10; i++) {
-								sum += i;
-							}
-							return sum;
-						}
-					}
-					public class Main {
-						public static void main(String[] args) throws Exception {
-							ExecutorService executor = Executors.newSingleThreadExecutor();
-							// Submit the Callable task to the ExecutorService
-							Future<Integer> future = executor.submit(new FutureExample());
-							// Check if the task is done (optional)
-							if (future.isDone()) {
-								System.out.println("Task completed!");
-							}
-							// Get the result from the Future object (blocks until the thread finishes)
-							int result = future.get();
-							System.out.println("The sum is: " + result);
-							executor.shutdown();
-						}
-					}
-
-
-			Comparator :  
-			------------				
-				The Comparator interface is found in the java.util package and has a single method compare. 
-				Comparator interface is used to define the order of objects. It's particularly useful when you want to sort collections or arrays of objects in a specific order that is different from their natural order (defined by the Comparable interface). 
-					
-					. int compare(T o1, T o2); 
-					
-					Example :
-						public class Product {
-							private String name;
-							private double price;
-							// Getters and setters for name and price
-						}
-						public class Main {
-							public static void main(String[] args) {
-								List<Product> products = Arrays.asList(new Product("Laptop", 800.00), 
-																		new Product("Phone", 500.00), 
-																		new Product("Headphones", 100.00));
-																		
-								// Comparator for sorting by price (ascending)
-								Comparator<Product> priceComparator = (product1, product2) -> Double.compare(product1.getPrice(), product2.getPrice());
-								
-								// Sort the list using the comparator
-								List<Product> sortedProducts = products.stream()
-																		.sorted(priceComparator)
-																		.collect(Collectors.toList());
-								System.out.println("Products sorted by price (ascending):");
-								for (Product product : sortedProducts) {
-									System.out.println(product);
-								}
-							}
-						}
-						
-						
-						
-					. boolean equals(Object obj);
-					
-						Comparator interface in Java does have an equals(Object obj) method, but it's not used for standard object equality comparison.
-						
-							. The equals method is inherited from the Object class, but in Comparator, it has a specific meaning related to sorting behavior.
-							. It doesn't necessarily check if two Comparator objects are the same instance.
-							. Instead, it ensures that two Comparator objects define the same sorting order for any two objects they compare.
-
-
-
-					
 
 
 ===========================================================================================
@@ -1717,496 +2531,6 @@ Create an immutable class in Java:
 
 ===========================================================================================
 
-
-
-MULTITHREADING : 
-----------------
-	Multithreading in Java refers to a concurrent execution technique where two or more threads (smaller units of a process) run independently but share the same process resources. Multithreading allows for performing multiple tasks simultaneously, leading to more efficient CPU utilization.
-
-	Threads: 
-	--------
-		Threads are lightweight units of execution within a process.They share the same memory space and resources of the process. A process can have multiple threads running concurrently.
-		It is an instance of "java.lang.Thread"
-		
-		Thread Lifecycle:
-		-----------------
-			. New: The thread object is created but not yet started.
-			. Runnable: The thread is ready to be run by the scheduler.
-			. Running: The thread is currently executing instructions.
-			. Waiting/Blocked: The thread is waiting for an event (e.g. I/O operation) to complete before it can continue.
-			.Terminated: The thread has finished execution.
-		
-		Thread Creation :
-		-----------------
-			1. Extending the Thread class: 
-			------------------------------
-				This involves creating a subclass of the Thread class and overriding the run method. The run method defines the code that the thread will execute.
-				
-				// Extending Thread class
-				public class MyThread extends Thread {
-				  @Override
-				  public void run() {
-					// Code to be executed by the thread
-					System.out.println("This is from MyThread extending Thread class");
-				  }
-				}
-				
-			2. Implementing the Runnable interface: 
-			---------------------------------------
-				This approach involves creating a class that implements the Runnable interface. The Runnable interface has a single abstract method called run. You need to implement the run method to specify the code the thread will execute.
-				
-				// Implementing Runnable interface
-				public class MyRunnable implements Runnable {
-				  @Override
-				  public void run() {
-					// Code to be executed by the thread
-					System.out.println("This is from MyRunnable implementing Runnable interface");
-				  }
-				}
-
-
-
-	Processes:
-		Processes are heavyweight entities that have their own memory space and resources. They are independent of each other.
-
-
-	Multithreading Benefits:
-	. Improved responsiveness: 
-		By executing non-blocking tasks (e.g., waiting for network data) in separate threads, the program remains responsive to user interactions.
-	. Efficient resource utilization: 
-		Multithreading allows a program to take advantage of multiple cores in a processor, improving overall performance.
-	. Background tasks: 
-		Long-running tasks can be placed in separate threads to avoid blocking the main thread responsible for the user interface.
-
-	Multithreading Challenges:
-	--------------------------
-		. Synchronization: 
-		------------------
-			Synchronization in Java refers to the coordination of access between multiple threads to shared resources.
-			It's crucial to prevent data races and inconsistencies when multiple threads are working with the same data.
-			
-			When multiple threads access shared data, there's a risk of data races and inconsistencies. Synchronization mechanisms like locks and semaphores are needed to ensure proper access and modification of shared data.
-			
-			
-			1. The Problem: Data Races
-			Imagine two threads trying to update a bank account balance at the same time. Without synchronization, you might encounter a data race:
-
-			. Thread 1 reads the balance (e.g., $100).
-			. Thread 2 reads the same balance ($100).
-			. Thread 1 subtracts $50 (but the in-memory value is still $100).
-			. Thread 2 subtracts $50 (also from the outdated $100 value).
-			. The final balance might incorrectly be $0 instead of the expected $50.
-		
-			Synchronization Mechanisms:
-			---------------------------
-				. Synchronized keyword with method : 
-				--------------------------
-					Declaring a method as synchronized ensures that only one thread can execute that method at a time. Other threads trying to access the synchronized method will be blocked until the current thread finishes executing it.
-				
-					public class BankAccount {
-					  private int balance;
-
-					  public synchronized void withdraw(int amount) {
-						// Synchronized method to ensure safe withdrawal
-						balance -= amount;
-					  }
-					}
-				
-				. Synchronized blocks{} : 
-				-------------------------
-					You can use a synchronized block to control access to a specific code section within a method. Only one thread can enter the synchronized block at a time.
-					
-					public class SynchronizedBlockCounter {
-					  private int count;
-
-					  public void increment() {
-						synchronized (this) { // Synchronize on the current object
-						  count++;
-						}
-					  }
-					}
-					
-					OR
-					
-					public class SynchronizedBlockSharedCounter {
-					  private int count = 0;
-					  public void increment() {
-						synchronized (this) { // Synchronize on the current object
-						  count++;
-						}
-					  }
-					  public int getCount() {
-						return count;
-					  }
-
-					  public static void main(String[] args) throws InterruptedException {
-						SynchronizedBlockSharedCounter counter = new SynchronizedBlockSharedCounter();
-						Thread thread1 = new Thread(() -> {
-						  for (int i = 0; i < 10000; i++) {
-							counter.increment();
-						  }
-						});
-						Thread thread2 = new Thread(() -> {
-						  for (int i = 0; i < 10000; i++) {
-							counter.increment();
-						  }
-						});
-
-						thread1.start();
-						thread2.start();
-
-						thread1.join();
-						thread2.join();
-
-						System.out.println("Final count: " + counter.getCount()); // Should print 20000
-					  }
-					}
-
-				. static synchronized :
-				---------------------
-					static synchronization is a specific type of synchronization that applies to class-level locks rather than object-level locks used in regular synchronized methods and blocks.
-					
-					When a static method of a class accesses shared resources (static or non-static) of that class, static synchronization can be used to ensure only one thread can execute that method at a time. This prevents race conditions and data inconsistencies.
-					
-					public class StaticSynchronizedMyClass {
-					  private static int counter = 0;
-
-					  public static synchronized void incrementCounter() {
-						counter++;
-					  }
-					}
-					
-					OR
-					
-					public class StaticSynchronizedPrinter {
-					  public static synchronized void printDocument(String document) {
-						// Simulate printing process (slow)
-						System.out.println("Printing document: " + document);
-						try {
-						  Thread.sleep(1000);
-						} catch (InterruptedException e) {
-						  e.printStackTrace();
-						}
-					  }
-					}
-
-					public class Main {
-					  public static void main(String[] args) {
-						Thread thread1 = new Thread(() -> StaticSynchronizedPrinter.printDocument("Doc 1"));
-						Thread thread2 = new Thread(() -> StaticSynchronizedPrinter.printDocument("Doc 2"));
-
-						thread1.start();
-						thread2.start();
-					  }
-					}
-
-
-				
-			
-		. Deadlocks: 
-			A deadlock occurs when two or more threads are waiting for each other's resources, creating a permanent halt. Careful design and resource management are crucial to avoid deadlocks.
-		. Complexity: 
-			Multithreaded code can be more complex to write and debug compared to single-threaded code.
-
-
-		Java Multithreading Example:
-		----------------------------
-			public class MultithreadingExample {
-				public static void main(String[] args) {
-					
-					// Thread 1 to print even numbers
-					Thread evenThread = new Thread(() -> {
-						for (int i = 0; i <= 10; i += 2) {
-							System.out.println(i);
-						}
-					});
-
-					// Thread 2 to print odd numbers
-					Thread oddThread = new Thread(() -> {
-						for (int i = 1; i <= 9; i += 2) {
-							System.out.println(i);
-						}
-					});
-
-					// Start the threads
-					evenThread.start();
-					oddThread.start();
-				}
-			}
-
-
-
-	final : 
-	-------
-		final is a keyword which used as an access modifier to apply restrictions on class, methods, and variables.
-
-		. final class can not be inherited.
-		. final method can not be overridded.
-		. final variable value can not be changed.
-
-
-	finally{} Block: 
-	----------------
-		The finally{} block is an optional block that always executes, regardless of whether an exception occurs or not. It's typically used to release resources (e.g., closing files, database connections) that were acquired within the try block. The finally block ensures that these resources are properly cleaned up even if an exception disrupts the normal program flow.
-		
-		
-		You cannot use a finally block by itself without a try block. The finally block relies on the try block to define the code segment it needs to execute after.
-
-		try(){}...catch(){}...catch(){}...finally{}
-		try(){}...catch(){}...finally{}
-		try(){}...finally{}
-
-
-		Notes : 
-		. You cannot have multiple try blocks with a single catch. catch creates ambiguity about which exception the catch block should handle
-
-		. some alternative approaches: 
-			Nested Try-Catch Blocks
-			Multiple Catch Blocks
-			Separate Try-Catch Blocks
-
-		
-	finalize() method :
-	------------------- 
-		finalize method in Java is a garbage collection mechanism that allows objects to perform some cleanup tasks before they are removed from memory.
-		
-		. Non-deterministic: 
-			There's no guarantee exactly when the finalize method will be called. It might be called immediately after the object becomes eligible for garbage collection, or it might be delayed until much later. You should not rely on finalize to perform critical cleanup tasks that must happen before the object is garbage collected.
-		. Protected method: 
-			The finalize method is declared as protected in the Object class, meaning it can be directly invoked only by subclasses or from within the same package.
-		. No arguments and no return value: 
-			The finalize method takes no arguments and doesn't return any value.
-			
-			
-		ex - 
-		class Resource {
-			private boolean isReleased = false;
-			
-			public void close() {
-				// Simulate releasing a resource (e.g., closing a file)
-				System.out.println("Resource released.");
-				isReleased = true;
-			}
-
-			@Override
-			protected void finalize() throws Throwable {
-				if (!isReleased) {
-				  System.out.println("Resource was not released properly! Performing forced cleanup in finalize...");
-				  close();
-				}
-				super.finalize(); // Call finalize method of parent class (Object)
-			  }
-			}
-
-			public class Main {
-			  public static void main(String[] args) {
-				Resource resource = new Resource();
-				// ... use the resource
-
-				// Forget to close the resource explicitly
-			}
-		
-		
-		Explanation:
-
-		. The Resource class has a close method that simulates releasing a resource.
-		. The finalize method checks if the resource is released (isReleased flag).
-		. If not released, it prints a message and calls the close method to perform the cleanup.
-		. The finalize method also calls super.finalize() to ensure proper finalization of the parent class (Object).
-		
-		
-		Problems with finalize():
-
-		. Unreliable timing: 
-			As mentioned earlier, the timing of finalize is unpredictable. You cannot rely on it to happen at a specific time.
-		. Not guaranteed to be called: 
-			In some cases, the garbage collector might not call finalize at all, especially if the object is unreachable and there's no memory pressure.
-		. Potential performance overhead: 
-			Finalization adds some overhead to the garbage collection process.
-		. Exceptions in finalize can cause problems: 
-			If an exception occurs within the finalize method, it's ignored and the garbage collection process continues. This can lead to unexpected behavior or resource leaks.
-			
-			
-	StringBuilder vs StringBuffer : 
-	--------------------------------
-		. Thread Safety: 
-			StringBuilder is not, while StringBuffer is thread-safe.
-		. Use Cases: 
-			Choose StringBuilder for single-threaded scenarios and StringBuffer for multi-threaded scenarios where thread safety is a concern.
-		. Performance: 
-			StringBuilder is generally faster in single-threaded environments due to its lack of synchronization overhead.
-			
-			
-			
-	volatile keyword :
-	------------------
-		. When you declare a variable as volatile, you’re telling the Java Virtual Machine (JVM) that this variable can be accessed and modified by multiple threads.
-		. Changes made to this variable by one thread are immediately visible to other threads. No more hiding in caches or secret corners—everyone gets to see the latest value.
-		. Use volatile when you care more about visibility than atomicity.
-
-===========================================================================================
-
-
-
-
-JAVA EXCEPTION HANDELING : 
---------------------------
-
-	Throwable : 
-	. The Throwable class in Java is the root of exceptions and errors in the Java language. 
-	. All exception and error classes in Java (including Exception, RuntimeException, Error, etc.) directly or indirectly inherit from Throwable.
-
-	. When an exception occurs, a Throwable object is created and thrown. This object encapsulates information about the error, such as the type of exception, its message, and the call stack (trace of method calls leading to the exception).
-
-	. Methods : Throwable provides several useful methods for handling exceptions:
-		. getMessage() : 
-			Returns the detail message associated with the exception (if any).
-		. printStackTrace() : 
-			Prints the stack trace of the exception to the standard error output stream. This is helpful for debugging purposes.
-		. getCause() : 
-			Returns the cause of this throwable (if any). This allows for chaining exceptions, where one exception can be caused by another.
-		. getStackTrace() : 
-			Returns an array of StackTraceElement objects representing the call stack at the time the exception was thrown.
-		
-	public class DivisionByZero {
-		public static void main(String[] args) {
-			try {
-				int result = 10 / 0; // This line will throw an ArithmeticException
-				System.out.println(result);
-			} catch (Throwable t) {
-				System.out.println("An error occurred:");
-				// Get the type of exception
-				System.out.println("Exception type: " + t.getClass().getName());
-				// Get the error message (if any)
-				System.out.println("Error message: " + t.getMessage());
-				// Print the stack trace for debugging
-				t.printStackTrace();
-			}
-		}
-	}
-	
-	Output:
-	An error occurred:
-	Exception type: java.lang.ArithmeticException
-	Error message: / by zero
-	java.lang.ArithmeticException: / by zero
-    at DivisionByZero.main(DivisionByZero.java:7)
-	
-	. Using Throwable directly in catch blocks is generally not recommended unless you intend to handle all possible exceptions in the same way.
-
-
-
-	Error : 
-	. Error is a subclass of Throwable that represents serious problems that are typically not recoverable within an application. These errors often indicate environmental or system issues that are beyond the program's control.
-	
-	. Errors are intended for exceptional situations that should not occur under normal program execution. They signal severe resource issues, virtual machine malfunctions, or other critical problems.
-	
-	. Unlike checked exceptions, catching Error is not mandatory in a try-catch block. The Java compiler doesn't require you to declare throws Error in method signatures, as these errors are not anticipated.
-	
-	.Recovering from an Error is generally difficult or impossible within the application itself. Often, these errors require program termination or system intervention.
-	
-	. Subclasses of Error : 
-		. OutOfMemoryError, 
-		. StackOverflowError, and 
-		. VirtualMachineError. 
-		
-	public class OutOfMemoryErrorExample {
-
-		public static void main(String[] args) {
-			try {
-				// Code that intentionally allocates a massive amount of memory,
-				// potentially causing an OutOfMemoryError
-				byte[] largeArray = new byte[Integer.MAX_VALUE];
-			} catch (Error e) { // Not recommended to catch Error directly
-				System.out.println("A critical error occurred:");
-				System.out.println("Error type: " + e.getClass().getName());
-				System.out.println("Error message: " + e.getMessage());
-				// Consider logging the error or gracefully terminating the program
-			}
-		}
-	}
-	
-	. Catching Error is generally not advisable. It's better to design your application to avoid situations that might lead to these errors or implement robust error handling mechanisms for specific Error subclasses if necessary.
-
-
-
-	Exception :
-	-----------
-		. Exceptions are events that disrupt the normal flow of program execution. They represent unexpected conditions that occur during runtime.
-		. When an exception occurs, an exception object is created and thrown. This object contains information about the error, including the type of exception and its message.
-
-		Type of Exception :
-		1. Checked Exceptions: 
-			These exceptions are compiled-time errors. The Java compiler requires you to either declare that a method throws a checked exception or handle it within the method itself using a try-catch block. 
-			Examples include IOException (for file input/output issues) and ClassNotFoundException (when a class cannot be found).
-
-		2. Unchecked Exceptions: 
-			These exceptions are runtime errors. The Java compiler doesn't force you to handle them, but it's generally good practice to do so for robust applications. Unchecked exceptions typically represent programming errors or unexpected conditions that can be handled gracefully. 
-			Examples (e.g., NullPointerException, IndexOutOfBoundsException).
-			
-		
-
-	Exception Handling Mechanisms : 
-	1. try-catch Block: 
-		This is the most common way to handle exceptions. It consists of a try block that contains the code you want to monitor for exceptions, followed by one or more catch blocks that specify the type of exception to handle and the code to execute if that exception occurs.
-		
-		try {
-			int result = 10 / 0; // This line will throw an ArithmeticException
-			System.out.println(result);
-		} catch (ArithmeticException e) {
-			System.out.println("Division by zero error occurred!");
-		}
-
-
-	2. throws Keyword: 
-		This keyword is used within a method declaration to indicate that the method might throw a specific exception (or exceptions). It helps callers understand the potential exceptions that could arise when calling the method and allows them to handle them appropriately.
-		
-		public void readFile(String filename) throws IOException {
-			// Code that reads a file
-		}
-
-
-	3. finally{} Block: 
-		The finally{} block is an optional block that always executes, regardless of whether an exception occurs or not. It's typically used to release resources (e.g., closing files, database connections) that were acquired within the try block. The finally block ensures that these resources are properly cleaned up even if an exception disrupts the normal program flow.
-		
-		
-		You cannot use a finally block by itself without a try block. The finally block relies on the try block to define the code segment it needs to execute after.
-
-		try(){}...catch(){}...catch(){}...finally{}
-		try(){}...catch(){}...finally{}
-		try(){}...finally{}
-
-
-		Notes : 
-		. You cannot have multiple try blocks with a single catch. try creates ambiguity about which exception the catch block should handle
-
-		. some alternative approaches: 
-			. Nested Try-Catch Blocks
-			. Multiple Catch Blocks
-			. Separate Try-Catch Blocks
-		
-		
-		try (Scanner scanner = new Scanner(new File("data.txt"))) {
-			// Code that reads data from the file
-		} catch (FileNotFoundException e) {
-			System.out.println("File not found!");
-		} finally {
-			// Scanner object will be automatically closed here
-		}
-
-		
-		Benefits of Exception Handling : 
-
-		. Robustness: 
-			By handling exceptions gracefully, you can prevent your program from crashing unexpectedly and make it more resilient to unexpected errors.
-		. Maintainability: 
-			Exception handling improves the code's readability and maintainability by separating normal program flow from error handling logic.
-		. Informative Error Messages: 
-			You can provide informative error messages to users when exceptions occur, helping them understand the issue and possibly take corrective actions.
-
-===========================================================================================	
-
-	
 	
 
 JAVA 8 : 
@@ -3627,3 +3951,110 @@ Refactoring Steps:
 
 4. Celebrate Small Victories
 	After each refactor, raise your virtual goblet and toast to cleaner code!
+	
+	
+	
+	
+	
+=======================================================================================================================================================================
+	
+	
+	
+	
+ExecutorService : 
+-----------------
+The ExecutorService in Java is a framework provided by the java.util.concurrent package that simplifies the execution of asynchronous tasks. It manages a pool of worker threads, allowing efficient execution of tasks without manually creating and managing threads.
+
+Key Features :
+--------------
+Thread Pooling: Reuses threads, reducing the overhead of creating and destroying them.
+Asynchronous Task Execution: Allows tasks to be submitted and executed asynchronously.
+Task Scheduling: Supports scheduling tasks to run after a delay or periodically.
+Graceful Shutdown: Provides methods to properly shut down the executor.
+
+
+Creating an ExecutorService
+You can create an ExecutorService using the Executors factory class.
+
+1. Fixed Thread Pool
+Creates a thread pool with a fixed number of threads.
+
+import java.util.concurrent.*;
+
+public class FixedThreadPoolExample {
+    public static void main(String[] args) {
+        ExecutorService executor = Executors.newFixedThreadPool(3);
+
+        for (int i = 1; i <= 5; i++) {
+            int taskNumber = i;
+            executor.submit(() -> {
+                System.out.println("Executing Task " + taskNumber + " by " + Thread.currentThread().getName());
+            });
+        }
+
+        executor.shutdown();
+    }
+}
+
+
+
+📌 Output Example (Order may vary):
+-----------------------------------
+Executing Task 1 by pool-1-thread-1
+Executing Task 2 by pool-1-thread-2
+Executing Task 3 by pool-1-thread-3
+Executing Task 4 by pool-1-thread-1
+Executing Task 5 by pool-1-thread-2
+
+
+Types of Executor Services : 
+----------------------------
+. newFixedThreadPool(int n) :	
+	Creates a fixed-size thread pool.
+. newCachedThreadPool() :	
+	Creates a thread pool that adds new threads as needed and removes idle threads.
+. newSingleThreadExecutor() :	
+	Creates a single-threaded executor.
+. newScheduledThreadPool(int n) :	
+	Creates a thread pool that can schedule tasks to run after a delay or periodically.
+	
+Shutting Down the Executor : 
+Once tasks are submitted, it's important to shut down the ExecutorService properly.
+
+	Shutdown Methods : 
+	. shutdown() – 
+		Initiates an orderly shutdown; previously submitted tasks will be executed, but no new tasks will be accepted.
+		
+			executor.shutdown();  // Normal shutdown
+
+	. shutdownNow() – 
+		Attempts to stop all actively executing tasks and returns a list of tasks that were waiting to be executed.
+		
+			executor.shutdownNow();  // Force shutdown
+
+
+Using Callable for Returning Results : 
+	Unlike Runnable, Callable allows returning a result.
+
+import java.util.concurrent.*;
+
+public class CallableExample {
+    public static void main(String[] args) throws Exception {
+        ExecutorService executor = Executors.newFixedThreadPool(2);
+        Callable<Integer> task = () -> {
+            return 10 + 20;
+        };
+
+        Future<Integer> future = executor.submit(task);
+        System.out.println("Result: " + future.get()); // Blocking call
+
+        executor.shutdown();
+    }
+}
+
+📌 Output:
+Result: 30
+
+
+Conclusion
+The ExecutorService framework in Java provides a flexible and efficient way to manage threads and execute tasks asynchronously. It helps improve performance, avoid thread management complexities, and ensures better resource utilization.

@@ -1,10 +1,10 @@
 Notes :
 -------
-    Java does not  support multiple inheritance for classes due to Complexity and ambiguity.
+    Java does not  support multiple inheritance for classes due to Complexity and ambiguity.  But we can use multiple inheritance for interfaces.
 
     Diamond problem :
     -----------------
         subclass can inherit from multiple parent classes.
-        If both parent classes have methods with the same name then this can lead to ambiguity.
-        The compiler wouldn't know which method to call from the subclass.
+        If both parent interfaces have methods with the same name then this can lead to ambiguity.
+        The compiler wouldn't know which method to call from the interfaces.
         This is often referred to as the "diamond problem".

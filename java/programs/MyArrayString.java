@@ -12,9 +12,12 @@ public class MyArrayString {
     public static void main(String[] args) {
         /* String array */
         String[] strs = {"harsh", "harsh", "ash", "ash", "ash", "sea", "reds", "green"};
+        int length = strs.length;
+        out.println(length);
 
         Map<String, Long> stringCountMap = Arrays.stream(strs)
                 .collect(Collectors.groupingBy(str -> str, Collectors.counting()));
+        stringCountMap.forEach((k, v) -> out.println(k + " : " + v));
         System.out.println("stringCountMap : " + stringCountMap);
         out.println(" ");
 

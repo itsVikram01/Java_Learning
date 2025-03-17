@@ -1,6 +1,6 @@
 Kafka:
 
-Apache kafka is an open source distributed event streaming plateform
+Apache kafka is an open source distributed event streaming platform
 
 Creating Real-time stream 
 Processing Real-time stream
@@ -22,15 +22,15 @@ Broker : Kafka broker is nothing but just a server. In simple word, A broker is 
 
 Cluster : There can be one or more brokers in the Kafka Cluster(broker1+broker2+broker3+... = Kafka Cluster)
 
-Topic : It specifies the category of the message or the classification of the message. Listeners can then just respond to the messsages that belongs the topics they are listening on.(Topic are just like database table)
+Topic : It specifies the category of the message or the classification of the message. Listeners can then just respond to the messages that belongs the topics they are listening on.(Topic are just like database table)
 
-Partition : If any partion goes off the others partion are available to handle the load without any downtime. It increases perfoformance.
+Partition : If any partition goes off the others partition are available to handle the load without any downtime. It increases performance.
 
-Offset : In Kafka, the sequence no is assigned to each messages in each partion of a kafka topic are called Offsets.
+Offset : In Kafka, the sequence no. is assigned to each messages in each partition of a kafka topic are called Offsets.
 
 Consumer Groups : Consumer1+Consumer2+Consumer3+... = Consumer Groups
 
-Zookeeper : Zookeeper is a prerequisite for Kafka. Kafka is a distributed system, and it uses Zookeeper for coordination and to track the status of Kafka cluster nodes. It also keeps track of Kafka topics, partions, etc.
+Zookeeper : Zookeeper is a prerequisite for Kafka. Kafka is a distributed system, and it uses Zookeeper for coordination and to track the status of Kafka cluster nodes. It also keeps track of Kafka topics, partitions, etc.
 
 
 
@@ -101,7 +101,7 @@ Open confluent-7.6.1 folder in terminal.
 	
 	
 	
-Open InteliJ Idea: create folder kafka-installation-docker-setup.
+Open IntelliJ Idea: create folder kafka-installation-docker-setup.
 docker-compose.yml : 
 --------------------
 version: '3.8'

@@ -252,13 +252,14 @@ hashMap.put("KEY", "Value") : ("key" : must be an object, It can't be primitive 
 
 Summary : 
 
-	hashMap.put("key", "value");	--->	HahMap utilize hash table(bucket array of initial size 16)
+	hashMap.put("key", "value");	--->	HahMap utilize hash table(bucket array of LinkedList of initial size 16)
 														|
 														|	
 											Find hashCode() of the key : "key".hashCode(); 
 														|
 														|
 											Find bucket index using hash code : bitwise AND operation value of hashCode with (bucket size - 1).
+											Load factor = 75% or 0.75 or 3/4
 														|
 														|
 											Hash Collision	--->	No	---> 	Simply add to LinkedList as first node.

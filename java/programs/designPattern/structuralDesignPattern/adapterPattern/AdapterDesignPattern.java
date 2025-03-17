@@ -1,5 +1,5 @@
 package programs.designPattern.structuralDesignPattern.adapterPattern;
-/*
+
 interface MediaPlayer {
     void play(String audioType, String fileName);
 }
@@ -12,7 +12,7 @@ class Mp3Player implements MediaPlayer {
     }
 }
 
-public class AdapterDesignPattern implements MediaPlayer {
+/*public class AdapterDesignPattern implements MediaPlayer {
     private AdvancedMediaPlayer advancedMediaPlayer;
 
     public AdapterDesignPattern(String audioType) {

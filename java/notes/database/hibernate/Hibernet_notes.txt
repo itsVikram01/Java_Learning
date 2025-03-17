@@ -142,20 +142,20 @@ Benefits of Using Hibernate:
 		session.close();
 
 
-	Hibernate persistance lifecycle state :
+	Hibernate persistence lifecycle state :
 	1. Transient state : 
 		When we create object and set value using getter/setter or constructor then objects goes into transient state.
 		Transient state object data does not go in DB or session object.
 		
-	2. Persistance state : 
+	2. Persistence state :
 		When we save or update or persist transient object using session it goes into Persistent state.
-		Persistance state object data goes into session object and DB also.
+		Persistence state object data goes into session object and DB also.
 		If we make any changes in persistent state object the changes will reflect in DB and session object both.
 
 	3. Detached state : 
 		When we close or clear Persistent state object it goes into Detached state.
-		Detached state object data goes into DB only but did not goes into session object.
-		Ater updating Detached state using session it again goes into Persistent state.
+		Detached state object data goes into DB only but did not go into session object.
+		After updating Detached state using session it again goes into Persistent state.
 		
 	4. Removed state :
 		When we delete Persistent state object it goes only in session object and did not go into DB.

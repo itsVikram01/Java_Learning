@@ -11,6 +11,9 @@ public class MyArrayInteger {
         int[] intArr = {4, 5, 2, 6, 7, 8, 9, 1, 3, 7, 8, 7};
         System.out.println("intArr : " + Arrays.toString(intArr));
 
+        int length = intArr.length;
+        System.out.println(length);
+
 
         /* Array sorting */
         //Arrays.sort(intArr);

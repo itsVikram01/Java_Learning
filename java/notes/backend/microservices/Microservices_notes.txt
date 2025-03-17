@@ -1083,3 +1083,7 @@ Async Logging :
 
 		spring.datasource.hikari.maximum-pool-size=20
 		spring.datasource.hikari.minimum-idle=5
+
+
+Q: Describe your experience with microservices architecture.
+A: I have designed and implemented microservices architectures using Spring Boot, Spring Cloud, and Docker. This involved decomposing monolithic applications into loosely coupled services, implementing service discovery, load balancing, and inter-service communication with REST and messaging systems like Kafka. I also focused on resilience using Hystrix and monitoring with tools like Prometheus and Grafana.

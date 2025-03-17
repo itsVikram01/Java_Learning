@@ -1,10 +1,10 @@
 package programs.designPattern.structuralDesignPattern.adapterPattern;
-/*
+
 interface RestClient {
     String get(String url);
 }
 
-class RestTemplateClient implements RestClient {
+/*class RestTemplateClient implements RestClient {
     private RestTemplate restTemplate = new RestTemplate();
 
     public String get(String url) {

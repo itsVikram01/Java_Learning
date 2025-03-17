@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.lang.System.out;
 
@@ -32,9 +33,10 @@ public class StringExample {
         out.println(str0);
 
         /* charCounts of string */
-        str.chars().mapToObj(ch -> (char) ch)
-                .collect(Collectors.groupingBy(ch -> ch, LinkedHashMap::new, Collectors.counting()))
-                .forEach((key, value) -> System.out.println(key + " : " + value));
+        Map<Character, Long> map = str.chars().mapToObj(ch -> (char) ch)
+                .collect(Collectors.groupingBy(ch -> ch, LinkedHashMap::new, Collectors.counting()));
+
+        map.forEach((key, value) -> System.out.println(key + " : " + value));
 
         /* first repeating/unique character in string */
         str.chars().mapToObj(ch -> (char) ch)
@@ -59,9 +61,7 @@ public class StringExample {
         //charsMap.forEach((key, value) -> out.println(key + " : " + value));
 
         /* first vowel in string */
-        str.chars().mapToObj(ch -> (char) ch)
-                .collect(Collectors.groupingBy(ch -> ch, LinkedHashMap::new, Collectors.counting()))
-                .entrySet().stream()
+        map.entrySet().stream()
                 .filter(ch -> "AEIOUaeiou".indexOf(ch.getKey()) >= 0)
                 .skip(0)
                 .findFirst().ifPresent(entry -> System.out.println(entry.getKey()));
