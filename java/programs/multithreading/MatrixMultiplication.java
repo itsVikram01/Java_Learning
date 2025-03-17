@@ -10,6 +10,7 @@ public class MatrixMultiplication extends Thread {
     static int n = 2;
     int row;
 
+
     MatrixMultiplication(int i) {
         row = i;
         this.start();
